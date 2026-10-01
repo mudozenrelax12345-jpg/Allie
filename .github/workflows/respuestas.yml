@@ -1,0 +1,57 @@
+name: Respuestas de Allie
+
+on:
+  schedule:
+    - cron: "20 * * * *"   # cada hora
+  workflow_dispatch:
+    inputs:
+      accion:
+        description: "¿Qué quieres hacer?"
+        type: choice
+        default: responder
+        options:
+          - responder   # contestar ahora a lo que haya pendiente
+          - probar      # comprobar que las claves y los permisos funcionan
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: respuestas-allie
+  cancel-in-progress: false
+
+jobs:
+  responder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar
+        run: python app/main.py
+        env:
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACCION: ${{ inputs.accion }}
+
+      - name: Guardar estado
+        if: always()
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualizar estado [skip ci]"
+            git pull --rebase
+            git push
+          fi
