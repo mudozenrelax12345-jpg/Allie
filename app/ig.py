@@ -161,8 +161,18 @@ class Instagram:
 
     # ------------------------------------------------------------ mensajes
     def conversaciones(self, maximo=50):
-        return self._lista(f"{self.pagina}/conversations", maximo,
-                           platform="instagram", fields="id,updated_time", limit=50)
+        # Meta responde "reduce the amount of data" si se piden demasiadas de
+        # golpe, así que se va bajando el tamaño de página hasta que acepte.
+        ultimo = None
+        for tam in (25, 10, 5, 2):
+            try:
+                return self._lista(f"{self.pagina}/conversations", maximo,
+                                   platform="instagram", fields="id,updated_time", limit=tam)
+            except IGError as e:
+                ultimo = e
+                if "reduce the amount of data" not in str(e).lower():
+                    raise
+        raise ultimo
 
     def mensajes(self, conversacion_id, maximo=20):
         campos = "messages.limit(%d){id,created_time,from,to,message}" % maximo

@@ -7,7 +7,19 @@ import re
 import requests
 
 BASE = "https://generativelanguage.googleapis.com/v1beta"
-MODELO = os.environ.get("GEMINI_TEXT_MODEL", "gemini-3.5-flash")
+
+# El nivel gratuito limita las peticiones por día, y el límite es distinto en cada
+# modelo (los "lite" son los más generosos). Se prueban en orden: si uno se queda
+# sin cupo o no existe, se pasa al siguiente sin que el proceso se pare.
+MODELOS = [m.strip() for m in os.environ.get(
+    "GEMINI_TEXT_MODELS",
+    "gemini-3.5-flash-lite,gemini-2.5-flash-lite,gemini-2.0-flash-lite,"
+    "gemini-3.5-flash,gemini-2.5-flash,gemini-2.0-flash").split(",") if m.strip()]
+if os.environ.get("GEMINI_TEXT_MODEL"):
+    MODELOS.insert(0, os.environ["GEMINI_TEXT_MODEL"].strip())
+
+_elegido = None          # modelo que funcionó la última vez
+_descartados = set()     # modelos sin cupo o inexistentes en esta ejecución
 
 
 class GeminiError(Exception):
@@ -52,22 +64,56 @@ def _textos(nodo, out):
             _textos(v, out)
 
 
-def texto(prompt, imagenes=()):
-    """imagenes: lista de bytes JPEG/PNG que Gemini mirará junto al texto."""
+def _sin_cupo(e):
+    m = str(e).lower()
+    return any(s in m for s in ("rate limit", "quota", "resource_exhausted", "429",
+                                "too many requests"))
+
+
+def _una_vez(modelo, prompt, imagenes):
     entrada = [{"type": "text", "text": prompt}]
     for b in imagenes:
         entrada.append({"type": "image", "mime_type": "image/jpeg",
                         "data": base64.b64encode(b).decode()})
-    data = _post(f"{BASE}/interactions", {"model": MODELO, "input": entrada})
+    data = _post(f"{BASE}/interactions", {"model": modelo, "input": entrada})
     if data is None:
         partes = [{"text": prompt}]
         for b in imagenes:
             partes.append({"inline_data": {"mime_type": "image/jpeg",
                                            "data": base64.b64encode(b).decode()}})
-        data = _post(f"{BASE}/models/{MODELO}:generateContent",
+        data = _post(f"{BASE}/models/{modelo}:generateContent",
                      {"contents": [{"role": "user", "parts": partes}]})
-        if data is None:
-            raise GeminiError(f"El modelo '{MODELO}' no existe. Cámbialo en el secreto GEMINI_TEXT_MODEL.")
+    return data
+
+
+def texto(prompt, imagenes=()):
+    """imagenes: lista de bytes JPEG/PNG que Gemini mirará junto al texto."""
+    global _elegido
+    orden = ([_elegido] if _elegido else []) + [m for m in MODELOS if m != _elegido]
+    ultimo = None
+    data = None
+    for modelo in orden:
+        if modelo in _descartados:
+            continue
+        try:
+            data = _una_vez(modelo, prompt, imagenes)
+        except GeminiError as e:
+            ultimo = e
+            if _sin_cupo(e):
+                _descartados.add(modelo)
+                if _elegido == modelo:
+                    _elegido = None
+                continue
+            raise
+        if data is None:          # el modelo no existe
+            _descartados.add(modelo)
+            continue
+        _elegido = modelo
+        break
+    if data is None:
+        raise GeminiError(
+            f"Ningún modelo de Gemini disponible. Último aviso: {ultimo}"
+            if ultimo else "Ningún modelo de Gemini disponible.")
     out = []
     if isinstance(data.get("steps"), list):
         nodos = [s for s in data["steps"] if s.get("type") == "model_output"] or data["steps"]
