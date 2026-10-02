@@ -1,4 +1,5 @@
 """Textos con la API de Gemini (el nivel gratuito cubre texto)."""
+import base64
 import json
 import os
 import re
@@ -51,11 +52,20 @@ def _textos(nodo, out):
             _textos(v, out)
 
 
-def texto(prompt):
-    data = _post(f"{BASE}/interactions", {"model": MODELO, "input": [{"type": "text", "text": prompt}]})
+def texto(prompt, imagenes=()):
+    """imagenes: lista de bytes JPEG/PNG que Gemini mirará junto al texto."""
+    entrada = [{"type": "text", "text": prompt}]
+    for b in imagenes:
+        entrada.append({"type": "image", "mime_type": "image/jpeg",
+                        "data": base64.b64encode(b).decode()})
+    data = _post(f"{BASE}/interactions", {"model": MODELO, "input": entrada})
     if data is None:
+        partes = [{"text": prompt}]
+        for b in imagenes:
+            partes.append({"inline_data": {"mime_type": "image/jpeg",
+                                           "data": base64.b64encode(b).decode()}})
         data = _post(f"{BASE}/models/{MODELO}:generateContent",
-                     {"contents": [{"role": "user", "parts": [{"text": prompt}]}]})
+                     {"contents": [{"role": "user", "parts": partes}]})
         if data is None:
             raise GeminiError(f"El modelo '{MODELO}' no existe. Cámbialo en el secreto GEMINI_TEXT_MODEL.")
     out = []
@@ -67,8 +77,8 @@ def texto(prompt):
     return "\n".join(out).strip()
 
 
-def json_(prompt):
-    t = texto(prompt)
+def json_(prompt, imagenes=()):
+    t = texto(prompt, imagenes)
     m = re.search(r"\{.*\}", t, re.S)
     if not m:
         raise GeminiError("Gemini no devolvió un JSON válido.")
@@ -76,3 +86,30 @@ def json_(prompt):
         return json.loads(m.group(0))
     except json.JSONDecodeError as e:
         raise GeminiError(f"JSON inválido de Gemini: {e}")
+
+
+REVISION = """Mira esta foto. Es para la cuenta de Instagram de una influencer y se ha generado con IA,
+así que puede tener fallos típicos. Revísala con MUCHA atención y responde con sinceridad.
+
+Marca "ok": false si ves CUALQUIERA de estos problemas:
+- número de brazos, piernas, manos o pies distinto del normal (¡mira bien las piernas!)
+- dedos de más o de menos, manos o pies deformes
+- cara deformada, ojos raros o asimetrías evidentes
+- cuerpos o miembros fusionados con objetos, animales o el fondo
+- texto, letras, logotipos o marcas de agua en la imagen
+- la imagen está cortada de forma rara, borrosa o es claramente artificial
+- animales con el número de patas equivocado
+- contenido que no sería apropiado en una cuenta pública
+
+Si todo está bien, responde "ok": true.
+
+Devuelve SOLO un JSON: {"ok": true|false, "problema": "qué has visto, en español, muy breve"}"""
+
+
+def revisar_imagen(datos):
+    """Devuelve (ok, problema). Si Gemini falla, deja pasar la imagen para no bloquear el proceso."""
+    try:
+        r = json_(REVISION, imagenes=[datos])
+    except GeminiError as e:
+        return True, f"no se pudo revisar ({e})"
+    return bool(r.get("ok")), (r.get("problema") or "").strip()

@@ -68,7 +68,11 @@ Devuelve SOLO un JSON:
 }}
 
 Reglas para las escenas: en inglés, muy descriptivas (lugar, ropa, pose, expresión, luz, encuadre).
-Nada de texto, logotipos ni marcas dentro de la imagen. Contenido apto para todos los públicos.
+MUY IMPORTANTE con el encuadre: usa planos de medio cuerpo, de cintura para arriba o primeros planos
+("upper-body shot", "medium shot from the waist up", "close-up"). NADA de planos de cuerpo entero ni
+de cuerpo completo: es donde la IA se inventa piernas y manos de más. Evita también manos en posturas
+raras o muy en primer plano. Nada de texto, logotipos ni marcas dentro de la imagen.
+Contenido apto para todos los públicos.
 Reglas para el texto: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie', '#AIInfluencer'])}."""
     g = gemini.json_(prompt)
     escenas = (g.get("escenas") or [])[:N_FOTOS]
@@ -79,41 +83,65 @@ Reglas para el texto: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie',
 
 
 # ------------------------------------------------------------------ fotos
+ANATOMIA = ("anatomically correct, exactly two arms and two legs, five fingers on each hand, "
+            "natural human proportions, no extra limbs, no duplicated body parts, "
+            "no deformed hands or feet")
+
+
 def url_pollinations(escena, semilla, p):
     clave = os.environ.get("POLLINATIONS_KEY", "")
     if not clave:
         raise RuntimeError("Falta el secreto POLLINATIONS_KEY en GitHub.")
-    texto = ("The same young woman from the reference photo, identical face and hair, "
-             + escena + ", photorealistic smartphone photo, natural skin, vertical, no text")
-    return (f"https://gen.pollinations.ai/image/{quote(texto)}?model={p.get('modelo_imagen', 'klein')}"
+    texto = (f"The same young woman from the reference photo, identical face and hair, {escena}. "
+             f"Photorealistic smartphone photo, natural skin, soft natural light, {ANATOMIA}, "
+             f"vertical 4:5 crop, no text, no watermark")
+    return (f"https://gen.pollinations.ai/image/{quote(texto)}?model={p.get('modelo_imagen', 'kontext')}"
             f"&width=1080&height=1350&seed={semilla}&nologo=true"
             f"&image={quote(p['referencia_url'], safe='')}&key={clave}")
 
 
+INTENTOS = 4
+
+
 def descargar_fotos(escenas, p):
+    """Genera cada foto y la revisa con Gemini: si tiene tres piernas, manos raras o
+    cualquier otro fallo típico de la IA, la descarta y prueba otra vez."""
     TRABAJO.mkdir(exist_ok=True)
     base = int(datetime.now(timezone.utc).strftime("%Y%m%d")) * 10
-    rutas = []
+    rutas, descartadas = [], []
     for i, escena in enumerate(escenas):
         destino = TRABAJO / f"foto{i}.jpg"
-        for intento in range(3):
-            semilla = base + i + intento * 100
+        mejor = None
+        for intento in range(INTENTOS):
+            semilla = base + i + intento * 137
             try:
                 r = requests.get(url_pollinations(escena, semilla, p), timeout=300)
             except requests.RequestException as e:
                 log(f"Foto {i + 1}: fallo de red ({e}); reintento")
                 time.sleep(5)
                 continue
-            if r.status_code == 200 and r.headers.get("content-type", "").startswith("image/"):
+            if r.status_code != 200 or not r.headers.get("content-type", "").startswith("image/"):
+                log(f"Foto {i + 1}: Pollinations devolvió {r.status_code} {r.text[:120]}")
+                time.sleep(5)
+                continue
+            mejor = r.content
+            ok, problema = gemini.revisar_imagen(r.content)
+            if ok:
                 destino.write_bytes(r.content)
                 rutas.append(destino)
-                log(f"Foto {i + 1} de {len(escenas)} lista")
+                log(f"Foto {i + 1} de {len(escenas)} lista y revisada")
                 break
-            log(f"Foto {i + 1}: Pollinations devolvió {r.status_code} {r.text[:120]}")
-            time.sleep(5)
+            descartadas.append(f"foto {i + 1}: {problema}")
+            log(f"Foto {i + 1} descartada ({problema}); genero otra")
+            time.sleep(3)
         else:
-            raise RuntimeError("Pollinations no ha devuelto la imagen. Puede que se haya agotado "
-                               "el saldo gratuito de la semana.")
+            if mejor is None:
+                raise RuntimeError("Pollinations no ha devuelto la imagen. Puede que se haya agotado "
+                                   "el saldo gratuito de la semana.")
+            raise RuntimeError(f"Las {INTENTOS} imágenes de la foto {i + 1} salieron con fallos "
+                               f"({descartadas[-1]}). Esta semana no monto el reel.")
+    if descartadas:
+        log(f"Descartadas por fallos: {len(descartadas)}")
     return rutas
 
 

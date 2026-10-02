@@ -29,8 +29,8 @@ firma: ""
 # Tiene que ser una dirección pública (por ejemplo de postimages.org).
 referencia_url: "https://i.postimg.cc/023T5BJX/IMG-20261001-215255.jpg"
 
-# Modelo de imagen de Pollinations: klein (rápido) o kontext
-modelo_imagen: klein
+# Modelo de imagen de Pollinations: kontext (mejor con personas) o klein (más rápido)
+modelo_imagen: kontext
 
 # De estos temas sale uno al azar cada semana para el reel
 temas_reel:
