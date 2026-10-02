@@ -19,24 +19,34 @@ Las publicaciones normales se programan aparte, desde Metricool.
 |---|---|
 | `GEMINI_API_KEY` | [aistudio.google.com/apikey](https://aistudio.google.com/apikey). No hace falta activar la facturación: aquí solo se usa para escribir texto. |
 | `POLLINATIONS_KEY` | La clave de [enter.pollinations.ai](https://enter.pollinations.ai) (la que empieza por `sk_`). |
-| `INSTAGRAM_TOKEN` | Mira el apartado de abajo. |
+| `META_APP_SECRET` | La clave secreta de la app de Meta (Configuración → Básica → *Mostrar*). |
+| `FB_TOKEN` | Mira el apartado de abajo. |
 
-### 2. El token de Instagram
+### 2. El token de Meta
 
-Tu cuenta tiene que ser **profesional** (Empresa o Creador).
+Hacen falta tres cosas: la cuenta de Instagram **profesional**, una **página de
+Facebook** vinculada a ella, y una app en Meta for Developers. Esta vía —la API
+Graph de Facebook— es la que deja leer los comentarios de otras personas **sin
+pasar por la revisión de la app**.
 
-1. Entra en [developers.facebook.com](https://developers.facebook.com) con tu Facebook y regístrate como desarrolladora (gratis).
-2. **Mis apps → Crear app**. Cuando pregunte el caso de uso, elige el de **Instagram**.
-3. Dentro de la app: **Instagram → Configuración de la API con inicio de sesión de Instagram**.
-4. En **Generar tokens de acceso**, pulsa **Añadir cuenta** y entra con la cuenta de Allie.
-5. **Acepta los tres permisos**:
-   - `instagram_business_basic`
-   - `instagram_business_manage_comments` ← los comentarios
-   - `instagram_business_manage_messages` ← los mensajes
-   - Si te pide aceptar una invitación de *tester*: en Instagram, Configuración → Apps y sitios web → Invitaciones de tester → acéptala.
-6. Pulsa **Generar token**, cópialo y guárdalo como el secreto `INSTAGRAM_TOKEN`.
+1. En la app de Meta: **Instagram → Configuración de la API con inicio de sesión de Facebook**, y pulsa los botones azules que añaden los permisos.
+2. Abre el [Explorador de la API Graph](https://developers.facebook.com/tools/explorer/).
+3. En **App de Meta** elige tu app, y en **Usuario o página** elige *Token de acceso de usuario*.
+4. En **Agregar un permiso** marca estos seis:
+   - `instagram_basic`
+   - `instagram_manage_comments` ← los comentarios
+   - `instagram_manage_messages` ← los mensajes
+   - `pages_show_list`
+   - `pages_read_engagement`
+   - `business_management`
+5. Pulsa **Generate Access Token** y acepta, marcando la página y la cuenta de Instagram.
+6. Copia el token y guárdalo como el secreto `FB_TOKEN`.
 
-El token dura 60 días, pero **se renueva solo cada semana**. Si dejara de valer, te avisaría en Issues.
+Ese token dura solo unas horas, pero **en la primera ejecución el programa lo
+cambia por el token de la página, que no caduca**, y lo guarda cifrado en
+`estado/credenciales.json`. A partir de ahí no hay que tocar nada. Si algún día
+dejara de valer (por cambiar la contraseña o retirar los permisos), te avisaría
+en Issues y bastaría con repetir estos pasos.
 
 ### 3. Comprobar que todo va
 

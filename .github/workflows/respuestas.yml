@@ -1,11 +1,8 @@
 name: Respuestas de Allie
 
 on:
-  # Pausado: sin Acceso avanzado, Instagram no deja leer los comentarios ni los
-  # mensajes de otras personas, así que ejecutarlo cada hora solo gastaría
-  # minutos. Para reactivarlo, quita la almohadilla de las dos líneas de abajo.
-  # schedule:
-  #   - cron: "20 * * * *"
+  schedule:
+    - cron: "20 * * * *"
   workflow_dispatch:
     inputs:
       accion:
@@ -43,7 +40,8 @@ jobs:
       - name: Ejecutar
         run: python app/main.py
         env:
-          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+          FB_TOKEN: ${{ secrets.FB_TOKEN }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ACCION: ${{ inputs.accion }}

@@ -22,12 +22,14 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import gemini
-from ig import IGError, Instagram, ahora, parse_fecha
+from ig import IGError, Instagram, ahora, parse_fecha, token_de_pagina, token_largo
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 ESTADO = BASE_DIR / "estado" / "estado.json"
-TOKEN_FILE = BASE_DIR / "estado" / "token.json"
+TOKEN_FILE = BASE_DIR / "estado" / "credenciales.json"
 PERSONA_FILE = BASE_DIR / "personaje.yml"
+
+APP_ID = os.environ.get("META_APP_ID", "1396445209313937")
 
 MAX_COMENTARIOS = 30          # por ejecución
 MAX_MENSAJES = 20
@@ -65,35 +67,47 @@ def _origen(secreto):
     return hashlib.sha256(b"origen:" + secreto.encode()).hexdigest()[:16]
 
 
-def token_vigente():
-    """Usa el token renovado (guardado cifrado) si viene del secreto actual."""
-    secreto = os.environ.get("INSTAGRAM_TOKEN", "")
-    if secreto and TOKEN_FILE.exists():
+def credenciales():
+    """Devuelve (token, id_instagram, id_pagina).
+
+    La primera vez cambia el token corto del Explorador por uno de 60 días y, a
+    partir de él, saca el token de la página de Facebook, que no caduca. Se
+    guarda cifrado en el repositorio para no volver a pedirlo.
+    """
+    secreto = os.environ.get("FB_TOKEN", "")
+    if not secreto:
+        raise RuntimeError("Falta el secreto FB_TOKEN en GitHub.")
+    if TOKEN_FILE.exists():
         try:
             d = json.loads(TOKEN_FILE.read_text())
             if d.get("origen") == _origen(secreto):
-                return _fernet(secreto).decrypt(d["token"].encode()).decode()
+                tok = _fernet(secreto).decrypt(d["token"].encode()).decode()
+                return tok, d.get("ig_id"), d.get("page_id")
         except Exception as e:  # noqa: BLE001
-            log(f"No se pudo leer el token renovado: {e}")
-    return secreto
+            log(f"No se pudieron leer las credenciales guardadas: {e}")
 
-
-def refrescar_token(ig, estado):
-    ultimo = estado.get("token_refrescado")
-    if ultimo and (ahora() - parse_fecha(ultimo)) < timedelta(days=7):
-        return
-    secreto = os.environ.get("INSTAGRAM_TOKEN", "")
+    token = secreto
+    app_secret = os.environ.get("META_APP_SECRET", "")
+    if app_secret:
+        try:
+            largo = token_largo(secreto, APP_ID, app_secret)
+            if largo:
+                token = largo
+                log("Token alargado a 60 días.")
+        except IGError as e:
+            log(f"No pude alargar el token: {e}")
     try:
-        nuevo, _ = ig.refrescar_token()
+        pt, page_id, ig_id, nombre = token_de_pagina(token)
     except IGError as e:
-        log(f"No se pudo renovar el token: {e}")
-        return
-    if nuevo and secreto:
-        TOKEN_FILE.parent.mkdir(parents=True, exist_ok=True)
-        TOKEN_FILE.write_text(json.dumps({"origen": _origen(secreto),
-                                          "token": _fernet(secreto).encrypt(nuevo.encode()).decode()}))
-        log("Token de Instagram renovado (60 días más).")
-    estado["token_refrescado"] = ahora().isoformat()
+        log(f"No pude sacar el token de la página: {e}")
+        return token, None, None
+    TOKEN_FILE.parent.mkdir(parents=True, exist_ok=True)
+    TOKEN_FILE.write_text(json.dumps({
+        "origen": _origen(secreto), "ig_id": ig_id, "page_id": page_id, "pagina": nombre,
+        "token": _fernet(secreto).encrypt(pt.encode()).decode(),
+        "creado": ahora().isoformat()}, ensure_ascii=False, indent=1))
+    log(f"Token permanente de la página «{nombre}» guardado.")
+    return pt, ig_id, page_id
 
 
 # ============================================================ GitHub (avisos)
@@ -214,9 +228,15 @@ def decidir(p, tipo, autor, texto, contexto=""):
 
 
 # ============================================================ comentarios
+MI_USUARIO = ""      # se rellena al arrancar; sirve para reconocer lo escrito por Allie
+
+
 def mio(obj, yo):
     f = obj.get("from") or {}
-    return str(f.get("id", "")) == str(yo)
+    if f.get("id") and str(f["id"]) == str(yo):
+        return True
+    usuario = (obj.get("username") or f.get("username") or "").lower()
+    return bool(MI_USUARIO) and usuario == MI_USUARIO
 
 
 def ya_respondido(c, yo):
@@ -458,14 +478,17 @@ def diagnostico(ig, gh):
 
 
 def main():
+    global MI_USUARIO
     accion = os.environ.get("ACCION", "") or "responder"
     estado = cargar_estado()
     gh = GitHub()
     p = persona()
-    ig = Instagram(token_vigente())
+    token, ig_id, page_id = credenciales()
+    ig = Instagram(token, ig_id, page_id)
     try:
         cuenta = ig.cuenta()
         estado["mi_usuario"] = cuenta.get("username")
+        MI_USUARIO = (cuenta.get("username") or "").lower()
         if accion == "diagnostico":
             diagnostico(ig, gh)
             guardar_estado(estado)
@@ -474,7 +497,6 @@ def main():
             probar(ig, gh, p)
             guardar_estado(estado)
             return
-        refrescar_token(ig, estado)
         nc, rc, ac = responder_comentarios(ig, gh, p, estado)
         nm, rm, am = responder_mensajes(ig, gh, p, estado)
         guardar_estado(estado)
@@ -484,10 +506,10 @@ def main():
         traceback.print_exc()
         guardar_estado(estado)
         msg = str(e)
-        if "código 190" in msg or "INSTAGRAM_TOKEN" in msg:
-            gh.issue("⚠️ El token de Instagram ha dejado de funcionar",
-                     f"Instagram ha rechazado el token: `{msg}`\n\nGenera uno nuevo siguiendo el README "
-                     "y cámbialo en Settings → Secrets and variables → Actions → INSTAGRAM_TOKEN.")
+        if "código 190" in msg or "FB_TOKEN" in msg:
+            gh.issue("⚠️ El token de Meta ha dejado de funcionar",
+                     f"Meta ha rechazado el token: `{msg}`\n\nGenera uno nuevo siguiendo el README "
+                     "y cámbialo en Settings → Secrets and variables → Actions → FB_TOKEN.")
         else:
             gh.issue("⚠️ Algo ha fallado", f"Error: `{msg}`\n\nSi no sabes qué significa, copia este "
                                             "mensaje y pregúntale a Claude.")
