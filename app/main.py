@@ -33,6 +33,7 @@ PERSONA_FILE = BASE_DIR / "personaje.yml"
 APP_ID = os.environ.get("META_APP_ID", "1396445209313937")
 
 COMENTARIOS_POR_VEZ = (7, 12)  # cada ejecución contesta un número distinto, al azar
+ESPERA_ENTRE_PASADAS = (30, 90)  # minutos hasta la siguiente tanda, también al azar
 MAX_MENSAJES = 20
 DIAS_PUBLICACIONES = 3650      # se revisa todo el historial, lo más reciente primero
 MAX_PUBLICACIONES = 100
@@ -250,6 +251,10 @@ def ya_respondido(c, yo):
 
 def responder_comentarios(ig, gh, p, estado):
     hechos = set(estado["comentarios"])
+    # Se apunta cuándo ha sido esta pasada y cuánto esperar hasta la siguiente,
+    # para que los huecos entre tandas no sean siempre iguales.
+    estado["ultima_pasada"] = ahora().isoformat()
+    estado["espera_minutos"] = random.randint(*ESPERA_ENTRE_PASADAS)
     tope = random.randint(*COMENTARIOS_POR_VEZ)
     log(f"Esta vez contesto como mucho a {tope} comentarios.")
     limite = ahora() - timedelta(days=DIAS_PUBLICACIONES)

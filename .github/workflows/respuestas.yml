@@ -1,8 +1,11 @@
 name: Respuestas de Allie
 
 on:
+  # Dos oportunidades por hora, a minutos poco redondos, y solo de 08:00 a 00:40
+  # (hora de Madrid). En cada una se mira si ya toca: el propio programa decide
+  # al azar cuántos minutos esperar hasta la siguiente tanda (entre 30 y 90).
   schedule:
-    - cron: "20 * * * *"
+    - cron: "9,41 6-22 * * *"
   workflow_dispatch:
     inputs:
       accion:
@@ -29,15 +32,48 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Este paso es muy corto a propósito: si todavía no toca, el trabajo
+      # termina aquí y apenas gasta minutos de GitHub.
+      - name: ¿Toca ya?
+        id: toca
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os, pathlib
+          from datetime import datetime, timezone
+
+          if os.environ.get("GITHUB_EVENT_NAME") != "schedule":
+              print("seguir=si")           # si la lanzas tú a mano, siempre se ejecuta
+              raise SystemExit
+
+          f = pathlib.Path("estado/estado.json")
+          e = json.loads(f.read_text()) if f.exists() else {}
+          ultima, espera = e.get("ultima_pasada"), e.get("espera_minutos")
+          if not ultima or not espera:
+              print("seguir=si")
+              raise SystemExit
+          try:
+              pasados = (datetime.now(timezone.utc)
+                         - datetime.fromisoformat(ultima)).total_seconds() / 60
+          except ValueError:
+              print("seguir=si")
+              raise SystemExit
+          import sys
+          print(f"Han pasado {pasados:.0f} min y tocaba esperar {espera}.", file=sys.stderr)
+          print(f"seguir={'si' if pasados >= espera else 'no'}")
+          PY
+
       - uses: actions/setup-python@v5
+        if: steps.toca.outputs.seguir == 'si'
         with:
           python-version: "3.12"
           cache: pip
 
       - name: Instalar
+        if: steps.toca.outputs.seguir == 'si'
         run: pip install -r requirements.txt
 
       - name: Ejecutar
+        if: steps.toca.outputs.seguir == 'si'
         run: python app/main.py
         env:
           FB_TOKEN: ${{ secrets.FB_TOKEN }}
@@ -47,7 +83,7 @@ jobs:
           ACCION: ${{ inputs.accion }}
 
       - name: Guardar estado
-        if: always()
+        if: always() && steps.toca.outputs.seguir == 'si'
         run: |
           git config user.name "allie-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
