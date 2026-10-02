@@ -1,8 +1,11 @@
 name: Respuestas de Allie
 
 on:
-  schedule:
-    - cron: "20 * * * *"   # cada hora
+  # Pausado: sin Acceso avanzado, Instagram no deja leer los comentarios ni los
+  # mensajes de otras personas, así que ejecutarlo cada hora solo gastaría
+  # minutos. Para reactivarlo, quita la almohadilla de las dos líneas de abajo.
+  # schedule:
+  #   - cron: "20 * * * *"
   workflow_dispatch:
     inputs:
       accion:
