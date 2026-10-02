@@ -424,6 +424,39 @@ def probar(ig, gh, p):
     log(texto)
 
 
+def diagnostico(ig, gh):
+    """Mira en crudo qué devuelve Instagram en los comentarios de las últimas publicaciones."""
+    L = []
+    try:
+        medias = ig.publicaciones(3)
+    except IGError as e:
+        gh.issue("🔬 Diagnóstico", f"No pude leer las publicaciones: {e}", etiqueta="prueba")
+        return
+    for m in medias:
+        L.append(f"### Publicación del {parse_fecha(m.get('timestamp')):%d/%m/%Y} "
+                 f"(comments_count = {m.get('comments_count')})")
+        L.append(m.get("permalink", ""))
+        for etiqueta, campos in [("con todos los campos", "id,text,timestamp,username,from,parent_id,"
+                                                          "replies{id,from,username,text}"),
+                                 ("campos mínimos", "id,text,username"),
+                                 ("sin indicar campos", None),
+                                 ("incluyendo ocultos", "id,text,username,hidden")]:
+            try:
+                params = {"limit": 50}
+                if campos:
+                    params["fields"] = campos
+                d = ig._req("GET", f"{m['id']}/comments", **params)
+                datos = d.get("data", [])
+                L.append(f"- **{etiqueta}**: {len(datos)} comentarios")
+                for c in datos[:3]:
+                    L.append(f"    - `{str(c)[:200]}`")
+            except IGError as e:
+                L.append(f"- **{etiqueta}**: ❌ {e}")
+        L.append("")
+    gh.issue("🔬 Diagnóstico de comentarios", "\n".join(L), etiqueta="prueba")
+    log("\n".join(L))
+
+
 def main():
     accion = os.environ.get("ACCION", "") or "responder"
     estado = cargar_estado()
@@ -433,6 +466,10 @@ def main():
     try:
         cuenta = ig.cuenta()
         estado["mi_usuario"] = cuenta.get("username")
+        if accion == "diagnostico":
+            diagnostico(ig, gh)
+            guardar_estado(estado)
+            return
         if accion == "probar":
             probar(ig, gh, p)
             guardar_estado(estado)

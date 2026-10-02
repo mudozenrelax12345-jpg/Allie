@@ -10,8 +10,9 @@ on:
         type: choice
         default: responder
         options:
-          - responder   # contestar ahora a lo que haya pendiente
-          - probar      # comprobar que las claves y los permisos funcionan
+          - responder     # contestar ahora a lo que haya pendiente
+          - probar        # comprobar que las claves y los permisos funcionan
+          - diagnostico   # mirar en crudo qué devuelve Instagram
 
 permissions:
   contents: write
