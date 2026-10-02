@@ -360,14 +360,56 @@ def probar(ig, gh, p):
         lineas.append(f"✅ **Instagram**: @{c.get('username')} · {c.get('followers_count')} seguidores")
     except IGError as e:
         lineas.append(f"❌ **Instagram**: {e}")
+    # ---- comentarios: qué ve de verdad
     try:
-        ig.publicaciones(1)
-        lineas.append("✅ **Comentarios**: puedo leer tus publicaciones")
+        medias = ig.publicaciones(25)
+        limite = ahora() - timedelta(days=DIAS_PUBLICACIONES)
+        recientes = [m for m in medias
+                     if (parse_fecha(m.get("timestamp")) or ahora()) >= limite]
+        total_com = pendientes = 0
+        detalle = []
+        for m in medias[:10]:
+            f = parse_fecha(m.get("timestamp"))
+            dentro = f and f >= limite
+            n = m.get("comments_count") or 0
+            marca = "dentro" if dentro else "FUERA del plazo"
+            detalle.append(f"  - {f:%d/%m/%Y} · {n} comentario(s) · {marca}")
+            if not dentro:
+                continue
+            try:
+                for com in ig.comentarios(m["id"]):
+                    if mio(com, ig.yo):
+                        continue
+                    total_com += 1
+                    if not ya_respondido(com, ig.yo):
+                        pendientes += 1
+            except IGError as e:
+                detalle.append(f"    ⚠️ no pude leer sus comentarios: {e}")
+        lineas.append(f"✅ **Comentarios**: {len(medias)} publicaciones, {len(recientes)} dentro de los "
+                      f"últimos {DIAS_PUBLICACIONES} días · {total_com} comentarios de otras personas · "
+                      f"**{pendientes} sin responder**")
+        lineas.append("<details><summary>Tus últimas 10 publicaciones</summary>\n\n"
+                      + "\n".join(detalle) + "\n</details>")
+        if len(recientes) == 0 and medias:
+            lineas.append("ℹ️ Ninguna publicación entra en el plazo: por eso no hay comentarios que "
+                          "contestar. Puedo ampliar el plazo si quieres recuperar comentarios antiguos.")
     except IGError as e:
         lineas.append(f"❌ **Comentarios**: {e} (¿falta el permiso de comentarios?)")
+    # ---- mensajes
     try:
-        n = len(ig.conversaciones(5))
-        lineas.append(f"✅ **Mensajes**: puedo leer la bandeja de entrada ({n} conversaciones recientes)")
+        convs = ig.conversaciones(50)
+        recientes_c = 0
+        for conv in convs:
+            f = parse_fecha(conv.get("updated_time"))
+            if f and f >= ahora() - timedelta(hours=24):
+                recientes_c += 1
+        lineas.append(f"✅ **Mensajes**: {len(convs)} conversaciones en total · {recientes_c} con "
+                      f"actividad en las últimas 24 h (solo esas se pueden contestar, lo impone Instagram)")
+        if not convs:
+            lineas.append("ℹ️ La API devuelve 0 conversaciones. Si sabes que tienes mensajes, "
+                          "activa en la app de Instagram: **Configuración y privacidad → Mensajes "
+                          "→ Permitir el acceso a los mensajes** (o «Herramientas conectadas»), "
+                          "y vuelve a lanzar esta prueba.")
     except IGError as e:
         lineas.append(f"❌ **Mensajes**: {e} (¿falta el permiso de mensajes?)")
     try:
@@ -375,14 +417,9 @@ def probar(ig, gh, p):
         lineas.append("✅ **Gemini**: conexión correcta" if r.get("ok") else "⚠️ **Gemini**: respuesta rara")
     except gemini.GeminiError as e:
         lineas.append(f"❌ **Gemini**: {e}")
-    try:
-        lineas.append(f"✅ **Personaje**: {p['nombre']} ({p['usuario']})")
-    except Exception as e:  # noqa: BLE001
-        lineas.append(f"❌ **Personaje**: {e}")
+    lineas.append(f"✅ **Personaje**: {p['nombre']} ({p['usuario']})")
     ok = all(not l.startswith("❌") for l in lineas)
-    texto = "\n".join(f"- {l}" for l in lineas)
-    texto += ("\n\n🎉 Todo listo. A partir de ahora contesto sola cada hora."
-              if ok else "\n\nCorrige lo que tiene ❌ y vuelve a lanzar la prueba.")
+    texto = "\n".join(f"- {l}" if not l.startswith("<") else l for l in lineas)
     gh.issue(f"🔧 Prueba de conexión {'✅' if ok else '❌'}", texto, etiqueta="prueba")
     log(texto)
 
