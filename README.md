@@ -2,7 +2,11 @@
 
 Este repositorio hace dos cosas solo, sin que tengas que tocar nada:
 
-1. **Responde** cada hora a los comentarios y mensajes directos de Instagram, en el idioma de cada persona y con la voz de Allie. Lo que es delicado no lo contesta: te abre un aviso en **Issues**.
+1. **Responde** cada hora a los comentarios de Instagram, en el idioma de cada persona y con la voz de Allie. Lo que es delicado no lo contesta: te abre un aviso en **Issues**.
+
+   > **Los mensajes privados no, de momento.** Meta solo deja leerlos con *Acceso
+   > avanzado*, que exige verificar un negocio. El programa lo intenta una vez al
+   > día por si eso cambiara, y mientras tanto no gasta llamadas.
 2. **Monta un reel** cada domingo: inventa la idea, crea las fotos de Allie con Pollinations, las convierte en vídeo vertical y deja el enlace preparado para que Claude lo programe en Metricool como *Trial Reel* (Instagram los enseña solo a quien todavía no te sigue).
 
 Las publicaciones normales se programan aparte, desde Metricool.

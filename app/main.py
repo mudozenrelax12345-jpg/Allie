@@ -306,11 +306,18 @@ def responder_mensajes(ig, gh, p, estado):
     hechos = set(estado["mensajes"])
     limite24 = ahora() - timedelta(hours=23, minutes=30)
     nuevos = respondidos = avisos = 0
+    bloqueo = estado.get("mensajes_bloqueados")
+    if bloqueo and (ahora() - parse_fecha(bloqueo)) < timedelta(days=1):
+        log("Mensajes: Meta no los deja leer sin Acceso avanzado. Lo reintento mañana.")
+        return 0, 0, 0
     try:
         conversaciones = ig.conversaciones(50)
     except IGError as e:
         log(f"No pude leer las conversaciones: {e}")
+        if "advanced access" in str(e).lower() or "código -2" in str(e):
+            estado["mensajes_bloqueados"] = ahora().isoformat()
         return 0, 0, 0
+    estado.pop("mensajes_bloqueados", None)
     for conv in conversaciones:
         if respondidos + avisos >= MAX_MENSAJES:
             log("Límite de mensajes por ejecución alcanzado; sigo en la próxima.")
