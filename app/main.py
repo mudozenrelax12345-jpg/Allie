@@ -10,6 +10,7 @@ import base64
 import hashlib
 import json
 import os
+import random
 import sys
 import time
 import traceback
@@ -31,11 +32,11 @@ PERSONA_FILE = BASE_DIR / "personaje.yml"
 
 APP_ID = os.environ.get("META_APP_ID", "1396445209313937")
 
-MAX_COMENTARIOS = 10          # por ejecución: a 10 por hora no parece un robot
+COMENTARIOS_POR_VEZ = (7, 12)  # cada ejecución contesta un número distinto, al azar
 MAX_MENSAJES = 20
-DIAS_PUBLICACIONES = 3650     # se revisa todo el historial, lo más reciente primero
+DIAS_PUBLICACIONES = 3650      # se revisa todo el historial, lo más reciente primero
 MAX_PUBLICACIONES = 100
-PAUSA = 1.5                   # segundos entre llamadas a Gemini
+PAUSA = (2.0, 7.0)             # segundos entre respuestas, también al azar
 
 
 def log(msg):
@@ -249,6 +250,8 @@ def ya_respondido(c, yo):
 
 def responder_comentarios(ig, gh, p, estado):
     hechos = set(estado["comentarios"])
+    tope = random.randint(*COMENTARIOS_POR_VEZ)
+    log(f"Esta vez contesto como mucho a {tope} comentarios.")
     limite = ahora() - timedelta(days=DIAS_PUBLICACIONES)
     nuevos = respondidos = avisos = 0
     for media in ig.publicaciones(MAX_PUBLICACIONES):
@@ -263,7 +266,7 @@ def responder_comentarios(ig, gh, p, estado):
             log(f"No pude leer los comentarios de {media['id']}: {e}")
             continue
         for c in comentarios:
-            if respondidos + avisos >= MAX_COMENTARIOS:
+            if respondidos + avisos >= tope:
                 log("Límite de comentarios por ejecución alcanzado; sigo en la próxima.")
                 estado["comentarios"] = list(hechos)
                 return nuevos, respondidos, avisos
@@ -285,7 +288,7 @@ def responder_comentarios(ig, gh, p, estado):
             except gemini.GeminiError as e:
                 log(f"Gemini falló con el comentario {cid}: {e}")
                 continue
-            time.sleep(PAUSA)
+            time.sleep(random.uniform(*PAUSA))
             if accion == "responder":
                 try:
                     ig.responder_comentario(cid, respuesta)
@@ -363,7 +366,7 @@ def responder_mensajes(ig, gh, p, estado):
         except gemini.GeminiError as e:
             log(f"Gemini falló con el mensaje {mid}: {e}")
             continue
-        time.sleep(PAUSA)
+        time.sleep(random.uniform(*PAUSA))
         if accion == "responder" and igsid:
             try:
                 ig.enviar_mensaje(igsid, respuesta)
