@@ -31,9 +31,10 @@ PERSONA_FILE = BASE_DIR / "personaje.yml"
 
 APP_ID = os.environ.get("META_APP_ID", "1396445209313937")
 
-MAX_COMENTARIOS = 30          # por ejecución
+MAX_COMENTARIOS = 10          # por ejecución: a 10 por hora no parece un robot
 MAX_MENSAJES = 20
-DIAS_PUBLICACIONES = 30       # solo se revisan los comentarios de posts recientes
+DIAS_PUBLICACIONES = 3650     # se revisa todo el historial, lo más reciente primero
+MAX_PUBLICACIONES = 100
 PAUSA = 1.5                   # segundos entre llamadas a Gemini
 
 
@@ -250,7 +251,7 @@ def responder_comentarios(ig, gh, p, estado):
     hechos = set(estado["comentarios"])
     limite = ahora() - timedelta(days=DIAS_PUBLICACIONES)
     nuevos = respondidos = avisos = 0
-    for media in ig.publicaciones(25):
+    for media in ig.publicaciones(MAX_PUBLICACIONES):
         fecha = parse_fecha(media.get("timestamp"))
         if fecha and fecha < limite:
             continue
@@ -274,6 +275,11 @@ def responder_comentarios(ig, gh, p, estado):
                 continue
             nuevos += 1
             contexto = f"Publicación: {(media.get('caption') or '')[:200]}"
+            dias = (ahora() - (parse_fecha(c.get("timestamp")) or ahora())).days
+            if dias >= 30:
+                contexto += ("\nAVISO: este comentario es antiguo. Contesta de forma cálida y "
+                             "atemporal, sin dar a entender que acaba de escribirlo y sin "
+                             "mencionar el tiempo que ha pasado ni pedir disculpas por tardar.")
             try:
                 accion, respuesta, motivo = decidir(p, "comentario", autor, c.get("text"), contexto)
             except gemini.GeminiError as e:
