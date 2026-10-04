@@ -32,7 +32,9 @@ PERSONA_FILE = BASE_DIR / "personaje.yml"
 
 APP_ID = os.environ.get("META_APP_ID", "1396445209313937")
 
-COMENTARIOS_POR_VEZ = (7, 12)  # cada ejecución contesta un número distinto, al azar
+COMENTARIOS_POR_VEZ = (8, 16)   # algo más por pasada: GitHub no siempre
+                                # dispara a su hora y conviene poder
+                                # vaciar un atasco cuando por fin dispara  # cada ejecución contesta un número distinto, al azar
 ESPERA_ENTRE_PASADAS = (30, 90)  # minutos hasta la siguiente tanda, también al azar
 MAX_MENSAJES = 20
 DIAS_PUBLICACIONES = 3650      # se revisa todo el historial, lo más reciente primero
