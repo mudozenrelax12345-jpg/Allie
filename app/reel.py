@@ -99,19 +99,75 @@ CARA = ("calm closed mouth or a soft gentle smile with lips together, well-defin
         "high detail skin texture with visible pores, professional portrait photography")
 
 
-def url_pollinations(escena, semilla, p):
-    clave = os.environ.get("POLLINATIONS_KEY", "")
-    if not clave:
-        raise RuntimeError("Falta el secreto POLLINATIONS_KEY en GitHub.")
-    texto = (f"The same young woman from the reference photo, identical face and hair, {escena}. "
-             f"Photorealistic smartphone photo, natural skin, soft natural light, "
-             f"{CARA}, {ANATOMIA}, vertical 4:5 crop, no text, no watermark")
-    return (f"https://gen.pollinations.ai/image/{quote(texto)}?model={p.get('modelo_imagen', 'kontext')}"
-            f"&width=1080&height=1350&seed={semilla}&nologo=true"
-            f"&image={quote(p['referencia_url'], safe='')}&key={clave}")
+def frase(escena, p):
+    return (f"The same young woman from the reference photo, identical face and hair, {escena}. "
+            f"Photorealistic smartphone photo, natural skin, soft natural light, "
+            f"{CARA}, {ANATOMIA}, vertical 4:5 crop, no text, no watermark")
 
+
+# Pollinations se pide de tres maneras distintas y no siempre funcionan las
+# mismas. La clave va en la cabecera 'Authorization', que es como la documentan;
+# antes iba como parámetro '&key=', y un parámetro que el servidor no conoce lo
+# deja a uno sin cuenta y sin aviso. Se prueban las tres por orden.
+#
+# Las tres mandan la foto de referencia: sin ella el generador dibuja a otra
+# mujer, y una influencer que cambia de cara cada semana no es nadie. Antes de
+# publicar un reel con una desconocida, preferimos no publicar.
+PUERTAS = [
+    ("gen · clave en cabecera",    "https://gen.pollinations.ai/image/{t}",      True),
+    ("prompt · clave en cabecera", "https://image.pollinations.ai/prompt/{t}",   True),
+    ("prompt · sin clave",         "https://image.pollinations.ai/prompt/{t}",   False),
+]
 
 INTENTOS = 6
+ESPERAS = [20, 45, 75, 110, 150, 150]
+
+
+def estado_referencia(url):
+    """Si la foto de Allie ya no está en su sitio, kontext no puede copiar la cara
+    y falla sin decir por qué. Conviene saberlo antes de buscar en otro lado."""
+    try:
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=60, stream=True)
+        tipo = r.headers.get("content-type", "?")
+        largo = r.headers.get("content-length", "?")
+        r.close()
+        return f"HTTP {r.status_code}, {tipo}, {largo} bytes"
+    except requests.RequestException as e:
+        return f"no se pudo abrir ({type(e).__name__})"
+
+
+def pedir(escena, semilla, p, parte):
+    """Pide una foto por las tres puertas. Devuelve (bytes, None) o (None, qué dijo cada una)."""
+    clave = os.environ.get("POLLINATIONS_KEY", "")
+    texto = quote(frase(escena, p))
+    dichos = []
+    for nombre, plantilla, con_clave in PUERTAS:
+        if con_clave and not clave:
+            dichos.append(f"{nombre}: no hay POLLINATIONS_KEY en los secretos")
+            continue
+        url = plantilla.format(t=texto)
+        pars = {"model": p.get("modelo_imagen", "kontext"), "width": 1080, "height": 1350,
+                "seed": semilla, "nologo": "true", "image": p["referencia_url"]}
+        cab = {"User-Agent": "Mozilla/5.0"}
+        if con_clave:
+            cab["Authorization"] = f"Bearer {clave}"
+        try:
+            r = requests.get(url, params=pars, headers=cab, timeout=300)
+        except requests.RequestException as e:
+            dichos.append(f"{nombre}: no se pudo conectar ({type(e).__name__})")
+            continue
+        if r.status_code == 200 and r.headers.get("content-type", "").startswith("image/"):
+            if len(r.content) < 20000:
+                dichos.append(f"{nombre}: imagen de {len(r.content)} bytes, demasiado pequeña")
+                continue
+            if nombre != PUERTAS[0][0]:
+                log(f"Foto {parte}: ha respondido «{nombre}»")
+            return r.content, None
+        espera = r.headers.get("Retry-After")
+        dichos.append(f"{nombre}: HTTP {r.status_code} · {r.text[:160].strip()}")
+        if r.status_code == 429 and espera and espera.isdigit():
+            time.sleep(min(int(espera), 180))
+    return None, dichos
 
 
 def descargar_fotos(escenas, p):
@@ -122,23 +178,19 @@ def descargar_fotos(escenas, p):
     rutas, descartadas = [], []
     for i, escena in enumerate(escenas):
         destino = TRABAJO / f"foto{i}.jpg"
-        mejor = None
+        mejor, dichos = None, []
         for intento in range(INTENTOS):
             semilla = base + i + intento * 137
-            try:
-                r = requests.get(url_pollinations(escena, semilla, p), timeout=300)
-            except requests.RequestException as e:
-                log(f"Foto {i + 1}: fallo de red ({e}); reintento")
-                time.sleep(5)
+            datos, fallos = pedir(escena, semilla, p, i + 1)
+            if datos is None:
+                dichos = fallos
+                log(f"Foto {i + 1}, intento {intento + 1}: " + " | ".join(fallos))
+                time.sleep(ESPERAS[intento])
                 continue
-            if r.status_code != 200 or not r.headers.get("content-type", "").startswith("image/"):
-                log(f"Foto {i + 1}: Pollinations devolvió {r.status_code} {r.text[:120]}")
-                time.sleep(5)
-                continue
-            mejor = r.content
-            ok, problema = gemini.revisar_imagen(r.content)
+            mejor = datos
+            ok, problema = gemini.revisar_imagen(datos)
             if ok:
-                destino.write_bytes(r.content)
+                destino.write_bytes(datos)
                 rutas.append(destino)
                 log(f"Foto {i + 1} de {len(escenas)} lista y revisada")
                 break
@@ -147,8 +199,12 @@ def descargar_fotos(escenas, p):
             time.sleep(3)
         else:
             if mejor is None:
-                raise RuntimeError("Pollinations no ha devuelto la imagen. Puede que se haya agotado "
-                                   "el saldo gratuito de la semana.")
+                raise RuntimeError(
+                    "Pollinations no ha devuelto ninguna imagen. Esto es lo que contestó "
+                    "cada una de las tres puertas en el último intento:\n\n  · "
+                    + "\n  · ".join(dichos)
+                    + f"\n\nLa foto de referencia que se le manda ({p['referencia_url']}) "
+                    + f"responde: {estado_referencia(p['referencia_url'])}")
             raise RuntimeError(f"Las {INTENTOS} imágenes de la foto {i + 1} salieron con fallos "
                                f"({descartadas[-1]}). Esta semana no monto el reel.")
     if descartadas:
