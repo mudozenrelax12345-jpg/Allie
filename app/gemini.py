@@ -166,3 +166,85 @@ def revisar_imagen(datos):
     except GeminiError as e:
         return True, f"no se pudo revisar ({e})"
     return bool(r.get("ok")), (r.get("problema") or "").strip()
+
+
+# --------------------------------------------------------------- imágenes
+# Pollinations dejó de hacer gratis el modelo que copia una cara de una foto de
+# referencia ("kontext": HTTP 402, saldo cero). Gemini sí lo hace en su nivel
+# gratuito y la clave ya está puesta, así que las fotos de Allie se generan
+# aquí: se le manda su foto junto al texto y se le pide la misma cara.
+IMG_MODELOS = [m.strip() for m in os.environ.get(
+    "GEMINI_IMAGE_MODELS",
+    "gemini-3-pro-image-preview,gemini-2.5-flash-image,"
+    "gemini-2.5-flash-image-preview,gemini-2.0-flash-preview-image-generation"
+).split(",") if m.strip()]
+
+_img_elegido = None
+
+
+def _buscar_imagen(nodo):
+    """Saca los bytes de la primera imagen que venga en la respuesta."""
+    if isinstance(nodo, dict):
+        for k in ("inlineData", "inline_data"):
+            d = nodo.get(k)
+            if isinstance(d, dict) and d.get("data") and \
+                    str(d.get("mimeType") or d.get("mime_type") or "image").startswith("image"):
+                try:
+                    return base64.b64decode(d["data"])
+                except Exception:
+                    pass
+        for v in nodo.values():
+            b = _buscar_imagen(v)
+            if b:
+                return b
+    elif isinstance(nodo, list):
+        for v in nodo:
+            b = _buscar_imagen(v)
+            if b:
+                return b
+    return None
+
+
+def modelos_de_imagen():
+    """Qué modelos de imagen ofrece esta clave. Para que un fallo se explique solo."""
+    try:
+        r = requests.get(f"{BASE}/models", headers={"x-goog-api-key": _clave()},
+                         params={"pageSize": 200}, timeout=60)
+        nombres = [m.get("name", "").split("/")[-1] for m in r.json().get("models", [])]
+        hay = [n for n in nombres if "image" in n or "imagen" in n]
+        return ", ".join(hay) or f"ninguno con 'image' en el nombre (de {len(nombres)})"
+    except Exception as e:
+        return f"no se pudo consultar la lista ({type(e).__name__})"
+
+
+def imagen(prompt, referencia=None):
+    """Genera una imagen. Devuelve (bytes, None) o (None, qué dijo cada modelo)."""
+    global _img_elegido
+    partes = [{"text": prompt}]
+    if referencia:
+        partes.append({"inline_data": {"mime_type": "image/jpeg",
+                                       "data": base64.b64encode(referencia).decode()}})
+    cuerpo = {"contents": [{"role": "user", "parts": partes}],
+              "generationConfig": {"responseModalities": ["TEXT", "IMAGE"]}}
+    orden = ([_img_elegido] if _img_elegido else []) + \
+            [m for m in IMG_MODELOS if m != _img_elegido and m not in _descartados]
+    dichos = []
+    for modelo in orden:
+        try:
+            data = _post(f"{BASE}/models/{modelo}:generateContent", cuerpo)
+        except GeminiError as e:
+            if _sin_cupo(e):
+                _descartados.add(modelo)
+            dichos.append(f"{modelo}: {str(e)[:150]}")
+            continue
+        if data is None:
+            _descartados.add(modelo)
+            dichos.append(f"{modelo}: no existe para esta clave (404)")
+            continue
+        b = _buscar_imagen(data)
+        if b and len(b) > 20000:
+            _img_elegido = modelo
+            return b, None
+        dichos.append(f"{modelo}: contestó sin imagen"
+                      + (f" ({len(b)} bytes)" if b else ""))
+    return None, dichos

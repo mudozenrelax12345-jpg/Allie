@@ -105,14 +105,16 @@ def frase(escena, p):
             f"{CARA}, {ANATOMIA}, vertical 4:5 crop, no text, no watermark")
 
 
-# Pollinations se pide de tres maneras distintas y no siempre funcionan las
-# mismas. La clave va en la cabecera 'Authorization', que es como la documentan;
-# antes iba como parámetro '&key=', y un parámetro que el servidor no conoce lo
-# deja a uno sin cuenta y sin aviso. Se prueban las tres por orden.
+# De dónde salen las fotos.
 #
-# Las tres mandan la foto de referencia: sin ella el generador dibuja a otra
-# mujer, y una influencer que cambia de cara cada semana no es nadie. Antes de
-# publicar un reel con una desconocida, preferimos no publicar.
+# Hasta ahora, de Pollinations con el modelo "kontext", que es el que copia la
+# cara de una foto de referencia. Ese modelo pasó a ser de pago (HTTP 402,
+# "insufficient balance"), y aquí no se paga: ahora las hace Gemini, que lo
+# hace gratis y cuya clave ya estaba puesta para los textos.
+#
+# Lo que no se negocia es la foto de referencia. Sin ella el generador dibuja a
+# otra mujer, y una influencer que cambia de cara cada semana no es nadie:
+# antes que publicar un reel con una desconocida, no se publica.
 PUERTAS = [
     ("gen · clave en cabecera",    "https://gen.pollinations.ai/image/{t}",      True),
     ("prompt · clave en cabecera", "https://image.pollinations.ai/prompt/{t}",   True),
@@ -120,7 +122,7 @@ PUERTAS = [
 ]
 
 INTENTOS = 6
-ESPERAS = [20, 45, 75, 110, 150, 150]
+ESPERAS = [10, 25, 45, 70, 90, 90]
 
 
 def estado_referencia(url):
@@ -136,11 +138,44 @@ def estado_referencia(url):
         return f"no se pudo abrir ({type(e).__name__})"
 
 
+_referencia = {}
+
+
+def foto_referencia(url):
+    """La foto de Allie, descargada una vez y guardada para todas las escenas."""
+    if url not in _referencia:
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=120)
+        r.raise_for_status()
+        _referencia[url] = r.content
+    return _referencia[url]
+
+
 def pedir(escena, semilla, p, parte):
-    """Pide una foto por las tres puertas. Devuelve (bytes, None) o (None, qué dijo cada una)."""
+    """Pide una foto: primero a Gemini, y si no, a Pollinations.
+
+    Devuelve (bytes, None) o (None, qué dijo cada sitio)."""
+    dichos = []
+    try:
+        ref = foto_referencia(p["referencia_url"])
+        orden = ("Keep the face, hair and skin tone of the woman in the reference photo "
+                 "exactly as they are — it must be unmistakably the same person. "
+                 f"Place her in this new scene: {escena}. "
+                 f"Photorealistic smartphone photo, natural skin, soft natural light, "
+                 f"{CARA}, {ANATOMIA}. Vertical portrait, 4:5. "
+                 "No text, no watermark, no logos anywhere in the image.")
+        datos, fallos = gemini.imagen(orden, referencia=ref)
+        if datos:
+            if parte == 1:
+                log("Fotos generadas con Gemini")
+            return datos, None
+        dichos += [f"Gemini · {x}" for x in (fallos or [])]
+    except requests.RequestException as e:
+        dichos.append(f"Gemini: no se pudo bajar la foto de referencia ({type(e).__name__})")
+    except gemini.GeminiError as e:
+        dichos.append(f"Gemini: {str(e)[:150]}")
+
     clave = os.environ.get("POLLINATIONS_KEY", "")
     texto = quote(frase(escena, p))
-    dichos = []
     for nombre, plantilla, con_clave in PUERTAS:
         if con_clave and not clave:
             dichos.append(f"{nombre}: no hay POLLINATIONS_KEY en los secretos")
@@ -200,11 +235,13 @@ def descargar_fotos(escenas, p):
         else:
             if mejor is None:
                 raise RuntimeError(
-                    "Pollinations no ha devuelto ninguna imagen. Esto es lo que contestó "
-                    "cada una de las tres puertas en el último intento:\n\n  · "
+                    "Nadie ha devuelto ninguna imagen. Esto es lo que contestó cada "
+                    "sitio en el último intento:\n\n  · "
                     + "\n  · ".join(dichos)
                     + f"\n\nLa foto de referencia que se le manda ({p['referencia_url']}) "
-                    + f"responde: {estado_referencia(p['referencia_url'])}")
+                    + f"responde: {estado_referencia(p['referencia_url'])}"
+                    + f"\n\nModelos de imagen que ofrece tu clave de Gemini:\n  "
+                    + gemini.modelos_de_imagen())
             raise RuntimeError(f"Las {INTENTOS} imágenes de la foto {i + 1} salieron con fallos "
                                f"({descartadas[-1]}). Esta semana no monto el reel.")
     if descartadas:
