@@ -137,10 +137,17 @@ def json_(prompt, imagenes=()):
 REVISION = """Mira esta foto. Es para la cuenta de Instagram de una influencer y se ha generado con IA,
 así que puede tener fallos típicos. Revísala con MUCHA atención y responde con sinceridad.
 
+Empieza SIEMPRE mirando la boca y los ojos, ampliando mentalmente la cara. Es donde más
+falla la IA y donde más se nota: dientes de más o fusionados, encías deformes, labios
+torcidos o asimétricos, una sonrisa que no cuadra con el resto de la cara, ojos de distinto
+tamaño o que miran a sitios distintos. Si la boca no es claramente natural, es "ok": false.
+
 Marca "ok": false si ves CUALQUIERA de estos problemas:
+- boca, dientes, encías o labios raros, deformes o asimétricos
+- ojos asimétricos, de distinto tamaño o con la mirada descuadrada
 - número de brazos, piernas, manos o pies distinto del normal (¡mira bien las piernas!)
 - dedos de más o de menos, manos o pies deformes
-- cara deformada, ojos raros o asimetrías evidentes
+- cara deformada o con asimetrías evidentes
 - cuerpos o miembros fusionados con objetos, animales o el fondo
 - texto, letras, logotipos o marcas de agua en la imagen
 - la imagen está cortada de forma rara, borrosa o es claramente artificial

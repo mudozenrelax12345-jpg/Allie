@@ -72,6 +72,9 @@ MUY IMPORTANTE con el encuadre: usa planos de medio cuerpo, de cintura para arri
 ("upper-body shot", "medium shot from the waist up", "close-up"). NADA de planos de cuerpo entero ni
 de cuerpo completo: es donde la IA se inventa piernas y manos de más. Evita también manos en posturas
 raras o muy en primer plano. Nada de texto, logotipos ni marcas dentro de la imagen.
+LA BOCA: describe siempre la expresión con la boca cerrada o con una sonrisa suave de labios
+juntos. NUNCA pongas que se ríe a carcajadas, que habla, que canta, que come o que tiene la
+boca abierta: es donde el generador falla y salen dientes deformes.
 Contenido apto para todos los públicos.
 Reglas para el texto: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie', '#AIInfluencer'])}."""
     g = gemini.json_(prompt)
@@ -83,9 +86,17 @@ Reglas para el texto: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie',
 
 
 # ------------------------------------------------------------------ fotos
+# La boca es donde más se nota que una foto está generada: dientes de más,
+# encías raras, labios asimétricos. Se pide expresamente que esté serena y
+# cerrada, o con una sonrisa suave, que es lo que el generador hace bien.
 ANATOMIA = ("anatomically correct, exactly two arms and two legs, five fingers on each hand, "
             "natural human proportions, no extra limbs, no duplicated body parts, "
             "no deformed hands or feet")
+
+CARA = ("calm closed mouth or a soft gentle smile with lips together, well-defined natural lips, "
+        "no open mouth, not laughing, not talking, no visible teeth, symmetrical face, "
+        "clean jawline, clear detailed eyes looking naturally, sharp focus on the face, "
+        "high detail skin texture with visible pores, professional portrait photography")
 
 
 def url_pollinations(escena, semilla, p):
@@ -93,14 +104,14 @@ def url_pollinations(escena, semilla, p):
     if not clave:
         raise RuntimeError("Falta el secreto POLLINATIONS_KEY en GitHub.")
     texto = (f"The same young woman from the reference photo, identical face and hair, {escena}. "
-             f"Photorealistic smartphone photo, natural skin, soft natural light, {ANATOMIA}, "
-             f"vertical 4:5 crop, no text, no watermark")
+             f"Photorealistic smartphone photo, natural skin, soft natural light, "
+             f"{CARA}, {ANATOMIA}, vertical 4:5 crop, no text, no watermark")
     return (f"https://gen.pollinations.ai/image/{quote(texto)}?model={p.get('modelo_imagen', 'kontext')}"
             f"&width=1080&height=1350&seed={semilla}&nologo=true"
             f"&image={quote(p['referencia_url'], safe='')}&key={clave}")
 
 
-INTENTOS = 4
+INTENTOS = 6
 
 
 def descargar_fotos(escenas, p):
