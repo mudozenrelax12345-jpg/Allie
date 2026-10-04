@@ -32,9 +32,10 @@ PERSONA_FILE = BASE_DIR / "personaje.yml"
 
 APP_ID = os.environ.get("META_APP_ID", "1396445209313937")
 
-COMENTARIOS_POR_VEZ = (8, 16)   # algo más por pasada: GitHub no siempre
-                                # dispara a su hora y conviene poder
-                                # vaciar un atasco cuando por fin dispara  # cada ejecución contesta un número distinto, al azar
+COMENTARIOS_POR_VEZ = (8, 16)   # lo normal, cuando se pasa a menudo
+ATASCO = 40                     # si GitHub lleva horas sin disparar, la
+                                # pasada deja de disimular y vacía la cola:
+                                # más vale contestar tarde que no contestar  # cada ejecución contesta un número distinto, al azar
 ESPERA_ENTRE_PASADAS = (30, 90)  # minutos hasta la siguiente tanda, también al azar
 MAX_MENSAJES = 20
 DIAS_PUBLICACIONES = 3650      # se revisa todo el historial, lo más reciente primero
@@ -258,6 +259,16 @@ def responder_comentarios(ig, gh, p, estado):
     estado["ultima_pasada"] = ahora().isoformat()
     estado["espera_minutos"] = random.randint(*ESPERA_ENTRE_PASADAS)
     tope = random.randint(*COMENTARIOS_POR_VEZ)
+    # Cuánto hace que no se pasa por aquí. Si es mucho, es que GitHub no ha
+    # disparado, y entonces lo urgente es vaciar la cola.
+    anterior = estado.get("ultima_pasada")
+    if anterior:
+        from datetime import datetime, timezone
+        horas = (datetime.now(timezone.utc)
+                 - datetime.fromisoformat(anterior)).total_seconds() / 3600
+        if horas > 2.5:
+            tope = ATASCO
+            log(f"Llevábamos {horas:.1f} h sin pasar: vacío la cola de una vez")
     log(f"Esta vez contesto como mucho a {tope} comentarios.")
     limite = ahora() - timedelta(days=DIAS_PUBLICACIONES)
     nuevos = respondidos = avisos = 0
