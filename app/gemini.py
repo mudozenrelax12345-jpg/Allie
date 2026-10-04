@@ -123,15 +123,39 @@ def texto(prompt, imagenes=()):
     return "\n".join(out).strip()
 
 
+def _remendar(s):
+    """Arregla los descuidos de siempre: comas de más, comentarios, comillas raras.
+
+    Un modelo que escribe JSON a mano mete una coma antes de cerrar la llave, o
+    un // explicando un campo. Son faltas de puntuación, no de contenido: tirar
+    un guion entero por una coma sería absurdo.
+    """
+    s = re.sub(r"^\s*```(?:json)?|```\s*$", "", s.strip())
+    s = re.sub(r"/\*.*?\*/", "", s, flags=re.S)
+    s = re.sub(r"(^|[\s,{\[])//[^\n]*", r"\1", s)
+    s = s.replace("\u201c", '"').replace("\u201d", '"')
+    s = re.sub(r",(\s*[}\]])", r"\1", s)                   # coma antes de cerrar
+    s = re.sub(r"\}\s*\n\s*\"", '},\n"', s)                # falta la coma entre campos
+    return s
+
+
 def json_(prompt, imagenes=()):
-    t = texto(prompt, imagenes)
-    m = re.search(r"\{.*\}", t, re.S)
-    if not m:
-        raise GeminiError("Gemini no devolvió un JSON válido.")
-    try:
-        return json.loads(m.group(0))
-    except json.JSONDecodeError as e:
-        raise GeminiError(f"JSON inválido de Gemini: {e}")
+    fallo, bruto = None, ""
+    for vuelta in range(2):
+        aviso = ("\n\nIMPORTANTE: devuelve SOLO el JSON, sin ```, sin comentarios y "
+                 "sin ninguna coma antes de cerrar una llave o un corchete.") if vuelta else ""
+        t = texto(prompt + aviso, imagenes)
+        m = re.search(r"\{.*\}", t, re.S)
+        if not m:
+            fallo = "no venía ningún JSON"
+            continue
+        bruto = m.group(0)
+        for intento in (bruto, _remendar(bruto)):
+            try:
+                return json.loads(intento)
+            except json.JSONDecodeError as e:
+                fallo = e
+    raise GeminiError(f"JSON inválido de Gemini: {fallo}. Decía:\n{bruto[:500]}")
 
 
 REVISION = """Mira esta foto. Es para la cuenta de Instagram de una influencer y se ha generado con IA,
