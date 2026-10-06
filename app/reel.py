@@ -206,8 +206,20 @@ def kontext(escena, p):
     dichos = []
     for espacio in ESPACIOS:
         try:
-            cli = Client(espacio, verbose=False,
-                         hf_token=os.environ.get("HF_TOKEN") or None)
+            # El espacio se puede usar sin cuenta. Si algún día hay una, el
+            # nombre del parámetro cambia según la versión de la librería, así
+            # que se prueba y, si no lo acepta, se entra como anónimo.
+            cli = None
+            ficha = os.environ.get("HF_TOKEN") or None
+            if ficha:
+                for como in ("hf_token", "auth_token", "token"):
+                    try:
+                        cli = Client(espacio, verbose=False, **{como: ficha})
+                        break
+                    except TypeError:
+                        continue
+            if cli is None:
+                cli = Client(espacio, verbose=False)
             salida = cli.predict(api_name="/infer",
                                  input_image=handle_file(str(img)), prompt=orden)
         except Exception as e:  # noqa: BLE001
