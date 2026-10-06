@@ -197,13 +197,24 @@ def revisar_imagen(datos):
 # referencia ("kontext": HTTP 402, saldo cero). Gemini sí lo hace en su nivel
 # gratuito y la clave ya está puesta, así que las fotos de Allie se generan
 # aquí: se le manda su foto junto al texto y se le pide la misma cara.
+#
+# El orden importa, y no es el que parece. El nivel gratuito da muy pocas
+# imágenes al día de los modelos buenos ("pro") y bastantes más de los
+# ligeros ("flash-lite"). El domingo 4 se gastó el cupo del "pro" en el primer
+# intento y el reel se quedó sin fotos, así que ahora se empieza por los
+# ligeros y el "pro" queda de reserva: cuatro fotos decentes publicadas valen
+# más que ninguna foto excelente.
+#
+# Los nombres son los que de verdad ofrece esta clave (los dos que había
+# antes con "-preview" y "2.0" no existen y solo servían para gastar intentos).
 IMG_MODELOS = [m.strip() for m in os.environ.get(
     "GEMINI_IMAGE_MODELS",
-    "gemini-3-pro-image-preview,gemini-2.5-flash-image,"
-    "gemini-2.5-flash-image-preview,gemini-2.0-flash-preview-image-generation"
+    "gemini-3.1-flash-lite-image,gemini-3.1-flash-image,gemini-2.5-flash-image,"
+    "gemini-3-pro-image,gemini-3-pro-image-preview"
 ).split(",") if m.strip()]
 
 _img_elegido = None
+_img_descartados = {}    # modelo -> por qué se dejó de usar en esta ejecución
 
 
 def _buscar_imagen(nodo):
@@ -251,18 +262,18 @@ def imagen(prompt, referencia=None):
     cuerpo = {"contents": [{"role": "user", "parts": partes}],
               "generationConfig": {"responseModalities": ["TEXT", "IMAGE"]}}
     orden = ([_img_elegido] if _img_elegido else []) + \
-            [m for m in IMG_MODELOS if m != _img_elegido and m not in _descartados]
+            [m for m in IMG_MODELOS if m != _img_elegido and m not in _img_descartados]
     dichos = []
     for modelo in orden:
         try:
             data = _post(f"{BASE}/models/{modelo}:generateContent", cuerpo)
         except GeminiError as e:
             if _sin_cupo(e):
-                _descartados.add(modelo)
+                _img_descartados[modelo] = f"sin cupo: {str(e)[:120]}"
             dichos.append(f"{modelo}: {str(e)[:150]}")
             continue
         if data is None:
-            _descartados.add(modelo)
+            _img_descartados[modelo] = "no existe para esta clave (404)"
             dichos.append(f"{modelo}: no existe para esta clave (404)")
             continue
         b = _buscar_imagen(data)
@@ -271,4 +282,10 @@ def imagen(prompt, referencia=None):
             return b, None
         dichos.append(f"{modelo}: contestó sin imagen"
                       + (f" ({len(b)} bytes)" if b else ""))
+    # Si ya no queda ningún modelo por probar, el fallo tiene que seguir
+    # contándose: callarse aquí fue justo lo que hizo que el reel del domingo
+    # fallara sin que se pudiera saber por qué.
+    if not dichos:
+        dichos = [f"{m}: descartado antes · {por}" for m, por in _img_descartados.items()] \
+                 or ["no hay ningún modelo de imagen configurado"]
     return None, dichos

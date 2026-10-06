@@ -122,7 +122,10 @@ PUERTAS = [
 ]
 
 INTENTOS = 6
-ESPERAS = [10, 25, 45, 70, 90, 90]
+# Esperas cortas a propósito. Cuando un modelo se queda sin cupo, esperar un
+# minuto y medio no le devuelve el cupo: solo consume el tiempo del trabajo
+# (30 minutos) y lo deja morir a medias. Mejor agotar los modelos deprisa.
+ESPERAS = [5, 10, 20, 30, 40, 40]
 
 
 def estado_referencia(url):
@@ -249,6 +252,23 @@ def descargar_fotos(escenas, p):
     return rutas
 
 
+# ------------------------------------------------------------- para revisar
+def guardar_para_revisar(rutas):
+    """Deja las cuatro fotos sueltas en videos/fotos/ antes de montarlas.
+
+    Dentro del vídeo la cara se ve un segundo y en movimiento, y así es
+    imposible decir si la boca ha salido bien. Sueltas y a tamaño completo, sí.
+    Se sobreescriben cada semana, así que no engordan el repositorio.
+    """
+    carpeta = VIDEOS / "fotos"
+    carpeta.mkdir(parents=True, exist_ok=True)
+    for viejo in carpeta.glob("*.jpg"):
+        viejo.unlink()
+    for i, r in enumerate(rutas, 1):
+        (carpeta / f"foto{i}.jpg").write_bytes(Path(r).read_bytes())
+    log(f"Las {len(rutas)} fotos quedan en videos/fotos/ para poder mirarlas")
+
+
 # ------------------------------------------------------------------ montaje
 def componer(rutas):
     """Cada foto 4:5 sobre un fondo desenfocado, para llenar el 9:16 sin recortar a Allie."""
@@ -352,6 +372,7 @@ def main():
     g = guion(p)
     log(f"Idea: {g.get('idea')}")
     rutas = descargar_fotos(g["escenas"], p)
+    guardar_para_revisar(rutas)
     compuestas = componer(rutas)
     video = montar(compuestas)
     log(f"Vídeo montado: {video.name} ({video.stat().st_size // 1024} KB)")
