@@ -33,6 +33,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           POLLINATIONS_KEY: ${{ secrets.POLLINATIONS_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Guardar el vídeo

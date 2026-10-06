@@ -153,11 +153,105 @@ def foto_referencia(url):
     return _referencia[url]
 
 
+_vertical = None
+
+
+def referencia_vertical(url):
+    """La foto de Allie recortada a vertical, guardada en un fichero.
+
+    Kontext devuelve la imagen con la forma de la que se le da. La foto
+    original es apaisada, y una foto apaisada dentro de un reel deja a Allie
+    pequeña en medio de dos franjas borrosas. Recortada a 4:5 por arriba —que
+    es donde está la cara— sale ya con la forma buena.
+    """
+    global _vertical
+    if _vertical is None:
+        TRABAJO.mkdir(exist_ok=True)
+        from io import BytesIO
+        im = Image.open(BytesIO(foto_referencia(url))).convert("RGB")
+        alto = min(im.height, int(im.width * 5 / 4))
+        ancho = int(alto * 4 / 5)
+        x = (im.width - ancho) // 2
+        y = min(max(0, (im.height - alto) // 3), im.height - alto)   # hacia la cara
+        _vertical = TRABAJO / "referencia.jpg"
+        im.crop((x, y, x + ancho, y + alto)).save(_vertical, "JPEG", quality=95)
+    return _vertical
+
+
+# El sitio que de verdad conserva la cara de Allie, y gratis.
+#
+# Gemini dejó de dar imágenes en el nivel gratuito y Pollinations puso de pago
+# el único modelo suyo que copiaba una cara; lo que le queda gratis devuelve a
+# otra mujer. Hugging Face tiene espacios públicos que ejecutan FLUX.1
+# Kontext, que es un modelo de edición: se le da la foto de Allie y la escena,
+# y devuelve a la misma persona en otro sitio. Se puede llamar sin cuenta y sin
+# tarjeta, aunque va "según disponibilidad": a veces hay cola y a veces el
+# espacio está reiniciándose, así que hay más de uno y se reintenta.
+ESPACIOS = [e.strip() for e in os.environ.get(
+    "HF_ESPACIOS", "black-forest-labs/FLUX.1-Kontext-Dev").split(",") if e.strip()]
+
+
+def kontext(escena, p):
+    """Devuelve (bytes, None) o (None, lo que dijo cada espacio)."""
+    try:
+        from gradio_client import Client, handle_file
+    except ImportError:
+        return None, ["falta la biblioteca gradio_client"]
+
+    img = referencia_vertical(p["referencia_url"])
+    orden = (f"Keep her face, hair, skin tone and body exactly as they are — it must be "
+             f"unmistakably the same woman. Place her in this scene: {escena}. "
+             f"{CARA}. {ANATOMIA}. Photorealistic smartphone photo, soft natural light. "
+             f"No text, no logos and no watermark anywhere in the image.")
+    dichos = []
+    for espacio in ESPACIOS:
+        try:
+            cli = Client(espacio, verbose=False,
+                         hf_token=os.environ.get("HF_TOKEN") or None)
+            salida = cli.predict(api_name="/infer",
+                                 input_image=handle_file(str(img)), prompt=orden)
+        except Exception as e:  # noqa: BLE001
+            dichos.append(f"{espacio}: {type(e).__name__}: {str(e)[:180]}")
+            continue
+        ruta = _primera_imagen(salida)
+        if not ruta:
+            dichos.append(f"{espacio}: contestó sin imagen")
+            continue
+        from io import BytesIO
+        b = BytesIO()
+        Image.open(ruta).convert("RGB").save(b, "JPEG", quality=94)
+        return b.getvalue(), None
+    return None, dichos
+
+
+def _primera_imagen(resultado):
+    """Gradio devuelve una ruta, una lista o un diccionario, según el espacio."""
+    pendientes = [resultado]
+    while pendientes:
+        x = pendientes.pop(0)
+        if isinstance(x, (list, tuple)):
+            pendientes.extend(x)
+        elif isinstance(x, dict):
+            pendientes.extend(x.values())
+        elif isinstance(x, str) and Path(x).exists() and \
+                Path(x).suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"):
+            return x
+    return None
+
+
 def pedir(escena, semilla, p, parte):
-    """Pide una foto: primero a Gemini, y si no, a Pollinations.
+    """Pide una foto: primero a Kontext, luego a Gemini, y si no, a Pollinations.
 
     Devuelve (bytes, None) o (None, qué dijo cada sitio)."""
     dichos = []
+
+    datos, fallos = kontext(escena, p)
+    if datos:
+        if parte == 1:
+            log("Fotos generadas con FLUX.1 Kontext (Hugging Face)")
+        return datos, None
+    dichos += [f"Kontext · {x}" for x in (fallos or [])]
+
     try:
         ref = foto_referencia(p["referencia_url"])
         orden = ("Keep the face, hair and skin tone of the woman in the reference photo "
