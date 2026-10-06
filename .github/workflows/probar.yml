@@ -23,7 +23,9 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Preguntar a cada sitio
-        run: python app/probar_imagen.py
+        run: |
+          python app/probar_imagen.py
+          python app/probar_cara.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           POLLINATIONS_KEY: ${{ secrets.POLLINATIONS_KEY }}
