@@ -7,7 +7,7 @@ Foto de referencia: https://i.postimg.cc/023T5BJX/IMG-20261001-215255.jpg
 Clave en los secretos: sí
 Modelos que anuncia: sana
 - sana con foto de referencia: **FUNCIONA** · 46 KB
-- sana sin referencia: HTTP 402 · {}
+- sana sin referencia: **FUNCIONA** · 46 KB
 
 ## Gemini (la clave que ya está puesta)
 
