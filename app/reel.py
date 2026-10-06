@@ -500,7 +500,15 @@ if __name__ == "__main__":
         main()
     except Exception as e:  # noqa: BLE001
         import traceback
-        traceback.print_exc()
+        detalle = traceback.format_exc()
+        print(detalle, flush=True)
+        # El fichero primero. Los avisos dejan de crearse cuando se abren
+        # muchos seguidos —GitHub lo corta sin decir nada— y entonces el fallo
+        # se queda solo en el registro, que no se puede leer desde fuera.
+        # Un fichero en el repositorio sí se lee siempre.
+        (BASE / "ULTIMO-FALLO.txt").write_text(
+            f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC\n\n{detalle}\n",
+            encoding="utf-8")
         issue("⚠️ No se pudo montar el reel", f"Error: `{e}`\n\nSi no sabes qué significa, "
                                                "copia este mensaje y pregúntale a Claude.")
         sys.exit(1)
