@@ -3,7 +3,7 @@
 ### black-forest-labs/FLUX.1-Kontext-Dev
 - puntos de entrada: /infer, /lambda
 - probando «/infer» con ['input_image', 'prompt']
-  ✓ **FUNCIONA** · guardada en HF-black-forest-labs__FLUX.1-Kontext-Dev.webp (59 KB)
+  ✓ **FUNCIONA** · guardada en HF-black-forest-labs__FLUX.1-Kontext-Dev.webp (53 KB)
 
 ### Qwen/Qwen-Image-Edit
 - puntos de entrada: /infer
