@@ -1,0 +1,80 @@
+name: Subir una foto a un alojamiento publico
+
+on:
+  workflow_dispatch:
+    inputs:
+      ruta:
+        description: "Ruta de la foto dentro del repo"
+        required: true
+        default: "videos/prueba/foto-20261007-2155.jpg"
+
+permissions:
+  contents: write
+
+jobs:
+  subir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar
+        run: pip install requests
+
+      - name: Subir
+        env:
+          RUTA: ${{ inputs.ruta }}
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, requests
+
+          ruta = pathlib.Path(os.environ["RUTA"])
+          if not ruta.exists():
+              raise SystemExit(f"No existe {ruta}")
+
+          intentos = [
+              ("catbox", lambda f: requests.post(
+                  "https://catbox.moe/user/api.php",
+                  data={"reqtype": "fileupload"},
+                  files={"fileToUpload": f}, timeout=300).text.strip()),
+              ("0x0", lambda f: requests.post(
+                  "https://0x0.st", files={"file": f},
+                  headers={"User-Agent": "allie-foto/1.0"}, timeout=300).text.strip()),
+          ]
+
+          url = None
+          for nombre, fn in intentos:
+              try:
+                  with open(ruta, "rb") as f:
+                      r = fn(f)
+                  print(f"{nombre}: {r[:200]}", flush=True)
+                  if r.startswith("http"):
+                      url = r
+                      break
+              except Exception as e:
+                  print(f"{nombre} fallo: {e}", flush=True)
+
+          if not url:
+              raise SystemExit("No se pudo subir a ningun alojamiento publico.")
+
+          destino = pathlib.Path("videos/prueba/ultima-foto.json")
+          destino.write_text(json.dumps({"ruta": str(ruta), "url": url}, indent=1), encoding="utf-8")
+          print(f"URL PUBLICA: {url}", flush=True)
+          PY
+
+      - name: Guardar la direccion
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A videos/prueba
+          if ! git diff --cached --quiet; then
+            git commit -m "Direccion publica de la ultima foto [skip ci]"
+            git pull --rebase
+            git push
+          fi
