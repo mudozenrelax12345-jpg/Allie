@@ -30,33 +30,56 @@ jobs:
           RUTA: ${{ inputs.ruta }}
         run: |
           python - <<'PY'
-          import json, os, pathlib, requests
+          import json, os, pathlib, re, requests
 
           ruta = pathlib.Path(os.environ["RUTA"])
           if not ruta.exists():
               raise SystemExit(f"No existe {ruta}")
 
-          intentos = [
-              ("catbox", lambda f: requests.post(
-                  "https://catbox.moe/user/api.php",
-                  data={"reqtype": "fileupload"},
-                  files={"fileToUpload": f}, timeout=300).text.strip()),
-              ("0x0", lambda f: requests.post(
-                  "https://0x0.st", files={"file": f},
-                  headers={"User-Agent": "allie-foto/1.0"}, timeout=300).text.strip()),
-          ]
+          AG = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                              "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
+
+          def tmpfiles(f):
+              r = requests.post("https://tmpfiles.org/api/v1/upload",
+                                files={"file": f}, headers=AG, timeout=300)
+              u = r.json().get("data", {}).get("url", "")
+              # tmpfiles da una pagina; la descarga directa lleva /dl/ en medio
+              return u.replace("tmpfiles.org/", "tmpfiles.org/dl/", 1)
+
+          def envs(f):
+              return requests.post("https://envs.sh", files={"file": f},
+                                   headers=AG, timeout=300).text.strip()
+
+          def litterbox(f):
+              return requests.post("https://litterbox.catbox.moe/resources/internals/api.php",
+                                   data={"reqtype": "fileupload", "time": "72h"},
+                                   files={"fileToUpload": f}, headers=AG, timeout=300).text.strip()
+
+          def uguu(f):
+              r = requests.post("https://uguu.se/upload", files={"files[]": f},
+                                headers=AG, timeout=300)
+              return r.json()["files"][0]["url"]
+
+          intentos = [("tmpfiles", tmpfiles), ("envs.sh", envs),
+                      ("litterbox", litterbox), ("uguu", uguu)]
 
           url = None
           for nombre, fn in intentos:
               try:
                   with open(ruta, "rb") as f:
                       r = fn(f)
-                  print(f"{nombre}: {r[:200]}", flush=True)
-                  if r.startswith("http"):
-                      url = r
-                      break
+                  print(f"{nombre}: {str(r)[:200]}", flush=True)
+                  if isinstance(r, str) and re.match(r"^https?://", r):
+                      # comprobamos que de verdad se descarga como imagen
+                      v = requests.get(r, headers=AG, timeout=120)
+                      tipo = v.headers.get("content-type", "")
+                      print(f"{nombre} comprobacion: HTTP {v.status_code} {tipo} "
+                            f"{len(v.content)} bytes", flush=True)
+                      if v.status_code == 200 and tipo.startswith("image/"):
+                          url = r
+                          break
               except Exception as e:
-                  print(f"{nombre} fallo: {e}", flush=True)
+                  print(f"{nombre} fallo: {type(e).__name__}: {e}", flush=True)
 
           if not url:
               raise SystemExit("No se pudo subir a ningun alojamiento publico.")
