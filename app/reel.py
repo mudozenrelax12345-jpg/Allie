@@ -71,7 +71,9 @@ Reglas para las escenas: en inglés, muy descriptivas (lugar, ropa, pose, expres
 MUY IMPORTANTE con el encuadre: usa planos de medio cuerpo, de cintura para arriba o primeros planos
 ("upper-body shot", "medium shot from the waist up", "close-up"). NADA de planos de cuerpo entero ni
 de cuerpo completo: es donde la IA se inventa piernas y manos de más. Evita también manos en posturas
-raras o muy en primer plano. Nada de texto, logotipos ni marcas dentro de la imagen.
+raras o muy en primer plano. NUNCA pongas que sujeta algo con la mano —ni taza,
+ni pincel, ni móvil, ni correa, ni libro—: una mano agarrando un objeto fino
+es lo que peor hace el generador y tira el reel entero. Nada de texto, logotipos ni marcas dentro de la imagen.
 LA BOCA: describe siempre la expresión con la boca cerrada o con una sonrisa suave de labios
 juntos. NUNCA pongas que se ríe a carcajadas, que habla, que canta, que come o que tiene la
 boca abierta: es donde el generador falla y salen dientes deformes.
@@ -314,6 +316,26 @@ def pedir(escena, semilla, p, parte):
     return None, dichos
 
 
+TROZOS_DE_MANO = (
+    "holding", "holds", "brush", "pen", "pencil", "cup", "mug", "glass",
+    "phone", "camera", "book", "leash", "bag", "fork", "spoon", "knife",
+    "flower", "umbrella", "racket", "ball",
+)
+
+
+def sin_manos(escena):
+    """Quita de la escena lo que obliga a dibujar una mano agarrando algo."""
+    limpia = escena
+    for pieza in escena.split(", "):
+        if any(w in pieza.lower() for w in TROZOS_DE_MANO):
+            limpia = limpia.replace(pieza + ", ", "").replace(", " + pieza, "")
+    if limpia.strip() in ("", escena.strip()):
+        limpia = escena
+    return (limpia.rstrip(". ") +
+            ", hands out of frame, nothing held in her hands, "
+            "arms relaxed, framed from the chest up")
+
+
 def descargar_fotos(escenas, p):
     """Genera cada foto y la revisa con Gemini: si tiene tres piernas, manos raras o
     cualquier otro fallo típico de la IA, la descarta y prueba otra vez."""
@@ -340,6 +362,16 @@ def descargar_fotos(escenas, p):
                 break
             descartadas.append(f"foto {i + 1}: {problema}")
             log(f"Foto {i + 1} descartada ({problema}); genero otra")
+            # Insistir seis veces con la misma escena no sirve de nada.
+            #
+            # El reel de esta semana se cayó así: la escena pedía a Allie
+            # pintando, y las seis salieron con los dedos de la mano del
+            # pincel deformes. No es mala suerte: una mano agarrando un
+            # objeto fino es lo que peor hace cualquier generador. A la
+            # segunda, se quita de la escena lo que la está rompiendo.
+            if intento == 1:
+                escena = sin_manos(escena)
+                log(f"Foto {i + 1}: quito las manos de la escena y pruebo así")
             time.sleep(3)
         else:
             if mejor is None:
