@@ -1,4 +1,4 @@
-2026-10-06 19:55 UTC
+2026-10-08 16:04 UTC
 
 Traceback (most recent call last):
   File "/home/runner/work/Allie/Allie/app/reel.py", line 500, in <module>
@@ -6,22 +6,7 @@ Traceback (most recent call last):
   File "/home/runner/work/Allie/Allie/app/reel.py", line 480, in main
     rutas = descargar_fotos(g["escenas"], p)
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 346, in descargar_fotos
-    raise RuntimeError(
-RuntimeError: Nadie ha devuelto ninguna imagen. Esto es lo que contestó cada sitio en el último intento:
-
-  · Kontext · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Authenticate with a Hugging Face token for more quota - https://huggingface.co/settings/tokens
-  · Gemini · gemini-3.1-flash-lite-image: descartado antes · sin cupo: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error,
-  · Gemini · gemini-3.1-flash-image: descartado antes · sin cupo: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error,
-  · Gemini · gemini-2.5-flash-image: descartado antes · sin cupo: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error,
-  · Gemini · gemini-3-pro-image: descartado antes · sin cupo: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error,
-  · Gemini · gemini-3-pro-image-preview: descartado antes · sin cupo: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error,
-  · gen · clave en cabecera: HTTP 402 · {"success":false,"error":{"message":"Insufficient balance. This request costs ~0.0300 pollen, but your available balance is 0.0000. Top up at https://enter.poll
-  · prompt · clave en cabecera: HTTP 500 · {"error":"Internal Server Error","message":"kontext model is only available on enter.pollinations.ai. Visit https://enter.pollinations.ai/?ref=image to get star
-  · prompt · sin clave: HTTP 500 · {"error":"Internal Server Error","message":"kontext model is only available on enter.pollinations.ai. Visit https://enter.pollinations.ai/?ref=image to get star
-
-La foto de referencia que se le manda (https://i.postimg.cc/023T5BJX/IMG-20261001-215255.jpg) responde: HTTP 200, image/jpeg, 207169 bytes
-
-Modelos de imagen que ofrece tu clave de Gemini:
-  gemini-2.5-flash-image, gemini-3-pro-image-preview, gemini-3-pro-image, gemini-3.1-flash-image-preview, gemini-3.1-flash-image, gemini-3.1-flash-lite-image
+  File "/home/runner/work/Allie/Allie/app/reel.py", line 354, in descargar_fotos
+    raise RuntimeError(f"Las {INTENTOS} imágenes de la foto {i + 1} salieron con fallos "
+RuntimeError: Las 6 imágenes de la foto 2 salieron con fallos (foto 2: Los dedos de la mano que sostiene el pincel están deformes y la mano se fusiona de forma extraña con el lienzo). Esta semana no monto el reel.
 
