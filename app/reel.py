@@ -454,6 +454,7 @@ def guardar_para_revisar(rutas):
 
 # ------------------------------------------------------------------ montaje
 def componer(rutas):
+    TRABAJO.mkdir(exist_ok=True)   # la creaba descargar_fotos, que ahora se puede saltar
     """Cada foto 4:5 sobre un fondo desenfocado, para llenar el 9:16 sin recortar a Allie."""
     salidas = []
     for i, r in enumerate(rutas):
