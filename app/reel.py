@@ -578,11 +578,12 @@ def subir(ruta, dichos=None):
             except Exception as e:  # noqa: BLE001
                 dichos.append(f"{nombre}: dio {url} pero no se pudo abrir ({type(e).__name__})")
                 continue
-            if c.status_code == 200 and tipo.startswith("image/") and largo > 20000:
+            if c.status_code == 200 and largo > 20000 and (
+                    tipo.startswith("image/") or tipo.startswith("video/")):
                 log(f"Subido a {nombre}: {url} ({tipo}, {largo // 1024} KB)")
                 return url
             dichos.append(f"{nombre}: {url} devuelve HTTP {c.status_code}, "
-                          f"{tipo or 'sin tipo'}, {largo} bytes — no es una imagen")
+                          f"{tipo or 'sin tipo'}, {largo} bytes — no es imagen ni vídeo")
             log(f"{nombre}: la dirección no sirve ({tipo}, {largo} bytes)")
             continue
         dichos.append(f"{nombre}: respondió «{str(url)[:120]}»")
