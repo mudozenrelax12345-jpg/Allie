@@ -141,6 +141,33 @@ def imagen_de(resultado):
     return None
 
 
+def apis_de(cli):
+    """Los nombres de API que el espacio dice tener, en vez de adivinarlos.
+
+    Seis espacios quedaron en «ninguna API encajaba» solo porque su endpoint
+    no estaba en mi lista de nombres probables. El espacio publica la lista:
+    hay que leerla. Los nombres que suenan a generar van primero, y los que
+    suenan a cargar ejemplos o a la interfaz, al final.
+    """
+    try:
+        info = cli.view_api(return_format="dict", print_info=False) or {}
+    except Exception:  # noqa: BLE001
+        return list(NOMBRES)
+    nombres = list((info.get("named_endpoints") or {}).keys())
+    if not nombres:
+        return list(NOMBRES)
+
+    def peso(n):
+        if re.search(r"example|load|change|select|clear|reset|random|lambda|ui",
+                     n, re.I):
+            return 2
+        if re.search(r"infer|edit|generate|run|process|predict|submit", n, re.I):
+            return 0
+        return 1
+    nombres.sort(key=peso)
+    return nombres
+
+
 def firma(cli, nombre):
     """Los parámetros de esa API con todo lo que se sabe de cada uno.
 
@@ -188,8 +215,23 @@ def relleno(campo, ref, handle_file):
     comp = str(campo["componente"]).lower()
     if comp in ("image", "imageeditor") or _es(campo, r"image|img|photo"):
         return handle_file(str(ref)), True
+    # Algunos espacios declaran el componente como «Api» y no dicen más, así
+    # que estos se reconocen por el nombre: son los ajustes de siempre y
+    # tienen valores razonables conocidos.
     if _es(campo, r"seed"):
         return 0, True
+    if _es(campo, r"guidance"):
+        return 2.5, True
+    if _es(campo, r"steps|num_inference"):
+        return 8, True
+    if _es(campo, r"strength|denois"):
+        return 0.8, True
+    if _es(campo, r"width"):
+        return 1024, True
+    if _es(campo, r"height"):
+        return 1280, True
+    if _es(campo, r"randomize|random_seed"):
+        return True, True
     if comp in ("slider", "number"):
         return 1, True
     if comp == "checkbox":
@@ -219,7 +261,7 @@ def probar(ficha, ident, ref):
         return False, f"no se pudo entrar: {type(e).__name__}: {str(e)[:200]}"
 
     quejas = []
-    for nombre in NOMBRES:
+    for nombre in apis_de(cli)[:10]:
         campos = firma(cli, nombre)
         if campos is None:
             continue
