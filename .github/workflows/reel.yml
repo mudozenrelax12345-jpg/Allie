@@ -31,7 +31,12 @@ jobs:
           cache: pip
 
       - name: Instalar
-        run: pip install -r requirements.txt
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install -r requirements.txt
+
+      - name: Comprobar que ffmpeg está
+        run: ffmpeg -version | head -1
 
       - name: Montar el reel
         run: python app/reel.py
