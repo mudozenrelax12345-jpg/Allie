@@ -51,7 +51,7 @@ def persona():
 def guion(p):
     temas = p.get("temas_reel") or ["un día en Madrid", "rutina de mañana", "look del día",
                                     "paseo con Booby", "café y planes", "finde de descanso"]
-    tema = random.choice(temas)
+    tema = os.environ.get("TEMA", "").strip() or random.choice(temas)
     prompt = f"""Eres el community manager de la influencer virtual {p.get('nombre', 'Allie')} en Instagram.
 Su forma de ser: {p.get('personalidad', '')}
 Datos suyos: {p.get('sobre_ella', '')}
@@ -68,7 +68,11 @@ Devuelve SOLO un JSON:
  "hashtags": ["#...", "..."]
 }}
 
-Reglas para las escenas: en inglés, muy descriptivas (lugar, ropa, pose, expresión, luz, encuadre).
+Reglas para las escenas: en inglés, muy descriptivas, pero SOLO del lugar, la
+ropa, la pose, la luz y el encuadre. NUNCA describas cómo es ella: ni el color
+del pelo, ni los ojos, ni la edad, ni «a young woman with…». El generador parte
+de una foto suya, y si el texto dice de qué color es el pelo le hace caso al
+texto y dibuja a otra mujer. Empieza cada escena por «The same woman, ».
 MUY IMPORTANTE con el encuadre: usa planos de medio cuerpo, de cintura para arriba o primeros planos
 ("upper-body shot", "medium shot from the waist up", "close-up"). NADA de planos de cuerpo entero ni
 de cuerpo completo: es donde la IA se inventa piernas y manos de más. Evita también manos en posturas

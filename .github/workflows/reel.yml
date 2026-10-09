@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "40 17 * * 0"   # domingos, 19:40 en Madrid (18:40 en invierno)
   workflow_dispatch:
+    inputs:
+      tema:
+        description: "Tema (vacío = uno al azar)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -34,6 +39,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           POLLINATIONS_KEY: ${{ secrets.POLLINATIONS_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          TEMA: ${{ inputs.tema }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Guardar el vídeo
