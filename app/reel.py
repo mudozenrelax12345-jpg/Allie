@@ -10,6 +10,7 @@ Se ejecuta en GitHub Actions (que sí tiene internet y ffmpeg):
 import json
 import os
 import random
+import re
 import subprocess
 import sys
 import time
@@ -193,6 +194,28 @@ ESPACIOS = [e.strip() for e in os.environ.get(
     "HF_ESPACIOS", "black-forest-labs/FLUX.1-Kontext-Dev").split(",") if e.strip()]
 
 
+ASPECTO = re.compile(
+    r"\b(?:blonde|brunette|brown[- ]haired|dark[- ]haired|red[- ]haired|ginger|"
+    r"black[- ]haired|long brown hair|brown hair|blond hair|black hair|"
+    r"red hair|blue eyes|green eyes|brown eyes|hazel eyes|"
+    r"(?:young |beautiful |pretty )?woman with [^,.]{0,40})\b", re.I)
+
+
+def sin_aspecto(escena):
+    """Quita de la escena cualquier descripción de cómo es ella.
+
+    Kontext parte de la foto de Allie, pero si el texto le dice de qué color
+    es el pelo, le hace caso al texto. De dos fotos generadas el mismo día,
+    la que pedía «long brown hair» devolvió a una morena que no era ella; la
+    que decía «the same young woman in the same sweater» devolvió a Allie.
+    Su cara la pone la referencia; el texto solo pone el sitio.
+    """
+    limpia = ASPECTO.sub("the same woman", escena)
+    limpia = re.sub(r"\b(?:a|an|the)\s+the same woman", "the same woman", limpia, flags=re.I)
+    limpia = re.sub(r"(the same woman[,\s]+){2,}", "the same woman, ", limpia, flags=re.I)
+    return re.sub(r"\s{2,}", " ", limpia).strip()
+
+
 def kontext(escena, p):
     """Devuelve (bytes, None) o (None, lo que dijo cada espacio)."""
     try:
@@ -200,6 +223,7 @@ def kontext(escena, p):
     except ImportError:
         return None, ["falta la biblioteca gradio_client"]
 
+    escena = sin_aspecto(escena)
     img = referencia_vertical(p["referencia_url"])
     orden = (f"Keep her face, hair, skin tone and body exactly as they are — it must be "
              f"unmistakably the same woman. Place her in this scene: {escena}. "

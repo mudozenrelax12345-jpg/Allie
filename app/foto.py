@@ -62,7 +62,14 @@ Devuelve SOLO un JSON:
 }}
 
 Reglas de las escenas, y son estrictas porque cada una viene de un fallo real:
-- En inglés y muy descriptivas: sitio, ropa, pose, expresión, luz, encuadre.
+- En inglés y muy descriptivas, pero SOLO del sitio, la ropa, la pose, la luz
+  y el encuadre. NUNCA describas cómo es ella: ni el color del pelo, ni los
+  ojos, ni la edad, ni «a young woman with…». Esto es lo más importante de
+  todo. El generador parte de una foto suya, y si el texto dice «pelo
+  castaño» le hace caso al texto y dibuja a otra mujer. Pasó: de dos fotos,
+  la que decía «long brown hair» salió morena y no era Allie; la que empezaba
+  por «the same young woman in the same sweater» salió ella.
+- Empieza cada escena por «The same woman, » y sigue con el sitio y la ropa.
 - SOLO planos de medio cuerpo o primeros planos («upper-body shot», «medium
   shot from the waist up», «close-up»). Nada de cuerpo entero: ahí es donde se
   inventan piernas.
@@ -127,11 +134,12 @@ def main():
     if not buenas:
         raise RuntimeError("Ninguna de las fotos pasó la revisión. No publico nada.")
 
-    enlaces = []
+    enlaces, fallos_subida = [], []
     for f in buenas:
         try:
             enlaces.append(reel.subir(f))
         except Exception as e:  # noqa: BLE001
+            fallos_subida.append(f"{f.name}: {e}")
             log(f"No se pudo subir {f.name}: {e}")
 
     hashtags = " ".join(h if str(h).startswith("#") else f"#{h}"
@@ -140,7 +148,7 @@ def main():
         "tema": g.get("tema", ""), "idea": g.get("idea", ""),
         "texto": g.get("texto", ""), "hashtags": hashtags,
         "escenas": g["escenas"], "fotos": [f.name for f in buenas],
-        "enlaces": enlaces, "creado": datetime.now(timezone.utc).isoformat(),
+        "enlaces": enlaces, "fallos_subida": fallos_subida, "creado": datetime.now(timezone.utc).isoformat(),
     }, ensure_ascii=False, indent=1), encoding="utf-8")
     log(f"{len(buenas)} de {CUANTAS} fotos listas · {len(enlaces)} subidas")
 
