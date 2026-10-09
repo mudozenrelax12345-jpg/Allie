@@ -1,0 +1,140 @@
+{
+ "cuando": "2026-10-09T16:17:24.732639+00:00",
+ "tema": "a quiet autumn afternoon at home, tea and a blanket by the window, warm light",
+ "idea": "Tarde de otoño en casa con mantita, luz dorada y cero planes, el mejor plan del mundo",
+ "escenas_pedidas": [
+  "The same woman, medium shot from the waist up sitting by a large window in a cozy Madrid apartment, wrapped in a thick beige knit blanket, warm golden autumn afternoon light, soft closed-mouth gentle smile, resting both empty hands gently on her lap",
+  "The same woman, upper-body shot leaning slightly against the window frame indoors, wearing the same thick beige knit sweater, warm golden backlight filtering through the glass, calm expression with lips closed, empty hands relaxed at her sides",
+  "The same woman, close-up from the chest up looking thoughtfully out the window, wearing the same beige knit sweater, soft warm side lighting, gentle closed-mouth smile, hands completely out of frame"
+ ],
+ "intentos": [
+  {
+   "foto": 1,
+   "intento": 1,
+   "escena": "The same woman, medium shot from the waist up sitting by a large window in a cozy Madrid apartment, wrapped in a thick beige knit blanket, warm golden autumn afternoon light, soft closed-mouth gentle smile, resting both empty hands gently on her lap",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 1,
+   "intento": 2,
+   "escena": "The same woman, medium shot from the waist up sitting by a large window in a cozy Madrid apartment, wrapped in a thick beige knit blanket, warm golden autumn afternoon light, soft closed-mouth gentle smile, resting both empty hands gently on her lap",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 1,
+   "intento": 3,
+   "escena": "The same woman, medium shot from the waist up sitting by a large window in a cozy Madrid apartment, wrapped in a thick beige knit blanket, warm golden autumn afternoon light, soft closed-mouth gentle smile, resting both empty hands gently on her lap",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 1,
+   "intento": 4,
+   "escena": "The same woman, medium shot from the waist up sitting by a large window in a cozy Madrid apartment, wrapped in a thick beige knit blanket, warm golden autumn afternoon light, soft closed-mouth gentle smile, resting both empty hands gently on her lap",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 1,
+   "intento": 5,
+   "escena": "The same woman, medium shot from the waist up sitting by a large window in a cozy Madrid apartment, wrapped in a thick beige knit blanket, warm golden autumn afternoon light, soft closed-mouth gentle smile, resting both empty hands gently on her lap",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 1,
+   "intento": 6,
+   "escena": "The same woman, medium shot from the waist up sitting by a large window in a cozy Madrid apartment, wrapped in a thick beige knit blanket, warm golden autumn afternoon light, soft closed-mouth gentle smile, resting both empty hands gently on her lap",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 2,
+   "intento": 1,
+   "escena": "The same woman, upper-body shot leaning slightly against the window frame indoors, wearing the same thick beige knit sweater, warm golden backlight filtering through the glass, calm expression with lips closed, empty hands relaxed at her sides",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 2,
+   "intento": 2,
+   "escena": "The same woman, upper-body shot leaning slightly against the window frame indoors, wearing the same thick beige knit sweater, warm golden backlight filtering through the glass, calm expression with lips closed, empty hands relaxed at her sides",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 2,
+   "intento": 3,
+   "escena": "The same woman, upper-body shot leaning slightly against the window frame indoors, wearing the same thick beige knit sweater, warm golden backlight filtering through the glass, calm expression with lips closed, empty hands relaxed at her sides",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 2,
+   "intento": 4,
+   "escena": "The same woman, upper-body shot leaning slightly against the window frame indoors, wearing the same thick beige knit sweater, warm golden backlight filtering through the glass, calm expression with lips closed, empty hands relaxed at her sides",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 2,
+   "intento": 5,
+   "escena": "The same woman, upper-body shot leaning slightly against the window frame indoors, wearing the same thick beige knit sweater, warm golden backlight filtering through the glass, calm expression with lips closed, empty hands relaxed at her sides",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 2,
+   "intento": 6,
+   "escena": "The same woman, upper-body shot leaning slightly against the window frame indoors, wearing the same thick beige knit sweater, warm golden backlight filtering through the glass, calm expression with lips closed, empty hands relaxed at her sides",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 3,
+   "intento": 1,
+   "escena": "The same woman, close-up from the chest up looking thoughtfully out the window, wearing the same beige knit sweater, soft warm side lighting, gentle closed-mouth smile, hands completely out of frame",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 3,
+   "intento": 2,
+   "escena": "The same woman, close-up from the chest up looking thoughtfully out the window, wearing the same beige knit sweater, soft warm side lighting, gentle closed-mouth smile, hands completely out of frame",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 3,
+   "intento": 3,
+   "escena": "The same woman, close-up from the chest up looking thoughtfully out the window, wearing the same beige knit sweater, soft warm side lighting, gentle closed-mouth smile, hands completely out of frame",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 3,
+   "intento": 4,
+   "escena": "The same woman, close-up from the chest up looking thoughtfully out the window, wearing the same beige knit sweater, soft warm side lighting, gentle closed-mouth smile, hands completely out of frame",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 3,
+   "intento": 5,
+   "escena": "The same woman, close-up from the chest up looking thoughtfully out the window, wearing the same beige knit sweater, soft warm side lighting, gentle closed-mouth smile, hands completely out of frame",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  },
+  {
+   "foto": 3,
+   "intento": 6,
+   "escena": "The same woman, close-up from the chest up looking thoughtfully out the window, wearing the same beige knit sweater, soft warm side lighting, gentle closed-mouth smile, hands completely out of frame",
+   "resultado": "no generó: black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+  }
+ ],
+ "descartadas": [
+  "foto 1 intento 1: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 1 intento 2: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 1 intento 3: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 1 intento 4: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 1 intento 5: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 1 intento 6: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 2 intento 1: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 2 intento 2: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 2 intento 3: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 2 intento 4: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 2 intento 5: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 2 intento 6: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 3 intento 1: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 3 intento 2: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 3 intento 3: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 3 intento 4: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 3 intento 5: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+  "foto 3 intento 6: no generó · black-forest-labs/FLUX.1-Kontext-Dev: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU"
+ ]
+}

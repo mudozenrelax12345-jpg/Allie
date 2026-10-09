@@ -1,9 +1,9 @@
-2026-10-09 16:07 UTC · fotos
+2026-10-09 16:17 UTC · fotos
 
 Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/foto.py", line 168, in <module>
+  File "/home/runner/work/Allie/Allie/app/foto.py", line 212, in <module>
     main()
-  File "/home/runner/work/Allie/Allie/app/foto.py", line 140, in main
-    raise RuntimeError("Ninguna de las fotos pasó la revisión. No publico nada.")
-RuntimeError: Ninguna de las fotos pasó la revisión. No publico nada.
+  File "/home/runner/work/Allie/Allie/app/foto.py", line 172, in main
+    raise RuntimeError(
+RuntimeError: Ninguna de las fotos pasó la revisión. Los motivos de cada intento están en videos/diario-fotos.json y las imágenes rechazadas en videos/rechazadas/.
 
