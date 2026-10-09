@@ -9,6 +9,10 @@ on:
         description: "Tema (vacío = uno al azar)"
         type: string
         default: ""
+      solo_montar:
+        description: "si = no generar, montar con las fotos guardadas"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -45,6 +49,7 @@ jobs:
           POLLINATIONS_KEY: ${{ secrets.POLLINATIONS_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           TEMA: ${{ inputs.tema }}
+          SOLO_MONTAR: ${{ inputs.solo_montar }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Guardar el vídeo

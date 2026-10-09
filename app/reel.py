@@ -608,8 +608,17 @@ def main():
     log("Pensando la idea del reel…")
     g = guion(p)
     log(f"Idea: {g.get('idea')}")
-    rutas = descargar_fotos(g["escenas"], p)
-    guardar_para_revisar(rutas)
+    if os.environ.get("SOLO_MONTAR") == "si":
+        # Las fotos ya están generadas y revisadas; lo único que falta es el
+        # vídeo. Volver a generarlas gastaría cupo para repetir un trabajo ya
+        # hecho, y el cupo diario es justo lo que se acaba.
+        rutas = sorted((BASE / "videos" / "fotos").glob("*.jpg"))
+        if len(rutas) < 3:
+            raise RuntimeError(f"Solo hay {len(rutas)} fotos guardadas; hacen falta 3.")
+        log(f"Monto con las {len(rutas)} fotos que ya estaban revisadas")
+    else:
+        rutas = descargar_fotos(g["escenas"], p)
+        guardar_para_revisar(rutas)
     compuestas = componer(rutas)
     video = montar(compuestas)
     log(f"Vídeo montado: {video.name} ({video.stat().st_size // 1024} KB)")
