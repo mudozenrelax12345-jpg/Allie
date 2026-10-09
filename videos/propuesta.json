@@ -1,12 +1,12 @@
 {
- "tema": "un paseo de otono por el Retiro, Madrid",
- "idea": "Un paseo otoñal por El Retiro disfrutando de la magia de Madrid",
- "texto": "Madrid en otoño tiene ese no sé qué que me vuelve loca. 🍂 Entre hojas caídas y un cafecito mental, este parque siempre es mi refugio favorito. Booby y los michis tendrían que ver esto (bueno, o quedarse durmiendo en el sofá, seamos sinceros). ¿Cuál es vuestro rincón favorito de la capi para desconectar?",
- "hashtags": "#Allie #AIInfluencer #ElRetiro #MadridMola #OtoñoMadrileño",
+ "tema": "x",
+ "idea": "Una tarde de café y moda en Madrid mostrando tres ángulos diferentes con la misma elegancia.",
+ "texto": "Madrileña de atardeceres infinitos y café bien cargado. ☕️✨ Entre lienzo y pincel siempre hay hueco para un buen look. Por cierto, ¿cuál es tu plan favorito para desconectar entre semana? 👇",
+ "hashtags": "#Allie #AIInfluencer #Madrid #OtoñoEstilo #CafeVibes",
  "escenas": [
-  "The same woman, medium shot from the waist up in El Retiro park, Madrid, during a golden autumn afternoon. She is wearing an oversized beige knit sweater and a dark scarf. Gentle sunlight filtering through orange and yellow leaves, smiling softly with lips closed, looking slightly away from the camera.",
-  "The same woman, upper-body shot in El Retiro park, Madrid, autumn season. She wears the same oversized beige knit sweater and dark scarf. Soft backlit sunlight, leaning against an old stone bench, smiling with lips together, looking directly at the camera.",
-  "The same woman, close-up shot in El Retiro park, Madrid, golden hour lighting. Wearing the same oversized beige knit sweater and dark scarf. Surrounded by blurred autumn foliage, gentle expression with a soft closed-mouth smile, relaxed pose."
+  "The same woman, medium shot from the waist up sitting at a wooden table in a cozy Madrid café, wearing an oversized beige knit sweater and delicate gold necklaces, warm afternoon sunlight casting soft shadows, gentle closed-mouth smile looking slightly off-camera",
+  "The same woman, upper-body shot leaning slightly forward at the same café table, wearing the same oversized beige knit sweater, warm golden hour lighting from a nearby window, soft expression with lips together looking directly at the camera",
+  "The same woman, close-up portrait angled near a whitewashed brick wall inside the same café, wearing the same oversized beige knit sweater, soft natural diffused light, serene look with a subtle smile and eyes sparkling"
  ],
  "fotos": [
   "foto1.jpg",
@@ -14,11 +14,21 @@
   "foto3.jpg"
  ],
  "enlaces": [
-  "https://tmpfiles.org/dl/wcApglQiMR2Y/foto1.jpg",
-  "https://tmpfiles.org/dl/wMA6gdQaMshf/foto2.jpg",
-  "https://tmpfiles.org/dl/waAugSQAMymf/foto3.jpg"
+  "https://h.uguu.se/RpJuekbf.jpg",
+  "https://h.uguu.se/yYCauaTT.jpg",
+  "https://n.uguu.se/BFtFgzyD.jpg"
  ],
- "fallos_subida": [],
+ "fallos_subida": [
+  "litterbox: respondió «<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r\n<center><h1>412 Precondition Failed</h1></center>\r\n»",
+  "catbox: respondió «Invalid uploader»",
+  "tmpfiles: https://tmpfiles.org/dl/wEAmgaQl1L81/foto1.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es una imagen",
+  "litterbox: respondió «<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r\n<center><h1>412 Precondition Failed</h1></center>\r\n»",
+  "catbox: respondió «Invalid uploader»",
+  "tmpfiles: https://tmpfiles.org/dl/wFA1g4Qeu1eG/foto2.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es una imagen",
+  "litterbox: respondió «<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r\n<center><h1>412 Precondition Failed</h1></center>\r\n»",
+  "catbox: respondió «Invalid uploader»",
+  "tmpfiles: https://tmpfiles.org/dl/wiAzgMQMuNgp/foto3.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es una imagen"
+ ],
  "descartadas": [],
- "creado": "2026-10-09T11:32:21.827706+00:00"
+ "creado": "2026-10-09T11:51:10.878247+00:00"
 }
