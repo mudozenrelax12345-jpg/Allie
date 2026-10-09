@@ -55,38 +55,63 @@ def di(m):
 
 
 def catalogo():
-    """Espacios encendidos cuyo nombre suena a edición con referencia."""
-    vistos, fila = {}, []
+    """Espacios encendidos cuyo nombre suena a edición con referencia.
+
+    Devuelve (candidatos, cómo fue la búsqueda). Lo segundo importa tanto como
+    lo primero: la primera versión de esto acabó «bien» sin probar nada porque
+    la lista salió vacía, y no había manera de saber si era que Hugging Face no
+    contestó, que no había resultados o que el filtro de encendidos los tiraba
+    todos. Así que se cuenta cada paso.
+    """
+    vistos, fila, cuaderno = {}, [], []
     for q in BUSQUEDAS:
+        apunte = {"busqueda": q}
         try:
             r = requests.get("https://huggingface.co/api/spaces",
                              params={"search": q, "limit": 60, "full": "true",
                                      "sort": "likes", "direction": -1},
                              timeout=60)
+            apunte["http"] = r.status_code
             r.raise_for_status()
             lote = r.json()
         except Exception as e:  # noqa: BLE001
-            di(f"No pude preguntar por «{q}»: {type(e).__name__}: {e}")
+            apunte["error"] = f"{type(e).__name__}: {str(e)[:200]}"
+            di(f"«{q}»: {apunte['error']}")
+            cuaderno.append(apunte)
             continue
-        di(f"«{q}»: {len(lote)} espacios")
+        if not isinstance(lote, list):
+            apunte["error"] = f"contestó un {type(lote).__name__}, no una lista"
+            cuaderno.append(apunte)
+            continue
+        apunte["devueltos"] = len(lote)
+        estados = {}
         for s in lote:
             ident = s.get("id")
+            runtime = s.get("runtime") or {}
+            estado = (runtime.get("stage") or "sin runtime").upper()
+            estados[estado] = estados.get(estado, 0) + 1
             if not ident or ident in vistos:
                 continue
-            runtime = s.get("runtime") or {}
-            if (runtime.get("stage") or "").upper() != "RUNNING":
+            # Se acepta lo que esté encendido y también lo que no diga nada del
+            # runtime: con que conteste la API ya vale, y mejor probar de más.
+            if estado not in ("RUNNING", "SIN RUNTIME", "RUNNING_APP_STARTING"):
                 continue
             vistos[ident] = True
+            hw = runtime.get("hardware") or {}
             fila.append({
                 "espacio": ident,
-                "hardware": runtime.get("hardware", {}).get("current")
-                or runtime.get("hardware", {}).get("requested") or "?",
+                "hardware": (hw.get("current") or hw.get("requested") or "?")
+                if isinstance(hw, dict) else str(hw),
+                "estado": estado,
                 "corazones": s.get("likes", 0),
             })
+        apunte["estados"] = estados
+        di(f"«{q}»: {len(lote)} devueltos · {estados}")
+        cuaderno.append(apunte)
     # Primero los que no son ZeroGPU: esos no gastan cuota de nadie.
     fila.sort(key=lambda x: (("zero" in str(x["hardware"]).lower()),
                              -int(x["corazones"] or 0)))
-    return fila
+    return fila, cuaderno
 
 
 def referencia():
@@ -185,12 +210,30 @@ def probar(ficha, ident, ref):
     return False, "; ".join(quejas) or "ninguna API encajaba"
 
 
+def escribir(cuaderno, candidatos, resultados, funcionan):
+    INFORME.write_text(json.dumps({
+        "cuando": datetime.now(timezone.utc).isoformat(),
+        "busquedas": cuaderno,
+        "candidatos": len(candidatos),
+        "lista_candidatos": [c["espacio"] for c in candidatos],
+        "funcionan": funcionan, "probados": len(resultados),
+        "resultados": resultados,
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
 def main():
     SALIDA.mkdir(parents=True, exist_ok=True)
     ficha = os.environ.get("HF_TOKEN") or None
     ref = referencia()
-    candidatos = catalogo()
-    di(f"{len(candidatos)} encendidos; pruebo los {min(TOPE, len(candidatos))} primeros")
+    candidatos, cuaderno = catalogo()
+    # Se escribe ya, antes de probar nada: si no hay candidatos, el informe
+    # tiene que decir por qué en vez de no existir.
+    escribir(cuaderno, candidatos, [], 0)
+    di(f"{len(candidatos)} candidatos; pruebo los {min(TOPE, len(candidatos))} primeros")
+    if not candidatos:
+        raise RuntimeError(
+            "Ninguna búsqueda devolvió espacios utilizables; el detalle de cada "
+            f"una está en videos/espacios/{INFORME.name}")
 
     resultados, funcionan = [], 0
     for c in candidatos[:TOPE]:
@@ -208,13 +251,7 @@ def main():
         funcionan += 1 if ok else 0
         # Se escribe en cada vuelta: si el trabajo se corta por tiempo, lo
         # averiguado hasta ahí no se pierde.
-        INFORME.write_text(json.dumps({
-            "cuando": datetime.now(timezone.utc).isoformat(),
-            "funcionan": funcionan, "probados": len(resultados),
-            "resultados": resultados,
-        }, ensure_ascii=False, indent=1), encoding="utf-8")
-        if time.time() - t0 < 2:
-            continue
+        escribir(cuaderno, candidatos, resultados, funcionan)
     di(f"\n{funcionan} de {len(resultados)} contestaron con una imagen")
 
 
