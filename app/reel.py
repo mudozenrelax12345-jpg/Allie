@@ -492,26 +492,61 @@ def montar(compuestas):
 
 
 # ------------------------------------------------------------------ subida
-def subir(ruta):
-    """Lo sube a un alojamiento público para que Metricool pueda descargarlo."""
-    intentos = [
-        ("catbox", lambda f: requests.post("https://catbox.moe/user/api.php",
-                                           data={"reqtype": "fileupload"},
-                                           files={"fileToUpload": f}, timeout=300).text.strip()),
-        ("0x0", lambda f: requests.post("https://0x0.st", files={"file": f},
-                                        headers={"User-Agent": "allie-reel/1.0"}, timeout=300).text.strip()),
-    ]
-    for nombre, fn in intentos:
+def subir(ruta, dichos=None):
+    """Lo sube a un alojamiento público, que es lo único que acepta Metricool.
+
+    Los dos repositorios son privados, así que un enlace de GitHub no vale:
+    hace falta una dirección que cualquiera pueda abrir sin estar dentro.
+
+    Hay varios sitios porque desde los servidores de GitHub unos responden y
+    otros no, y cambia de un día para otro. Lo que diga cada uno se guarda en
+    «dichos», que acaba en la propuesta: si fallan todos, al menos se sabe por
+    qué en vez de quedarse con «no se pudo subir».
+    """
+    dichos = dichos if dichos is not None else []
+
+    def catbox(f):
+        return requests.post("https://catbox.moe/user/api.php",
+                             data={"reqtype": "fileupload"},
+                             files={"fileToUpload": f}, timeout=300).text.strip()
+
+    def litterbox(f):
+        return requests.post("https://litterbox.catbox.moe/resources/internals/api.php",
+                             data={"reqtype": "fileupload", "time": "72h"},
+                             files={"fileToUpload": f}, timeout=300).text.strip()
+
+    def tmpfiles(f):
+        r = requests.post("https://tmpfiles.org/api/v1/upload",
+                          files={"file": f}, timeout=300)
+        url = (r.json().get("data") or {}).get("url", "")
+        # el enlace que devuelve es la página; el fichero está en /dl/
+        return url.replace("tmpfiles.org/", "tmpfiles.org/dl/", 1) if url else ""
+
+    def uguu(f):
+        r = requests.post("https://uguu.se/upload", files={"files[]": f}, timeout=300)
+        d = r.json()
+        archivos = d.get("files") or []
+        return archivos[0].get("url", "") if archivos else ""
+
+    def cero(f):
+        return requests.post("https://0x0.st", files={"file": f},
+                             headers={"User-Agent": "Mozilla/5.0"}, timeout=300).text.strip()
+
+    for nombre, fn in (("litterbox", litterbox), ("catbox", catbox),
+                       ("tmpfiles", tmpfiles), ("uguu", uguu), ("0x0", cero)):
         try:
             with open(ruta, "rb") as f:
                 url = fn(f)
-            if url.startswith("http"):
-                log(f"Vídeo subido a {nombre}: {url}")
-                return url
-            log(f"{nombre} respondió: {url[:150]}")
         except Exception as e:  # noqa: BLE001
+            dichos.append(f"{nombre}: {type(e).__name__} {str(e)[:120]}")
             log(f"{nombre} falló: {e}")
-    raise RuntimeError("No se pudo subir el vídeo a ningún alojamiento público.")
+            continue
+        if isinstance(url, str) and url.startswith("http"):
+            log(f"Subido a {nombre}: {url}")
+            return url
+        dichos.append(f"{nombre}: respondió «{str(url)[:120]}»")
+        log(f"{nombre} respondió: {str(url)[:150]}")
+    raise RuntimeError("Ningún alojamiento aceptó el archivo · " + " | ".join(dichos))
 
 
 # ------------------------------------------------------------------ aviso

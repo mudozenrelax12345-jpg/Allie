@@ -89,9 +89,8 @@ Reglas del texto: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie'])}."
     return g
 
 
-def una_foto(escena, p, n):
+def una_foto(escena, p, n, descartes):
     """Devuelve los bytes de una foto aprobada, o None."""
-    descartes = []
     for intento in range(reel.INTENTOS):
         datos, fallos = reel.kontext(escena, p)
         if datos is None:
@@ -102,13 +101,13 @@ def una_foto(escena, p, n):
         if ok:
             log(f"Foto {n} lista y revisada")
             return datos
-        descartes.append(problema)
+        descartes.append(f"foto {n}: {problema}")
         log(f"Foto {n} descartada ({problema})")
         if intento == 1:
             escena = reel.sin_manos(escena)
             log(f"Foto {n}: quito las manos de la escena")
         time.sleep(2)
-    log(f"Foto {n}: no sale. Motivos: {' | '.join(descartes[-3:])}")
+    log(f"Foto {n}: no sale")
     return None
 
 
@@ -122,9 +121,9 @@ def main():
     for viejo in FOTOS.glob("*.jpg"):
         viejo.unlink()
 
-    buenas = []
+    buenas, descartes = [], []
     for i, escena in enumerate(g["escenas"], 1):
-        datos = una_foto(escena, p, i)
+        datos = una_foto(escena, p, i, descartes)
         if datos is None:
             continue
         destino = FOTOS / f"foto{i}.jpg"
@@ -148,7 +147,8 @@ def main():
         "tema": g.get("tema", ""), "idea": g.get("idea", ""),
         "texto": g.get("texto", ""), "hashtags": hashtags,
         "escenas": g["escenas"], "fotos": [f.name for f in buenas],
-        "enlaces": enlaces, "fallos_subida": fallos_subida, "creado": datetime.now(timezone.utc).isoformat(),
+        "enlaces": enlaces, "fallos_subida": fallos_subida,
+        "descartadas": descartes, "creado": datetime.now(timezone.utc).isoformat(),
     }, ensure_ascii=False, indent=1), encoding="utf-8")
     log(f"{len(buenas)} de {CUANTAS} fotos listas · {len(enlaces)} subidas")
 
