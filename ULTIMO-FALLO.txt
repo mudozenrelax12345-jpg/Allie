@@ -1,15 +1,16 @@
-2026-10-09 15:07 UTC
+2026-10-09 15:21 UTC
 
 Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 640, in <module>
+  File "/home/runner/work/Allie/Allie/app/reel.py", line 641, in <module>
     main()
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 622, in main
-    compuestas = componer(rutas)
-                 ^^^^^^^^^^^^^^^
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 471, in componer
-    grande.save(destino, "JPEG", quality=94)
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/PIL/Image.py", line 2706, in save
-    fp = builtins.open(filename, "w+b")
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '/home/runner/work/Allie/Allie/.reel/comp0.jpg'
+  File "/home/runner/work/Allie/Allie/app/reel.py", line 626, in main
+    url = subir(video)
+          ^^^^^^^^^^^^
+  File "/home/runner/work/Allie/Allie/app/reel.py", line 590, in subir
+    raise RuntimeError("Ningún alojamiento aceptó el archivo · " + " | ".join(dichos))
+RuntimeError: Ningún alojamiento aceptó el archivo · litterbox: respondió «<html>
+<head><title>412 Precondition Failed</title></head>
+<body>
+<center><h1>412 Precondition Failed</h1></center>
+» | catbox: ConnectTimeout HTTPSConnectionPool(host='catbox.moe', port=443): Max retries exceeded with url: /user/api.php (Caused by ConnectTimeout | tmpfiles: https://tmpfiles.org/dl/wvAggxI5QJNX/reel_20261009_1514.mp4 devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es una imagen | uguu: https://d.uguu.se/DaarbhDc.mp4 devuelve HTTP 200, video/mp4, 2920276 bytes — no es una imagen | 0x0: ConnectionError ('Connection aborted.', TimeoutError('The write operation timed out'))
 
