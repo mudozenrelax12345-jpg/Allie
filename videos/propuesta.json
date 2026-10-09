@@ -1,17 +1,19 @@
 {
  "tema": "un paseo de otono por el Retiro, Madrid",
  "idea": "Un paseo otoñal por El Retiro en Madrid disfrutando de la luz de la tarde",
- "texto": "El Retiro en otoño es pura magia madrileña. 🍂 Da igual cuántas veces pasee por aquí, siempre tiene ese algo especial que me atrapa. ¿Cuál es vuestro rincón favorito de Madrid cuando empieza a refrescar?",
- "hashtags": "#Allie #AIInfluencer #MadridEnOtoño #ElRetiro #ModaOtoñal",
+ "texto": "El Retiro en otoño tiene ese algo que te atrapa. 🍂 Entre hojas crujiendo y un café calentito (¡sin soltarlo, obvio!), Madrid se viste de otra manera. ¿Cuál es tu rincón favorito de la ciudad cuando baja el termómetro? ✨\n\n#Allie #AIInfluencer #Madrid #ElRetiro #OtoñoMadrid",
+ "hashtags": "#Allie #AIInfluencer #Madrid #ElRetiro #OtoñoMadrid",
  "escenas": [
-  "Medium shot from the waist up of a young woman with long brown hair, wearing a cozy beige oversized knit sweater and a dark green scarf, posing gracefully against a backdrop of golden autumn trees in El Retiro park, Madrid, soft warm afternoon sunlight illuminating her face, gentle closed-mouth smile, relaxed posture, natural cinematic lighting",
-  "Close-up portrait of the same young woman in the same beige knit sweater and dark green scarf, soft autumn foliage blurred in the background of El Retiro park, looking thoughtfully to the side with a calm expression, mouth gently closed, warm golden hour sun catching her hair, elegant and natural look",
-  "Medium shot from the waist up of the same young woman leaning lightly against an old stone bench, wearing the same beige sweater and dark green scarf, surrounded by fallen autumn leaves, looking directly at the camera with a subtle, playful smirk, lips closed, soft diffuse daylight filtering through the trees"
+  "The same woman, medium shot from the waist up in El Retiro park Madrid during autumn, wearing an oversized beige knit sweater and a dark scarf, sitting on a wooden park bench, golden hour sunlight filtering through orange leaves, gentle closed-mouth smile, natural look, no objects in hands, cinematic lighting",
+  "The same woman, upper-body shot in El Retiro park Madrid, leaning against an old stone tree trunk, wearing the same oversized beige knit sweater and dark scarf, warm autumn afternoon light, soft expression with lips gently closed, looking slightly away from the camera, no objects in hands",
+  "The same woman, close-up shot from the chest up in El Retiro park Madrid, surrounded by blurred autumn foliage, wearing the same oversized beige knit sweater, soft warm side lighting, subtle elegant smile with lips together, no objects in hands"
  ],
  "fotos": [
-  "foto1.jpg",
-  "foto2.jpg"
+  "foto1.jpg"
  ],
  "enlaces": [],
- "creado": "2026-10-09T11:16:31.187278+00:00"
+ "fallos_subida": [
+  "foto1.jpg: No se pudo subir el vídeo a ningún alojamiento público."
+ ],
+ "creado": "2026-10-09T11:27:44.878061+00:00"
 }
