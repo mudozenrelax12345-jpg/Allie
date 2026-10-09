@@ -1,5 +1,5 @@
 {
- "cuando": "2026-10-09T18:49:02.707266+00:00",
+ "cuando": "2026-10-09T18:53:29.585550+00:00",
  "busquedas": [
   {
    "busqueda": "kontext",
@@ -272,8 +272,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 2786,
    "funciona": false,
-   "detalle": "ninguna API encajaba",
-   "tardo": 1.0
+   "detalle": "reventó: OSError: [Errno 36] File name too long: \"\\n        <div style='display: flex; justify-content: center; margin: 10px 0 5px 0; padding: 0px;'>\\n            <div style='display: flex; flex-direction: column; gap:",
+   "tardo": 23.1
   },
   {
    "espacio": "prithivMLmods/Qwen-Image-Edit-2511-LoRAs-Fast",
@@ -281,8 +281,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 2772,
    "funciona": false,
-   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api), guidance_scale(Api), steps(Api)",
-   "tardo": 0.3
+   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api); /check_safety: no encuentro imagen+texto en [('prompt', 'Api')]; /load_example: no encuentro imagen+texto en [('idx', 'Api')]",
+   "tardo": 0.7
   },
   {
    "espacio": "linoyts/Qwen-Image-Edit-Angles",
@@ -290,8 +290,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 2270,
    "funciona": false,
-   "detalle": "ninguna API encajaba",
-   "tardo": 0.3
+   "detalle": "/maybe_infer: no encuentro imagen+texto en [('is_reset_val', 'Checkbox'), ('progress', 'Image'), ('param_2', 'Slider'), ('param_3', 'Slider'), ('param_4', 'Slider'), ('param_5', 'Checkbox'), ('param_6', 'Slider'), ('param_7', 'Checkbox'), ('param_8', 'Slider'), ('param_9', 'Slider'), ('param_10', 'Slider'), ('param_11', 'Slider'), ('param_12', 'Image')]; /infer_and_show_video_button: no encuentro imagen+texto en [('param_0', 'Image'), ('param_1', 'Slider'), ('param_2', 'Slider'), ('param_3', 'Slider'), ('param_4', 'Checkbox'), ('param_5', 'Slider'), ('param_6', 'Checkbox'), ('param_7', 'Slider'), ('param_8', 'Slider'), ('param_9', 'Slider'), ('param_10', 'Slider'), ('param_11', 'Image')]; /infer_edit_camera_angles: no encuentro imagen+texto en [('image', 'Api'), ('rotate_deg', 'Api'), ('move_forward', 'Api'), ('vertical_tilt', 'Api'), ('wideangle', 'Api'), ('seed', 'Api'), ('randomize_seed', 'Api'), ('true_guidance_scale', 'Api'), ('num_inference_steps', 'Api'), ('height', 'Api'), ('width', 'Api'), ('prev_output', 'Api')]; /infer_camera_edit: no encuentro imagen+texto en [('image', 'Image'), ('rotate_deg', 'Slider'), ('move_forward', 'Slider'), ('vertical_tilt', 'Slider'), ('wideangle', 'Checkbox'), ('seed', 'Slider'), ('randomize_seed', 'Checkbox'), ('true_guidance_scale', 'Slider'), ('num_inference_steps', 'Slider'), ('height', 'Slider'), ('width', 'Slider')]; /update_prompt_from_sliders: no encuentro imagen+texto en [('rotate', 'Slider'), ('forward', 'Slider'), ('tilt', 'Slider'), ('wide', 'Checkbox')]; /update_prompt_from_sliders_1: no encuentro imagen+texto en [('rotate', 'Slider'), ('forward', 'Slider'), ('tilt', 'Slider'), ('wide', 'Checkbox')]; /update_prompt_from_sliders_2: no encuentro imagen+texto en [('rotate', 'Slider'), ('forward', 'Slider'), ('tilt', 'Slider'), ('wide', 'Checkbox')]; /update_prompt_from_sliders_3: no encuentro imagen+texto en [('rotate', 'Slider'), ('forward', 'Slider'), ('tilt', 'Slider'), ('wide', 'Checkbox')]; /sync_3d_to_sliders: no encuentro imagen+texto en [('camera_value', 'Html')]; /sync_sliders_to_3d: no encuentro imagen+texto en [('rotate', 'Slider'), ('forward', 'Slider'), ('tilt', 'Slider'), ('wide', 'Checkbox')]",
+   "tardo": 0.9
   },
   {
    "espacio": "black-forest-labs/FLUX.1-Kontext-Dev",
@@ -299,8 +299,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 1639,
    "funciona": false,
-   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
-   "tardo": 0.5
+   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().; /lambda: no encuentro imagen+texto en [('image', 'Image')]",
+   "tardo": 1.7
   },
   {
    "espacio": "prithivMLmods/FireRed-Image-Edit-1.0-Fast",
@@ -308,8 +308,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 1634,
    "funciona": false,
-   "detalle": "/edit_image: no sé qué poner en guidance_scale(Api), steps(Api)",
-   "tardo": 0.2
+   "detalle": "/edit_image: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU; /check_safety: no encuentro imagen+texto en [('prompt', 'Api')]; /load_example: no encuentro imagen+texto en [('idx', 'Api')]",
+   "tardo": 1.4
   },
   {
    "espacio": "prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast",
@@ -317,8 +317,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 893,
    "funciona": false,
-   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api), guidance_scale(Api), steps(Api)",
-   "tardo": 0.3
+   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api); /load_example: no encuentro imagen+texto en [('idx', 'Api')]",
+   "tardo": 0.6
   },
   {
    "espacio": "Qwen/Qwen-Image-Edit",
@@ -327,7 +327,7 @@
    "corazones": 868,
    "funciona": false,
    "detalle": "/infer: AppError: You have exceeded your free ZeroGPU quota (240s requested vs. -120s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/p",
-   "tardo": 0.5
+   "tardo": 1.4
   },
   {
    "espacio": "multimodalart/nano-banana",
@@ -335,8 +335,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 765,
    "funciona": false,
-   "detalle": "ninguna API encajaba",
-   "tardo": 4.1
+   "detalle": "no se pudo entrar: ReadTimeout: The read operation timed out",
+   "tardo": 5.3
   },
   {
    "espacio": "kulkas2pintu/QWEN_EDIT_IMAGE",
@@ -344,8 +344,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 672,
    "funciona": false,
-   "detalle": "ninguna API encajaba",
-   "tardo": 0.2
+   "detalle": "/edit: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU; /pose_still: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+   "tardo": 2.8
   },
   {
    "espacio": "Selfit/ImageEditPro",
@@ -354,7 +354,7 @@
    "corazones": 657,
    "funciona": false,
    "detalle": "ninguna API encajaba",
-   "tardo": 0.2
+   "tardo": 0.5
   },
   {
    "espacio": "multimodalart/Qwen-Image-Edit-Fast",
@@ -363,7 +363,7 @@
    "corazones": 494,
    "funciona": false,
    "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
-   "tardo": 0.6
+   "tardo": 1.6
   },
   {
    "espacio": "Qwen/Qwen-Image-Edit-2511",
@@ -372,7 +372,7 @@
    "corazones": 494,
    "funciona": false,
    "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
-   "tardo": 0.6
+   "tardo": 1.4
   },
   {
    "espacio": "Onise/Qwen-Image-Edit-2509-LoRAs-Fast2",
@@ -380,8 +380,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 426,
    "funciona": false,
-   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
-   "tardo": 0.6
+   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU; /append_triggers: no encuentro imagen+texto en [('current_prompt', 'Textbox'), ('lora_name', 'Dropdown')]; /append_triggers_1: no encuentro imagen+texto en [('current_prompt', 'Textbox'), ('lora_name', 'Dropdown')]; /append_triggers_2: no encuentro imagen+texto en [('current_prompt', 'Textbox'), ('lora_name', 'Dropdown')]; /append_triggers_3: no encuentro imagen+texto en [('current_prompt', 'Textbox'), ('lora_name', 'Dropdown')]; /append_triggers_4: no encuentro imagen+texto en [('current_prompt', 'Textbox'), ('lora_name', 'Dropdown')]; /append_triggers_5: no encuentro imagen+texto en [('current_prompt', 'Textbox'), ('lora_name', 'Dropdown')]; /clear_lora_stack: no encuentro imagen+texto en []; /lambda: no encuentro imagen+texto en [('img', 'Image')]; /lambda_1: no encuentro imagen+texto en []",
+   "tardo": 1.6
   },
   {
    "espacio": "aet256/Qwen-Image-Edit-Rapid-AIO-Loras-Experimental",
@@ -389,8 +389,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 417,
    "funciona": false,
-   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
-   "tardo": 0.7
+   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU; /set_output_as_image1: no encuentro imagen+texto en []; /set_output_as_image2: no encuentro imagen+texto en []; /set_output_as_extra: no encuentro imagen+texto en [('existing_extra', 'Gallery')]; /add_derived_ref: no encuentro imagen+texto en [('img1', 'Image'), ('existing_extra', 'Gallery'), ('derived_type', 'Dropdown'), ('derived_use_gpu', 'Checkbox')]; /on_lora_change_ui: no encuentro imagen+texto en [('selected_lora', 'Dropdown'), ('current_prompt', 'Textbox'), ('current_extras_condition_only', 'Checkbox')]",
+   "tardo": 1.8
   },
   {
    "espacio": "linoyts/Qwen-Image-Edit-2511-AnyPose",
@@ -398,8 +398,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 410,
    "funciona": false,
-   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
-   "tardo": 0.5
+   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU; /use_output_as_input: no encuentro imagen+texto en [('output_images', 'Gallery')]",
+   "tardo": 1.8
   },
   {
    "espacio": "Qwen/Qwen-Image-Edit-2509",
@@ -408,7 +408,7 @@
    "corazones": 344,
    "funciona": false,
    "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
-   "tardo": 0.6
+   "tardo": 1.4
   },
   {
    "espacio": "kontext-community/kontext-relight",
@@ -425,8 +425,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 283,
    "funciona": false,
-   "detalle": "ninguna API encajaba",
-   "tardo": 0.2
+   "detalle": "/process_image_and_prompt: AppError: Error Getting 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'API key not valid. Please pass a valid API key.', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/googl",
+   "tardo": 1.5
   },
   {
    "espacio": "linoyts/Qwen-Image-Edit-2511-Fast",
@@ -434,8 +434,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 272,
    "funciona": false,
-   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
-   "tardo": 0.5
+   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().; /use_output_as_input: no encuentro imagen+texto en [('output_images', 'Gallery')]",
+   "tardo": 1.6
   },
   {
    "espacio": "FireRedTeam/FireRed-Image-Edit-1.1",
@@ -443,8 +443,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 247,
    "funciona": false,
-   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
-   "tardo": 0.6
+   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().; /on_lora_change: no encuentro imagen+texto en [('lora_name', 'Dropdown')]; /on_image_upload: no encuentro imagen+texto en [('images', 'Gallery')]",
+   "tardo": 1.7
   },
   {
    "espacio": "prithivMLmods/Qwen-Image-Edit-Object-Manipulator",
@@ -452,8 +452,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 243,
    "funciona": false,
-   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api), guidance_scale(Api), steps(Api)",
-   "tardo": 0.2
+   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api); /load_example: no encuentro imagen+texto en [('idx', 'Api')]",
+   "tardo": 0.6
   },
   {
    "espacio": "anycoderapps/Qwen-Image-Edit-2509-Photo-to-Anime",
@@ -462,7 +462,7 @@
    "corazones": 195,
    "funciona": false,
    "detalle": "no se pudo entrar: ValueError: The current space is in the invalid state: PAUSED. Please contact the owner to fix this.",
-   "tardo": 0.1
+   "tardo": 0.2
   },
   {
    "espacio": "kontext-community/FLUX.1-Kontext-portrait",
@@ -471,7 +471,7 @@
    "corazones": 170,
    "funciona": false,
    "detalle": "no se pudo entrar: ValueError: The current space is in the invalid state: PAUSED. Please contact the owner to fix this.",
-   "tardo": 0.1
+   "tardo": 0.2
   },
   {
    "espacio": "linoyts/Qwen-Image-Edit-next-scene",
@@ -497,8 +497,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 147,
    "funciona": false,
-   "detalle": "/edit_image: AppError: You have exceeded your free ZeroGPU quota (240s requested vs. -120s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/p",
-   "tardo": 0.6
+   "detalle": "/generate_image: AppError: You have exceeded your free ZeroGPU quota (240s requested vs. -120s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/p; /edit_image: AppError: You have exceeded your free ZeroGPU quota (240s requested vs. -120s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/p",
+   "tardo": 1.9
   },
   {
    "espacio": "linoyts/Qwen-Image-Edit-2509-Fast",
@@ -515,8 +515,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 121,
    "funciona": false,
-   "detalle": "/infer: AppError: 1 validation error for GalleryData\n  Input should be a valid list [type=list_type, input_value={'path': '/tmp/gradio/ac9...pe': 'gradio.FileData'}}, input_type=dict]\n    For further information visit ",
-   "tardo": 0.6
+   "detalle": "/infer: AppError: 1 validation error for GalleryData\n  Input should be a valid list [type=list_type, input_value={'path': '/tmp/gradio/ac9...pe': 'gradio.FileData'}}, input_type=dict]\n    For further information visit ; /update_custom_lora_scale: no encuentro imagen+texto en [('scale', 'Slider')]; /lambda: no encuentro imagen+texto en []; /lambda_1: no encuentro imagen+texto en []; /update_dimensions_on_upload: no encuentro imagen+texto en [('images', 'Gallery')]; /load_custom_lora: no encuentro imagen+texto en [('source', 'Textbox'), ('hf_filename', 'Textbox'), ('scale', 'Slider')]; /unload_custom_lora: no encuentro imagen+texto en []",
+   "tardo": 1.6
   },
   {
    "espacio": "prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast-Fusion",
@@ -525,7 +525,7 @@
    "corazones": 119,
    "funciona": false,
    "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
-   "tardo": 0.6
+   "tardo": 1.8
   },
   {
    "espacio": "linoyts/Qwen-Image-Edit-Inpaint",
@@ -534,7 +534,7 @@
    "corazones": 116,
    "funciona": false,
    "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
-   "tardo": 0.4
+   "tardo": 1.1
   }
  ]
 }
