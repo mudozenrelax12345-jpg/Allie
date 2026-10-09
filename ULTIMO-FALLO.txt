@@ -1,16 +1,9 @@
-2026-10-09 15:21 UTC
+2026-10-09 16:07 UTC · fotos
 
 Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 641, in <module>
+  File "/home/runner/work/Allie/Allie/app/foto.py", line 168, in <module>
     main()
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 626, in main
-    url = subir(video)
-          ^^^^^^^^^^^^
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 590, in subir
-    raise RuntimeError("Ningún alojamiento aceptó el archivo · " + " | ".join(dichos))
-RuntimeError: Ningún alojamiento aceptó el archivo · litterbox: respondió «<html>
-<head><title>412 Precondition Failed</title></head>
-<body>
-<center><h1>412 Precondition Failed</h1></center>
-» | catbox: ConnectTimeout HTTPSConnectionPool(host='catbox.moe', port=443): Max retries exceeded with url: /user/api.php (Caused by ConnectTimeout | tmpfiles: https://tmpfiles.org/dl/wvAggxI5QJNX/reel_20261009_1514.mp4 devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es una imagen | uguu: https://d.uguu.se/DaarbhDc.mp4 devuelve HTTP 200, video/mp4, 2920276 bytes — no es una imagen | 0x0: ConnectionError ('Connection aborted.', TimeoutError('The write operation timed out'))
+  File "/home/runner/work/Allie/Allie/app/foto.py", line 140, in main
+    raise RuntimeError("Ninguna de las fotos pasó la revisión. No publico nada.")
+RuntimeError: Ninguna de las fotos pasó la revisión. No publico nada.
 
