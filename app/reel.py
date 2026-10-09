@@ -400,6 +400,14 @@ def descargar_fotos(escenas, p):
             if intento == 1:
                 escena = sin_manos(escena)
                 log(f"Foto {i + 1}: quito las manos de la escena y pruebo así")
+            elif intento == 3:
+                # Si a la cuarta siguen saliendo mal, se cierra el plano hasta
+                # donde no hay manos que dibujar. Una foto de cara y hombros
+                # es menos lucida que un plano de medio cuerpo, pero sale.
+                escena = (escena.split(",")[0].rstrip(". ") +
+                          ", tight close-up portrait, head and shoulders only, "
+                          "hands not visible, shoulders and face fill the frame")
+                log(f"Foto {i + 1}: cierro el plano a cara y hombros")
             time.sleep(3)
         else:
             if mejor is None:
@@ -411,10 +419,19 @@ def descargar_fotos(escenas, p):
                     + f"responde: {estado_referencia(p['referencia_url'])}"
                     + f"\n\nModelos de imagen que ofrece tu clave de Gemini:\n  "
                     + gemini.modelos_de_imagen())
-            raise RuntimeError(f"Las {INTENTOS} imágenes de la foto {i + 1} salieron con fallos "
-                               f"({descartadas[-1]}). Esta semana no monto el reel.")
+            # Una escena que no sale no puede tirar el reel entero.
+            #
+            # Antes, si la cuarta foto fallaba, se perdían también las tres
+            # buenas y la semana se quedaba sin vídeo. Tres fotos hacen un
+            # reel perfectamente; dos, no.
+            log(f"Foto {i + 1}: me rindo con esta escena y sigo con las demás")
     if descartadas:
         log(f"Descartadas por fallos: {len(descartadas)}")
+    if len(rutas) < 3:
+        raise RuntimeError(
+            f"Solo {len(rutas)} de {len(escenas)} fotos pasaron la revisión, y con "
+            f"menos de tres no hay reel. Motivos: " + " | ".join(descartadas[-4:]))
+    log(f"{len(rutas)} de {len(escenas)} fotos aprobadas")
     return rutas
 
 
