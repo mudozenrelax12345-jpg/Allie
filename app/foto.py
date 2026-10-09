@@ -1,145 +1,158 @@
-"""Genera UNA foto suelta de Allie y la deja en videos/prueba.
+"""Genera fotos sueltas de Allie, revisadas, y las deja listas para publicar.
 
-Se lanza a mano desde la pestaña Actions ("Una foto suelta de Allie").
-No monta vídeo y no publica nada: solo la foto, para ir probando looks.
+Hasta ahora solo existía la vía del reel: cuatro fotos y un vídeo. Un reel que
+falla no deja nada, y una cuenta de Instagram vive de fotos sueltas.
 
-La diferencia con reel.py es el encargo que se le manda al modelo: aquí se le
-pide EXPRESAMENTE que cambie la ropa. Kontext conserva todo lo que no le digas
-que cambie, y por eso Allie salía siempre con el mismo vestido verde de la
-foto de referencia.
+Lo que de verdad cambia respecto a lo que se publicó antes es el generador. Las
+fotos antiguas salían de un modelo que no copia la cara de la referencia, así
+que Allie no era la misma mujer de una semana a otra. Esto usa FLUX.1 Kontext,
+que es un modelo de edición: se le da la foto de Allie y una escena y devuelve
+a la misma persona en otro sitio.
+
+Cada foto pasa por el revisor antes de guardarse. Y si una escena falla dos
+veces, se le quita lo que la está rompiendo en vez de insistir con lo mismo.
+
+Deja:
+  videos/fotos/foto1.jpg …     para poder mirarlas
+  videos/propuesta.json        escenas, texto del post y direcciones públicas
 """
+import json
 import os
+import random
 import sys
+import time
 from datetime import datetime, timezone
-from io import BytesIO
 from pathlib import Path
 
-import requests
 import yaml
-from PIL import Image
-from gradio_client import Client, handle_file
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import gemini  # noqa: E402
+import reel  # noqa: E402
 
 BASE = Path(__file__).resolve().parent.parent
-PERSONA_FILE = BASE / "personaje.yml"
-SALIDA = BASE / "videos" / "prueba"
-TRABAJO = BASE / ".foto"
+FOTOS = BASE / "videos" / "fotos"
+PROPUESTA = BASE / "videos" / "propuesta.json"
 
-ESPACIOS = [e.strip() for e in os.environ.get(
-    "HF_ESPACIOS", "black-forest-labs/FLUX.1-Kontext-Dev").split(",") if e.strip()]
-
-ANATOMIA = ("anatomically correct, exactly two arms and two legs, five fingers on each hand, "
-            "natural human proportions, no extra limbs, no duplicated body parts, "
-            "no deformed hands or feet")
-
-CARA = ("calm closed mouth or a soft gentle smile with lips together, well-defined natural lips, "
-        "no open mouth, not laughing, not talking, no visible teeth, symmetrical face, "
-        "clean jawline, clear detailed eyes looking naturally, sharp focus on the face, "
-        "high detail skin texture with visible pores, professional portrait photography")
+CUANTAS = int(os.environ.get("CUANTAS_FOTOS", "3"))
 
 
 def log(m):
     print(f"· {m}", flush=True)
 
 
-def referencia_vertical(url):
-    """La foto de Allie recortada a 4:5, que es la forma que devuelve Kontext."""
-    TRABAJO.mkdir(exist_ok=True)
-    r = requests.get(url, timeout=120, headers={"User-Agent": "Mozilla/5.0"})
-    r.raise_for_status()
-    im = Image.open(BytesIO(r.content)).convert("RGB")
-    alto = min(im.height, int(im.width * 5 / 4))
-    ancho = int(alto * 4 / 5)
-    x = (im.width - ancho) // 2
-    y = min(max(0, (im.height - alto) // 3), im.height - alto)   # hacia la cara
-    destino = TRABAJO / "referencia.jpg"
-    im.crop((x, y, x + ancho, y + alto)).save(destino, "JPEG", quality=95)
-    return destino
+def idea(p, cuantas):
+    """Un tema y las escenas, con las reglas que ya sabemos que hacen falta."""
+    temas = p.get("temas_reel") or ["un día en Madrid"]
+    tema = os.environ.get("TEMA", "").strip() or random.choice(temas)
+    prompt = f"""Eres el community manager de {p.get('nombre', 'Allie')} en Instagram.
+Su forma de ser: {p.get('personalidad', '')}
+Datos suyos: {p.get('sobre_ella', '')}
+
+Prepara una PUBLICACIÓN de {cuantas} fotos sobre: "{tema}".
+Las fotos van juntas en el mismo post, así que tienen que ser el mismo momento:
+la misma ropa, el mismo sitio, la misma luz. Lo que cambia es el plano y la pose.
+
+Devuelve SOLO un JSON:
+{{
+ "idea": "la idea en una frase, en español",
+ "escenas": [{", ".join(['"escena en inglés"'] * cuantas)}],
+ "texto": "texto del post en español: primera línea con gancho, 3-5 líneas, acaba con una pregunta",
+ "hashtags": ["#...", "..."]
+}}
+
+Reglas de las escenas, y son estrictas porque cada una viene de un fallo real:
+- En inglés y muy descriptivas: sitio, ropa, pose, expresión, luz, encuadre.
+- SOLO planos de medio cuerpo o primeros planos («upper-body shot», «medium
+  shot from the waist up», «close-up»). Nada de cuerpo entero: ahí es donde se
+  inventan piernas.
+- NUNCA sujeta nada con las manos. Ni taza, ni móvil, ni libro, ni correa, ni
+  pincel. Una mano agarrando un objeto fino es lo que peor hace el generador y
+  tira la publicación entera.
+- La boca, siempre cerrada o con una sonrisa suave de labios juntos. Nunca
+  riendo a carcajadas, hablando, cantando ni comiendo.
+- Nada de texto, logotipos ni marcas dentro de la imagen.
+- Contenido apto para todos los públicos.
+Reglas del texto: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie'])}."""
+    g = gemini.json_(prompt)
+    escenas = (g.get("escenas") or [])[:cuantas]
+    while len(escenas) < cuantas:
+        escenas.append(escenas[-1] if escenas else tema)
+    g["escenas"], g["tema"] = escenas, tema
+    return g
 
 
-def primera_imagen(resultado):
-    pendientes = [resultado]
-    while pendientes:
-        x = pendientes.pop(0)
-        if isinstance(x, (list, tuple)):
-            pendientes.extend(x)
-        elif isinstance(x, dict):
-            pendientes.extend(x.values())
-        elif isinstance(x, str) and Path(x).exists() and \
-                Path(x).suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"):
-            return x
+def una_foto(escena, p, n):
+    """Devuelve los bytes de una foto aprobada, o None."""
+    descartes = []
+    for intento in range(reel.INTENTOS):
+        datos, fallos = reel.kontext(escena, p)
+        if datos is None:
+            log(f"Foto {n}, intento {intento + 1}: " + " | ".join(fallos or ["sin motivo"]))
+            time.sleep(reel.ESPERAS[min(intento, len(reel.ESPERAS) - 1)])
+            continue
+        ok, problema = gemini.revisar_imagen(datos)
+        if ok:
+            log(f"Foto {n} lista y revisada")
+            return datos
+        descartes.append(problema)
+        log(f"Foto {n} descartada ({problema})")
+        if intento == 1:
+            escena = reel.sin_manos(escena)
+            log(f"Foto {n}: quito las manos de la escena")
+        time.sleep(2)
+    log(f"Foto {n}: no sale. Motivos: {' | '.join(descartes[-3:])}")
     return None
 
 
 def main():
-    escena = os.environ.get("ESCENA", "").strip()
-    outfit = os.environ.get("OUTFIT", "").strip()
-    if not escena:
-        raise SystemExit("Falta la escena.")
-    if not outfit:
-        raise SystemExit("Falta el outfit.")
+    p = reel.persona()
+    log("Pensando la publicación…")
+    g = idea(p, CUANTAS)
+    log(f"Tema: {g.get('tema')} · {g.get('idea')}")
 
-    p = yaml.safe_load(PERSONA_FILE.read_text(encoding="utf-8")) or {}
-    url = p.get("referencia_url")
-    if not url:
-        raise SystemExit("Falta 'referencia_url' en personaje.yml.")
+    FOTOS.mkdir(parents=True, exist_ok=True)
+    for viejo in FOTOS.glob("*.jpg"):
+        viejo.unlink()
 
-    img = referencia_vertical(url)
+    buenas = []
+    for i, escena in enumerate(g["escenas"], 1):
+        datos = una_foto(escena, p, i)
+        if datos is None:
+            continue
+        destino = FOTOS / f"foto{i}.jpg"
+        destino.write_bytes(datos)
+        buenas.append(destino)
 
-    # Lo importante: la ropa SÍ cambia; la cara, el pelo y la piel no.
-    orden = (
-        f"Dress her in a completely different outfit: {outfit}. "
-        f"The clothing in the reference photo must be entirely replaced — "
-        f"do not keep the green dress or any garment from the reference. "
-        f"Keep ONLY her face, hairstyle, hair colour, eye colour and skin tone exactly as "
-        f"they are — it must be unmistakably the same woman. "
-        f"Place her in this scene: {escena}. "
-        f"{CARA}. {ANATOMIA}. "
-        f"Photorealistic candid smartphone photo, soft natural daylight, upper body framing. "
-        f"No text, no logos and no watermark anywhere in the image."
-    )
-    log(f"Escena: {escena}")
-    log(f"Outfit: {outfit}")
+    if not buenas:
+        raise RuntimeError("Ninguna de las fotos pasó la revisión. No publico nada.")
 
-    ficha = os.environ.get("HF_TOKEN") or None
-    if ficha:
-        log("Usando HF_TOKEN (más cupo de ZeroGPU)")
-    else:
-        log("Sin HF_TOKEN: se entra como anónimo, el cupo es mínimo")
-
-    dichos = []
-    for espacio in ESPACIOS:
+    enlaces = []
+    for f in buenas:
         try:
-            cli = None
-            if ficha:
-                for como in ("hf_token", "auth_token", "token"):
-                    try:
-                        cli = Client(espacio, verbose=False, **{como: ficha})
-                        break
-                    except TypeError:
-                        continue
-            if cli is None:
-                cli = Client(espacio, verbose=False)
-            salida = cli.predict(api_name="/infer",
-                                 input_image=handle_file(str(img)), prompt=orden)
+            enlaces.append(reel.subir(f))
         except Exception as e:  # noqa: BLE001
-            dichos.append(f"{espacio}: {type(e).__name__}: {str(e)[:200]}")
-            continue
-        ruta = primera_imagen(salida)
-        if not ruta:
-            dichos.append(f"{espacio}: contestó sin imagen")
-            continue
-        SALIDA.mkdir(parents=True, exist_ok=True)
-        sello = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M")
-        destino = SALIDA / f"foto-{sello}.jpg"
-        Image.open(ruta).convert("RGB").save(destino, "JPEG", quality=94)
-        log(f"Lista: {destino.relative_to(BASE)} ({destino.stat().st_size // 1024} KB)")
-        return
+            log(f"No se pudo subir {f.name}: {e}")
 
-    print("No ha salido la foto. Esto dijo cada sitio:", file=sys.stderr)
-    for d in dichos:
-        print(f"  · {d}", file=sys.stderr)
-    raise SystemExit(1)
+    hashtags = " ".join(h if str(h).startswith("#") else f"#{h}"
+                        for h in g.get("hashtags", []))
+    PROPUESTA.write_text(json.dumps({
+        "tema": g.get("tema", ""), "idea": g.get("idea", ""),
+        "texto": g.get("texto", ""), "hashtags": hashtags,
+        "escenas": g["escenas"], "fotos": [f.name for f in buenas],
+        "enlaces": enlaces, "creado": datetime.now(timezone.utc).isoformat(),
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+    log(f"{len(buenas)} de {CUANTAS} fotos listas · {len(enlaces)} subidas")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:  # noqa: BLE001
+        import traceback
+        detalle = traceback.format_exc()
+        print(detalle, flush=True)
+        (BASE / "ULTIMO-FALLO.txt").write_text(
+            f"{datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC · fotos\n\n{detalle}\n",
+            encoding="utf-8")
+        sys.exit(1)
