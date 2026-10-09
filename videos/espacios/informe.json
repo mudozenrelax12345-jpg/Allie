@@ -1,5 +1,5 @@
 {
- "cuando": "2026-10-09T18:46:30.018780+00:00",
+ "cuando": "2026-10-09T18:49:02.707266+00:00",
  "busquedas": [
   {
    "busqueda": "kontext",
@@ -264,7 +264,7 @@
   "ffffww/anime-character-consistency-generator"
  ],
  "funcionan": 0,
- "probados": 18,
+ "probados": 30,
  "resultados": [
   {
    "espacio": "selfit-camera/Omni-Image-Editor",
@@ -272,8 +272,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 2786,
    "funciona": false,
-   "detalle": "no se pudo entrar: ReadTimeout: The read operation timed out",
-   "tardo": 5.9
+   "detalle": "ninguna API encajaba",
+   "tardo": 1.0
   },
   {
    "espacio": "prithivMLmods/Qwen-Image-Edit-2511-LoRAs-Fast",
@@ -281,8 +281,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 2772,
    "funciona": false,
-   "detalle": "/edit_image: TypeError: No value provided for required argument: lora_adapter",
-   "tardo": 0.9
+   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api), guidance_scale(Api), steps(Api)",
+   "tardo": 0.3
   },
   {
    "espacio": "linoyts/Qwen-Image-Edit-Angles",
@@ -291,7 +291,7 @@
    "corazones": 2270,
    "funciona": false,
    "detalle": "ninguna API encajaba",
-   "tardo": 1.1
+   "tardo": 0.3
   },
   {
    "espacio": "black-forest-labs/FLUX.1-Kontext-Dev",
@@ -299,8 +299,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 1639,
    "funciona": false,
-   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
-   "tardo": 2.0
+   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
+   "tardo": 0.5
   },
   {
    "espacio": "prithivMLmods/FireRed-Image-Edit-1.0-Fast",
@@ -308,8 +308,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 1634,
    "funciona": false,
-   "detalle": "/edit_image: TypeError: No value provided for required argument: seed",
-   "tardo": 0.8
+   "detalle": "/edit_image: no sé qué poner en guidance_scale(Api), steps(Api)",
+   "tardo": 0.2
   },
   {
    "espacio": "prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast",
@@ -317,8 +317,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 893,
    "funciona": false,
-   "detalle": "/edit_image: TypeError: No value provided for required argument: lora_adapter",
-   "tardo": 0.8
+   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api), guidance_scale(Api), steps(Api)",
+   "tardo": 0.3
   },
   {
    "espacio": "Qwen/Qwen-Image-Edit",
@@ -327,7 +327,7 @@
    "corazones": 868,
    "funciona": false,
    "detalle": "/infer: AppError: You have exceeded your free ZeroGPU quota (240s requested vs. -120s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/p",
-   "tardo": 1.9
+   "tardo": 0.5
   },
   {
    "espacio": "multimodalart/nano-banana",
@@ -336,7 +336,7 @@
    "corazones": 765,
    "funciona": false,
    "detalle": "ninguna API encajaba",
-   "tardo": 1.2
+   "tardo": 4.1
   },
   {
    "espacio": "kulkas2pintu/QWEN_EDIT_IMAGE",
@@ -345,7 +345,7 @@
    "corazones": 672,
    "funciona": false,
    "detalle": "ninguna API encajaba",
-   "tardo": 1.3
+   "tardo": 0.2
   },
   {
    "espacio": "Selfit/ImageEditPro",
@@ -354,7 +354,7 @@
    "corazones": 657,
    "funciona": false,
    "detalle": "ninguna API encajaba",
-   "tardo": 0.7
+   "tardo": 0.2
   },
   {
    "espacio": "multimodalart/Qwen-Image-Edit-Fast",
@@ -363,7 +363,7 @@
    "corazones": 494,
    "funciona": false,
    "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
-   "tardo": 2.0
+   "tardo": 0.6
   },
   {
    "espacio": "Qwen/Qwen-Image-Edit-2511",
@@ -372,7 +372,7 @@
    "corazones": 494,
    "funciona": false,
    "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
-   "tardo": 1.9
+   "tardo": 0.6
   },
   {
    "espacio": "Onise/Qwen-Image-Edit-2509-LoRAs-Fast2",
@@ -381,7 +381,7 @@
    "corazones": 426,
    "funciona": false,
    "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
-   "tardo": 2.2
+   "tardo": 0.6
   },
   {
    "espacio": "aet256/Qwen-Image-Edit-Rapid-AIO-Loras-Experimental",
@@ -389,8 +389,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 417,
    "funciona": false,
-   "detalle": "/infer: TypeError: No value provided for required argument: input_image_2",
-   "tardo": 1.1
+   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+   "tardo": 0.7
   },
   {
    "espacio": "linoyts/Qwen-Image-Edit-2511-AnyPose",
@@ -398,8 +398,8 @@
    "estado": "SIN RUNTIME",
    "corazones": 410,
    "funciona": false,
-   "detalle": "/infer: TypeError: No value provided for required argument: pose_image",
-   "tardo": 1.0
+   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+   "tardo": 0.5
   },
   {
    "espacio": "Qwen/Qwen-Image-Edit-2509",
@@ -408,7 +408,7 @@
    "corazones": 344,
    "funciona": false,
    "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
-   "tardo": 1.9
+   "tardo": 0.6
   },
   {
    "espacio": "kontext-community/kontext-relight",
@@ -417,7 +417,7 @@
    "corazones": 292,
    "funciona": false,
    "detalle": "no se pudo entrar: ValueError: The current space is in the invalid state: PAUSED. Please contact the owner to fix this.",
-   "tardo": 0.2
+   "tardo": 0.1
   },
   {
    "espacio": "ameerazam08/Gemini-Image-Edit",
@@ -426,7 +426,115 @@
    "corazones": 283,
    "funciona": false,
    "detalle": "ninguna API encajaba",
-   "tardo": 0.8
+   "tardo": 0.2
+  },
+  {
+   "espacio": "linoyts/Qwen-Image-Edit-2511-Fast",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 272,
+   "funciona": false,
+   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
+   "tardo": 0.5
+  },
+  {
+   "espacio": "FireRedTeam/FireRed-Image-Edit-1.1",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 247,
+   "funciona": false,
+   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
+   "tardo": 0.6
+  },
+  {
+   "espacio": "prithivMLmods/Qwen-Image-Edit-Object-Manipulator",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 243,
+   "funciona": false,
+   "detalle": "/edit_image: no sé qué poner en lora_adapter(Api), guidance_scale(Api), steps(Api)",
+   "tardo": 0.2
+  },
+  {
+   "espacio": "anycoderapps/Qwen-Image-Edit-2509-Photo-to-Anime",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 195,
+   "funciona": false,
+   "detalle": "no se pudo entrar: ValueError: The current space is in the invalid state: PAUSED. Please contact the owner to fix this.",
+   "tardo": 0.1
+  },
+  {
+   "espacio": "kontext-community/FLUX.1-Kontext-portrait",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 170,
+   "funciona": false,
+   "detalle": "no se pudo entrar: ValueError: The current space is in the invalid state: PAUSED. Please contact the owner to fix this.",
+   "tardo": 0.1
+  },
+  {
+   "espacio": "linoyts/Qwen-Image-Edit-next-scene",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 164,
+   "funciona": false,
+   "detalle": "no se pudo entrar: ValueError: The current space is in the invalid state: RUNTIME_ERROR. Please contact the owner to fix this.",
+   "tardo": 0.1
+  },
+  {
+   "espacio": "kontext-community/FLUX.1-Kontext-multi-image",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 163,
+   "funciona": false,
+   "detalle": "no se pudo entrar: ValueError: The current space is in the invalid state: PAUSED. Please contact the owner to fix this.",
+   "tardo": 0.1
+  },
+  {
+   "espacio": "anycoderapps/LongCat-Image-Edit",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 147,
+   "funciona": false,
+   "detalle": "/edit_image: AppError: You have exceeded your free ZeroGPU quota (240s requested vs. -120s left). Try again in 0:00:00. Subscribe to Hugging Face PRO to get 25 min of ZeroGPU quota a day - https://huggingface.co/subscribe/p",
+   "tardo": 0.6
+  },
+  {
+   "espacio": "linoyts/Qwen-Image-Edit-2509-Fast",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 146,
+   "funciona": false,
+   "detalle": "no se pudo entrar: ValueError: The current space is in the invalid state: RUNTIME_ERROR. Please contact the owner to fix this.",
+   "tardo": 0.1
+  },
+  {
+   "espacio": "LPX55/Qwen-Image-Edit-2511-Turbo-Lightning",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 121,
+   "funciona": false,
+   "detalle": "/infer: AppError: 1 validation error for GalleryData\n  Input should be a valid list [type=list_type, input_value={'path': '/tmp/gradio/ac9...pe': 'gradio.FileData'}}, input_type=dict]\n    For further information visit ",
+   "tardo": 0.6
+  },
+  {
+   "espacio": "prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast-Fusion",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 119,
+   "funciona": false,
+   "detalle": "/infer: AppError: You have exceeded your ZeroGPU runs limit. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU",
+   "tardo": 0.6
+  },
+  {
+   "espacio": "linoyts/Qwen-Image-Edit-Inpaint",
+   "hardware": "?",
+   "estado": "SIN RUNTIME",
+   "corazones": 116,
+   "funciona": false,
+   "detalle": "/infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().",
+   "tardo": 0.4
   }
  ]
 }
