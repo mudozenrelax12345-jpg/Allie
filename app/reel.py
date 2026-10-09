@@ -542,8 +542,27 @@ def subir(ruta, dichos=None):
             log(f"{nombre} falló: {e}")
             continue
         if isinstance(url, str) and url.startswith("http"):
-            log(f"Subido a {nombre}: {url}")
-            return url
+            # Que devuelva una dirección no quiere decir que esa dirección sea
+            # la imagen: algunos sitios dan la página que la enseña. Metricool
+            # se lo tragó y contestó «failed to normalize media». Se comprueba
+            # que lo que hay al otro lado es una imagen antes de darla por
+            # buena.
+            try:
+                c = requests.get(url, timeout=60, stream=True,
+                                 headers={"User-Agent": "Mozilla/5.0"})
+                tipo = c.headers.get("content-type", "")
+                largo = int(c.headers.get("content-length") or 0)
+                c.close()
+            except Exception as e:  # noqa: BLE001
+                dichos.append(f"{nombre}: dio {url} pero no se pudo abrir ({type(e).__name__})")
+                continue
+            if c.status_code == 200 and tipo.startswith("image/") and largo > 20000:
+                log(f"Subido a {nombre}: {url} ({tipo}, {largo // 1024} KB)")
+                return url
+            dichos.append(f"{nombre}: {url} devuelve HTTP {c.status_code}, "
+                          f"{tipo or 'sin tipo'}, {largo} bytes — no es una imagen")
+            log(f"{nombre}: la dirección no sirve ({tipo}, {largo} bytes)")
+            continue
         dichos.append(f"{nombre}: respondió «{str(url)[:120]}»")
         log(f"{nombre} respondió: {str(url)[:150]}")
     raise RuntimeError("Ningún alojamiento aceptó el archivo · " + " | ".join(dichos))

@@ -11,6 +11,10 @@ on:
         description: "Cuántas fotos"
         type: string
         default: "3"
+      solo_subir:
+        description: "si = no generar, solo volver a subir las que hay"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -43,6 +47,7 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           TEMA: ${{ inputs.tema }}
           CUANTAS_FOTOS: ${{ inputs.cuantas }}
+          SOLO_SUBIR: ${{ inputs.solo_subir }}
 
       - name: Guardar las fotos
         if: always()

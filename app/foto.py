@@ -118,6 +118,12 @@ def main():
     log(f"Tema: {g.get('tema')} · {g.get('idea')}")
 
     FOTOS.mkdir(parents=True, exist_ok=True)
+    if os.environ.get("SOLO_SUBIR") == "si":
+        # Las fotos ya están bien y lo único que falló fue el alojamiento.
+        # Volver a generarlas sería tirar lo que ya pasó la revisión.
+        buenas = sorted(FOTOS.glob("*.jpg"))
+        log(f"Solo subo: {len(buenas)} fotos ya guardadas")
+        return subir_y_guardar(g, buenas, [])
     for viejo in FOTOS.glob("*.jpg"):
         viejo.unlink()
 
@@ -133,10 +139,14 @@ def main():
     if not buenas:
         raise RuntimeError("Ninguna de las fotos pasó la revisión. No publico nada.")
 
+    return subir_y_guardar(g, buenas, descartes)
+
+
+def subir_y_guardar(g, buenas, descartes):
     enlaces, fallos_subida = [], []
     for f in buenas:
         try:
-            enlaces.append(reel.subir(f))
+            enlaces.append(reel.subir(f, fallos_subida))
         except Exception as e:  # noqa: BLE001
             fallos_subida.append(f"{f.name}: {e}")
             log(f"No se pudo subir {f.name}: {e}")
