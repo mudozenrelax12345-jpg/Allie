@@ -39,6 +39,9 @@ jobs:
       - name: Instalar
         run: pip install -r requirements.txt
 
+      - name: Comprobar que el banco reparte bien
+        run: python app/prueba_banco.py
+
       - name: Generar y revisar
         run: python app/foto.py
         env:

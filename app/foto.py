@@ -27,6 +27,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import banco  # noqa: E402
 import gemini  # noqa: E402
 import reel  # noqa: E402
 
@@ -176,13 +177,30 @@ def main():
     finally:
         guardar_diario(g, descartes)
 
+    # Sin cuota no se genera, pero sí se puede publicar: el banco guarda fotos
+    # de Allie ya revisadas de días con cuota. Antes un día sin cuota era un
+    # día sin publicar.
+    if len(buenas) < CUANTAS:
+        faltan = CUANTAS - len(buenas)
+        del_banco, _ = banco.coger(faltan, banco.etiqueta_de(g.get("tema", "")))
+        if not del_banco:
+            del_banco, _ = banco.coger(faltan)
+        for f in del_banco:
+            destino = FOTOS / f.name
+            destino.write_bytes(f.read_bytes())
+            buenas.append(destino)
+        if del_banco:
+            log(f"{len(del_banco)} fotos cogidas del banco")
+            descartes.append(f"{len(del_banco)} fotos del banco, no generadas hoy")
+
     if not buenas:
         raise RuntimeError(
-            "Ninguna de las fotos pasó la revisión. Los motivos de cada intento "
-            f"están en videos/{DIARIO_ARCHIVO.name} y las imágenes rechazadas en "
-            f"videos/{RECHAZADAS.name}/.")
+            "Ni se pudo generar ni había nada en el banco. Los motivos de cada "
+            f"intento están en videos/{DIARIO_ARCHIVO.name} y las imágenes "
+            f"rechazadas en videos/{RECHAZADAS.name}/.")
 
-    return subir_y_guardar(g, buenas, descartes)
+    return subir_y_guardar(g, buenas, descartes, del_banco_usadas=[
+        f for f in buenas if not f.name.startswith("foto")])
 
 
 def guardar_diario(g, descartes):
@@ -194,7 +212,7 @@ def guardar_diario(g, descartes):
     }, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
-def subir_y_guardar(g, buenas, descartes):
+def subir_y_guardar(g, buenas, descartes, del_banco_usadas=()):
     enlaces, fallos_subida = [], []
     for f in buenas:
         try:
@@ -202,6 +220,12 @@ def subir_y_guardar(g, buenas, descartes):
         except Exception as e:  # noqa: BLE001
             fallos_subida.append(f"{f.name}: {e}")
             log(f"No se pudo subir {f.name}: {e}")
+
+    # Si no se subió nada, la publicación no sale, así que las fotos del banco
+    # vuelven a estar libres. Marcarlas como usadas sin haber salido sería
+    # tirar fotos buenas que costaron cuota.
+    if del_banco_usadas and not enlaces:
+        banco.devolver(del_banco_usadas)
 
     hashtags = " ".join(h if str(h).startswith("#") else f"#{h}"
                         for h in g.get("hashtags", []))
