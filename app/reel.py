@@ -220,12 +220,43 @@ def sin_aspecto(escena):
     return re.sub(r"\s{2,}", " ", limpia).strip()
 
 
+class SinCuota(RuntimeError):
+    """La GPU gratuita de Hugging Face dice que no queda cuota para hoy.
+
+    Se distingue de cualquier otro fallo porque no se arregla esperando: dio
+    18 reintentos en una tanda, siete minutos, todos con el mismo mensaje.
+    Quien la reciba debe parar, no insistir.
+    """
+
+
+def _es_cuota(texto):
+    t = str(texto).lower()
+    return "zerogpu" in t and ("exceeded" in t or "quota" in t or "limit" in t)
+
+
+def _cliente(espacio, ficha):
+    """Entra en el espacio. Con cuenta si hay ficha; el nombre del parámetro
+    cambia según la versión de la librería, así que se prueban los tres."""
+    from gradio_client import Client
+    if ficha:
+        for como in ("hf_token", "auth_token", "token"):
+            try:
+                return Client(espacio, verbose=False, **{como: ficha})
+            except TypeError:
+                continue
+    return Client(espacio, verbose=False)
+
+
 def kontext(escena, p):
-    """Devuelve (bytes, None) o (None, lo que dijo cada espacio)."""
+    """Devuelve (bytes, None) o (None, lo que dijo cada espacio).
+
+    Levanta SinCuota si todas las vías contestaron que no queda cuota.
+    """
     try:
-        from gradio_client import Client, handle_file
+        from gradio_client import Client, handle_file  # noqa: F401
     except ImportError:
         return None, ["falta la biblioteca gradio_client"]
+    from gradio_client import handle_file
 
     escena = sin_aspecto(escena)
     img = referencia_vertical(p["referencia_url"])
@@ -233,36 +264,41 @@ def kontext(escena, p):
              f"unmistakably the same woman. Place her in this scene: {escena}. "
              f"{CARA}. {ANATOMIA}. Photorealistic smartphone photo, soft natural light. "
              f"No text, no logos and no watermark anywhere in the image.")
-    dichos = []
+
+    # Con cuenta primero, porque la cuota diaria es mayor. Si se agota, se
+    # reintenta sin cuenta: esa cuota va por dirección IP, y cada ejecución
+    # de GitHub estrena máquina, así que es una segunda oportunidad de verdad
+    # y no una repetición de lo mismo.
+    ficha = os.environ.get("HF_TOKEN") or None
+    vias = [("con cuenta", ficha), ("sin cuenta", None)] if ficha else [("sin cuenta", None)]
+
+    dichos, cuotas, intentadas = [], 0, 0
     for espacio in ESPACIOS:
-        try:
-            # El espacio se puede usar sin cuenta. Si algún día hay una, el
-            # nombre del parámetro cambia según la versión de la librería, así
-            # que se prueba y, si no lo acepta, se entra como anónimo.
-            cli = None
-            ficha = os.environ.get("HF_TOKEN") or None
-            if ficha:
-                for como in ("hf_token", "auth_token", "token"):
-                    try:
-                        cli = Client(espacio, verbose=False, **{como: ficha})
-                        break
-                    except TypeError:
-                        continue
-            if cli is None:
-                cli = Client(espacio, verbose=False)
-            salida = cli.predict(api_name="/infer",
-                                 input_image=handle_file(str(img)), prompt=orden)
-        except Exception as e:  # noqa: BLE001
-            dichos.append(f"{espacio}: {type(e).__name__}: {str(e)[:180]}")
-            continue
-        ruta = _primera_imagen(salida)
-        if not ruta:
-            dichos.append(f"{espacio}: contestó sin imagen")
-            continue
-        from io import BytesIO
-        b = BytesIO()
-        Image.open(ruta).convert("RGB").save(b, "JPEG", quality=94)
-        return b.getvalue(), None
+        for comollama, quien in vias:
+            intentadas += 1
+            try:
+                cli = _cliente(espacio, quien)
+                salida = cli.predict(api_name="/infer",
+                                     input_image=handle_file(str(img)), prompt=orden)
+            except Exception as e:  # noqa: BLE001
+                if _es_cuota(e):
+                    cuotas += 1
+                    dichos.append(f"{espacio} ({comollama}): sin cuota de ZeroGPU")
+                    continue
+                dichos.append(f"{espacio} ({comollama}): {type(e).__name__}: {str(e)[:180]}")
+                continue
+            ruta = _primera_imagen(salida)
+            if not ruta:
+                dichos.append(f"{espacio} ({comollama}): contestó sin imagen")
+                continue
+            from io import BytesIO
+            b = BytesIO()
+            Image.open(ruta).convert("RGB").save(b, "JPEG", quality=94)
+            return b.getvalue(), None
+
+    if cuotas and cuotas == intentadas:
+        raise SinCuota(
+            "Hugging Face no deja generar más hoy: " + "; ".join(dichos))
     return None, dichos
 
 

@@ -106,7 +106,12 @@ def una_foto(escena, p, n, descartes):
     """
     for intento in range(reel.INTENTOS):
         DIARIO.append({"foto": n, "intento": intento + 1, "escena": escena})
-        datos, fallos = reel.kontext(escena, p)
+        try:
+            datos, fallos = reel.kontext(escena, p)
+        except reel.SinCuota as e:
+            # Esperar no sirve: la cuota es diaria. Se corta la tanda entera.
+            DIARIO[-1]["resultado"] = f"sin cuota: {e}"
+            raise
         if datos is None:
             motivo = " | ".join(fallos or ["sin motivo"])
             DIARIO[-1]["resultado"] = f"no generó: {motivo}"
@@ -165,6 +170,9 @@ def main():
             destino = FOTOS / f"foto{i}.jpg"
             destino.write_bytes(datos)
             buenas.append(destino)
+    except reel.SinCuota as e:
+        log(f"Se corta la tanda: {e}")
+        descartes.append(f"cortado por falta de cuota: {e}")
     finally:
         guardar_diario(g, descartes)
 
