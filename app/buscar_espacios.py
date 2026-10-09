@@ -142,7 +142,15 @@ def imagen_de(resultado):
 
 
 def firma(cli, nombre):
-    """Cómo se llaman los parámetros de esa API, para no adivinar."""
+    """Los parámetros de esa API con todo lo que se sabe de cada uno.
+
+    Hace falta el componente y el valor por omisión, no solo el nombre. La
+    primera versión solo mandaba imagen y texto, y seis espacios la rechazaron
+    por campos que ni había mirado: lora_adapter, seed, input_image_2,
+    pose_image. Y otros seis quedaron en «ninguna API encajaba» porque el
+    parámetro de la imagen se llamaba de una manera que el nombre no delataba;
+    el componente sí lo dice.
+    """
     try:
         info = cli.view_api(return_format="dict", print_info=False) or {}
     except Exception:  # noqa: BLE001
@@ -150,9 +158,47 @@ def firma(cli, nombre):
     for sitio in ("named_endpoints", "unnamed_endpoints"):
         ep = (info.get(sitio) or {}).get(nombre)
         if ep:
-            return [p.get("parameter_name") or p.get("label") or ""
-                    for p in (ep.get("parameters") or [])]
+            return [{
+                "nombre": p.get("parameter_name") or p.get("label") or "",
+                "etiqueta": p.get("label") or "",
+                "componente": p.get("component") or "",
+                "obligatorio": not p.get("parameter_has_default", False),
+                "defecto": p.get("parameter_default"),
+                "tipo": (p.get("python_type") or {}).get("type", ""),
+            } for p in (ep.get("parameters") or [])]
     return None
+
+
+def _es(campo, patron):
+    return bool(re.search(patron, str(campo.get("nombre", "")) + " "
+                          + str(campo.get("etiqueta", "")), re.I))
+
+
+def relleno(campo, ref, handle_file):
+    """Qué mandar en un campo obligatorio que no es la imagen ni el texto.
+
+    Si trae valor por omisión, ese. Si no, se deduce del componente y del
+    nombre: una segunda imagen es la misma referencia, una semilla es 0, y un
+    desplegable se queda con su primera opción.
+    """
+    if not campo["obligatorio"]:
+        return None, False
+    if campo["defecto"] is not None:
+        return campo["defecto"], True
+    comp = str(campo["componente"]).lower()
+    if comp in ("image", "imageeditor") or _es(campo, r"image|img|photo"):
+        return handle_file(str(ref)), True
+    if _es(campo, r"seed"):
+        return 0, True
+    if comp in ("slider", "number"):
+        return 1, True
+    if comp == "checkbox":
+        return False, True
+    if comp in ("dropdown", "radio"):
+        return None, False   # sin saber las opciones, mejor no inventar
+    if comp in ("textbox", "text"):
+        return "", True
+    return None, False
 
 
 def probar(ficha, ident, ref):
@@ -177,19 +223,40 @@ def probar(ficha, ident, ref):
         campos = firma(cli, nombre)
         if campos is None:
             continue
-        # El parámetro de la imagen y el del texto se llaman distinto en cada
-        # espacio; se busca por el nombre en vez de pasarlos por posición.
-        cual_img = next((c for c in campos if re.search(
-            r"image|img|photo|picture|input", str(c), re.I)), None)
-        cual_txt = next((c for c in campos if re.search(
-            r"prompt|text|instruction|caption", str(c), re.I)), None)
-        if not cual_img or not cual_txt:
-            quejas.append(f"{nombre}: no encuentro imagen+texto en {campos}")
+        # La imagen se busca primero por componente, que es lo que de verdad
+        # lo dice, y solo después por el nombre. El texto, al revés: muchos
+        # espacios tienen varios Textbox y solo uno es la instrucción.
+        img = next((c for c in campos
+                    if str(c["componente"]).lower() in ("image", "imageeditor")), None) \
+            or next((c for c in campos if _es(c, r"image|img|photo|picture")), None)
+        txt = next((c for c in campos
+                    if _es(c, r"prompt|instruction|caption|edit")), None) \
+            or next((c for c in campos
+                     if str(c["componente"]).lower() in ("textbox", "text")), None)
+        if not img or not txt:
+            quejas.append(f"{nombre}: no encuentro imagen+texto en "
+                          f"{[(c['nombre'], c['componente']) for c in campos]}")
             continue
+
+        # Todo campo obligatorio que no sea esos dos hay que rellenarlo, o el
+        # espacio rechaza la llamada antes de ejecutar nada.
+        argumentos = {img["nombre"]: handle_file(str(ref)), txt["nombre"]: ORDEN}
+        faltan = []
+        for c in campos:
+            if c["nombre"] in argumentos or not c["obligatorio"]:
+                continue
+            valor, sirve = relleno(c, ref, handle_file)
+            if sirve:
+                argumentos[c["nombre"]] = valor
+            else:
+                faltan.append(f"{c['nombre']}({c['componente']})")
+        if faltan:
+            quejas.append(f"{nombre}: no sé qué poner en {', '.join(faltan)}")
+            continue
+
         t0 = time.time()
         try:
-            salida = cli.predict(api_name=nombre, **{
-                cual_img: handle_file(str(ref)), cual_txt: ORDEN})
+            salida = cli.predict(api_name=nombre, **argumentos)
         except Exception as e:  # noqa: BLE001
             quejas.append(f"{nombre}: {type(e).__name__}: {str(e)[:200]}")
             continue
@@ -205,7 +272,10 @@ def probar(ficha, ident, ref):
             quejas.append(f"{nombre}: devolvió algo que no abre: {e}")
             continue
         return True, {"api": nombre, "segundos": round(time.time() - t0, 1),
-                      "parametros": {"imagen": cual_img, "texto": cual_txt},
+                      "imagen": img["nombre"], "texto": txt["nombre"],
+                      "extras": {k: ("<la foto>" if k == img["nombre"] else v)
+                                 for k, v in argumentos.items()
+                                 if k not in (img["nombre"], txt["nombre"])},
                       "archivo": destino.name}
     return False, "; ".join(quejas) or "ninguna API encajaba"
 
