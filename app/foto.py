@@ -32,9 +32,15 @@ import reel  # noqa: E402
 
 BASE = Path(__file__).resolve().parent.parent
 FOTOS = BASE / "videos" / "fotos"
+RECHAZADAS = BASE / "videos" / "rechazadas"
 PROPUESTA = BASE / "videos" / "propuesta.json"
+DIARIO_ARCHIVO = BASE / "videos" / "diario-fotos.json"
 
 CUANTAS = int(os.environ.get("CUANTAS_FOTOS", "3"))
+
+# Qué se pidió y qué salió en cada intento. Se escribe en disco pase lo que
+# pase, porque el log de Actions no es accesible desde fuera del runner.
+DIARIO = []
 
 
 def log(m):
@@ -90,18 +96,38 @@ Reglas del texto: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie'])}."
 
 
 def una_foto(escena, p, n, descartes):
-    """Devuelve los bytes de una foto aprobada, o None."""
+    """Devuelve los bytes de una foto aprobada, o None.
+
+    Cada intento deja escrito en DIARIO qué escena se pidió y qué pasó. Sin
+    esto, una tanda que falla entera solo deja «ninguna pasó la revisión», y
+    los motivos se quedan en el log de Actions, que no se puede leer desde
+    fuera. Pasó: tres fotos descartadas y ni idea de si era el generador, el
+    revisor o la escena.
+    """
     for intento in range(reel.INTENTOS):
+        DIARIO.append({"foto": n, "intento": intento + 1, "escena": escena})
         datos, fallos = reel.kontext(escena, p)
         if datos is None:
-            log(f"Foto {n}, intento {intento + 1}: " + " | ".join(fallos or ["sin motivo"]))
+            motivo = " | ".join(fallos or ["sin motivo"])
+            DIARIO[-1]["resultado"] = f"no generó: {motivo}"
+            descartes.append(f"foto {n} intento {intento + 1}: no generó · {motivo}")
+            log(f"Foto {n}, intento {intento + 1}: {motivo}")
             time.sleep(reel.ESPERAS[min(intento, len(reel.ESPERAS) - 1)])
             continue
         ok, problema = gemini.revisar_imagen(datos)
         if ok:
+            DIARIO[-1]["resultado"] = "aprobada"
             log(f"Foto {n} lista y revisada")
             return datos
-        descartes.append(f"foto {n}: {problema}")
+        DIARIO[-1]["resultado"] = f"descartada por el revisor: {problema}"
+        # Guardo la foto rechazada: a veces el que se equivoca es el revisor,
+        # y sin la imagen no hay manera de saberlo.
+        try:
+            RECHAZADAS.mkdir(parents=True, exist_ok=True)
+            (RECHAZADAS / f"foto{n}-intento{intento + 1}.jpg").write_bytes(datos)
+        except Exception:  # noqa: BLE001
+            pass
+        descartes.append(f"foto {n} intento {intento + 1}: {problema}")
         log(f"Foto {n} descartada ({problema})")
         if intento == 1:
             escena = reel.sin_manos(escena)
@@ -126,20 +152,38 @@ def main():
         return subir_y_guardar(g, buenas, [])
     for viejo in FOTOS.glob("*.jpg"):
         viejo.unlink()
+    if RECHAZADAS.exists():
+        for viejo in RECHAZADAS.glob("*.jpg"):
+            viejo.unlink()
 
     buenas, descartes = [], []
-    for i, escena in enumerate(g["escenas"], 1):
-        datos = una_foto(escena, p, i, descartes)
-        if datos is None:
-            continue
-        destino = FOTOS / f"foto{i}.jpg"
-        destino.write_bytes(datos)
-        buenas.append(destino)
+    try:
+        for i, escena in enumerate(g["escenas"], 1):
+            datos = una_foto(escena, p, i, descartes)
+            if datos is None:
+                continue
+            destino = FOTOS / f"foto{i}.jpg"
+            destino.write_bytes(datos)
+            buenas.append(destino)
+    finally:
+        guardar_diario(g, descartes)
 
     if not buenas:
-        raise RuntimeError("Ninguna de las fotos pasó la revisión. No publico nada.")
+        raise RuntimeError(
+            "Ninguna de las fotos pasó la revisión. Los motivos de cada intento "
+            f"están en videos/{DIARIO_ARCHIVO.name} y las imágenes rechazadas en "
+            f"videos/{RECHAZADAS.name}/.")
 
     return subir_y_guardar(g, buenas, descartes)
+
+
+def guardar_diario(g, descartes):
+    DIARIO_ARCHIVO.write_text(json.dumps({
+        "cuando": datetime.now(timezone.utc).isoformat(),
+        "tema": g.get("tema", ""), "idea": g.get("idea", ""),
+        "escenas_pedidas": g.get("escenas", []),
+        "intentos": DIARIO, "descartadas": descartes,
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 def subir_y_guardar(g, buenas, descartes):
