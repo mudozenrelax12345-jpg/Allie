@@ -17,10 +17,16 @@ name: Reel diario de Allie
 
 on:
   schedule:
-    # 05:40 UTC. La ventana de cuota dura 24 horas desde la primera llamada,
-    # así que la hora se va moviendo sola según cuándo se usó el día anterior;
-    # por eso el trabajo no falla si no hay cuota, solo se salta el día.
-    - cron: "40 5 * * *"
+    # De lunes a viernes, no todos los días, y no por pereza: el plan gratuito
+    # de Metricool permite 20 publicaciones al mes naturales. Uno diario son
+    # treinta y se queda a medias el mes. Cinco por semana son 21 o 22, que
+    # entra justo y deja sitio para alguna cosa suelta.
+    #
+    # 05:40 UTC. La ventana de cuota de Hugging Face dura 24 horas desde la
+    # primera llamada, así que su hora se va moviendo sola según cuándo se usó
+    # el día anterior; por eso el trabajo no falla si no hay cuota, solo se
+    # salta el día.
+    - cron: "40 5 * * 1-5"
   workflow_dispatch:
     inputs:
       tema:
