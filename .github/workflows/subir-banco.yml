@@ -1,0 +1,52 @@
+name: Subir fotos del banco a un alojamiento publico
+
+on:
+  workflow_dispatch:
+    inputs:
+      fotos:
+        description: "Nombres de las fotos del banco, separados por comas"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: subir-banco-allie
+  cancel-in-progress: false
+
+jobs:
+  subir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install -r requirements.txt
+
+      - name: Comprobar que arranca con los inputs vacíos
+        run: python app/prueba_vacias.py
+
+      - name: Subir
+        run: python app/subir_banco.py
+        env:
+          FOTOS: ${{ inputs.fotos }}
+
+      - name: Guardar las direcciones
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Direcciones publicas de fotos del banco [skip ci]"
+            git pull --rebase
+            git push
+          fi

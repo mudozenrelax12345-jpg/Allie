@@ -22,10 +22,11 @@ BASE = APP.parent
 
 # Todo lo que los workflows pasan por `env:` desde `inputs`, que es
 # precisamente lo que llega vacío cuando el trabajo lo lanza el reloj.
-VACIAS = ["TEMA", "TEMAS", "CUANTAS", "CUANTAS_FOTOS", "FOTOS_POR_POST",
+VACIAS = ["TEMA", "TEMAS", "CUANTAS", "CUANTAS_FOTOS", "FOTOS_POR_POST", "FOTOS",
           "SOLO_MONTAR", "SOLO_SUBIR", "TOPE_ESPACIOS", "ESPERA_ESPACIO"]
 
-MODULOS = ["ajustes", "reel", "foto", "banco", "semana", "buscar_espacios"]
+MODULOS = ["ajustes", "reel", "foto", "banco", "semana", "buscar_espacios",
+           "subir_banco"]
 
 
 def main():
