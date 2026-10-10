@@ -5,6 +5,7 @@ import os
 import re
 
 import requests
+from PIL import Image
 
 BASE = "https://generativelanguage.googleapis.com/v1beta"
 
@@ -188,10 +189,19 @@ Devuelve SOLO un JSON: {"ok": true|false, "problema": "qué has visto, en españ
 # lo pasaba sin problema. Pasó: el 10 de octubre se programó un carrusel de
 # tres y una era una castaña de ojos oscuros que el revisor había aprobado. El
 # fallo se vio comparando las caras a mano, que es justo lo que esto hace ya.
-IDENTIDAD = """Te doy DOS fotos. La PRIMERA es la foto de referencia del personaje.
-La SEGUNDA se acaba de generar y hay que decidir si sale la MISMA MUJER.
+IDENTIDAD = """Te doy CUATRO imágenes, en este orden:
+  1ª  la foto de REFERENCIA del personaje, entera
+  2ª  la cara de esa misma foto de referencia, recortada y ampliada
+  3ª  la foto NUEVA que hay que juzgar, entera
+  4ª  la cara de esa foto nueva, recortada y ampliada
 
-Compara la segunda con la primera mirando, por este orden:
+Decide si en la foto nueva sale la MISMA MUJER que en la referencia.
+
+Para el color de los ojos y de las cejas fíjate en las AMPLIACIONES (2ª y 4ª),
+no en las fotos enteras: en la foto entera los ojos ocupan cuatro píxeles y es
+muy fácil dar por verde lo que es marrón. Eso ya ha pasado.
+
+Compara mirando, por este orden:
 1. COLOR DE OJOS. Es lo que más falla y lo que más canta. Amplía mentalmente los ojos
    de las dos. Si en la referencia son verdes y en la nueva son marrones o avellana,
    es otra mujer: "misma": false.
@@ -233,6 +243,33 @@ def revisar_imagen(datos, referencia=None):
     return (True, problema) if misma else (False, detalle)
 
 
+def _retrato(datos):
+    """La parte de arriba de la foto, ampliada, para que la cara se vea.
+
+    Mandando la foto entera, los ojos ocupan unos pocos píxeles y el modelo
+    se los inventa: dijo «ojos verdes» de una foto cuyos ojos son marrones a
+    simple vista en cuanto la amplías. Yo tuve que recortar y ampliar para
+    verlo, así que es lo mismo que hay que darle a él.
+
+    No hace falta detectar la cara: todas estas fotos son retratos de medio
+    cuerpo con la cabeza arriba y centrada, así que un recorte fijo y generoso
+    la pilla siempre. Si algo falla, se devuelve la foto tal cual.
+    """
+    try:
+        from io import BytesIO
+        im = Image.open(BytesIO(datos)).convert("RGB")
+        w, h = im.size
+        trozo = im.crop((int(w * 0.18), int(h * 0.03), int(w * 0.82), int(h * 0.42)))
+        ancho = 1100
+        trozo = trozo.resize((ancho, max(1, int(ancho * trozo.height / trozo.width))),
+                             Image.LANCZOS)
+        b = BytesIO()
+        trozo.save(b, "JPEG", quality=95)
+        return b.getvalue()
+    except Exception:  # noqa: BLE001
+        return datos
+
+
 def misma_persona(referencia, datos):
     """(bool, explicación). ¿Sale la misma mujer que en la referencia?
 
@@ -243,7 +280,8 @@ def misma_persona(referencia, datos):
     sin probar nada, que es la peor clase de prueba.
     """
     try:
-        d = json_(IDENTIDAD, imagenes=[referencia, datos])
+        d = json_(IDENTIDAD, imagenes=[referencia, _retrato(referencia),
+                                       datos, _retrato(datos)])
     except GeminiError as e:
         return False, f"no se pudo comprobar que sea ella ({e})"
     ojos = f"ojos {d.get('ojos_referencia','?')} → {d.get('ojos_nueva','?')}"
