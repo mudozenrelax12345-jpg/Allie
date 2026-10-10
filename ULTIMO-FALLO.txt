@@ -1,10 +1,9 @@
-2026-10-10 04:20 UTC · banco
+2026-10-10 06:37 UTC · banco
 
 Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/banco.py", line 258, in <module>
+  File "/home/runner/work/Allie/Allie/app/banco.py", line 266, in <module>
     main()
-  File "/home/runner/work/Allie/Allie/app/banco.py", line 220, in main
-    cuantas = int(os.environ.get("CUANTAS", "9"))
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: invalid literal for int() with base 10: ''
+  File "/home/runner/work/Allie/Allie/app/banco.py", line 259, in main
+    raise RuntimeError(
+RuntimeError: No entró ninguna foto al banco. Los motivos están en banco/ultimo-llenado.json
 
