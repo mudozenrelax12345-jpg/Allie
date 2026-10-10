@@ -1,26 +1,26 @@
 {
- "cuando": "2026-10-10T12:54:57.698379+00:00",
+ "cuando": "2026-10-10T15:34:31.529397+00:00",
  "fotos": [
-  "20261009-1439-1.jpg",
-  "20261009-1439-2.jpg",
-  "20261009-1439-4.jpg"
+  "20261010-1526-1.jpg",
+  "20261010-1526-2.jpg",
+  "20261010-1526-3.jpg"
  ],
  "enlaces": [
-  "https://n.uguu.se/eTawUVUi.jpg",
-  "https://d.uguu.se/XLyyHAnt.jpg",
-  "https://h.uguu.se/BKuVUdEL.jpg"
+  "https://d.uguu.se/YlbarJHK.jpg",
+  "https://h.uguu.se/zxFlgYpR.jpg",
+  "https://h.uguu.se/suzmUgfB.jpg"
  ],
  "dichos": [
   "litterbox: respondió «<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r\n<center><h1>412 Precondition Failed</h1></center>\r\n»",
   "catbox: respondió «Invalid uploader»",
-  "tmpfiles: https://tmpfiles.org/dl/wpAi65fhgEjH/20261009-1439-1.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es imagen ni vídeo",
+  "tmpfiles: https://tmpfiles.org/dl/wOAf6w6jrdsg/20261010-1526-1.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es imagen ni vídeo",
   "litterbox: respondió «<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r\n<center><h1>412 Precondition Failed</h1></center>\r\n»",
   "catbox: respondió «Invalid uploader»",
-  "tmpfiles: https://tmpfiles.org/dl/wVAK67f7gZ31/20261009-1439-2.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es imagen ni vídeo",
+  "tmpfiles: https://tmpfiles.org/dl/wkAy6o6bramW/20261010-1526-2.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es imagen ni vídeo",
   "litterbox: respondió «<html>\r\n<head><title>412 Precondition Failed</title></head>\r\n<body>\r\n<center><h1>412 Precondition Failed</h1></center>\r\n»",
   "catbox: respondió «Invalid uploader»",
-  "tmpfiles: https://tmpfiles.org/dl/wlA561fsgxR8/20261009-1439-4.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es imagen ni vídeo"
+  "tmpfiles: https://tmpfiles.org/dl/w3AD696trZE0/20261010-1526-3.jpg devuelve HTTP 200, text/html; charset=utf-8, 0 bytes — no es imagen ni vídeo"
  ],
  "marcadas": 3,
- "libres": 0
+ "libres": 1
 }
