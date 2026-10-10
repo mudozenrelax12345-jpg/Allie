@@ -28,9 +28,20 @@ import reel  # noqa: E402
 BASE = Path(__file__).resolve().parent.parent
 FOTOS = BASE / "banco" / "fotos"
 
+# Se prueba gemini.misma_persona() directamente, no revisar_imagen(). La
+# primera versión usaba revisar_imagen y la foto de la castaña además tenía
+# los dedos mal: la rechazaba el revisor de calidad y la comprobación de
+# identidad no se ejecutaba nunca. La prueba pasaba sin probar nada.
 CASOS = [
-    ("20261009-1439-1.jpg", True, "rubia de ojos verdes, es ella"),
-    ("20261009-1439-2.jpg", False, "castaña de ojos oscuros, no es ella"),
+    (BASE / "banco" / "fotos" / "20261009-1439-1.jpg", True,
+     "rubia de ojos verdes, es ella"),
+    (BASE / "banco" / "fotos" / "20261009-1439-2.jpg", False,
+     "castaña de ojos oscuros, no es ella"),
+    # El caso que de verdad importa: una foto limpia, sin manos raras ni nada
+    # que delate el fallo, de OTRA MUJER. Sale del generador que estuvo
+    # semanas publicando a una desconocida en la cuenta sin que nadie lo viera.
+    (BASE / "videos" / "prueba" / "sana-con-foto-de-referencia.jpg", False,
+     "otra mujer, pero la foto está bien hecha"),
 ]
 
 
@@ -65,18 +76,17 @@ def main():
         return
 
     fallos = []
-    for nombre, esperado, porque in CASOS:
-        f = FOTOS / nombre
+    for f, esperado, porque in CASOS:
         if not f.exists():
-            di(f"· falta {nombre}, me la salto")
+            di(f"· falta {f.name}, me la salto")
             continue
-        ok, problema = gemini.revisar_imagen(f.read_bytes(), ref)
-        bien = ok == esperado
+        misma, detalle = gemini.misma_persona(ref, f.read_bytes())
+        bien = misma == esperado
         di(("ok   " if bien else "MAL  ")
-           + f"{nombre} ({porque}) → {'pasa' if ok else 'descartada'}"
-           + (f" · {problema}" if problema else ""))
+           + f"{f.name} ({porque}) → {'es ella' if misma else 'no es ella'}"
+           + f" · {detalle}")
         if not bien:
-            fallos.append(nombre)
+            fallos.append(f.name)
 
     if fallos:
         di(f"\nEl revisor no distingue a Allie en: {', '.join(fallos)}.")

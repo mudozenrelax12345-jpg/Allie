@@ -229,16 +229,28 @@ def revisar_imagen(datos, referencia=None):
         ok, problema = bool(r.get("ok")), (r.get("problema") or "").strip()
     if not ok or referencia is None:
         return ok, problema
+    misma, detalle = misma_persona(referencia, datos)
+    return (True, problema) if misma else (False, detalle)
 
+
+def misma_persona(referencia, datos):
+    """(bool, explicación). ¿Sale la misma mujer que en la referencia?
+
+    Está aparte de revisar_imagen a propósito, para poder probarlo solo. La
+    primera versión de la prueba llamaba a revisar_imagen con una foto que
+    además tenía los dedos mal: la rechazaba el revisor de calidad y la
+    comprobación de identidad no llegaba a ejecutarse nunca. La prueba pasaba
+    sin probar nada, que es la peor clase de prueba.
+    """
     try:
         d = json_(IDENTIDAD, imagenes=[referencia, datos])
     except GeminiError as e:
         return False, f"no se pudo comprobar que sea ella ({e})"
-    if d.get("misma"):
-        return True, problema
-    detalle = (d.get("problema") or "").strip()
     ojos = f"ojos {d.get('ojos_referencia','?')} → {d.get('ojos_nueva','?')}"
     pelo = f"pelo {d.get('pelo_referencia','?')} → {d.get('pelo_nueva','?')}"
+    if d.get("misma"):
+        return True, f"es ella ({ojos}, {pelo})"
+    detalle = (d.get("problema") or "").strip()
     return False, f"no es ella: {detalle or 'cara distinta'} ({ojos}, {pelo})"
 
 
