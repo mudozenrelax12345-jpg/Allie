@@ -30,6 +30,9 @@ jobs:
       - name: Instalar
         run: pip install -r requirements.txt
 
+      - name: Comprobar que arranca con los inputs vacíos
+        run: python app/prueba_vacias.py
+
       - name: Generar la foto
         run: python app/foto.py
         env:

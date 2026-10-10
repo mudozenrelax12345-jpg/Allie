@@ -42,6 +42,9 @@ jobs:
       - name: Comprobar que ffmpeg está
         run: ffmpeg -version | head -1
 
+      - name: Comprobar que arranca con los inputs vacíos
+        run: python app/prueba_vacias.py
+
       - name: Montar el reel
         run: python app/reel.py
         env:

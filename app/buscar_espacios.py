@@ -29,6 +29,9 @@ from pathlib import Path
 
 import requests
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ajustes  # noqa: E402
+
 BASE = Path(__file__).resolve().parent.parent
 SALIDA = BASE / "videos" / "espacios"
 INFORME = SALIDA / "informe.json"
@@ -46,8 +49,8 @@ ORDEN = ("Keep her face, hair, skin tone and body exactly as they are — it mus
          "sweater, warm autumn afternoon light, calm closed-mouth expression, hands "
          "out of frame. Photorealistic smartphone photo. No text, no logos.")
 
-TOPE = int(os.environ.get("TOPE_ESPACIOS", "18"))
-ESPERA = int(os.environ.get("ESPERA_ESPACIO", "150"))
+TOPE = ajustes.entero("TOPE_ESPACIOS", 18)
+ESPERA = ajustes.entero("ESPERA_ESPACIO", 150)
 
 
 def di(m):

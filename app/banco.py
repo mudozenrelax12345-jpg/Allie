@@ -31,6 +31,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ajustes  # noqa: E402
 import gemini  # noqa: E402
 import reel  # noqa: E402
 
@@ -38,6 +39,13 @@ BASE = Path(__file__).resolve().parent.parent
 BANCO = BASE / "banco"
 FOTOS = BANCO / "fotos"
 INDICE = BANCO / "indice.json"
+
+# Los ajustes se leen aquí, al importar, y no dentro de main(). Así los
+# comprueba prueba_vacias.py: la primera versión los leía dentro y el test de
+# arranque pasaba tan contento mientras el trabajo de las 04:20 se caía en la
+# primera línea de main() por un input vacío.
+CUANTAS = ajustes.entero("CUANTAS", 9)
+TEMAS = ajustes.lista("TEMAS")
 
 
 def log(m):
@@ -217,9 +225,9 @@ def llenar(cuantas, tema):
 
 
 def main():
-    cuantas = int(os.environ.get("CUANTAS", "9"))
+    cuantas, pedidos = CUANTAS, TEMAS
     p = reel.persona()
-    temas = [t.strip() for t in os.environ.get("TEMAS", "").split("|") if t.strip()]
+    temas = list(pedidos)
     if not temas:
         disponibles_temas = p.get("temas_reel") or ["una tarde tranquila en casa"]
         temas = random.sample(disponibles_temas,

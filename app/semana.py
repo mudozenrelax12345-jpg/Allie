@@ -20,6 +20,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ajustes  # noqa: E402
 import foto  # noqa: E402
 import reel  # noqa: E402
 
@@ -27,7 +28,7 @@ BASE = Path(__file__).resolve().parent.parent
 SALIDA = BASE / "videos" / "semana.json"
 FOTOS = BASE / "videos" / "semana"
 
-POR_PUBLICACION = int(os.environ.get("FOTOS_POR_POST", "3"))
+POR_PUBLICACION = ajustes.entero("FOTOS_POR_POST", 3)
 
 
 def log(m):

@@ -24,6 +24,9 @@ jobs:
           pip install -r requirements.txt
           pip install gradio_client
 
+      - name: Comprobar que arranca con los inputs vacíos
+        run: python app/prueba_vacias.py
+
       - name: Preguntar a Hugging Face
         run: python app/probar_hf.py
         env:

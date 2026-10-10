@@ -32,6 +32,9 @@ jobs:
           pip install -r requirements.txt
           pip install gradio_client
 
+      - name: Comprobar que arranca con los inputs vacíos
+        run: python app/prueba_vacias.py
+
       - name: Preguntar al catálogo y probar
         run: python app/buscar_espacios.py
         env:

@@ -27,6 +27,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ajustes  # noqa: E402
 import banco  # noqa: E402
 import gemini  # noqa: E402
 import reel  # noqa: E402
@@ -37,7 +38,7 @@ RECHAZADAS = BASE / "videos" / "rechazadas"
 PROPUESTA = BASE / "videos" / "propuesta.json"
 DIARIO_ARCHIVO = BASE / "videos" / "diario-fotos.json"
 
-CUANTAS = int(os.environ.get("CUANTAS_FOTOS", "3"))
+CUANTAS = ajustes.entero("CUANTAS_FOTOS", 3)
 
 # Qué se pidió y qué salió en cada intento. Se escribe en disco pase lo que
 # pase, porque el log de Actions no es accesible desde fuera del runner.
