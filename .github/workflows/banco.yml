@@ -2,10 +2,15 @@ name: Llenar el banco de fotos de Allie
 
 on:
   schedule:
-    # Todos los días a las 04:10 UTC. La cuota de Hugging Face se renueva cada
-    # día, y a esa hora no compite con nada de lo que publica la cuenta: lo que
-    # se genere de madrugada está disponible para todo el día.
+    # Tres intentos al día. La cuota de Hugging Face no se renueva a medianoche:
+    # la ventana dura 24 horas desde la PRIMERA llamada, así que se mueve cada
+    # día según cuándo se usó. Con un solo intento diario, un día que la ventana
+    # caiga mal se queda sin fotos; con tres, alguno pilla la ventana abierta.
+    # Un intento sin cuota corta en menos de un minuto, así que fallar es
+    # barato.
     - cron: "10 4 * * *"
+    - cron: "10 11 * * *"
+    - cron: "40 16 * * *"
   workflow_dispatch:
     inputs:
       cuantas:
