@@ -34,37 +34,60 @@ CASOS = [
 ]
 
 
+SALIDA = BASE / "banco" / "prueba-identidad.txt"
+lineas = []
+
+
+def di(m):
+    print(m, flush=True)
+    lineas.append(str(m))
+
+
+def apuntar():
+    # Los logs de Actions no se pueden leer desde fuera del runner, así que lo
+    # que diga el revisor tiene que quedar en un fichero del repositorio o no
+    # queda en ninguna parte.
+    try:
+        SALIDA.parent.mkdir(parents=True, exist_ok=True)
+        SALIDA.write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def main():
     if not os.environ.get("GEMINI_API_KEY"):
-        print("· sin GEMINI_API_KEY: me salto la comprobación de identidad", flush=True)
+        di("· sin GEMINI_API_KEY: me salto la comprobación de identidad")
         return
     p = reel.persona()
     ref = reel.referencia_bytes(p)
     if ref is None:
-        print("· no se pudo traer la referencia: me salto la comprobación", flush=True)
+        di("· no se pudo traer la referencia: me salto la comprobación")
         return
 
     fallos = []
     for nombre, esperado, porque in CASOS:
         f = FOTOS / nombre
         if not f.exists():
-            print(f"· falta {nombre}, me la salto", flush=True)
+            di(f"· falta {nombre}, me la salto")
             continue
         ok, problema = gemini.revisar_imagen(f.read_bytes(), ref)
         bien = ok == esperado
-        print(("ok   " if bien else "MAL  ")
-              + f"{nombre} ({porque}) → {'pasa' if ok else 'descartada'}"
-              + (f" · {problema}" if problema else ""), flush=True)
+        di(("ok   " if bien else "MAL  ")
+           + f"{nombre} ({porque}) → {'pasa' if ok else 'descartada'}"
+           + (f" · {problema}" if problema else ""))
         if not bien:
             fallos.append(nombre)
 
     if fallos:
-        print(f"\nEl revisor no distingue a Allie en: {', '.join(fallos)}.", flush=True)
-        print("Publicar a otra mujer en su cuenta es el fallo más caro que "
-              "tiene este proyecto; no sigo.", flush=True)
+        di(f"\nEl revisor no distingue a Allie en: {', '.join(fallos)}.")
+        di("Publicar a otra mujer en su cuenta es el fallo más caro que "
+           "tiene este proyecto; no sigo.")
         sys.exit(1)
-    print("\nel revisor distingue a Allie", flush=True)
+    di("\nel revisor distingue a Allie")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    finally:
+        apuntar()
