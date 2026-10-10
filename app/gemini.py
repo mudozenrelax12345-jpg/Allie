@@ -183,13 +183,63 @@ Si todo está bien, responde "ok": true.
 Devuelve SOLO un JSON: {"ok": true|false, "problema": "qué has visto, en español, muy breve"}"""
 
 
-def revisar_imagen(datos):
-    """Devuelve (ok, problema). Si Gemini falla, deja pasar la imagen para no bloquear el proceso."""
+# El revisor de arriba mira que la foto no esté deformada, pero no mira lo más
+# importante de esta cuenta: que sea ELLA. Una foto de otra mujer, bien hecha,
+# lo pasaba sin problema. Pasó: el 10 de octubre se programó un carrusel de
+# tres y una era una castaña de ojos oscuros que el revisor había aprobado. El
+# fallo se vio comparando las caras a mano, que es justo lo que esto hace ya.
+IDENTIDAD = """Te doy DOS fotos. La PRIMERA es la foto de referencia del personaje.
+La SEGUNDA se acaba de generar y hay que decidir si sale la MISMA MUJER.
+
+Compara la segunda con la primera mirando, por este orden:
+1. COLOR DE OJOS. Es lo que más falla y lo que más canta. Amplía mentalmente los ojos
+   de las dos. Si en la referencia son verdes y en la nueva son marrones o avellana,
+   es otra mujer: "misma": false.
+2. COLOR Y TONO DEL PELO. Rubio claro no es castaño con mechas. Si el tono base del
+   pelo cambia, es otra mujer.
+3. CEJAS: grosor, forma y color.
+4. Forma de la cara, nariz, labios y la distancia entre los ojos.
+
+No te dejes engañar por la luz, el peinado, el maquillaje, la ropa, el fondo ni el
+ángulo: eso puede cambiar. El color de los ojos y el tono del pelo, no.
+
+Ante la duda, responde "misma": false. Publicar a una desconocida en la cuenta de
+este personaje es mucho peor que descartar una foto buena.
+
+Devuelve SOLO un JSON:
+{"misma": true|false, "ojos_referencia": "color", "ojos_nueva": "color",
+ "pelo_referencia": "tono", "pelo_nueva": "tono",
+ "problema": "en español, muy breve, por qué no es ella (vacío si lo es)"}"""
+
+
+def revisar_imagen(datos, referencia=None):
+    """Devuelve (ok, problema).
+
+    Dos revisiones: que la foto no esté deformada y, si se da la referencia,
+    que sea la misma mujer. Si Gemini falla al revisar la calidad, la foto
+    pasa, para no bloquear el proceso por una caída del revisor; pero si falla
+    la comprobación de identidad, la foto NO pasa, porque ahí el riesgo no es
+    perder una foto sino publicar a otra persona.
+    """
     try:
         r = json_(REVISION, imagenes=[datos])
     except GeminiError as e:
-        return True, f"no se pudo revisar ({e})"
-    return bool(r.get("ok")), (r.get("problema") or "").strip()
+        ok, problema = True, f"no se pudo revisar ({e})"
+    else:
+        ok, problema = bool(r.get("ok")), (r.get("problema") or "").strip()
+    if not ok or referencia is None:
+        return ok, problema
+
+    try:
+        d = json_(IDENTIDAD, imagenes=[referencia, datos])
+    except GeminiError as e:
+        return False, f"no se pudo comprobar que sea ella ({e})"
+    if d.get("misma"):
+        return True, problema
+    detalle = (d.get("problema") or "").strip()
+    ojos = f"ojos {d.get('ojos_referencia','?')} → {d.get('ojos_nueva','?')}"
+    pelo = f"pelo {d.get('pelo_referencia','?')} → {d.get('pelo_nueva','?')}"
+    return False, f"no es ella: {detalle or 'cara distinta'} ({ojos}, {pelo})"
 
 
 # --------------------------------------------------------------- imágenes

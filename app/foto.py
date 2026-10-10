@@ -121,7 +121,7 @@ def una_foto(escena, p, n, descartes):
             log(f"Foto {n}, intento {intento + 1}: {motivo}")
             time.sleep(reel.ESPERAS[min(intento, len(reel.ESPERAS) - 1)])
             continue
-        ok, problema = gemini.revisar_imagen(datos)
+        ok, problema = gemini.revisar_imagen(datos, reel.referencia_bytes(p))
         if ok:
             DIARIO[-1]["resultado"] = "aprobada"
             log(f"Foto {n} lista y revisada")

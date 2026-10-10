@@ -202,7 +202,7 @@ def llenar(cuantas, tema):
                                + " | ".join(fallos or ["sin motivo"]))
                 time.sleep(reel.ESPERAS[min(intento, len(reel.ESPERAS) - 1)])
                 continue
-            ok, problema = gemini.revisar_imagen(datos)
+            ok, problema = gemini.revisar_imagen(datos, reel.referencia_bytes(p))
             if not ok:
                 motivos.append(f"foto {i} intento {intento + 1}: {problema}")
                 log(f"Foto {i} descartada ({problema})")

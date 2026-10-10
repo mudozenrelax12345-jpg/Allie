@@ -163,6 +163,28 @@ def foto_referencia(url):
 _vertical = None
 
 
+def referencia_bytes(p):
+    """Los bytes de la foto de referencia, para que el revisor compare caras.
+
+    Se cachea: en una tanda de nueve fotos se pide nueve veces y es siempre la
+    misma. Si no se puede traer, se devuelve None y el revisor se queda sin
+    comprobar la identidad, que es peor que comprobarla pero mejor que no
+    generar nada.
+    """
+    global _referencia_cache
+    if _referencia_cache is not None:
+        return _referencia_cache or None
+    try:
+        _referencia_cache = referencia_vertical(p["referencia_url"]).read_bytes()
+    except Exception as e:  # noqa: BLE001
+        log(f"No se pudo traer la referencia para comparar caras: {e}")
+        _referencia_cache = b""
+    return _referencia_cache or None
+
+
+_referencia_cache = None
+
+
 def referencia_vertical(url):
     """La foto de Allie recortada a vertical, guardada en un fichero.
 
@@ -418,7 +440,7 @@ def descargar_fotos(escenas, p):
                 time.sleep(ESPERAS[intento])
                 continue
             mejor = datos
-            ok, problema = gemini.revisar_imagen(datos)
+            ok, problema = gemini.revisar_imagen(datos, referencia_bytes(p))
             if ok:
                 destino.write_bytes(datos)
                 rutas.append(destino)

@@ -47,6 +47,11 @@ jobs:
       - name: Comprobar que arranca con los inputs vacíos
         run: python app/prueba_vacias.py
 
+      - name: Comprobar que el revisor distingue a Allie
+        run: python app/prueba_identidad.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
       - name: Comprobar que el banco reparte bien
         run: python app/prueba_banco.py
 
