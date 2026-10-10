@@ -1,4 +1,6 @@
-ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → pasa
-ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → descartada · la mano levantada cerca de la cara tiene dedos deformes y poco naturales
+ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verdes → verdes, pelo rubio claro con mechas → rubio claro con mechas)
+MAL  20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → es ella · es ella (ojos verdes → verdes, pelo rubio con mechas más claras → rubio con mechas más claras)
+ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: El color de ojos y el tono del pelo son completamente diferentes. (ojos verdes → marrones oscuros, pelo rubio claro → castaño oscuro / negro)
 
-el revisor distingue a Allie
+El revisor no distingue a Allie en: 20261009-1439-2.jpg.
+Publicar a otra mujer en su cuenta es el fallo más caro que tiene este proyecto; no sigo.
