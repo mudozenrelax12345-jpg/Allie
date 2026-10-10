@@ -6,9 +6,9 @@
    "etiqueta": "casa",
    "tema": "una tarde tranquila en casa",
    "escena": "The same woman, sitting by a window in a Madrid flat, cream knit sweater, warm afternoon light",
-   "usada": "2026-10-10T12:54:57.698379+00:00",
+   "usada": null,
    "creada": "2026-10-09T14:39:00+00:00",
-   "nota": "generada para el reel del 9 de octubre, revisada y aprobada"
+   "nota": "generada para el reel del 9 de octubre, revisada y aprobada; cara comprobada contra la referencia el 10 de octubre"
   },
   {
    "archivo": "20261009-1439-2.jpg",
@@ -16,9 +16,9 @@
    "etiqueta": "casa",
    "tema": "una tarde tranquila en casa",
    "escena": "The same woman, leaning back on a sofa beside a lit lamp, cream knit sweater, warm light",
-   "usada": "2026-10-10T12:54:57.698379+00:00",
+   "usada": "retirada-2026-10-10",
    "creada": "2026-10-09T14:39:00+00:00",
-   "nota": "generada para el reel del 9 de octubre, revisada y aprobada"
+   "nota": "RETIRADA: no es Allie. Ojos marrones y cejas mucho más gruesas y oscuras; en la referencia y en las otras dos de la tanda son verdes. Pasó el revisor automático pero al mirarla al lado de las otras canta. No usar."
   },
   {
    "archivo": "20261009-1439-4.jpg",
@@ -26,9 +26,9 @@
    "etiqueta": "casa",
    "tema": "una tarde tranquila en casa",
    "escena": "The same woman, relaxed on a grey sofa, cream knit sweater, warm indoor light",
-   "usada": "2026-10-10T12:54:57.698379+00:00",
+   "usada": null,
    "creada": "2026-10-09T14:39:00+00:00",
-   "nota": "generada para el reel del 9 de octubre, revisada y aprobada"
+   "nota": "generada para el reel del 9 de octubre, revisada y aprobada; cara comprobada contra la referencia el 10 de octubre"
   }
  ],
  "actualizado": "2026-10-10T13:46:21.514853+00:00"
