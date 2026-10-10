@@ -1,5 +1,5 @@
 {
- "cuando": "2026-10-10T12:03:05.283568+00:00",
+ "cuando": "2026-10-10T13:46:21.515748+00:00",
  "temas": [
   "una tarde tranquila en casa con té y manta junto a la ventana"
  ],
@@ -8,5 +8,5 @@
   "cortado por cuota en la foto 1: Hugging Face no deja generar más hoy: black-forest-labs/FLUX.1-Kontext-Dev (con cuenta): sin cuota de ZeroGPU; black-forest-labs/FLUX.1-Kontext-Dev (sin cuenta): sin cuota de ZeroGPU"
  ],
  "libres": 0,
- "total": 0
+ "total": 3
 }
