@@ -1,9 +1,10 @@
-2026-10-09 16:21 UTC · fotos
+2026-10-10 04:20 UTC · banco
 
 Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/foto.py", line 220, in <module>
+  File "/home/runner/work/Allie/Allie/app/banco.py", line 258, in <module>
     main()
-  File "/home/runner/work/Allie/Allie/app/foto.py", line 180, in main
-    raise RuntimeError(
-RuntimeError: Ninguna de las fotos pasó la revisión. Los motivos de cada intento están en videos/diario-fotos.json y las imágenes rechazadas en videos/rechazadas/.
+  File "/home/runner/work/Allie/Allie/app/banco.py", line 220, in main
+    cuantas = int(os.environ.get("CUANTAS", "9"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: ''
 
