@@ -1,8 +1,10 @@
 name: Reel semanal de Allie
 
 on:
-  schedule:
-    - cron: "40 17 * * 0"   # domingos, 19:40 en Madrid (18:40 en invierno)
+  # Sin horario. Desde el 10 de octubre hay un reel DIARIO (reel-diario.yml) y
+  # dos trabajos compitiendo por la misma cuota diaria significan que uno de
+  # los dos se queda sin nada. Este se queda para lanzarlo a mano cuando se
+  # quiera un reel concreto fuera de la rutina.
   workflow_dispatch:
     inputs:
       tema:

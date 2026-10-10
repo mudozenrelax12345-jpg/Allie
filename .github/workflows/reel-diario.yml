@@ -1,0 +1,114 @@
+name: Reel diario de Allie
+
+# Un reel al día, para sacar la cuenta del congelador.
+#
+# Entre mediados de julio y finales de septiembre la cuenta no publicó casi
+# nada y Instagram dejó de repartirla: el reel del 9 de octubre llegó a 75
+# personas con 3.221 seguidores, un 2%. Los carruseles los ven los seguidores
+# y poco más; el único formato que Instagram enseña a quien NO te sigue es el
+# reel, y el Trial Reel se enseña solo a no seguidores. Así que el plan es un
+# Trial Reel diario durante un mes y medir si el alcance sube.
+#
+# TODO en un solo trabajo y con UN solo gasto de cuota. La cuota gratuita de
+# Hugging Face da para unas cuatro o cinco imágenes al día y un reel necesita
+# cuatro: si el banco genera por su lado y el reel genera por el suyo, el
+# segundo se queda sin cuota. Aquí se genera una vez al banco y el reel se
+# monta con esas mismas fotos.
+
+on:
+  schedule:
+    # 05:40 UTC. La ventana de cuota dura 24 horas desde la primera llamada,
+    # así que la hora se va moviendo sola según cuándo se usó el día anterior;
+    # por eso el trabajo no falla si no hay cuota, solo se salta el día.
+    - cron: "40 5 * * *"
+  workflow_dispatch:
+    inputs:
+      tema:
+        description: "Tema (vacío = uno al azar)"
+        type: string
+        default: ""
+      cuantas:
+        description: "Cuántas fotos generar"
+        type: string
+        default: "4"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reel-allie          # el mismo que el reel semanal: nunca los dos a la vez
+  cancel-in-progress: false
+
+jobs:
+  reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install -r requirements.txt
+
+      - name: Comprobar que ffmpeg está
+        run: ffmpeg -version | head -1
+
+      - name: Comprobar que arranca con los inputs vacíos
+        run: python app/prueba_vacias.py
+
+      - name: Comprobar que el revisor distingue a Allie
+        run: python app/prueba_identidad.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Comprobar que el banco reparte bien
+        run: python app/prueba_banco.py
+
+      # Único gasto de cuota del día. Si no hay, el trabajo se para aquí y el
+      # banco guarda lo que hubiera conseguido.
+      - name: Generar las fotos del día
+        run: python app/banco.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          CUANTAS: ${{ inputs.cuantas }}
+          TEMAS: ${{ inputs.tema }}
+
+      - name: Sacar las fotos del banco
+        run: python app/del_banco_a_fotos.py
+        env:
+          FOTOS_REEL: ${{ inputs.cuantas }}
+
+      - name: Montar el reel con esas fotos
+        run: python app/reel.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          TEMA: ${{ inputs.tema }}
+          SOLO_MONTAR: "si"
+
+      # Si el montaje falló, las fotos vuelven al banco: costaron la cuota del
+      # día y mañana sirven igual.
+      - name: Devolver las fotos si no salió el reel
+        if: failure()
+        continue-on-error: true
+        run: python app/devolver_fotos.py
+
+      - name: Guardar
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Reel diario [skip ci]"
+            git pull --rebase
+            git push
+          fi
