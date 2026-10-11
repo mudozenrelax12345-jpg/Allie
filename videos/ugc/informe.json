@@ -1,0 +1,13 @@
+{
+ "cuando": "2026-10-11T04:50:07.911806+00:00",
+ "producto": "a plain unbranded amber glass dropper bottle with a black cap, no label, no text",
+ "resultados": [
+  {
+   "escena": "1-cerca",
+   "texto": "The same woman, upper-body shot sitting by a window in warm daylight, holding a plain unbranded amber glass dropper bottle with a black cap, no label, no text upright in one hand close to her chest, the bottle fully visible and in sharp focus, her other hand out of frame",
+   "intentos": [
+    "sin cuota: Hugging Face no deja generar más hoy: black-forest-labs/FLUX.1-Kontext-Dev (con cuenta): sin cuota de ZeroGPU; black-forest-labs/FLUX.1-Kontext-Dev (sin cuenta): sin cuota de ZeroGPU"
+   ]
+  }
+ ]
+}
