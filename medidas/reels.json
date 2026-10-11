@@ -1,0 +1,24 @@
+[
+ {
+  "fecha": "2026-10-11",
+  "fecha_ultimo_dato": "2026-10-10",
+  "seguidores": 3221,
+  "ganados": null,
+  "perdidos": null,
+  "alcance_reels": null,
+  "visualizaciones_reels": null,
+  "reels_publicados": 0,
+  "reel_de_hoy": null,
+  "nota": "Domingo: reel-diario.yml solo corre de lunes a viernes, asi que hoy no tocaba reel. Ademas banco.yml fallo a las 04:21 UTC por cuota de ZeroGPU en Hugging Face (0 fotos nuevas) y el banco solo tiene 2 fotos libres de las 4 que necesita un reel. No se publico nada.",
+  "contexto_30d": {
+   "seguidores_hace_7d_20261004": 3221,
+   "seguidores_hace_30d_20260911": 3242,
+   "reels_en_30d": 1,
+   "ultimo_reel": {
+    "fecha": "2026-10-09",
+    "alcance": 138,
+    "visualizaciones": 164
+   }
+  }
+ }
+]
