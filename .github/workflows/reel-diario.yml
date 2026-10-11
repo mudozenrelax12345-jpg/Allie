@@ -22,11 +22,17 @@ on:
     # treinta y se queda a medias el mes. Cinco por semana son 21 o 22, que
     # entra justo y deja sitio para alguna cosa suelta.
     #
-    # 05:40 UTC. La ventana de cuota de Hugging Face dura 24 horas desde la
-    # primera llamada, así que su hora se va moviendo sola según cuándo se usó
-    # el día anterior; por eso el trabajo no falla si no hay cuota, solo se
-    # salta el día.
+    # TRES intentos al día, y el primer paso corta los que sobran. La ventana
+    # de cuota de Hugging Face dura 24 horas desde la PRIMERA llamada que la
+    # abre, así que su hora no es fija: se mueve al momento en que se generó
+    # el día anterior. Con un solo intento diario a una hora fija, el día que
+    # la ventana se va por detrás de esa hora el trabajo falla, no genera
+    # nada, la ventana no se vuelve a anclar, y falla otra vez mañana. Un
+    # trabajo que se bloquea para siempre sin que nadie entienda por qué.
+    # Repartidos, alguno la pilla abierta.
     - cron: "40 5 * * 1-5"
+    - cron: "40 11 * * 1-5"
+    - cron: "40 16 * * 1-5"
   workflow_dispatch:
     inputs:
       tema:
@@ -65,20 +71,29 @@ jobs:
       - name: Comprobar que ffmpeg está
         run: ffmpeg -version | head -1
 
+      # Si ya hay reel de hoy, los demás intentos no tienen nada que hacer.
+      - name: ¿Falta el reel de hoy?
+        id: falta
+        run: python app/falta_reel.py
+
       - name: Comprobar que arranca con los inputs vacíos
+        if: steps.falta.outputs.falta == 'si'
         run: python app/prueba_vacias.py
 
       - name: Comprobar que el revisor distingue a Allie
+        if: steps.falta.outputs.falta == 'si'
         run: python app/prueba_identidad.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Comprobar que el banco reparte bien
+        if: steps.falta.outputs.falta == 'si'
         run: python app/prueba_banco.py
 
       # Único gasto de cuota del día. Si no hay, el trabajo se para aquí y el
       # banco guarda lo que hubiera conseguido.
       - name: Generar las fotos del día
+        if: steps.falta.outputs.falta == 'si'
         run: python app/banco.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -87,11 +102,13 @@ jobs:
           TEMAS: ${{ inputs.tema }}
 
       - name: Sacar las fotos del banco
+        if: steps.falta.outputs.falta == 'si'
         run: python app/del_banco_a_fotos.py
         env:
           FOTOS_REEL: ${{ inputs.cuantas }}
 
       - name: Montar el reel con esas fotos
+        if: steps.falta.outputs.falta == 'si'
         run: python app/reel.py
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
