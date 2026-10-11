@@ -1,0 +1,36 @@
+{
+ "cuando": "2026-10-11T05:33:01.606549+00:00",
+ "escena": "Keep her face, hair, skin tone and eye colour exactly as they are — it must be unmistakably the same woman. Place her sitting by a window in a Madrid flat wearing a cream knit sweater, warm afternoon light, upper-body shot, calm closed mouth, hands out of frame. Photorealistic smartphone photo. No text, no logos.",
+ "resultados": [
+  {
+   "modelo": "gemini-2.5-flash-image",
+   "imagen": null,
+   "dijo": "gemini-2.5-flash-image: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.de"
+  },
+  {
+   "modelo": "gemini-3.1-flash-image",
+   "imagen": null,
+   "dijo": "gemini-3.1-flash-image: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.de"
+  },
+  {
+   "modelo": "gemini-3.1-flash-lite-image",
+   "imagen": null,
+   "dijo": "gemini-3.1-flash-lite-image: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.de"
+  },
+  {
+   "modelo": "gemini-3-pro-image",
+   "imagen": null,
+   "dijo": "gemini-3-pro-image: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.de"
+  },
+  {
+   "modelo": "gemini-3-pro-image-preview",
+   "imagen": null,
+   "dijo": "gemini-3-pro-image-preview: Gemini: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.de"
+  },
+  {
+   "modelo": "gemini-2.0-flash-preview-image-generation",
+   "imagen": null,
+   "dijo": "gemini-2.0-flash-preview-image-generation: no existe para esta clave (404)"
+  }
+ ]
+}
