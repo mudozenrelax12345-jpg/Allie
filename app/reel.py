@@ -376,7 +376,7 @@ def kontext(escena, p):
     # viernes probando treinta.
     if cuotas:
         raise SinCuota(
-            "Hugging Face no deja generar más hoy: " + "; ".join(dichos)[:400])
+            "Hugging Face no deja generar más hoy: " + "; ".join(dichos)[:2000])
     return None, dichos
 
 
