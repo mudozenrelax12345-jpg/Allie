@@ -29,7 +29,7 @@ VACIAS = ["TEMA", "TEMAS", "CUANTAS", "CUANTAS_FOTOS", "FOTOS_POR_POST", "FOTOS"
 
 MODULOS = ["ajustes", "reel", "foto", "banco", "semana", "buscar_espacios",
            "subir_banco", "del_banco_a_fotos", "devolver_fotos",
-           "prueba_ugc", "falta_reel"]
+           "prueba_ugc", "falta_reel", "probar_gemini"]
 
 
 def main():
