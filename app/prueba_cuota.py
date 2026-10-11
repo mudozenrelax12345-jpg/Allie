@@ -129,6 +129,37 @@ def main():
               len(reel.GASTO) == 1 and reel.GASTO[0]["segundos"] == 7.5,
               f"{reel.GASTO}")
 
+    # 5 · Sin cuota por el token NO es sin cuota a secas: la del token va por
+    # cuenta y la anónima por dirección IP, y cada ejecución de GitHub estrena
+    # máquina. Antes se cortaba en cuanto lo decía la primera vía, así que la
+    # segunda oportunidad que busca este diseño no se usaba nunca. Pasó hoy:
+    # el día entero sin una sola foto y sin gastar un segundo de GPU.
+    import os
+    reel.GASTO.clear()
+    vias = []
+
+    def token_sin_cuota(esp, ficha, img, orden, pasos):
+        vias.append("con cuenta" if ficha else "sin cuenta")
+        if ficha:
+            return None, 0, [f"{esp}: {SIN_CUOTA}"]
+        from PIL import Image
+        f = Path("/tmp/prueba-cuota-anon.png")
+        Image.new("RGB", (64, 64), "white").save(f)
+        return f, 9.1, "/infer"
+
+    antes = os.environ.get("HF_TOKEN")
+    os.environ["HF_TOKEN"] = "ficha-de-mentira"
+    try:
+        datos = con_generador(token_sin_cuota, ["uno"], generar)
+    finally:
+        if antes is None:
+            os.environ.pop("HF_TOKEN", None)
+        else:
+            os.environ["HF_TOKEN"] = antes
+    comprobar("sin cuota con el token, aún prueba sin cuenta",
+              vias == ["con cuenta", "sin cuenta"], f"probó {vias}")
+    comprobar("y si la vía anónima tiene cuota, sale la foto", bool(datos))
+
     if fallos:
         print(f"\n{len(fallos)} comprobaciones mal:", flush=True)
         for f in fallos:

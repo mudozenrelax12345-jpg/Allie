@@ -332,6 +332,12 @@ def kontext(escena, p):
     for espacio in ESPACIOS:
         if cuotas:
             break      # la cuota la comparten todos: no hay nada que probar
+        # Sin cuota por una vía no quiere decir sin cuota por la otra: la del
+        # token va por cuenta y la anónima por dirección IP, y son dos bolsas
+        # distintas. Antes se cortaba en la primera que lo dijera, así que la
+        # segunda oportunidad que buscan las dos vías no llegaba a usarse
+        # nunca. Sólo cuenta como «sin cuota» si lo dicen TODAS.
+        cuota_en = []
         for comollama, quien in vias:
             try:
                 # Cada espacio llama a sus parámetros como quiere, así que se
@@ -340,17 +346,17 @@ def kontext(escena, p):
                     espacio, quien, img, orden, PASOS)
             except Exception as e:  # noqa: BLE001
                 if _es_cuota(e):
-                    cuotas += 1
-                    dichos.append(f"{espacio}: sin cuota de ZeroGPU")
-                    break
+                    cuota_en.append(comollama)
+                    dichos.append(f"{espacio} ({comollama}): sin cuota de ZeroGPU")
+                    continue
                 dichos.append(f"{espacio} ({comollama}): {type(e).__name__}: {str(e)[:180]}")
                 continue
             if ruta is None:
                 motivos = api if isinstance(api, list) else [str(api)]
                 if any(_es_cuota(m) for m in motivos):
-                    cuotas += 1
-                    dichos.append(f"{espacio}: sin cuota de ZeroGPU")
-                    break
+                    cuota_en.append(comollama)
+                    dichos.append(f"{espacio} ({comollama}): sin cuota de ZeroGPU")
+                    continue
                 dichos.append(f"{espacio} ({comollama}): " + "; ".join(motivos)[:220])
                 continue
             # La cuota se mide en segundos de GPU, no en imágenes: sin esto no
@@ -362,6 +368,8 @@ def kontext(escena, p):
             b = BytesIO()
             Image.open(ruta).convert("RGB").save(b, "JPEG", quality=94)
             return b.getvalue(), None
+        if cuota_en and len(cuota_en) == len(vias):
+            cuotas += 1
 
     # Basta con que UN espacio diga que no queda cuota.
     #
