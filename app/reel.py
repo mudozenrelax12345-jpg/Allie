@@ -20,6 +20,9 @@ from urllib.parse import quote
 
 import requests
 import yaml
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import espacio as espacio_mod  # noqa: E402
 from PIL import Image, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -216,8 +219,39 @@ def referencia_vertical(url):
 # y devuelve a la misma persona en otro sitio. Se puede llamar sin cuenta y sin
 # tarjeta, aunque va "según disponibilidad": a veces hay cola y a veces el
 # espacio está reiniciándose, así que hay más de uno y se reintenta.
+# Qué espacio genera las fotos, en orden de preferencia.
+#
+# Se sale de FLUX.1-Kontext-Dev por dos razones, y las dos las descubrí tarde:
+#
+# 1. LICENCIA. Su licencia define como no comercial todo uso del que se reciba
+#    "pago directo o indirecto" y excluye expresamente la "actividad
+#    generadora de ingresos". Las imágenes ya generadas sí se pueden usar y
+#    vender —eso lo dice aparte—, pero ejecutar el modelo para una cuenta que
+#    monetiza queda fuera. Qwen-Image-Edit es Apache 2.0, sin esa pega, y su
+#    ficha dice que está hecho precisamente para "preservación de la identidad
+#    facial" con una a tres fotos de referencia.
+#
+# 2. CUOTA. Hugging Face no cuenta imágenes, cuenta SEGUNDOS de GPU: cinco
+#    minutos al día en la cuenta gratuita. A 28 pasos cada foto se comía más
+#    de un minuto, y de ahí salían las cuatro fotos diarias que nos tenían
+#    bloqueados. Las versiones rápidas trabajan a cuatro u ocho pasos.
+#
+# Van primero las rápidas. FLUX queda de último recurso para no quedarnos sin
+# nada si los demás están caídos; si se usa, queda anotado en el registro.
 ESPACIOS = [e.strip() for e in os.environ.get(
-    "HF_ESPACIOS", "black-forest-labs/FLUX.1-Kontext-Dev").split(",") if e.strip()]
+    "HF_ESPACIOS",
+    "multimodalart/Qwen-Image-Edit-Fast,"
+    "linoyts/Qwen-Image-Edit-2511-Fast,"
+    "prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast,"
+    "Qwen/Qwen-Image-Edit-2511,"
+    "Qwen/Qwen-Image-Edit,"
+    "black-forest-labs/FLUX.1-Kontext-Dev").split(",") if e.strip()]
+
+# Pasos de cálculo. Es la palanca que decide cuánta cuota gasta cada foto.
+PASOS = int(float(os.environ.get("PASOS", "8") or 8))
+
+# Cuánto tardó cada llamada, para poder ver en qué se va la cuota del día.
+GASTO = []
 
 
 ASPECTO = re.compile(
@@ -299,9 +333,10 @@ def kontext(escena, p):
         for comollama, quien in vias:
             intentadas += 1
             try:
-                cli = _cliente(espacio, quien)
-                salida = cli.predict(api_name="/infer",
-                                     input_image=handle_file(str(img)), prompt=orden)
+                # Cada espacio llama a sus parámetros como quiere, así que se
+                # le pregunta en vez de suponer que son los de FLUX.
+                ruta, segundos, api = espacio_mod.generar(
+                    espacio, quien, img, orden, PASOS)
             except Exception as e:  # noqa: BLE001
                 if _es_cuota(e):
                     cuotas += 1
@@ -309,10 +344,19 @@ def kontext(escena, p):
                     continue
                 dichos.append(f"{espacio} ({comollama}): {type(e).__name__}: {str(e)[:180]}")
                 continue
-            ruta = _primera_imagen(salida)
-            if not ruta:
-                dichos.append(f"{espacio} ({comollama}): contestó sin imagen")
+            if ruta is None:
+                motivos = api if isinstance(api, list) else [str(api)]
+                if any(_es_cuota(m) for m in motivos):
+                    cuotas += 1
+                    dichos.append(f"{espacio} ({comollama}): sin cuota de ZeroGPU")
+                    continue
+                dichos.append(f"{espacio} ({comollama}): " + "; ".join(motivos)[:220])
                 continue
+            # La cuota se mide en segundos de GPU, no en imágenes: sin esto no
+            # hay forma de saber cuántas fotos caben en un día.
+            GASTO.append({"espacio": espacio, "api": api, "segundos": segundos,
+                          "pasos": PASOS})
+            log(f"{espacio} · {api} · {segundos}s · {PASOS} pasos")
             from io import BytesIO
             b = BytesIO()
             Image.open(ruta).convert("RGB").save(b, "JPEG", quality=94)

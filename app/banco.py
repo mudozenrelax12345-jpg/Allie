@@ -252,6 +252,11 @@ def main():
         "cuando": datetime.now(timezone.utc).isoformat(),
         "temas": temas, "metidas": total, "motivos": motivos,
         "libres": len(disponibles(indice)), "total": len(indice["fotos"]),
+        # En qué se fue la cuota. Se mide en segundos de GPU, no en imágenes:
+        # cinco minutos al día en la cuenta gratuita, así que saber cuántos
+        # segundos cuesta cada foto es saber cuántas fotos caben.
+        "gasto": reel.GASTO,
+        "segundos_total": round(sum(g["segundos"] for g in reel.GASTO), 1),
     }, ensure_ascii=False, indent=1), encoding="utf-8")
     log(f"\n{total} fotos nuevas · el banco queda con "
         f"{len(disponibles(indice))} libres")
