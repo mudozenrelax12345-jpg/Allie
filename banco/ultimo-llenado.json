@@ -1,11 +1,11 @@
 {
- "cuando": "2026-10-11T15:40:56.938489+00:00",
+ "cuando": "2026-10-11T15:44:20.692890+00:00",
  "temas": [
   "una tarde tranquila en casa con té y manta junto a la ventana"
  ],
  "metidas": 0,
  "motivos": [
-  "cortado por cuota en la foto 1: Hugging Face no deja generar más hoy: multimodalart/Qwen-Image-Edit-Fast (con cuenta): /infer: AppError: RuntimeError; multimodalart/Qwen-Image-Edit-Fast (sin cuenta): /infer: AppError: RuntimeError; linoyts/Qwen-Image-Edit-2511-Fast (con cuenta): /infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().; /use_output_as_input: no encuentro"
+  "cortado por cuota en la foto 1: Hugging Face no deja generar más hoy: multimodalart/Qwen-Image-Edit-Fast: sin cuota de ZeroGPU"
  ],
  "libres": 2,
  "total": 7,
