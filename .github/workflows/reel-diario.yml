@@ -92,6 +92,10 @@ jobs:
 
       # Único gasto de cuota del día. Si no hay, el trabajo se para aquí y el
       # banco guarda lo que hubiera conseguido.
+      - name: Comprobar que para en seco si no hay cuota
+        if: steps.falta.outputs.falta == 'si'
+        run: python app/prueba_cuota.py
+
       - name: Generar las fotos del día
         if: steps.falta.outputs.falta == 'si'
         run: python app/banco.py

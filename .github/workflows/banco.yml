@@ -55,6 +55,9 @@ jobs:
       - name: Comprobar que el banco reparte bien
         run: python app/prueba_banco.py
 
+      - name: Comprobar que para en seco si no hay cuota
+        run: python app/prueba_cuota.py
+
       - name: Generar y revisar
         run: python app/banco.py
         env:

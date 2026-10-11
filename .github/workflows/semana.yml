@@ -36,6 +36,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Comprobar que para en seco si no hay cuota
+        run: python app/prueba_cuota.py
+
       - name: Generar la semana
         run: python app/semana.py
         env:

@@ -52,6 +52,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Comprobar que para en seco si no hay cuota
+        run: python app/prueba_cuota.py
+
       - name: Montar el reel
         run: python app/reel.py
         env:

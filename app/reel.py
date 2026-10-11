@@ -328,10 +328,11 @@ def kontext(escena, p):
     ficha = os.environ.get("HF_TOKEN") or None
     vias = [("con cuenta", ficha), ("sin cuenta", None)] if ficha else [("sin cuenta", None)]
 
-    dichos, cuotas, intentadas = [], 0, 0
+    dichos, cuotas = [], 0
     for espacio in ESPACIOS:
+        if cuotas:
+            break      # la cuota la comparten todos: no hay nada que probar
         for comollama, quien in vias:
-            intentadas += 1
             try:
                 # Cada espacio llama a sus parámetros como quiere, así que se
                 # le pregunta en vez de suponer que son los de FLUX.
@@ -340,16 +341,16 @@ def kontext(escena, p):
             except Exception as e:  # noqa: BLE001
                 if _es_cuota(e):
                     cuotas += 1
-                    dichos.append(f"{espacio} ({comollama}): sin cuota de ZeroGPU")
-                    continue
+                    dichos.append(f"{espacio}: sin cuota de ZeroGPU")
+                    break
                 dichos.append(f"{espacio} ({comollama}): {type(e).__name__}: {str(e)[:180]}")
                 continue
             if ruta is None:
                 motivos = api if isinstance(api, list) else [str(api)]
                 if any(_es_cuota(m) for m in motivos):
                     cuotas += 1
-                    dichos.append(f"{espacio} ({comollama}): sin cuota de ZeroGPU")
-                    continue
+                    dichos.append(f"{espacio}: sin cuota de ZeroGPU")
+                    break
                 dichos.append(f"{espacio} ({comollama}): " + "; ".join(motivos)[:220])
                 continue
             # La cuota se mide en segundos de GPU, no en imágenes: sin esto no
@@ -362,9 +363,20 @@ def kontext(escena, p):
             Image.open(ruta).convert("RGB").save(b, "JPEG", quality=94)
             return b.getvalue(), None
 
-    if cuotas and cuotas == intentadas:
+    # Basta con que UN espacio diga que no queda cuota.
+    #
+    # La condición anterior era `cuotas == intentadas`, es decir, que lo
+    # dijeran todos. Con un solo espacio en la lista daba igual, pero al poner
+    # varios dejó de cumplirse: uno contestaba «sin cuota» y otro daba un
+    # error suyo, así que no se levantaba SinCuota y el que llama repetía la
+    # tanda seis veces contra una pared. Pasó hoy a las 13:21.
+    #
+    # Y es que la cuota de ZeroGPU es UNA por cuenta y la comparten todos los
+    # espacios: si uno dice que no queda, no queda en ninguno. Lo comprobé el
+    # viernes probando treinta.
+    if cuotas:
         raise SinCuota(
-            "Hugging Face no deja generar más hoy: " + "; ".join(dichos))
+            "Hugging Face no deja generar más hoy: " + "; ".join(dichos)[:400])
     return None, dichos
 
 

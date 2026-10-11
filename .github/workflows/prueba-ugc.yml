@@ -33,6 +33,9 @@ jobs:
       - name: Instalar
         run: pip install -r requirements.txt
 
+      - name: Comprobar que para en seco si no hay cuota
+        run: python app/prueba_cuota.py
+
       - name: Generar y revisar
         run: python app/prueba_ugc.py
         env:
