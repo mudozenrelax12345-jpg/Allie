@@ -1,11 +1,11 @@
 {
- "cuando": "2026-10-11T15:44:20.692890+00:00",
+ "cuando": "2026-10-11T15:48:06.741677+00:00",
  "temas": [
   "una tarde tranquila en casa con té y manta junto a la ventana"
  ],
  "metidas": 0,
  "motivos": [
-  "cortado por cuota en la foto 1: Hugging Face no deja generar más hoy: multimodalart/Qwen-Image-Edit-Fast: sin cuota de ZeroGPU"
+  "cortado por cuota en la foto 1: Hugging Face no deja generar más hoy: multimodalart/Qwen-Image-Edit-Fast (con cuenta): sin cuota de ZeroGPU; multimodalart/Qwen-Image-Edit-Fast (sin cuenta): sin cuota de ZeroGPU"
  ],
  "libres": 2,
  "total": 7,
