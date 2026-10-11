@@ -1,0 +1,54 @@
+name: Probar si Allie puede sujetar un producto
+
+# Sin horario: esto es un experimento, no una rutina. Gasta la cuota del día,
+# así que no debe competir con el reel diario.
+
+on:
+  workflow_dispatch:
+    inputs:
+      producto:
+        description: "El producto, en inglés, sin marca ni texto"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reel-allie
+  cancel-in-progress: false
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install -r requirements.txt
+
+      - name: Generar y revisar
+        run: python app/prueba_ugc.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          PRODUCTO: ${{ inputs.producto }}
+
+      - name: Guardar las fotos salgan como salgan
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Prueba de vídeo de producto [skip ci]"
+            git pull --rebase
+            git push
+          fi

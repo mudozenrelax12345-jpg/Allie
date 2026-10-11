@@ -24,10 +24,12 @@ BASE = APP.parent
 # precisamente lo que llega vacío cuando el trabajo lo lanza el reloj.
 VACIAS = ["TEMA", "TEMAS", "CUANTAS", "CUANTAS_FOTOS", "FOTOS_POR_POST", "FOTOS",
           "FOTOS_REEL", "ETIQUETA",
-          "SOLO_MONTAR", "SOLO_SUBIR", "TOPE_ESPACIOS", "ESPERA_ESPACIO"]
+          "SOLO_MONTAR", "SOLO_SUBIR", "TOPE_ESPACIOS", "ESPERA_ESPACIO",
+          "PRODUCTO"]
 
 MODULOS = ["ajustes", "reel", "foto", "banco", "semana", "buscar_espacios",
-           "subir_banco", "del_banco_a_fotos", "devolver_fotos"]
+           "subir_banco", "del_banco_a_fotos", "devolver_fotos",
+           "prueba_ugc"]
 
 
 def main():
