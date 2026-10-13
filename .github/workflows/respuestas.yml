@@ -1,11 +1,21 @@
 name: Respuestas de Allie
 
 on:
-  # Dos oportunidades por hora, a minutos poco redondos, y solo de 08:00 a 00:40
-  # (hora de Madrid). En cada una se mira si ya toca: el propio programa decide
-  # al azar cuántos minutos esperar hasta la siguiente tanda (entre 30 y 90).
+  # Ocho veces al día, de 09:13 a 23:13 (hora de Madrid).
+  #
+  # Antes eran dos por hora, 34 despertares diarios. El problema es que el
+  # repositorio es privado y GitHub cobra los minutos de Actions redondeando
+  # HACIA ARRIBA por trabajo: un despertar que mira el reloj, decide que aún
+  # no toca y se va, cuesta un minuto entero igual que uno que contesta. Entre
+  # eso y el montaje de vídeos del otro repositorio, los 2.000 minutos
+  # gratuitos del mes se agotaron el 13 de octubre a las 15:28 y TODO dejó de
+  # ejecutarse: el reel, el banco y este bot, los tres a la vez y sin avisar.
+  #
+  # Ocho rondas al día bastan de sobra para contestar comentarios: nadie
+  # espera que una influencer responda en treinta minutos, y de hecho hacerlo
+  # siempre tan rápido se parece más a un bot que a una persona.
   schedule:
-    - cron: "9,41 6-22 * * *"
+    - cron: "13 7,9,11,13,15,17,19,21 * * *"
   workflow_dispatch:
     inputs:
       accion:
