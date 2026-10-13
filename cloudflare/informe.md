@@ -1,14 +1,17 @@
-# Prueba de Cloudflare · 20261013-1520 UTC
+# Prueba de Cloudflare · 20261013-1524 UTC
 
-**Faltan credenciales.** Esto es lo que se ve:
+## 1 · sitting at a window table in a sunny Madrid café, holding a coffee cup, looking out of the window
 
-| secreto | ¿está? | de dónde | longitud |
-|---|---|---|---|
-| Account ID | sí | `CF_ACCOUNT_ID` | 32 |
-| API token | **NO** | `—` | — |
+- no salió · @cf/black-forest-labs/flux-2-klein-4b: HTTP 401 · {"result":null,"success":false,"errors":[{"code":10000,"message":"Authentication error"}],"messages":[]}
+- no salió · @cf/black-forest-labs/flux-2-klein-9b: HTTP 401 · {"result":null,"success":false,"errors":[{"code":10000,"message":"Authentication error"}],"messages":[]}
 
-Los nombres buenos son `CF_ACCOUNT_ID` y `CF_API_TOKEN`, pero también valen las variantes: `CLOUDFLARE_ACCOUNT_ID`, `CF_ACCOUNT`, `CF_ID`, `CF_CUENTA`, `CLOUDFLARE_API_TOKEN`, `CF_TOKEN`, `CF_API_KEY`, `CLOUDFLARE_TOKEN`, `CF_FICHA`.
+## 2 · walking along a tree-lined street in autumn, wearing a beige coat, smiling at the camera
 
-Si uno pone «NO», ese secreto no existe o está escrito con otro nombre. Se arregla en Settings → Secrets and variables → Actions.
+- no salió · @cf/black-forest-labs/flux-2-klein-4b: HTTP 401 · {"result":null,"success":false,"errors":[{"code":10000,"message":"Authentication error"}],"messages":[]}
+- no salió · @cf/black-forest-labs/flux-2-klein-9b: HTTP 401 · {"result":null,"success":false,"errors":[{"code":10000,"message":"Authentication error"}],"messages":[]}
 
-Como referencia: el Account ID son 32 caracteres; el token, unos 40.
+---
+
+**0 de 2 pasaron el revisor.**
+
+Si las fotos son Allie, Cloudflare puede sustituir a Hugging Face: unas noventa fotos al día en vez de ninguna.
