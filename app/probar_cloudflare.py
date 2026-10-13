@@ -29,6 +29,73 @@ ESCENAS = [
 ]
 
 
+def interrogar():
+    """Si falla, preguntarle a Cloudflare POR QUÉ, en vez de adivinar.
+
+    Un 401 puede ser tres cosas muy distintas y se arreglan de tres maneras
+    distintas: el token está mal copiado, el token es válido pero no tiene
+    permiso de Workers AI, o el token es de otra cuenta. Cloudflare tiene dos
+    endpoints que lo separan, y ninguno gasta neuronas.
+    """
+    import requests
+
+    cuenta, ficha = cloudflare.credenciales()
+    cab = {"Authorization": f"Bearer {ficha}"}
+    fuera = ["### Qué dice Cloudflare del token", "",
+             f"- longitud del token: **{len(ficha or '')}** caracteres "
+             f"(lo normal son unos 40; mucho menos = se copió a medias)",
+             f"- Account ID configurado: `{(cuenta or '')[:6]}…{(cuenta or '')[-4:]}` "
+             f"({len(cuenta or '')} caracteres)"]
+
+    # 1 · ¿El token existe y está activo? Esto no depende de la cuenta.
+    try:
+        r = requests.get("https://api.cloudflare.com/client/v4/user/tokens/verify",
+                         headers=cab, timeout=60)
+        c = r.json()
+        if c.get("success"):
+            fuera.append(f"- el token **es válido y está activo** "
+                         f"(estado: {(c.get('result') or {}).get('status')})")
+            valido = True
+        else:
+            fuera.append(f"- el token **NO vale**: {str(c.get('errors'))[:200]}")
+            valido = False
+    except Exception as e:  # noqa: BLE001
+        fuera.append(f"- no se pudo comprobar el token: {type(e).__name__}: {e}")
+        valido = None
+
+    # 2 · ¿A qué cuentas puede entrar? Si la nuestra no está, el fallo es que
+    #     el token se hizo en otra cuenta o se limitó a otra.
+    try:
+        r = requests.get("https://api.cloudflare.com/client/v4/accounts",
+                         headers=cab, timeout=60)
+        c = r.json()
+        if c.get("success"):
+            ids = [(a.get("id"), a.get("name")) for a in (c.get("result") or [])]
+            fuera.append(f"- cuentas a las que llega el token: {len(ids)}")
+            for i, n in ids:
+                marca = "  ← **es la nuestra**" if i == cuenta else ""
+                fuera.append(f"    - {n} · `{(i or '')[:6]}…{(i or '')[-4:]}`{marca}")
+            if ids and cuenta not in [i for i, _ in ids]:
+                fuera += ["", "**Ahí está el fallo**: el Account ID guardado no es "
+                          "ninguna de las cuentas del token. Hay que cambiar el "
+                          "secreto `CF_ACCOUNT_ID` por el de arriba."]
+        else:
+            fuera.append(f"- no deja listar cuentas: {str(c.get('errors'))[:200]}")
+    except Exception as e:  # noqa: BLE001
+        fuera.append(f"- no se pudo listar cuentas: {type(e).__name__}: {e}")
+
+    if valido:
+        fuera += ["", "El token vale pero la llamada a Workers AI da 401, así que "
+                  "lo que falta es el **permiso**: el token tiene que llevar "
+                  "`Account` → `Workers AI` → `Read`. Se arregla editando el "
+                  "token en https://dash.cloudflare.com/profile/api-tokens o "
+                  "creando uno nuevo con la plantilla **Workers AI**."]
+    elif valido is False:
+        fuera += ["", "El token no es válido: lo más probable es que se copiara "
+                  "incompleto. Hay que crear uno nuevo y pegarlo entero."]
+    return fuera + [""]
+
+
 def main():
     CARPETA.mkdir(exist_ok=True)
     ahora = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M")
@@ -103,6 +170,9 @@ def main():
                    + (f" · {problema}" if problema else ""), ""]
         if ok:
             buenas += 1
+
+    if not buenas:
+        lineas += interrogar()
 
     lineas += ["---", "",
                f"**{buenas} de {len(ESCENAS)} pasaron el revisor.**", "",
