@@ -22,6 +22,7 @@ import requests
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import cloudflare  # noqa: E402
 import espacio as espacio_mod  # noqa: E402
 from PIL import Image, ImageFilter
 
@@ -321,6 +322,23 @@ def kontext(escena, p):
              f"{CARA}. {ANATOMIA}. Photorealistic smartphone photo, soft natural light. "
              f"No text, no logos and no watermark anywhere in the image.")
 
+    dichos_cf = []
+
+    # Cloudflare primero, cuando hay credenciales: su cupo gratuito da para
+    # unas noventa fotos al día y se reinicia a las 00:00 UTC en punto, no en
+    # una ventana que se va moviendo. Si no hay credenciales o falla, se sigue
+    # por Hugging Face exactamente como antes.
+    if cloudflare.hay():
+        datos, segundos, modelo = cloudflare.generar(img.read_bytes(), orden)
+        if datos:
+            GASTO.append({"espacio": f"cloudflare {modelo}", "api": "ai/run",
+                          "segundos": segundos, "pasos": 4})
+            log(f"cloudflare · {modelo} · {segundos}s")
+            return datos, None
+        dichos_cf = [f"cloudflare · {m}" for m in (modelo or [])]
+        for m in dichos_cf:
+            log(m)
+
     # Con cuenta primero, porque la cuota diaria es mayor. Si se agota, se
     # reintenta sin cuenta: esa cuota va por dirección IP, y cada ejecución
     # de GitHub estrena máquina, así que es una segunda oportunidad de verdad
@@ -328,7 +346,7 @@ def kontext(escena, p):
     ficha = os.environ.get("HF_TOKEN") or None
     vias = [("con cuenta", ficha), ("sin cuenta", None)] if ficha else [("sin cuenta", None)]
 
-    dichos, cuotas = [], 0
+    dichos, cuotas = list(dichos_cf), 0
     for espacio in ESPACIOS:
         if cuotas:
             break      # la cuota la comparten todos: no hay nada que probar

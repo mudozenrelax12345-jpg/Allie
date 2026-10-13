@@ -25,11 +25,11 @@ BASE = APP.parent
 VACIAS = ["TEMA", "TEMAS", "CUANTAS", "CUANTAS_FOTOS", "FOTOS_POR_POST", "FOTOS",
           "FOTOS_REEL", "ETIQUETA",
           "SOLO_MONTAR", "SOLO_SUBIR", "TOPE_ESPACIOS", "ESPERA_ESPACIO",
-          "PRODUCTO"]
+          "PRODUCTO", "CF_ANCHO", "CF_ALTO", "CF_MODELOS"]
 
-MODULOS = ["ajustes", "espacio", "reel", "foto", "banco", "semana", "buscar_espacios",
+MODULOS = ["ajustes", "cloudflare", "espacio", "reel", "foto", "banco", "semana", "buscar_espacios",
            "subir_banco", "del_banco_a_fotos", "devolver_fotos",
-           "prueba_ugc", "falta_reel", "probar_gemini", "prueba_cuota", "prueba_gemini_caida"]
+           "prueba_ugc", "falta_reel", "probar_gemini", "prueba_cuota", "prueba_gemini_caida", "prueba_cloudflare"]
 
 
 def main():
@@ -38,7 +38,8 @@ def main():
         entorno[v] = ""
     # Sin credenciales: arrancar no debe necesitarlas. Si un módulo las pide
     # al importarse, eso también es un fallo que quiero ver aquí.
-    for v in ("GEMINI_API_KEY", "POLLINATIONS_KEY", "HF_TOKEN"):
+    for v in ("GEMINI_API_KEY", "POLLINATIONS_KEY", "HF_TOKEN",
+              "CF_ACCOUNT_ID", "CF_API_TOKEN"):
         entorno.pop(v, None)
 
     fallos = []

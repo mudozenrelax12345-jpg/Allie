@@ -55,6 +55,9 @@ jobs:
       - name: Comprobar que un modelo caído no tumba el trabajo
         run: python app/prueba_gemini_caida.py
 
+      - name: Comprobar el camino de Cloudflare
+        run: python app/prueba_cloudflare.py
+
       - name: Comprobar que para en seco si no hay cuota
         run: python app/prueba_cuota.py
 
@@ -64,6 +67,8 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           POLLINATIONS_KEY: ${{ secrets.POLLINATIONS_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           TEMA: ${{ inputs.tema }}
           SOLO_MONTAR: ${{ inputs.solo_montar }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
