@@ -1,6 +1,5 @@
-MAL  20261009-1439-1.jpg (rubia de ojos verdes, es ella) → no es ella · no se pudo comprobar que sea ella (Gemini: gemini-3.5-flash-lite is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.)
-ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no se pudo comprobar que sea ella (Gemini: gemini-3.5-flash-lite is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.)
-ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no se pudo comprobar que sea ella (Gemini: gemini-3.5-flash-lite is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.)
+ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verdes → verdes, pelo rubio con mechas → rubio con mechas)
+ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: Los ojos son marrones en la nueva foto en lugar de verdes. (ojos verdes → marrones, pelo rubio con mechas → castaño claro con mechas)
+ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: El color de ojos y el tono del pelo son completamente diferentes. (ojos verdes → marrones, pelo rubio claro → castaño oscuro)
 
-El revisor no distingue a Allie en: 20261009-1439-1.jpg.
-Publicar a otra mujer en su cuenta es el fallo más caro que tiene este proyecto; no sigo.
+el revisor distingue a Allie
