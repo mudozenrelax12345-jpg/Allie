@@ -36,6 +36,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Comprobar que un modelo caído no tumba el trabajo
+        run: python app/prueba_gemini_caida.py
+
       - name: Comprobar que para en seco si no hay cuota
         run: python app/prueba_cuota.py
 

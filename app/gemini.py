@@ -66,9 +66,29 @@ def _textos(nodo, out):
 
 
 def _sin_cupo(e):
+    """Sin cupo: este modelo no va a funcionar hoy, se descarta."""
     m = str(e).lower()
     return any(s in m for s in ("rate limit", "quota", "resource_exhausted", "429",
                                 "too many requests"))
+
+
+def _saturado(e):
+    """Saturado: el modelo existe y tiene cupo, pero ahora mismo no atiende.
+
+    Es distinto de no tener cupo y hay que tratarlo distinto: se pasa al
+    siguiente modelo pero NO se descarta este, porque dentro de un minuto
+    probablemente vuelva.
+
+    Esto tiró el reel del martes. Gemini contestó «gemini-3.5-flash-lite is
+    currently experiencing high demand», que no encajaba en ninguna de las
+    palabras de _sin_cupo, así que el código hacía `raise` con el primer
+    modelo de la lista y los otros cinco ni se probaban. Un reel entero
+    perdido porque el que escribe el pie de foto estaba ocupado.
+    """
+    m = str(e).lower()
+    return any(s in m for s in ("high demand", "overloaded", "unavailable",
+                                "try again later", "503", "500", "internal error",
+                                "deadline", "timeout", "temporarily"))
 
 
 def _una_vez(modelo, prompt, imagenes):
@@ -102,6 +122,11 @@ def texto(prompt, imagenes=()):
             ultimo = e
             if _sin_cupo(e):
                 _descartados.add(modelo)
+                if _elegido == modelo:
+                    _elegido = None
+                continue
+            if _saturado(e):
+                # Se pasa al siguiente pero sin descartarlo: vuelve solo.
                 if _elegido == modelo:
                     _elegido = None
                 continue

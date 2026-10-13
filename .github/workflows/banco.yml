@@ -55,6 +55,9 @@ jobs:
       - name: Comprobar que el banco reparte bien
         run: python app/prueba_banco.py
 
+      - name: Comprobar que un modelo caído no tumba el trabajo
+        run: python app/prueba_gemini_caida.py
+
       - name: Comprobar que para en seco si no hay cuota
         run: python app/prueba_cuota.py
 
