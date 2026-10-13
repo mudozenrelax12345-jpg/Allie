@@ -35,12 +35,28 @@ def main():
     lineas = [f"# Prueba de Cloudflare · {ahora} UTC", ""]
 
     if not cloudflare.hay():
+        d = cloudflare.diagnostico()
+        # Cuál de los dos falta, que es lo único que hace falta saber. Nunca
+        # el valor: esto queda escrito en el repositorio.
+        lineas += ["**Faltan credenciales.** Esto es lo que se ve:", "",
+                   "| secreto | ¿está? | de dónde | longitud |",
+                   "|---|---|---|---|"]
+        for que, clave in (("Account ID", "cuenta"), ("API token", "ficha")):
+            lineas.append(
+                f"| {que} | {'sí' if d[clave] else '**NO**'} | "
+                f"`{d[clave + '_en'] or '—'}` | {d[clave + '_largo'] or '—'} |")
         lineas += [
-            "**No hay credenciales.** Faltan los secretos `CF_ACCOUNT_ID` y "
-            "`CF_API_TOKEN` en Settings → Secrets and variables → Actions.",
             "",
-            "Mientras no estén, Allie sigue dependiendo de Hugging Face, que "
-            "lleva desde el 11 de octubre sin dar ni una foto.",
+            "Los nombres buenos son `CF_ACCOUNT_ID` y `CF_API_TOKEN`, pero "
+            "también valen las variantes: "
+            + ", ".join(f"`{n}`" for n in
+                        cloudflare.NOMBRES_CUENTA[1:] + cloudflare.NOMBRES_FICHA[1:])
+            + ".",
+            "",
+            "Si uno pone «NO», ese secreto no existe o está escrito con otro "
+            "nombre. Se arregla en Settings → Secrets and variables → Actions.",
+            "",
+            "Como referencia: el Account ID son 32 caracteres; el token, unos 40.",
         ]
         (CARPETA / "informe.md").write_text("\n".join(lineas), encoding="utf-8")
         print("\n".join(lineas), flush=True)

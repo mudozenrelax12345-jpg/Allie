@@ -52,10 +52,40 @@ class SinCredenciales(RuntimeError):
     pass
 
 
+# Los nombres buenos van primero, pero se aceptan las variantes razonables:
+# equivocarse al teclear el nombre de un secreto da «no hay credenciales», que
+# es el peor aviso posible, porque parece que no lo has puesto.
+NOMBRES_CUENTA = ["CF_ACCOUNT_ID", "CLOUDFLARE_ACCOUNT_ID", "CF_ACCOUNT",
+                  "CF_ID", "CF_CUENTA"]
+NOMBRES_FICHA = ["CF_API_TOKEN", "CLOUDFLARE_API_TOKEN", "CF_TOKEN",
+                 "CF_API_KEY", "CLOUDFLARE_TOKEN", "CF_FICHA"]
+
+
+def _primero(nombres):
+    """(valor, de qué variable salió) o (None, None)."""
+    for n in nombres:
+        v = (os.environ.get(n) or "").strip()
+        if v:
+            return v, n
+    return None, None
+
+
 def credenciales():
-    cuenta = (os.environ.get("CF_ACCOUNT_ID") or "").strip()
-    ficha = (os.environ.get("CF_API_TOKEN") or "").strip()
+    cuenta, _ = _primero(NOMBRES_CUENTA)
+    ficha, _ = _primero(NOMBRES_FICHA)
     return (cuenta, ficha) if cuenta and ficha else (None, None)
+
+
+def diagnostico():
+    """Qué hay y qué falta, SIN enseñar ningún valor."""
+    cuenta, de_cuenta = _primero(NOMBRES_CUENTA)
+    ficha, de_ficha = _primero(NOMBRES_FICHA)
+    return {
+        "cuenta": bool(cuenta), "cuenta_en": de_cuenta,
+        "cuenta_largo": len(cuenta or ""),
+        "ficha": bool(ficha), "ficha_en": de_ficha,
+        "ficha_largo": len(ficha or ""),
+    }
 
 
 def hay():

@@ -38,6 +38,16 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          # Variantes, por si el nombre se tecleó de otra forma: así el
+          # informe puede decir «está, pero se llama X» en vez de «no hay
+          # credenciales», que no ayuda a nadie.
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_ACCOUNT: ${{ secrets.CF_ACCOUNT }}
+          CF_ID: ${{ secrets.CF_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_TOKEN: ${{ secrets.CF_TOKEN }}
+          CF_API_KEY: ${{ secrets.CF_API_KEY }}
+          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
 
       # Las fotos y el informe se guardan pase lo que pase: desde aquí no se
       # pueden mirar los registros de Actions, así que lo que no quede escrito
