@@ -183,4 +183,18 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Si esto revienta por un sitio imprevisto, el informe tiene que contarlo
+    # igual: un trabajo en rojo sin nada escrito no se puede diagnosticar.
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception:  # noqa: BLE001
+        CARPETA.mkdir(exist_ok=True)
+        roto = ("\n\n## Reventó por un sitio imprevisto\n\n```\n"
+                + traceback.format_exc()[-3000:] + "\n```\n")
+        f = CARPETA / "informe.md"
+        f.write_text((f.read_text(encoding="utf-8") if f.exists() else "") + roto,
+                     encoding="utf-8")
+        print(roto, flush=True)
+        raise
