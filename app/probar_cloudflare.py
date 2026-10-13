@@ -41,6 +41,22 @@ def interrogar():
 
     cuenta, ficha = cloudflare.credenciales()
     cab = {"Authorization": f"Bearer {ficha}"}
+
+    # El 13 de octubre se perdió una tarde entera por esto: el Account ID
+    # guardado era el ejemplo inventado de una explicación, copiado tal cual.
+    # Un número de 32 caracteres con pinta correcta y que no es de nadie da
+    # «Authentication error», que parece un problema del token y no lo es.
+    EJEMPLOS = {"8f4a2c9e1b7d3056a8e2f4c6b9d1073e",
+                "0123456789abcdef0123456789abcdef",
+                "00000000000000000000000000000000"}
+    if (cuenta or "") in EJEMPLOS:
+        return ["### El Account ID no es real", "",
+                "El valor guardado en `CF_ACCOUNT_ID` es un **ejemplo**, no una "
+                "cuenta de verdad. De ahí el «Authentication error»: el token "
+                "está bien, pero apunta a una cuenta que no existe.", "",
+                "El bueno sale en la barra de direcciones al entrar en "
+                "`dash.cloudflare.com`: es el trozo que va justo después de la "
+                "barra, 32 caracteres.", ""]
     fuera = ["### Qué dice Cloudflare del token", "",
              f"- longitud del token: **{len(ficha or '')}** caracteres "
              f"(lo normal son unos 40; mucho menos = se copió a medias)",
@@ -75,7 +91,11 @@ def interrogar():
             for i, n in ids:
                 marca = "  ← **es la nuestra**" if i == cuenta else ""
                 fuera.append(f"    - {n} · `{(i or '')[:6]}…{(i or '')[-4:]}`{marca}")
-            if ids and cuenta not in [i for i, _ in ids]:
+            if not ids:
+                fuera.append("    - (vacío **no quiere decir que el token esté "
+                             "mal**: un token de Workers AI no tiene permiso "
+                             "para listar cuentas, así que esto no prueba nada)")
+            elif cuenta not in [i for i, _ in ids]:
                 fuera += ["", "**Ahí está el fallo**: el Account ID guardado no es "
                           "ninguna de las cuentas del token. Hay que cambiar el "
                           "secreto `CF_ACCOUNT_ID` por el de arriba."]
@@ -85,11 +105,14 @@ def interrogar():
         fuera.append(f"- no se pudo listar cuentas: {type(e).__name__}: {e}")
 
     if valido:
-        fuera += ["", "El token vale pero la llamada a Workers AI da 401, así que "
-                  "lo que falta es el **permiso**: el token tiene que llevar "
-                  "`Account` → `Workers AI` → `Read`. Se arregla editando el "
-                  "token en https://dash.cloudflare.com/profile/api-tokens o "
-                  "creando uno nuevo con la plantilla **Workers AI**."]
+        fuera += ["", "El token existe y está activo, así que el 401 viene de una "
+                  "de estas dos, **por este orden**:", "",
+                  "1. El **Account ID** no es el de la cuenta del token. Es lo más "
+                  "probable y lo más fácil de comprobar: mira la barra de "
+                  "direcciones en `dash.cloudflare.com`.",
+                  "2. El token no lleva `Account` → `Workers AI`. Se rehace con la "
+                  "plantilla **Workers AI** en "
+                  "https://dash.cloudflare.com/profile/api-tokens.", ""]
     elif valido is False:
         fuera += ["", "El token no es válido: lo más probable es que se copiara "
                   "incompleto. Hay que crear uno nuevo y pegarlo entero."]
