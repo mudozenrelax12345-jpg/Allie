@@ -82,6 +82,9 @@ jobs:
         if: steps.toca.outputs.seguir == 'si'
         run: pip install -r requirements.txt
 
+      - name: Comprobar que en público no se publican datos de nadie
+        run: python app/prueba_discrecion.py
+
       - name: Ejecutar
         if: steps.toca.outputs.seguir == 'si'
         run: python app/main.py
@@ -89,6 +92,10 @@ jobs:
           FB_TOKEN: ${{ secrets.FB_TOKEN }}
           META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Si el repositorio es público, los registros y las incidencias
+          # los lee cualquiera: el programa tapa nombres y no copia
+          # mensajes privados.
+          REPO_PRIVADO: ${{ github.event.repository.private }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ACCION: ${{ inputs.accion }}
 

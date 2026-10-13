@@ -47,6 +47,27 @@ def log(msg):
     print(f"· {msg}", flush=True)
 
 
+# ---------------------------------------------------------------- discreción
+#
+# En un repositorio PÚBLICO los registros de Actions y las incidencias los
+# puede leer cualquiera. Este bot maneja nombres de usuario y mensajes
+# privados de personas reales: eso no puede acabar publicado porque a nadie
+# se le ocurriera mirar dónde van a parar los `print`.
+#
+# El workflow pasa REPO_PRIVADO. Si no se sabe qué es, se asume público y se
+# tapa igual: equivocarse hacia el lado discreto no cuesta nada; al revés,
+# sí.
+PRIVADO = (os.environ.get("REPO_PRIVADO") or "").strip().lower() == "true"
+
+
+def quien(nombre):
+    """@mariagarcia en un repo privado; @mar••••••••• en uno público."""
+    n = (nombre or "alguien").lstrip("@")
+    if PRIVADO or len(n) <= 3:
+        return n
+    return n[:3] + "•" * (len(n) - 3)
+
+
 # ============================================================ estado y token
 def cargar_estado():
     if ESTADO.exists():
@@ -311,18 +332,19 @@ def responder_comentarios(ig, gh, p, estado):
                 try:
                     ig.responder_comentario(cid, respuesta)
                     respondidos += 1
-                    log(f"Respondido a @{autor}: {respuesta[:60]}")
+                    log(f"Respondido a @{quien(autor)}"
+                        + (f": {respuesta[:60]}" if PRIVADO else ""))
                 except IGError as e:
                     log(f"No pude responder al comentario {cid}: {e}")
                     continue
             elif accion == "avisar":
                 avisos += 1
-                gh.issue(f"💬 Comentario para revisar · @{autor}",
-                         f"**@{autor}** ha comentado:\n\n> {c.get('text', '')}\n\n"
+                gh.issue(f"💬 Comentario para revisar · @{quien(autor)}",
+                         f"**@{quien(autor)}** ha comentado:\n\n> {c.get('text', '')}\n\n"
                          f"**Por qué te aviso:** {motivo}\n\n"
                          f"Publicación: {media.get('permalink', '')}\n\n"
                          f"_No he respondido nada. Contéstale tú desde Instagram si quieres._")
-                log(f"Aviso por comentario de @{autor}: {motivo}")
+                log(f"Aviso por comentario de @{quien(autor)}: {motivo}")
             hechos.add(cid)
     estado["comentarios"] = list(hechos)
     return nuevos, respondidos, avisos
@@ -389,18 +411,26 @@ def responder_mensajes(ig, gh, p, estado):
             try:
                 ig.enviar_mensaje(igsid, respuesta)
                 respondidos += 1
-                log(f"Mensaje respondido a @{autor}: {respuesta[:60]}")
+                log(f"Mensaje respondido a @{quien(autor)}"
+                    + (f": {respuesta[:60]}" if PRIVADO else ""))
             except IGError as e:
-                log(f"No pude enviar el mensaje a @{autor}: {e}")
+                log(f"No pude enviar el mensaje a @{quien(autor)}: {e}")
                 continue
         elif accion == "avisar":
             avisos += 1
-            gh.issue(f"📩 Mensaje para revisar · @{autor}",
-                     f"**@{autor}** te ha escrito por privado:\n\n> {ultimo.get('message', '')}\n\n"
-                     f"**Por qué te aviso:** {motivo}\n\n"
-                     f"_No he respondido nada. Recuerda que Instagram solo deja contestar "
-                     f"durante las 24 h siguientes._")
-            log(f"Aviso por mensaje de @{autor}: {motivo}")
+            # Un mensaje privado no se copia nunca a una incidencia que
+            # pueda ser pública: ni el texto ni el nombre completo. Con el
+            # aviso basta para que lo mires en Instagram.
+            cuerpo = (f"**@{quien(autor)}** te ha escrito por privado.\n\n"
+                      + (f"> {ultimo.get('message', '')}\n\n" if PRIVADO
+                         else "_El texto no se copia aquí para no publicar un "
+                              "mensaje privado; míralo en tu bandeja de "
+                              "Instagram._\n\n")
+                      + f"**Por qué te aviso:** {motivo}\n\n"
+                      + "_No he respondido nada. Recuerda que Instagram solo deja "
+                        "contestar durante las 24 h siguientes._")
+            gh.issue(f"📩 Mensaje para revisar · @{quien(autor)}", cuerpo)
+            log(f"Aviso por mensaje de @{quien(autor)}: {motivo}")
         hechos.add(mid)
     estado["mensajes"] = list(hechos)
     return nuevos, respondidos, avisos
@@ -480,6 +510,19 @@ def probar(ig, gh, p):
 
 def diagnostico(ig, gh):
     """Mira en crudo qué devuelve Instagram en los comentarios de las últimas publicaciones."""
+    # Esto vuelca comentarios y nombres TAL CUAL vienen de Instagram. En un
+    # repositorio público la incidencia donde se escribe la lee cualquiera,
+    # así que aquí no se ejecuta: es una herramienta para mirar por dentro,
+    # no para publicar los datos de quien comenta.
+    if not PRIVADO:
+        gh.issue("🔬 Diagnóstico no ejecutado",
+                 "El volcado en crudo de Instagram está desactivado porque este "
+                 "repositorio es público y la incidencia la podría leer "
+                 "cualquiera: contiene comentarios y nombres de personas "
+                 "reales.\n\nSi hace falta mirarlo, se ejecuta con el "
+                 "repositorio en privado.", etiqueta="prueba")
+        log("Diagnóstico desactivado: el repositorio no es privado.")
+        return
     L = []
     try:
         medias = ig.publicaciones(3)
