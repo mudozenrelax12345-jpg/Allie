@@ -20,5 +20,39 @@
     "visualizaciones": 164
    }
   }
+ },
+ {
+  "fecha": "2026-10-13",
+  "fecha_ultimo_dato": "2026-10-12",
+  "seguidores": 3256,
+  "ganados": null,
+  "perdidos": null,
+  "alcance_reels": null,
+  "visualizaciones_reels": null,
+  "reels_publicados": 0,
+  "reel_de_hoy": null,
+  "nota": "No hubo reel: reel-diario.yml (run 38354005449, 05:56 UTC) fallo en el paso 'Generar las fotos del dia' por cuota de ZeroGPU en Hugging Face (0 fotos nuevas). El banco solo tiene 2 fotos libres de las 4 que necesita un reel, asi que los pasos de montaje se saltaron. No se publico nada, no se insistio. NOTICIA: salto de seguidores sin publicar nada nuevo: 3221 el 10-oct -> 3243 el 11-oct (+27 ganados, -1 perdido) -> 3256 el 12-oct. Primera subida real desde julio; conviene vigilar si se mantiene o es un pico.",
+  "contexto_30d": {
+   "seguidores_hace_7d_20261005": 3217,
+   "seguidores_hace_30d_20260913": 3245,
+   "reels_en_30d": 1,
+   "ultimo_reel": {
+    "fecha": "2026-10-09",
+    "alcance": 139,
+    "visualizaciones": 165
+   },
+   "alcance_medio_reel_semana_actual_20261006_20261012": 139,
+   "alcance_medio_reel_semana_anterior_20260929_20261005": null,
+   "serie_seguidores": {
+    "20261005": 3217,
+    "20261006": 3218,
+    "20261007": 3218,
+    "20261008": 3220,
+    "20261009": 3221,
+    "20261010": 3221,
+    "20261011": 3243,
+    "20261012": 3256
+   }
+  }
  }
 ]
