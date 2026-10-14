@@ -173,6 +173,40 @@ Reglas estrictas, cada una viene de un fallo real:
     return fila
 
 
+def _tanda_libre(tanda, indice):
+    """Un nombre de tanda que no esté usado ya.
+
+    La tanda no es solo un prefijo: es lo que dice «estas fotos comparten
+    ropa, sitio y luz», y coger() arma los carruseles con fotos de una misma.
+    Si dos temas distintos acaban compartiendo tanda, el carrusel puede salir
+    con la cafetería y la calle mezcladas, que es justo lo que no debe pasar.
+    """
+    usadas = {f.get("tanda") for f in indice.get("fotos", [])}
+    if tanda not in usadas:
+        return tanda
+    for letra in "bcdefghijklmnopqrstuvwxyz":
+        if f"{tanda}{letra}" not in usadas:
+            return f"{tanda}{letra}"
+    return f"{tanda}-{int(time.time())}"
+
+
+def _libre(nombre):
+    """Un nombre que no pise ninguna foto que ya esté en el banco.
+
+    El cinturón, además del tirante de los segundos: una foto del banco costó
+    una llamada y perderla porque dos nombres coincidieron no se arregla
+    después, porque no queda ni rastro de que existió.
+    """
+    if not (FOTOS / nombre).exists():
+        return nombre
+    raiz, punto, ext = nombre.rpartition(".")
+    for letra in "bcdefghijklmnopqrstuvwxyz":
+        otro = f"{raiz}{letra}{punto}{ext}"
+        if not (FOTOS / otro).exists():
+            return otro
+    return f"{raiz}-{int(time.time())}{punto}{ext}"
+
+
 def llenar(cuantas, tema):
     """Genera hasta `cuantas` fotos nuevas y las mete en el banco.
 
@@ -182,7 +216,14 @@ def llenar(cuantas, tema):
     p = reel.persona()
     FOTOS.mkdir(parents=True, exist_ok=True)
     indice = leer()
-    tanda = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M")
+    # Con SEGUNDOS, no solo minutos. main() llama aquí una vez por tema, y
+    # con Cloudflare una foto tarda ocho segundos: dos temas caían dentro del
+    # mismo minuto, les tocaba el mismo nombre de tanda y la segunda foto
+    # machacaba a la primera en disco, dejando además dos fichas en el índice
+    # apuntando al mismo archivo. Con Hugging Face no pasaba porque cada foto
+    # tardaba minutos: el fallo solo aparece cuando las cosas van rápido.
+    tanda = _tanda_libre(datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S"),
+                         indice)
     etiqueta = etiqueta_de(tema)
     log(f"Tanda {tanda} · {tema} · etiqueta «{etiqueta}»")
 
@@ -210,7 +251,7 @@ def llenar(cuantas, tema):
                     escena = reel.sin_manos(escena)
                 time.sleep(2)
                 continue
-            nombre = f"{tanda}-{i}.jpg"
+            nombre = _libre(f"{tanda}-{i}.jpg")
             (FOTOS / nombre).write_bytes(datos)
             indice["fotos"].append({
                 "archivo": nombre, "tanda": tanda, "etiqueta": etiqueta,

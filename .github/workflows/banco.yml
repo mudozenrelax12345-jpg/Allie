@@ -52,6 +52,10 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Comprobar que ninguna foto pisa a otra
+        if: steps.falta.outputs.falta == 'si'
+        run: python app/prueba_pisadas.py
+
       - name: Comprobar que el banco reparte bien
         run: python app/prueba_banco.py
 
