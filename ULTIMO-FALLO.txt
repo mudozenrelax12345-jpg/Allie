@@ -1,24 +1,9 @@
-2026-10-13 13:16 UTC
+2026-10-14 04:37 UTC · banco
 
 Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 764, in <module>
+  File "/home/runner/work/Allie/Allie/app/banco.py", line 271, in <module>
     main()
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 733, in main
-    g = guion(p)
-        ^^^^^^^^
-  File "/home/runner/work/Allie/Allie/app/reel.py", line 90, in guion
-    g = gemini.json_(prompt)
-        ^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Allie/Allie/app/gemini.py", line 148, in json_
-    t = texto(prompt + aviso, imagenes)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Allie/Allie/app/gemini.py", line 100, in texto
-    data = _una_vez(modelo, prompt, imagenes)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Allie/Allie/app/gemini.py", line 79, in _una_vez
-    data = _post(f"{BASE}/interactions", {"model": modelo, "input": entrada})
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Allie/Allie/app/gemini.py", line 50, in _post
-    raise GeminiError(f"Gemini: {data.get('error', {}).get('message', r.text[:200])}")
-gemini.GeminiError: Gemini: gemini-3.5-flash-lite is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.
+  File "/home/runner/work/Allie/Allie/app/banco.py", line 264, in main
+    raise RuntimeError(
+RuntimeError: No entró ninguna foto al banco. Los motivos están en banco/ultimo-llenado.json
 

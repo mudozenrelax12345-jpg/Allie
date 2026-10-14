@@ -1,15 +1,16 @@
 {
- "cuando": "2026-10-13T11:55:37.411089+00:00",
+ "cuando": "2026-10-14T04:37:54.727108+00:00",
  "temas": [
   "un día en Madrid",
-  "rutina de mañana con café",
-  "finde de descanso en el sofá con los gatos"
+  "probando sitios nuevos para desayunar",
+  "rutina de mañana con café"
  ],
  "metidas": 0,
  "motivos": [
-  "cortado por cuota en la foto 1: Hugging Face no deja generar más hoy: multimodalart/Qwen-Image-Edit-Fast (con cuenta): sin cuota de ZeroGPU; multimodalart/Qwen-Image-Edit-Fast (sin cuenta): sin cuota de ZeroGPU"
+  "foto 1 intento 1: cloudflare · @cf/black-forest-labs/flux-2-klein-4b: HTTP 401 · {\"result\":null,\"success\":false,\"errors\":[{\"code\":10000,\"message\":\"Authentication error\"}],\"messages\":[]} | cloudflare · @cf/black-forest-labs/flux-2-klein-9b: HTTP 401 · {\"result\":null,\"success\":false,\"errors\":[{\"code\":10000,\"message\":\"Authentication error\"}],\"messages\":[]} | multimodalart/Qwen-Image-Edit-Fast (con cuenta): /infer: AppError: RuntimeError | multimodalart/Qwen-Image-Edit-Fast (sin cuenta): /infer: AppError: RuntimeError | linoyts/Qwen-Image-Edit-2511-Fast (con cuenta): /infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().; /use_output_as_input: no encuentro imagen+texto | linoyts/Qwen-Image-Edit-2511-Fast (sin cuenta): /infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().; /use_output_as_input: no encuentro imagen+texto | prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast (con cuenta): /edit_image: no sé qué poner en lora_adapter(Api); /load_example: no encuentro imagen+texto | prithivMLmods/Qwen-Image-Edit-2509-LoRAs-Fast (sin cuenta): /edit_image: no sé qué poner en lora_adapter(Api); /load_example: no encuentro imagen+texto | Qwen/Qwen-Image-Edit-2511 (con cuenta): /infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch(). | Qwen/Qwen-Image-Edit-2511 (sin cuenta): /infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch(). | Qwen/Qwen-Image-Edit (con cuenta): /infer: AppError: GPU task aborted | Qwen/Qwen-Image-Edit (sin cuenta): sin cuota de ZeroGPU | black-forest-labs/FLUX.1-Kontext-Dev (con cuenta): /infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().; /lambda: no encuentro imagen+texto | black-forest-labs/FLUX.1-Kontext-Dev (sin cuenta): /infer: AppError: The upstream Gradio app has raised an exception but has not enabled verbose error reporting. To enable, set show_error=True in launch().; /lambda: no encuentro imagen+texto",
+  "cortado por cuota en la foto 1: Hugging Face no deja generar más hoy: cloudflare · @cf/black-forest-labs/flux-2-klein-4b: HTTP 401 · {\"result\":null,\"success\":false,\"errors\":[{\"code\":10000,\"message\":\"Authentication error\"}],\"messages\":[]}; cloudflare · @cf/black-forest-labs/flux-2-klein-9b: HTTP 401 · {\"result\":null,\"success\":false,\"errors\":[{\"code\":10000,\"message\":\"Authentication error\"}],\"messages\":[]}; multimodalart/Qwen-Image-Edit-Fast (con cuenta): sin cuota de ZeroGPU; multimodalart/Qwen-Image-Edit-Fast (sin cuenta): sin cuota de ZeroGPU"
  ],
- "libres": 2,
+ "libres": 1,
  "total": 7,
  "gasto": [],
  "segundos_total": 0
