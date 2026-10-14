@@ -54,5 +54,51 @@
     "20261012": 3256
    }
   }
+ },
+ {
+  "fecha": "2026-10-14",
+  "fecha_ultimo_dato": "2026-10-13",
+  "seguidores": 3262,
+  "ganados": null,
+  "perdidos": null,
+  "alcance_reels": 16,
+  "visualizaciones_reels": 19,
+  "reels_publicados": 1,
+  "reel_de_hoy": "https://app.metricool.com/planner/calendar?blogId=5053196&openWithPostUuid=2969869486641006165",
+  "nota": "Trial Reel programado para hoy 20:00 Madrid (id 395718298). Las cuatro fotos del banco (20261014-054637-1..4) se miraron con las caras recortadas y ampliadas: rubia de ojos verdes en las cuatro, coinciden con 0-REFERENCIA.jpg. El reel de las 05:48 UTC se habia montado bien, pero su URL de uguu.se ya habia caducado y Metricool la rechazo ('Failed to normalize media'). Se relanzo reel.yml con solo_montar=si (run 38545903343), que remonta con LAS MISMAS fotos ya revisadas y no gasta cuota de imagen; URL nueva aceptada y subida a static.metricool.com. LECCION: la URL de uguu dura menos de 4 horas, asi que entre el montaje de las 05:40 y la programacion hay que remontar casi siempre; conviene que reel-diario suba a litterbox (72h) en vez de uguu, o que la tarea remonte de entrada. DATO MALO: el Trial Reel del 13-oct lleva 16 de alcance y 19 visualizaciones; el reel normal del 9-oct lleva 140 y 166. Primer indicio de que el Trial Reel reparte MENOS, no mas. DATO BUENO: los seguidores siguen subiendo, 3221 el 10-oct -> 3262 el 13-oct (+41 en tres dias).",
+  "contexto_30d": {
+   "seguidores_hace_7d_20261007": 3218,
+   "seguidores_hace_30d_20260914": 3241,
+   "reels_en_30d": 2,
+   "ultimo_reel": {
+    "fecha": "2026-10-13",
+    "alcance": 16,
+    "visualizaciones": 19
+   },
+   "alcance_medio_reel_ultimos_7d_20261008_20261014": 78,
+   "alcance_medio_reel_7d_anteriores_20261001_20261007": null,
+   "reels_por_fecha": {
+    "20261009": {
+     "alcance": 140,
+     "visualizaciones": 166
+    },
+    "20261013": {
+     "alcance": 16,
+     "visualizaciones": 19
+    }
+   },
+   "serie_seguidores": {
+    "20261004": 3221,
+    "20261005": 3217,
+    "20261006": 3218,
+    "20261007": 3218,
+    "20261008": 3220,
+    "20261009": 3221,
+    "20261010": 3221,
+    "20261011": 3243,
+    "20261012": 3256,
+    "20261013": 3262
+   }
+  }
  }
 ]
