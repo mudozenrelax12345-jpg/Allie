@@ -1,67 +1,29 @@
 {
- "cuando": "2026-10-14T11:41:52.887321+00:00",
+ "cuando": "2026-10-14T17:17:32.082536+00:00",
  "temas": [
+  "paseo con Booby por el parque",
   "probando sitios nuevos para desayunar",
-  "finde de descanso en el sofá con los gatos",
-  "el look del día"
+  "rutina de mañana con café"
  ],
  "metidas": 9,
  "motivos": [
-  "foto 2 intento 1: no es ella: Los ojos son verdes en la referencia y azules en la nueva. (ojos verdes → azules, pelo rubio claro → rubio claro)",
-  "foto 3 intento 1: el gato está fusionado de manera extraña con el jersey y tiene una forma deforme",
-  "foto 3 intento 2: las manos que sostienen al gato tienen una forma extraña y deforme, típica de IA",
-  "foto 3 intento 1: La mano derecha está mal definida y fusionada de manera extraña con el cuello de la gabardina.",
-  "foto 3 intento 2: la mano que agarra el cuello de la gabardina está deforme y los dedos no son naturales"
+  "foto 3 intento 1: no es ella: Los ojos en la foto nueva son marrones o avellana mientras que en la referencia son claramente verdes. (ojos verdes → marrones / avellana, pelo rubio claro → rubio con mechas más oscuras)",
+  "foto 2 intento 1: manos deformes y dedos fusionados bajo la barbilla",
+  "foto 3 intento 1: no es ella: El color de los ojos es diferente (avellana frente a verde) y el tono base del cabello es más oscuro. (ojos verde grisáceo → avellana / marrón claro, pelo rubio claro → castaño claro con mechas)"
  ],
- "libres": 14,
- "total": 24,
+ "libres": 23,
+ "total": 33,
  "gasto": [
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 8.8,
+   "segundos": 11.5,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 10.2,
-   "pasos": 4
-  },
-  {
-   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
-   "api": "ai/run",
-   "segundos": 9.3,
-   "pasos": 4
-  },
-  {
-   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
-   "api": "ai/run",
-   "segundos": 9.9,
-   "pasos": 4
-  },
-  {
-   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
-   "api": "ai/run",
-   "segundos": 11.6,
-   "pasos": 4
-  },
-  {
-   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
-   "api": "ai/run",
-   "segundos": 37.3,
-   "pasos": 4
-  },
-  {
-   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
-   "api": "ai/run",
-   "segundos": 9.8,
-   "pasos": 4
-  },
-  {
-   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
-   "api": "ai/run",
-   "segundos": 23.6,
+   "segundos": 24.8,
    "pasos": 4
   },
   {
@@ -73,33 +35,57 @@
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 13.3,
+   "segundos": 11.7,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 9.7,
+   "segundos": 11.6,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 18.6,
+   "segundos": 16.5,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 16.8,
+   "segundos": 33.1,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 7.0,
+   "segundos": 22.5,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 33.6,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 23.6,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 8.6,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 31.3,
    "pasos": 4
   }
  ],
- "segundos_total": 203.5
+ "segundos_total": 246.4
 }
