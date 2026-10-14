@@ -271,8 +271,18 @@ def main():
     temas = list(pedidos)
     if not temas:
         disponibles_temas = p.get("temas_reel") or ["una tarde tranquila en casa"]
+        # Un tema por cada tres fotos, y nunca más temas que eso.
+        #
+        # Antes eran siempre tres temas. Para llenar el banco con variedad
+        # está bien, pero el reel pide CUATRO fotos y le salían repartidas
+        # entre tres temas: una de cada, tres tandas distintas, y ninguna
+        # tanda con las cuatro que el reel necesita. El trabajo generaba las
+        # fotos, pagaba por ellas y luego fallaba al montar.
+        #
+        # Las fotos de un reel tienen que compartir ropa, sitio y luz, o el
+        # vídeo parece cuatro días distintos pegados.
         temas = random.sample(disponibles_temas,
-                              min(3, len(disponibles_temas)))
+                              min(max(1, cuantas // 3), len(disponibles_temas)))
     por_tema = max(1, cuantas // len(temas))
 
     indice = leer()

@@ -488,6 +488,14 @@ TROZOS_DE_MANO = (
     "holding", "holds", "brush", "pen", "pencil", "cup", "mug", "glass",
     "phone", "camera", "book", "leash", "bag", "fork", "spoon", "knife",
     "flower", "umbrella", "racket", "ball",
+    # Las manos nombradas directamente. Faltaban, y eso costó seis intentos
+    # seguidos el 14 de octubre: la escena decía «hands on the counter», no
+    # encajaba con ninguna palabra de arriba, así que se quedaba en el texto
+    # y encima se le añadía «hands out of frame». Un encargo que se contradice
+    # a sí mismo, y el generador resolvía la contradicción dibujando manos
+    # imposibles que el revisor rechazaba una y otra vez.
+    "hand", "hands", "finger", "palm", "wrist", "touching", "resting on",
+    "leaning on", "typing", "writing", "pointing", "waving", "adjusting",
 )
 
 
