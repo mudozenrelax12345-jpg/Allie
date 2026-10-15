@@ -86,6 +86,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Comprobar que el texto se escribe mirando las fotos
+        run: python app/prueba_texto_mira.py
+
       - name: Comprobar que al quitar las manos no quede contradicción
         run: python app/prueba_manos.py
 

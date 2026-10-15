@@ -753,6 +753,63 @@ def issue(titulo, cuerpo):
         log(f"No se pudo crear el aviso: {e}")
 
 
+def texto_de_las_fotos(p, rutas, idea_previa=""):
+    """El texto del post, escrito MIRANDO las fotos que van en el vídeo.
+
+    Por qué existe. guion() escribe el texto ANTES de que las fotos existan,
+    a partir de un tema elegido al azar. Y en el camino pasan tres cosas que
+    lo desconectan de lo que se ve:
+      · una escena rechazada por el revisor se reintenta cambiada,
+      · sin_manos() borra de la escena el objeto que sujetaba,
+      · y sobre todo, el reel se monta con fotos del BANCO, que pueden ser
+        de otra tanda y de otro tema completamente distinto.
+
+    El 15 de octubre el texto hablaba de «brochas, colores y manchas de
+    pintura» sobre tres fotos de Allie en una cafetería. No había un pincel
+    en ninguna. Publicar eso es peor que no publicar: a quien lo lee le
+    chirría aunque no sepa decir por qué.
+
+    Así que el texto se escribe al final, con las fotos delante.
+    """
+    imagenes = []
+    for r in rutas[:4]:
+        try:
+            imagenes.append(Path(r).read_bytes())
+        except Exception as e:  # noqa: BLE001
+            log(f"No pude leer {r} para escribir el texto: {e}")
+    if not imagenes:
+        return None
+
+    prompt = f"""Eres el community manager de {p.get('nombre', 'Allie')} en Instagram.
+Su forma de ser: {p.get('personalidad', '')}
+
+Te paso las {len(imagenes)} fotos que forman el reel. Escribe el texto del post.
+
+REGLA PRINCIPAL: solo puedes mencionar cosas que SE VEAN en las fotos. Si no
+hay un café en la imagen, no hables de café. Si no hay pinceles, no hables de
+pintar. Si no se ve la calle, no digas que está paseando. Es preferible un
+texto sobre cómo se siente o qué está pensando, que uno que invente objetos o
+planes que no están. Mira la ropa, el sitio, la luz y la postura, y escribe
+desde ahí.
+
+Primera línea con gancho. Tres o cuatro líneas en total. Termina con una
+pregunta abierta y fácil de contestar. Primera persona, cercano, nada de
+lenguaje de marca. Nada de comillas.
+
+Devuelve SOLO un JSON:
+{{"texto": "...", "hashtags": ["#...", "..."], "idea": "la idea en una frase en español"}}
+
+Reglas: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie', '#AIInfluencer'])}."""
+    try:
+        g = gemini.json_(prompt, imagenes=imagenes)
+    except Exception as e:  # noqa: BLE001
+        log(f"No pude escribir el texto mirando las fotos: {e}")
+        return None
+    if not (g.get("texto") or "").strip():
+        return None
+    return g
+
+
 def main():
     p = persona()
     log("Pensando la idea del reel…")
@@ -769,6 +826,17 @@ def main():
     else:
         rutas = descargar_fotos(g["escenas"], p)
         guardar_para_revisar(rutas)
+    # El texto, AHORA, con las fotos delante. Si falla, se queda el de
+    # guion(), que es peor pero mejor que nada.
+    mirado = texto_de_las_fotos(p, rutas, g.get("idea", ""))
+    if mirado:
+        g["texto"] = mirado.get("texto") or g.get("texto", "")
+        g["hashtags"] = mirado.get("hashtags") or g.get("hashtags", [])
+        g["idea"] = mirado.get("idea") or g.get("idea", "")
+        log("Texto reescrito mirando las fotos del reel")
+    else:
+        log("AVISO: el texto no se pudo escribir mirando las fotos; va el del guion")
+
     compuestas = componer(rutas)
     video = montar(compuestas)
     log(f"Vídeo montado: {video.name} ({video.stat().st_size // 1024} KB)")
