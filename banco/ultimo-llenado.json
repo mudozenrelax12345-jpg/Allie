@@ -1,42 +1,46 @@
 {
- "cuando": "2026-10-15T04:36:02.068781+00:00",
+ "cuando": "2026-10-15T06:14:45.639850+00:00",
  "temas": [
-  "probando sitios nuevos para desayunar",
-  "finde de descanso en el sofá con los gatos",
-  "paseo con Booby por el parque"
+  "rutina de mañana con café",
+  "un día en Madrid",
+  "finde de descanso en el sofá con los gatos"
  ],
  "metidas": 9,
  "motivos": [
-  "foto 2 intento 1: la mano y los dedos sobre el respaldo de la silla están deformados y mal formados",
-  "foto 2 intento 2: la mano derecha apoyada en la mesa tiene una forma extraña y dedos mal definidos",
-  "foto 2 intento 1: La mano que sujeta la cara tiene una forma extraña y se funde de manera antinatural con el gato y el jersey.",
-  "foto 3 intento 1: no es ella: Los ojos en la referencia son claramente verdes y en la nueva son azules. (ojos verdes → azules, pelo rubio con mechas claras → rubio con mechas)"
+  "foto 1 intento 1: Las manos tienen dedos deformes y anómalos.",
+  "foto 1 intento 2: manos deformes con dedos extraños en la mesa",
+  "foto 2 intento 1: no es ella: La forma de la cara, la nariz y la estructura ósea son diferentes; la distancia entre los ojos y los rasgos faciales no coinciden con los de la referencia. (ojos verdes → verdes con tono avellana, pelo rubio claro con mechas → rubio más oscuro con raíces visibles)",
+  "foto 3 intento 1: no es ella: El color de los ojos es diferente (verdes en referencia, marrones/avellana en la nueva) y el tono base del pelo es más oscuro. (ojos verdes → marrones / avellana, pelo rubio claro → castaño claro)",
+  "foto 1 intento 1: no es ella: Los ojos en la foto nueva están completamente cerrados, por lo que es imposible verificar el color de los ojos, requisito indispensable para confirmar la identidad. (ojos verdes → no visibles (cerrados), pelo rubio claro con mechas frontales marcadas → rubio con raíces más oscuras y tono general ligeramente más cálido)",
+  "foto 3 intento 1: no es ella: Los ojos están cerrados impidiendo verificar su color y el tono base del pelo es notablemente más oscuro (castaño). (ojos verdes → no visibles (cerrados), pelo rubio con mechas claras → castaño claro con mechas)",
+  "foto 3 intento 2: no es ella: Los ojos están cerrados impidiendo la verificación, y la estructura facial, la nariz y las cejas muestran discrepancias claras respecto a la referencia. (ojos verdes → no visibles (cerrados), pelo rubio claro con mechas → rubio con raíces oscuras y tono diferente)",
+  "foto 3 intento 3: no es ella: Los ojos están cerrados y no se puede verificar su color, por lo que ante la duda no se puede confirmar que sea la misma. (ojos verdes → no visibles (cerrados), pelo rubio con mechas → rubio con mechas)"
  ],
- "libres": 32,
- "total": 42,
+ "libres": 41,
+ "total": 51,
  "gasto": [
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 8.9,
+   "segundos": 8.4,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 20.6,
+   "segundos": 12.5,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 14.0,
+   "segundos": 11.9,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 12.4,
+   "segundos": 6.5,
    "pasos": 4
   },
   {
@@ -48,51 +52,75 @@
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 9.2,
+   "segundos": 9.7,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 9.3,
+   "segundos": 18.8,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 14.8,
+   "segundos": 11.1,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 8.5,
+   "segundos": 9.0,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 10.5,
+   "segundos": 13.5,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 6.8,
+   "segundos": 10.4,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 9.5,
+   "segundos": 7.3,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 6.2,
+   "segundos": 10.8,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 12.9,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 11.9,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 8.2,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 14.4,
    "pasos": 4
   }
  ],
- "segundos_total": 138.7
+ "segundos_total": 185.3
 }

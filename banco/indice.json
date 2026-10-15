@@ -146,7 +146,7 @@
    "etiqueta": "varios",
    "tema": "probando sitios nuevos para desayunar",
    "escena": "The same woman, medium shot from the waist up, leaning forward slightly over a rustic wooden cafe table with a closed mouth gentle smile, soft morning sunlight casting a warm glow, wearing a casual pastel knit sweater, cozy minimalist cafe interior background",
-   "usada": null,
+   "usada": "2026-10-15T06:14:45.834842+00:00",
    "creada": "2026-10-14T11:36:50.669394+00:00"
   },
   {
@@ -155,7 +155,7 @@
    "etiqueta": "varios",
    "tema": "probando sitios nuevos para desayunar",
    "escena": "The same woman, close-up portrait, resting her chin on her hands with relaxed elbows on the table, smiling softly with closed lips, bright natural side lighting, wearing the same pastel knit sweater, blurred warm cafe background",
-   "usada": null,
+   "usada": "2026-10-15T06:14:45.834842+00:00",
    "creada": "2026-10-14T11:37:06.084501+00:00"
   },
   {
@@ -164,7 +164,7 @@
    "etiqueta": "varios",
    "tema": "probando sitios nuevos para desayunar",
    "escena": "The same woman, medium shot, turning slightly to look over her shoulder towards the camera with a playful closed-mouth smile, soft morning light, wearing the same pastel knit sweater, out-of-focus trendy breakfast spot interior",
-   "usada": null,
+   "usada": "2026-10-15T06:14:45.834842+00:00",
    "creada": "2026-10-14T11:37:20.629952+00:00"
   },
   {
@@ -382,7 +382,88 @@
    "escena": "The same woman, medium shot from the waist up in the park wearing the exact same beige trench coat, posing naturally with hands empty and relaxed, looking down slightly with a subtle, elegant smile under bright afternoon light",
    "usada": null,
    "creada": "2026-10-15T04:36:02.067619+00:00"
+  },
+  {
+   "archivo": "20261015-060859-1.jpg",
+   "tanda": "20261015-060859",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium shot in a cozy sunlit kitchen wearing a soft beige oversized knit sweater, leaning against the marble countertop with a gentle closed-lip smile, warm morning backlighting creating a soft glow, relaxed pose with arms crossed softly.",
+   "usada": null,
+   "creada": "2026-10-15T06:09:21.215576+00:00"
+  },
+  {
+   "archivo": "20261015-060859-2.jpg",
+   "tanda": "20261015-060859",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, close-up portrait in the same cozy sunlit kitchen wearing the soft beige oversized knit sweater, looking directly at the camera with a playful and elegant soft smile, warm morning golden hour light on her face, shoulders relaxed.",
+   "usada": null,
+   "creada": "2026-10-15T06:09:44.287631+00:00"
+  },
+  {
+   "archivo": "20261015-060859-3.jpg",
+   "tanda": "20261015-060859",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium shot in the same cozy sunlit kitchen wearing the soft beige oversized knit sweater, turned slightly sideways with a subtle mischievous glance over her shoulder, lips closed in a sweet smile, warm morning light casting gentle shadows.",
+   "usada": null,
+   "creada": "2026-10-15T06:10:06.836660+00:00"
+  },
+  {
+   "archivo": "20261015-061006-1.jpg",
+   "tanda": "20261015-061006",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot from the waist up, leaning against a rustic wooden table in a sunny Madrid café, golden hour light, wearing a casual linen blazer and a simple t-shirt, hands out of frame, nothing held in her hands, arms relaxed, framed from the chest up",
+   "usada": null,
+   "creada": "2026-10-15T06:11:02.098164+00:00"
+  },
+  {
+   "archivo": "20261015-061006-2.jpg",
+   "tanda": "20261015-061006",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, close-up portrait, seated at the same Madrid café table with warm afternoon sunlight catching her shoulders, wearing the same linen blazer and t-shirt, turning her head slightly with a playful expression, lips softly closed, hands out of frame.",
+   "usada": null,
+   "creada": "2026-10-15T06:11:59.108990+00:00"
+  },
+  {
+   "archivo": "20261015-061006-3.jpg",
+   "tanda": "20261015-061006",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot from the waist up, facing slightly away from the camera in the same Madrid café setting, golden light, wearing the same linen blazer, glancing back over her shoulder with a subtle, elegant smirk, mouth closed, hands relaxed and empty.",
+   "usada": null,
+   "creada": "2026-10-15T06:12:34.731955+00:00"
+  },
+  {
+   "archivo": "20261015-061234-1.jpg",
+   "tanda": "20261015-061234",
+   "etiqueta": "casa",
+   "tema": "finde de descanso en el sofá con los gatos",
+   "escena": "The same woman, medium shot, lying relaxed on a light gray sofa under warm indoor lighting, wearing an oversized beige knit sweater, resting her head on a soft cushion with two sleeping cats nearby, gentle closed-mouth smile, cozy living room background out of focus.",
+   "usada": null,
+   "creada": "2026-10-15T06:13:07.396969+00:00"
+  },
+  {
+   "archivo": "20261015-061234-2.jpg",
+   "tanda": "20261015-061234",
+   "etiqueta": "casa",
+   "tema": "finde de descanso en el sofá con los gatos",
+   "escena": "The same woman, close-up shot, lounging comfortably on a light gray sofa bathed in warm indoor lighting, wearing an oversized beige knit sweater, softly smiling with lips together as a cat rests gently near her shoulder, intimate and serene atmosphere.",
+   "usada": null,
+   "creada": "2026-10-15T06:13:24.397472+00:00"
+  },
+  {
+   "archivo": "20261015-061234-3.jpg",
+   "tanda": "20261015-061234",
+   "etiqueta": "casa",
+   "tema": "finde de descanso en el sofá con los gatos",
+   "escena": "The same woman, medium shot, reclining sideways on a light gray sofa with warm indoor lighting, wearing an oversized beige knit sweater, eyes closed in peaceful rest with a cat curled up against her chest, elegant and calm mood, hands out of frame, nothing held in her hands, arms relaxed, framed from the chest up",
+   "usada": null,
+   "creada": "2026-10-15T06:14:45.638755+00:00"
   }
  ],
- "actualizado": "2026-10-15T04:36:02.067688+00:00"
+ "actualizado": "2026-10-15T06:14:45.834879+00:00"
 }
