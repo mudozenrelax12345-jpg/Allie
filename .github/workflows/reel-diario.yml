@@ -43,6 +43,10 @@ on:
         description: "Cuántas fotos generar"
         type: string
         default: "4"
+      forzar:
+        description: "Rehacer el reel aunque ya haya uno de hoy"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -82,6 +86,8 @@ jobs:
       - name: ¿Falta el reel de hoy?
         id: falta
         run: python app/falta_reel.py
+        env:
+          FORZAR: ${{ inputs.forzar }}
 
       - name: Comprobar que arranca con los inputs vacíos
         if: steps.falta.outputs.falta == 'si'

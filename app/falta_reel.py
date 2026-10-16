@@ -41,7 +41,14 @@ def falta():
 
 
 def main():
-    hace_falta, porque = falta()
+    # Forzar, para rehacer el reel del día cuando el que hay no sirve: salió
+    # mudo, salió con una foto mala, o se acaba de arreglar algo y hay que
+    # comprobarlo. Sin esto, la única forma de reintentar era esperar a
+    # mañana.
+    if (os.environ.get("FORZAR") or "").strip().lower() in ("si", "sí", "true", "1"):
+        hace_falta, porque = True, "forzado a mano"
+    else:
+        hace_falta, porque = falta()
     print(f"· {'hace falta' if hace_falta else 'no hace falta'}: {porque}", flush=True)
     salida = os.environ.get("GITHUB_OUTPUT")
     if salida:
