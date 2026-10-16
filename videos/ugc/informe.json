@@ -1,13 +1,62 @@
 {
- "cuando": "2026-10-11T04:50:07.911806+00:00",
- "producto": "a plain unbranded amber glass dropper bottle with a black cap, no label, no text",
+ "cuando": "2026-10-16T19:33:45.297711+00:00",
+ "producto": "a plain unbranded white glass jar of face cream with a white lid",
  "resultados": [
   {
    "escena": "1-cerca",
-   "texto": "The same woman, upper-body shot sitting by a window in warm daylight, holding a plain unbranded amber glass dropper bottle with a black cap, no label, no text upright in one hand close to her chest, the bottle fully visible and in sharp focus, her other hand out of frame",
+   "texto": "The same woman, upper-body shot sitting by a window in warm daylight, holding a plain unbranded white glass jar of face cream with a white lid upright in one hand close to her chest, the bottle fully visible and in sharp focus, her other hand out of frame",
    "intentos": [
-    "sin cuota: Hugging Face no deja generar más hoy: black-forest-labs/FLUX.1-Kontext-Dev (con cuenta): sin cuota de ZeroGPU; black-forest-labs/FLUX.1-Kontext-Dev (sin cuenta): sin cuota de ZeroGPU"
-   ]
+    {
+     "archivo": "1-cerca-1.jpg",
+     "manos_ok": true,
+     "manos": "no revisado",
+     "es_ella": true,
+     "identidad": "es ella (parecido 0.667 ≥ 0.5)"
+    }
+   ],
+   "sale": "1-cerca-1.jpg"
+  },
+  {
+   "escena": "2-dos-manos",
+   "texto": "The same woman, upper-body shot at a plain table in warm daylight, holding a plain unbranded white glass jar of face cream with a white lid with both hands in front of her, fingers clearly visible and relaxed around the bottle",
+   "intentos": [
+    {
+     "archivo": "2-dos-manos-1.jpg",
+     "manos_ok": true,
+     "manos": "no revisado",
+     "es_ella": true,
+     "identidad": "es ella (parecido 0.692 ≥ 0.5)"
+    }
+   ],
+   "sale": "2-dos-manos-1.jpg"
+  },
+  {
+   "escena": "3-senalando",
+   "texto": "The same woman, upper-body shot in warm daylight, holding a plain unbranded white glass jar of face cream with a white lid in one hand and pointing at it with the index finger of the other hand, both hands fully visible",
+   "intentos": [
+    {
+     "archivo": "3-senalando-1.jpg",
+     "manos_ok": true,
+     "manos": "no revisado",
+     "es_ella": true,
+     "identidad": "es ella (parecido 0.766 ≥ 0.5)"
+    }
+   ],
+   "sale": "3-senalando-1.jpg"
+  },
+  {
+   "escena": "4-hablando",
+   "texto": "The same woman, upper-body shot in warm daylight, holding a plain unbranded white glass jar of face cream with a white lid up beside her face, mouth slightly open as if speaking to the camera, looking straight at the lens",
+   "intentos": [
+    {
+     "archivo": "4-hablando-1.jpg",
+     "manos_ok": true,
+     "manos": "no revisado",
+     "es_ella": true,
+     "identidad": "es ella (parecido 0.724 ≥ 0.5)"
+    }
+   ],
+   "sale": "4-hablando-1.jpg"
   }
  ]
 }
