@@ -30,6 +30,11 @@ jobs:
           python-version: "3.12"
           cache: pip
 
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/modelos-cara
+          key: modelos-cara-v1
+
       - name: Instalar
         run: pip install -r requirements.txt
 
