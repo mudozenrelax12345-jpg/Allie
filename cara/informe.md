@@ -19,15 +19,16 @@ Umbral: **0.5**
 - ✅ foto-20261008-1408-1.jpg · parecido 0.889
 - ✅ foto-20261008-1408-2.jpg · parecido 0.798
 - ✅ foto-20261007-2155.jpg · parecido 0.889
-- ❌ sana-con-foto-de-referencia.jpg · parecido 0.411
 
 ## La desconocida (debe fallar)
 
-- ✅ la mujer que se publicó por error NO pasa · parecido 0.411
+- ✅ sana-sin-referencia.jpg NO pasa · parecido 0.411
+- ✅ sana-con-foto-de-referencia.jpg NO pasa · parecido 0.411
 
-**Hueco**: la peor foto buena saca 0.411 y la desconocida 0.411 · diferencia 0.000
+**Reparto**: la peor foto de Allie saca 0.531, la mejor desconocida 0.411, y el umbral está en 0.5
 
-- ❌ hay un margen claro entre Allie y la desconocida · diferencia 0.000
+- ✅ el umbral deja fuera a todas las desconocidas · 0.411 vs 0.5
+- ✅ y deja dentro a todas las de Allie · 0.531 vs 0.5
 
-**2 fallos.**
+**0 fallos.**
 
