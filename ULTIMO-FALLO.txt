@@ -1,4 +1,4 @@
-2026-10-16 06:10 UTC · banco
+2026-10-16 12:06 UTC · banco
 
 Traceback (most recent call last):
   File "/home/runner/work/Allie/Allie/app/banco.py", line 322, in <module>
@@ -17,5 +17,5 @@ Traceback (most recent call last):
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/runner/work/Allie/Allie/app/gemini.py", line 140, in texto
     raise GeminiError(
-gemini.GeminiError: Ningún modelo de Gemini disponible. Último aviso: Gemini: gemini-3.5-flash-lite is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.
+gemini.GeminiError: Ningún modelo de Gemini disponible. Último aviso: Gemini: Your project has exceeded a quota. See https://ai.dev/rate-limit to manage your rate limits.
 
