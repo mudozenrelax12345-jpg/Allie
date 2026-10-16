@@ -31,3 +31,36 @@ Lo que NO cambia: Allie puede LLEVAR un producto, no puede dar testimonio
 sobre él. «Me ha cambiado la piel» es un testimonio de una persona que no
 existe, y eso lo prohíbe la norma de la FTC de 2024 y, en España, la
 competencia desleal por endoso falso.
+
+---
+
+## Corrección del 16 de octubre, por la noche
+
+Teresa miró el muestrario y vio dedos mal donde yo había dicho que estaban
+bien. Tenía razón: yo revisé la hoja de contactos y solo amplié tres de las
+ocho. A tamaño pequeño colaban; ampliadas, no. En la foto del tarro con las
+dos manos, debajo del bote se juntan más dedos de los que caben.
+
+La regla de arriba se queda corta. La buena es más dura:
+
+**No basta con evitar que una sola mano agarre. Hay que evitar el agarre.**
+
+Lo que aguanta una ampliación:
+- la mano APOYADA plana sobre una mesa o sobre el producto, dedos juntos y rectos
+- el producto en primer plano y ella detrás, desenfocada, con las manos fuera de plano
+- el producto PUESTO (un pañuelo al cuello) en vez de sostenido
+- los brazos cruzados con las manos recogidas
+- la barbilla apoyada en el dorso de la mano cerrada
+
+Lo que no aguanta, aunque a primera vista lo parezca:
+- dos manos rodeando un objeto: donde se juntan, salen dedos de más
+- un objeto sobre la palma abierta: los dedos salen como salchichas sin forma
+- la mano colgando relajada: se queda en una masa sin dedos definidos
+
+Y el muestrario se genera con **flux-2-klein-9b**, el modelo grande. Cuesta
+trece veces más que el pequeño y el cupo diario da para siete imágenes, pero
+son fotos que un cliente va a mirar con lupa. El reel diario sigue con el
+pequeño, que da noventa.
+
+De ocho piezas generadas así, seis pasaron la ampliación. Ese es el número
+honesto: tres de cada cuatro.
