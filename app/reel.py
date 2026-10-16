@@ -810,12 +810,85 @@ Reglas: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie', '#AIInfluence
     return g
 
 
+def guion_del_banco(p):
+    """El guion a partir de las fotos que el reel lleva de verdad.
+
+    En modo «solo montar» las fotos vienen del banco y las escenas ya están
+    escritas y verificadas: son exactamente las que se le pidieron al
+    generador para cada una. Pedirle a Gemini un guion nuevo sobre un tema al
+    azar era doblemente malo: gastaba cuota en algo que no se usa, y el texto
+    acababa hablando de otra cosa que las imágenes.
+
+    Y además quitaba resiliencia: el 16 de octubre el reel murió en la
+    primera línea de main() pidiendo ese guion, con 71 fotos listas en el
+    banco y el vídeo a un paso de montarse.
+    """
+    apunte = VIDEOS / "del-banco.json"
+    escenas, temas = [], []
+    try:
+        cogidas = (json.loads(apunte.read_text(encoding="utf-8")) or {}).get("fotos", [])
+        fichas = {f["archivo"]: f for f in
+                  (json.loads((BASE / "banco" / "indice.json").read_text(
+                      encoding="utf-8")) or {}).get("fotos", [])}
+        for nombre in cogidas:
+            f = fichas.get(nombre if isinstance(nombre, str) else nombre.get("archivo", ""))
+            if not f:
+                continue
+            if f.get("escena"):
+                escenas.append(f["escena"])
+            if f.get("tema"):
+                temas.append(f["tema"])
+    except Exception as e:  # noqa: BLE001
+        log(f"No pude leer de qué van las fotos del banco: {e}")
+
+    tema = temas[0] if temas else (os.environ.get("TEMA", "").strip() or "un día cualquiera")
+    base = {"idea": tema, "tema": tema, "escenas": escenas,
+            "texto": "", "hashtags": p.get("hashtags_base", ["#Allie", "#AIInfluencer"])}
+    if not escenas:
+        return base
+
+    prompt = f"""Eres el community manager de {p.get('nombre', 'Allie')} en Instagram.
+Su forma de ser: {p.get('personalidad', '')}
+
+Estas son, una por una, las fotos que van en el reel de hoy, descritas tal y
+como se generaron:
+""" + "\n".join(f"{i}. {e}" for i, e in enumerate(escenas, 1)) + """
+
+Escribe el texto del post. Solo puedes mencionar cosas que aparezcan en esas
+descripciones: la ropa, el sitio, la luz, lo que está haciendo. Si algo no
+está ahí, no existe. Mejor hablar de cómo se siente que inventar un objeto o
+un plan que no se ve.
+
+Primera línea con gancho. Tres o cuatro líneas. Termina con una pregunta
+abierta y fácil de contestar. Primera persona, cercano, sin lenguaje de
+marca, sin comillas.
+
+Devuelve SOLO un JSON:
+{"texto": "...", "hashtags": ["#...", "..."], "idea": "la idea en una frase en español"}
+""" + f"""
+Reglas: 4 o 5 hashtags, incluye {p.get('hashtags_base', ['#Allie', '#AIInfluencer'])}."""
+    try:
+        g = gemini.json_(prompt)
+    except Exception as e:  # noqa: BLE001
+        log(f"Nadie pudo escribir el texto desde las escenas: {e}")
+        return base
+    base.update({k: v for k, v in g.items() if v})
+    return base
+
+
 def main():
     p = persona()
-    log("Pensando la idea del reel…")
-    g = guion(p)
-    log(f"Idea: {g.get('idea')}")
-    if os.environ.get("SOLO_MONTAR") == "si":
+    solo_montar = os.environ.get("SOLO_MONTAR") == "si"
+    if solo_montar:
+        # Nada de inventar un guion: las fotos ya existen y traen escritas
+        # sus propias escenas.
+        g = guion_del_banco(p)
+        log(f"Idea (de las fotos del banco): {g.get('idea')}")
+    else:
+        log("Pensando la idea del reel…")
+        g = guion(p)
+        log(f"Idea: {g.get('idea')}")
+    if solo_montar:
         # Las fotos ya están generadas y revisadas; lo único que falta es el
         # vídeo. Volver a generarlas gastaría cupo para repetir un trabajo ya
         # hecho, y el cupo diario es justo lo que se acaba.

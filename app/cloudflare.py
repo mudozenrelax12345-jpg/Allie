@@ -159,3 +159,61 @@ def generar(referencia, orden, modelos=None):
         return salida.getvalue(), round(time.time() - t0, 1), modelo
 
     return None, 0, dichos
+
+
+# --------------------------------------------------------------- texto
+#
+# Cloudflare no solo genera imágenes: con las mismas credenciales y el mismo
+# cupo de 10.000 neuronas diarias hay modelos de texto. Esto existe porque el
+# 16 de octubre Gemini se quedó sin cuota a media mañana y con él se cayó
+# todo: las escenas, el guion y el texto del post. Un segundo proveedor por
+# el que ya pagamos cero convierte eso en un contratiempo en vez de un día
+# sin publicar.
+#
+# Los identificadores de modelo cambian, así que se prueban varios en orden y
+# un 404 pasa al siguiente en vez de tumbar la llamada.
+MODELOS_TEXTO = [m.strip() for m in os.environ.get(
+    "CF_MODELOS_TEXTO",
+    "@cf/meta/llama-3.3-70b-instruct-fp8-fast,"
+    "@cf/meta/llama-3.1-8b-instruct-fp8,"
+    "@cf/meta/llama-3.1-8b-instruct").split(",") if m.strip()]
+
+
+def texto(prompt, modelos=None):
+    """El texto que conteste el primer modelo que funcione, o None."""
+    cuenta, ficha = credenciales()
+    if not cuenta:
+        return None, ["sin credenciales de Cloudflare"]
+    dichos = []
+    for modelo in (modelos or MODELOS_TEXTO):
+        try:
+            r = requests.post(
+                f"{BASE}/{cuenta}/ai/run/{modelo}",
+                headers={"Authorization": f"Bearer {ficha}",
+                         "Content-Type": "application/json"},
+                json={"messages": [{"role": "user", "content": prompt}],
+                      "max_tokens": 1200},
+                timeout=180)
+        except Exception as e:  # noqa: BLE001
+            dichos.append(f"{modelo}: {type(e).__name__}: {str(e)[:120]}")
+            continue
+        if r.status_code != 200:
+            dichos.append(f"{modelo}: HTTP {r.status_code} · {r.text[:150]}")
+            continue
+        try:
+            cuerpo = r.json()
+        except Exception:  # noqa: BLE001
+            dichos.append(f"{modelo}: no contestó JSON")
+            continue
+        if not cuerpo.get("success"):
+            dichos.append(f"{modelo}: {str(cuerpo.get('errors'))[:150]}")
+            continue
+        res = cuerpo.get("result") or {}
+        t = res.get("response") or res.get("output") or ""
+        if isinstance(t, list):
+            t = " ".join(str(x) for x in t)
+        if not str(t).strip():
+            dichos.append(f"{modelo}: contestó vacío")
+            continue
+        return str(t), [modelo]
+    return None, dichos

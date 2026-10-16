@@ -137,6 +137,22 @@ def texto(prompt, imagenes=()):
         _elegido = modelo
         break
     if data is None:
+        # Antes de rendirse, Cloudflare. Mismo cupo que ya usamos para las
+        # imágenes y que va sobrado: el 16 de octubre Gemini se quedó seco a
+        # media mañana y se llevó por delante el reel del día, teniendo otro
+        # proveedor disponible y pagado a cero. Solo para texto: las
+        # imágenes necesitan un modelo con vista y eso es otra historia.
+        if not imagenes:
+            try:
+                import cloudflare
+                if cloudflare.hay():
+                    respuesta, quien = cloudflare.texto(prompt)
+                    if respuesta:
+                        print(f"· Gemini no puede; contesta Cloudflare ({quien[0]})",
+                              flush=True)
+                        return respuesta
+            except Exception as e:  # noqa: BLE001
+                print(f"· El respaldo de Cloudflare tampoco: {e}", flush=True)
         raise GeminiError(
             f"Ningún modelo de Gemini disponible. Último aviso: {ultimo}"
             if ultimo else "Ningún modelo de Gemini disponible.")
