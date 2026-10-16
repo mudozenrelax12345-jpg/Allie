@@ -46,6 +46,8 @@ INDICE = BANCO / "indice.json"
 # primera línea de main() por un input vacío.
 CUANTAS = ajustes.entero("CUANTAS", 9)
 TEMAS = ajustes.lista("TEMAS")
+# Por encima de esto el banco no genera nada: ya hay colchón.
+TECHO = ajustes.entero("TECHO_BANCO", 24)
 
 
 def log(m):
@@ -286,8 +288,19 @@ def main():
     por_tema = max(1, cuantas // len(temas))
 
     indice = leer()
-    log(f"El banco tiene {len(disponibles(indice))} fotos libres de "
+    libres = disponibles(indice)
+    log(f"El banco tiene {len(libres)} fotos libres de "
         f"{len(indice['fotos'])} en total")
+
+    # Con el banco lleno, no se genera. El 16 de octubre había 71 fotos
+    # libres y aun así se intentó generar más, se agotó la cuota de Gemini a
+    # media mañana y el reel del día no salió: la cuenta se quedó muda
+    # teniendo material de sobra para tres semanas. Generar es para tener
+    # colchón, no para gastarlo porque sí.
+    if len(libres) >= TECHO:
+        log(f"No genero: con {len(libres)} libres (techo {TECHO}) hay de sobra.")
+        guardar(indice)
+        return
 
     total, motivos = 0, []
     for tema in temas:

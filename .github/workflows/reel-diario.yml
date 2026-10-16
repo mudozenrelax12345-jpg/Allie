@@ -119,7 +119,12 @@ jobs:
         if: steps.falta.outputs.falta == 'si'
         run: python app/prueba_cuota.py
 
+      # Si generar falla, el reel se monta igual con lo que haya en el
+      # banco. El 16 de octubre había 71 fotos libres y el día se quedó sin
+      # publicar porque este paso falló: tener material y no usarlo por un
+      # fallo en el paso anterior es el peor de los dos mundos.
       - name: Generar las fotos del día
+        continue-on-error: true
         if: steps.falta.outputs.falta == 'si'
         run: python app/banco.py
         env:
