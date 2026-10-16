@@ -10,7 +10,11 @@ No pude leer los permisos: (#100) Tried accessing nonexisting field (permissions
 
 Vídeo: `https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261016_1446.mp4`
 
-- ❌ No se pudo crear el contenedor: `(#10) Requires instagram_content_publish permission to manage the object (código 10)`
+- ✅ **Contenedor creado**: `18105862850571997`
+- No se ha llamado a media_publish, así que **no hay nada en la cuenta**. El contenedor caduca solo en 24 h.
 
-Eso significa que falta el permiso o la app no está configurada para publicar. Se pide en el panel de desarrolladores de Meta y es gratis.
+  - a los 10s: `IN_PROGRESS`
+  - a los 20s: `FINISHED`
+
+**Conclusión: Allie puede publicar sin Metricool.**
 
