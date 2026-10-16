@@ -1,0 +1,69 @@
+name: Publicar el reel en Instagram
+
+# Publica directamente por la API de Instagram, sin pasar por Metricool.
+#
+# Metricool regala 20 publicaciones al mes y el 16 de octubre iban 17 con
+# quince días por delante. La API permite 25 cada 24 horas.
+#
+# El vídeo se sirve desde este mismo repositorio, que es público: dirección
+# permanente, sin alojamientos temporales que caducan.
+
+on:
+  schedule:
+    # 10:12 en Madrid, que es la mejor hora según las estadísticas de la
+    # cuenta (el pico de los días laborables está sobre las 10:00). Minuto
+    # desplazado: a las horas en punto GitHub va cargado y retrasa.
+    - cron: "12 8 * * *"
+  workflow_dispatch:
+    inputs:
+      en_seco:
+        description: "Enseñar lo que publicaría, sin publicarlo (si/no)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar-allie
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install -r requirements.txt
+
+      - name: Comprobar las barreras antes de tocar la cuenta
+        run: python app/prueba_publicar_seguro.py
+
+      - name: Publicar
+        run: python app/publicar.py
+        env:
+          FB_TOKEN: ${{ secrets.FB_TOKEN }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_PRIVADO: ${{ github.event.repository.private }}
+          EN_SECO: ${{ inputs.en_seco }}
+
+      - name: Guardar el registro salga como salga
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Publicado en Instagram [skip ci]"
+            git pull --rebase
+            git push
+          fi
