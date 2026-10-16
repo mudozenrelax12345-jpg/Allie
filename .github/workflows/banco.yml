@@ -41,6 +41,13 @@ jobs:
           python-version: "3.12"
           cache: pip
 
+      # Los modelos de cara pesan 37 MB y no cambian: se guardan
+      # entre ejecuciones en vez de bajarlos cada vez.
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/modelos-cara
+          key: modelos-cara-v1
+
       - name: Instalar
         run: pip install -r requirements.txt
 

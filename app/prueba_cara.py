@@ -28,7 +28,13 @@ import cara  # noqa: E402
 REFERENCIA = BASE / "videos" / "prueba" / "0-REFERENCIA.jpg"
 
 # Caras que SÍ son Allie. Se cogen del banco las más recientes que existan.
-DESCONOCIDA = BASE / "videos" / "prueba" / "sana-sin-referencia.jpg"
+# Las DOS fotos «sana» son la misma desconocida. La de nombre
+# «con-foto-de-referencia» la puse yo en la lista de buenas dando por hecho
+# que, al llevar la referencia, habría salido Allie. No salió: puntuó 0.411,
+# exactamente igual que la otra. Era el fallo histórico de Pollinations, que
+# ignoraba la referencia. La comprobación tenía razón y mi lista estaba mal.
+DESCONOCIDAS = [BASE / "videos" / "prueba" / "sana-sin-referencia.jpg",
+                BASE / "videos" / "prueba" / "sana-con-foto-de-referencia.jpg"]
 
 INFORME = BASE / "cara" / "informe.md"
 
@@ -51,7 +57,7 @@ def buenas(cuantas=12):
         if len(fotos) >= cuantas:
             break
     for n in ("foto-20261008-1408-1.jpg", "foto-20261008-1408-2.jpg",
-              "foto-20261007-2155.jpg", "sana-con-foto-de-referencia.jpg"):
+              "foto-20261007-2155.jpg"):
         otra = BASE / "videos" / "prueba" / n
         if otra.exists():
             fotos.append(otra)
@@ -103,23 +109,31 @@ def main():
         comprobar(f"{f.name}", ok, f"parecido {p:.3f}")
 
     lineas += ["", "## La desconocida (debe fallar)", ""]
-    parecido_malo = None
-    if DESCONOCIDA.exists():
-        ok, parecido_malo, motivo = cara.misma_persona(ref, DESCONOCIDA.read_bytes())
-        comprobar("la mujer que se publicó por error NO pasa", not ok,
-                  f"parecido {parecido_malo:.3f}")
-    else:
-        comprobar("existe la foto de la desconocida", False, str(DESCONOCIDA))
+    parecidos_malos = []
+    for d in DESCONOCIDAS:
+        if not d.exists():
+            continue
+        ok, pm, motivo = cara.misma_persona(ref, d.read_bytes())
+        parecidos_malos.append(pm)
+        comprobar(f"{d.name} NO pasa", not ok, f"parecido {pm:.3f}")
+    parecido_malo = max(parecidos_malos) if parecidos_malos else None
 
     # Lo que de verdad importa no es acertar por los pelos, sino que haya
     # sitio entre las dos nubes: si el peor acierto y el fallo están pegados,
     # cualquier foto rara del futuro cae del lado malo.
     if parecidos_buenos and parecido_malo is not None:
-        hueco = min(parecidos_buenos) - parecido_malo
-        lineas += ["", f"**Hueco**: la peor foto buena saca {min(parecidos_buenos):.3f} "
-                       f"y la desconocida {parecido_malo:.3f} · diferencia {hueco:.3f}", ""]
-        comprobar("hay un margen claro entre Allie y la desconocida", hueco > 0.15,
-                  f"diferencia {hueco:.3f}")
+        peor, mejor_malo = min(parecidos_buenos), parecido_malo
+        lineas += ["", f"**Reparto**: la peor foto de Allie saca {peor:.3f}, "
+                       f"la mejor desconocida {mejor_malo:.3f}, "
+                       f"y el umbral está en {cara.UMBRAL}", ""]
+        # Lo que importa es que el umbral caiga ENTRE las dos nubes, con sitio
+        # a los dos lados. Un hueco grande con el umbral pegado a un extremo
+        # no sirve de nada.
+        comprobar("el umbral deja fuera a todas las desconocidas",
+                  mejor_malo < cara.UMBRAL - 0.05,
+                  f"{mejor_malo:.3f} vs {cara.UMBRAL}")
+        comprobar("y deja dentro a todas las de Allie",
+                  peor > cara.UMBRAL + 0.02, f"{peor:.3f} vs {cara.UMBRAL}")
 
     lineas += ["", f"**{len(fallos)} fallos.**", ""]
     guardar()

@@ -247,25 +247,53 @@ Devuelve SOLO un JSON:
  "problema": "en español, muy breve, por qué no es ella (vacío si lo es)"}"""
 
 
+def _identidad(referencia, datos):
+    """(es_ella, explicación). Primero OpenCV; Gemini solo si aquello falla.
+
+    La comprobación de identidad se hacía con Gemini: cuatro imágenes por
+    foto, que es lo que más cuota consumía de todo el proceso, y el 16 de
+    octubre dejó la cuenta sin reel al agotarse a media mañana.
+
+    Ahora la hace OpenCV en local: sin llamadas, sin cuota, determinista, y
+    midiendo en vez de opinando. Gemini queda de respaldo por si los modelos
+    no se pueden descargar, porque quedarse sin NINGUNA comprobación de
+    identidad es lo único peor que gastar cuota en ella.
+    """
+    try:
+        import cara
+        if cara.hay():
+            ok, parecido, detalle = cara.misma_persona(referencia, datos)
+            return ok, detalle
+    except Exception as e:  # noqa: BLE001
+        print(f"· La comprobación de cara en local no va ({e}); pruebo con Gemini",
+              flush=True)
+    return misma_persona(referencia, datos)
+
+
 def revisar_imagen(datos, referencia=None):
     """Devuelve (ok, problema).
 
     Dos revisiones: que la foto no esté deformada y, si se da la referencia,
-    que sea la misma mujer. Si Gemini falla al revisar la calidad, la foto
-    pasa, para no bloquear el proceso por una caída del revisor; pero si falla
-    la comprobación de identidad, la foto NO pasa, porque ahí el riesgo no es
-    perder una foto sino publicar a otra persona.
+    que sea la misma mujer. Si el revisor de calidad falla, la foto pasa,
+    para no bloquear el proceso por una caída; pero si falla la comprobación
+    de identidad, la foto NO pasa, porque ahí el riesgo no es perder una foto
+    sino publicar a otra persona.
+
+    El orden importa: la identidad va PRIMERO porque es gratis y no se
+    equivoca, y así una foto de otra mujer ni siquiera gasta una llamada de
+    calidad.
     """
+    if referencia is not None:
+        misma, detalle = _identidad(referencia, datos)
+        if not misma:
+            return False, detalle
     try:
         r = json_(REVISION, imagenes=[datos])
     except GeminiError as e:
-        ok, problema = True, f"no se pudo revisar ({e})"
+        ok, problema = True, f"no se pudo revisar la calidad ({e})"
     else:
         ok, problema = bool(r.get("ok")), (r.get("problema") or "").strip()
-    if not ok or referencia is None:
-        return ok, problema
-    misma, detalle = misma_persona(referencia, datos)
-    return (True, problema) if misma else (False, detalle)
+    return ok, problema
 
 
 def _retrato(datos):
