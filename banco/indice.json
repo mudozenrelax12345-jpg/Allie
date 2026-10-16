@@ -146,7 +146,7 @@
    "etiqueta": "varios",
    "tema": "probando sitios nuevos para desayunar",
    "escena": "The same woman, medium shot from the waist up, leaning forward slightly over a rustic wooden cafe table with a closed mouth gentle smile, soft morning sunlight casting a warm glow, wearing a casual pastel knit sweater, cozy minimalist cafe interior background",
-   "usada": "2026-10-15T06:14:45.834842+00:00",
+   "usada": null,
    "creada": "2026-10-14T11:36:50.669394+00:00"
   },
   {
@@ -155,7 +155,7 @@
    "etiqueta": "varios",
    "tema": "probando sitios nuevos para desayunar",
    "escena": "The same woman, close-up portrait, resting her chin on her hands with relaxed elbows on the table, smiling softly with closed lips, bright natural side lighting, wearing the same pastel knit sweater, blurred warm cafe background",
-   "usada": "2026-10-15T06:14:45.834842+00:00",
+   "usada": null,
    "creada": "2026-10-14T11:37:06.084501+00:00"
   },
   {
@@ -164,7 +164,7 @@
    "etiqueta": "varios",
    "tema": "probando sitios nuevos para desayunar",
    "escena": "The same woman, medium shot, turning slightly to look over her shoulder towards the camera with a playful closed-mouth smile, soft morning light, wearing the same pastel knit sweater, out-of-focus trendy breakfast spot interior",
-   "usada": "2026-10-15T06:14:45.834842+00:00",
+   "usada": null,
    "creada": "2026-10-14T11:37:20.629952+00:00"
   },
   {
@@ -625,7 +625,34 @@
    "escena": "The same woman, medium close-up, on the same sunny urban rooftop at golden hour, wearing the same beige linen blazer and white top, leaning slightly forward with a mischievous and cheerful expression, lips gently closed in a faint smile, bathed in warm afternoon light.",
    "usada": null,
    "creada": "2026-10-16T04:35:11.610812+00:00"
+  },
+  {
+   "archivo": "20261016-060842-1.jpg",
+   "tanda": "20261016-060842",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot from the waist up, leaning casually against an old stone balcony in Madrid during golden hour, soft warm sunlight on her face, gentle closed-lip smile, elegant and playful posture, blurred historic street background, hands out of frame, nothing held in her hands, arms relaxed, framed from the chest up",
+   "usada": null,
+   "creada": "2026-10-16T06:10:02.604509+00:00"
+  },
+  {
+   "archivo": "20261016-060842-2.jpg",
+   "tanda": "20261016-060842",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, close-up portrait, framed by wrought iron railings in a sunny Madrid courtyard, warm afternoon light catching her shoulders, soft subtle smile with lips together, looking directly at the camera with a hint of mischief, out of focus traditional architecture behind",
+   "usada": null,
+   "creada": "2026-10-16T06:10:22.667220+00:00"
+  },
+  {
+   "archivo": "20261016-060842-3.jpg",
+   "tanda": "20261016-060842",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot, standing on a classic Madrid rooftop terrace at sunset, warm amber lighting, relaxed pose with arms resting just out of frame, soft closed-lip smile, charming and elegant expression, distant city skyline softly blurred",
+   "usada": null,
+   "creada": "2026-10-16T06:10:45.285980+00:00"
   }
  ],
- "actualizado": "2026-10-16T04:35:11.610863+00:00"
+ "actualizado": "2026-10-16T06:10:45.891342+00:00"
 }
