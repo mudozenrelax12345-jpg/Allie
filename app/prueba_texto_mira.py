@@ -95,6 +95,40 @@ def main():
         import shutil
         shutil.rmtree(carpeta, ignore_errors=True)
 
+    # guion_del_banco tiene que ENCONTRAR las escenas en el apunte real.
+    # Leer una clave que no existe no da error: deja el texto vacío y el
+    # reel sale publicable y mudo, que es peor que fallar.
+    import json as _json
+    tmp = Path(tempfile.mkdtemp(prefix="banco-apunte-"))
+    guardados = (reel.VIDEOS, reel.BASE)
+    try:
+        (tmp / "videos").mkdir(); (tmp / "banco").mkdir()
+        (tmp / "videos" / "del-banco.json").write_text(_json.dumps(
+            {"cuando": "2026-10-16T14:41:32", "cogidas": ["a-1.jpg", "a-2.jpg"]}),
+            encoding="utf-8")
+        (tmp / "banco" / "indice.json").write_text(_json.dumps({"fotos": [
+            {"archivo": "a-1.jpg", "tanda": "a", "tema": "paseo por el barrio",
+             "escena": "The same woman, medium shot, walking down a cobbled street"},
+            {"archivo": "a-2.jpg", "tanda": "a", "tema": "paseo por el barrio",
+             "escena": "The same woman, close-up, autumn light on her face"}]}),
+            encoding="utf-8")
+        reel.VIDEOS, reel.BASE = tmp / "videos", tmp
+
+        visto.clear()
+        gemini.json_ = falso_json
+        g2 = reel.guion_del_banco({"nombre": "Allie", "hashtags_base": ["#Allie"]})
+        comprobar("guion_del_banco encuentra las fotos del apunte real",
+                  "cobbled street" in (visto.get("prompt") or ""),
+                  (visto.get("prompt") or "(no llamó a nadie)")[:140])
+        comprobar("y usa el tema de las fotos, no uno al azar",
+                  g2.get("tema") == "paseo por el barrio", str(g2.get("tema")))
+        comprobar("y devuelve texto", bool((g2 or {}).get("texto")), str(g2)[:80])
+    finally:
+        reel.VIDEOS, reel.BASE = guardados
+        gemini.json_ = orig
+        import shutil as _sh
+        _sh.rmtree(tmp, ignore_errors=True)
+
     # Y la comprobación del montaje: que main() use lo que devuelve esto.
     fuente = (Path(__file__).resolve().parent / "reel.py").read_text(encoding="utf-8")
     trozo = fuente.split("def main():", 1)[-1]

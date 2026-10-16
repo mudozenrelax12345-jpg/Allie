@@ -826,7 +826,12 @@ def guion_del_banco(p):
     apunte = VIDEOS / "del-banco.json"
     escenas, temas = [], []
     try:
-        cogidas = (json.loads(apunte.read_text(encoding="utf-8")) or {}).get("fotos", [])
+        apuntado = json.loads(apunte.read_text(encoding="utf-8")) or {}
+        # La clave es "cogidas". Lo escribí como "fotos" de memoria y el
+        # resultado no fue un error sino algo peor: un reel montado y
+        # publicable con el texto en blanco. Se aceptan las dos por si
+        # alguna versión vieja del apunte anda por ahí.
+        cogidas = apuntado.get("cogidas") or apuntado.get("fotos") or []
         fichas = {f["archivo"]: f for f in
                   (json.loads((BASE / "banco" / "indice.json").read_text(
                       encoding="utf-8")) or {}).get("fotos", [])}
@@ -914,6 +919,14 @@ def main():
     video = montar(compuestas)
     log(f"Vídeo montado: {video.name} ({video.stat().st_size // 1024} KB)")
     url = subir(video)
+
+    # Un reel sin texto es peor que un reel que falla: sale publicable y
+    # mudo, y nadie se entera hasta que está en Instagram. Pasó hoy.
+    if not (g.get("texto") or "").strip():
+        raise RuntimeError(
+            "El reel se montó pero nadie pudo escribir el texto (ni mirando "
+            "las fotos ni desde sus escenas). No lo doy por bueno: revisa "
+            "banco/ultimo-llenado.json y la cuota de Gemini y Cloudflare.")
 
     hashtags = " ".join(h if str(h).startswith("#") else f"#{h}" for h in g.get("hashtags", []))
     datos = {"url": url, "archivo": video.name, "idea": g.get("idea", ""), "tema": g.get("tema", ""),
