@@ -1,0 +1,62 @@
+name: Generar el muestrario de producto
+
+# Las piezas que se le enseñan a una marca. Usa solo las composiciones que
+# funcionan según lo que encontró la prueba del 16 de octubre
+# (videos/ugc/HALLAZGO.md): dos manos, dedos detrás del producto o gesto
+# abierto. Nunca una mano agarrando con todos los dedos a la vista.
+
+on:
+  workflow_dispatch:
+    inputs:
+      piezas:
+        description: "Cuántas piezas generar (vacío = todas)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reel-allie
+  cancel-in-progress: false
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/modelos-cara
+          key: modelos-cara-v1
+
+      - name: Instalar
+        run: pip install -r requirements.txt
+
+      - name: Generar las piezas
+        run: python app/dossier.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          PIEZAS: ${{ inputs.piezas }}
+
+      - name: Guardar salga como salga
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Muestrario de producto [skip ci]"
+            git pull --rebase
+            git push
+          fi
