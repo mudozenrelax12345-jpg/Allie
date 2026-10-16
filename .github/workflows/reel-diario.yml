@@ -99,6 +99,10 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Comprobar el marcado de IA del vídeo
+        if: steps.falta.outputs.falta == 'si'
+        run: python app/prueba_marca.py
+
       - name: Comprobar que el texto se escribe mirando las fotos
         run: python app/prueba_texto_mira.py
 

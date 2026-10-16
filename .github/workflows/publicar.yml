@@ -46,6 +46,9 @@ jobs:
       - name: Comprobar las barreras antes de tocar la cuenta
         run: python app/prueba_publicar_seguro.py
 
+      - name: Comprobar el marcado de IA del vídeo
+        run: python app/prueba_marca.py
+
       - name: Publicar
         run: python app/publicar.py
         env:

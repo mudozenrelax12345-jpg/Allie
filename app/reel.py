@@ -918,6 +918,17 @@ def main():
     compuestas = componer(rutas)
     video = montar(compuestas)
     log(f"Vídeo montado: {video.name} ({video.stat().st_size // 1024} KB)")
+
+    # El marcado legible por máquina, dentro del fichero. La declaración del
+    # pie la leen las personas; esta la leen las plataformas, y es lo que
+    # hace que Instagram ponga su etiqueta de «Información de IA» sin que
+    # nadie se lo pida. Si falla, el reel sigue: el aviso del pie va igual.
+    try:
+        import marca
+        ok, detalle = marca.marcar(video)
+        log(f"Marca de IA en el fichero: {detalle}")
+    except Exception as e:  # noqa: BLE001
+        log(f"No se pudo marcar el vídeo como generado con IA: {e}")
     url = subir(video)
 
     # Un reel sin texto es peor que un reel que falla: sale publicable y
