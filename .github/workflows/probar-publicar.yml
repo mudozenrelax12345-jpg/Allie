@@ -28,6 +28,14 @@ jobs:
       - name: Instalar
         run: pip install -r requirements.txt
 
+      - name: Mirar la biografía del perfil
+        continue-on-error: true
+        run: python app/bio.py
+        env:
+          FB_TOKEN: ${{ secrets.FB_TOKEN }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Preguntar a Meta
         run: python app/probar_publicar.py
         env:
