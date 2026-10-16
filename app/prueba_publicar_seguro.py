@@ -72,8 +72,20 @@ def main():
     t = publicar.con_aviso("Qué tarde tan buena.", "#Allie #Madrid")
     comprobar("el texto lleva la declaración de IA", "generado con IA" in t, t)
     comprobar("y los hashtags", "#Madrid" in t, t)
-    t2 = publicar.con_aviso("Esto ya dice que es contenido generado con IA.", "#Allie")
-    comprobar("no se repite si ya estaba", t2.count("generado con IA") == 1, t2)
+    # Lo que de verdad importa: que se vea ANTES del «… más» de Instagram,
+    # que corta sobre los 125 caracteres. Al final no la lee nadie.
+    comprobar("la declaración se ve sin desplegar el pie",
+              "generado con IA" in t[:publicar.LIMITE_VISIBLE],
+              f"aparece en el carácter {t.find('generado con IA')}")
+    comprobar("y es lo primero que se lee", t.strip().startswith("🤖"), t[:40])
+    largo = publicar.con_aviso("x" * 400, "#Allie")
+    comprobar("también con un texto largo",
+              "generado con IA" in largo[:publicar.LIMITE_VISIBLE],
+              f"carácter {largo.find('generado con IA')}")
+    t2 = publicar.con_aviso("Esto ya dice que es contenido generado con IA desde el principio.",
+                            "#Allie")
+    comprobar("no se repite si ya estaba al principio",
+              t2.count("generado con IA") == 1, t2)
 
     # 5 · La dirección del vídeo es la del repositorio.
     comprobar("el vídeo se sirve desde el repositorio público",

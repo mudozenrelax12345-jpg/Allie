@@ -41,7 +41,15 @@ REGISTRO = BASE / "videos" / "publicados.json"
 CRUDO = "https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/"
 
 # La declaración, en el texto, porque la API no tiene dónde ponerla.
-AVISO = "Allie es un personaje creado con IA · contenido generado con IA 🤖"
+#
+# VA LA PRIMERA, y esto no es una cuestión de estilo. Instagram corta el pie
+# a unos 125 caracteres y esconde el resto tras «… más»: una declaración al
+# final no la ve casi nadie. El artículo 50.4 del reglamento europeo de IA
+# pide revelarlo «de manera clara y distinguible, a más tardar con ocasión
+# de la primera exposición». Al final del texto no es la primera exposición;
+# es el pie de página de algo que ya te has creído.
+AVISO = "🤖 Contenido generado con IA · Allie es un personaje creado con IA"
+LIMITE_VISIBLE = 125
 
 
 def log(m):
@@ -56,12 +64,11 @@ def publicados():
 
 
 def con_aviso(texto, hashtags):
-    """El texto final, con la declaración de IA y sin repetirla dos veces."""
+    """El texto final: la declaración de IA PRIMERO, luego el post."""
     cuerpo = (texto or "").strip()
     etiquetas = (hashtags or "").strip()
-    partes = [cuerpo]
-    if "generado con IA" not in cuerpo and "#IA" not in cuerpo:
-        partes.append(AVISO)
+    ya_lo_dice = "generado con IA" in cuerpo[:LIMITE_VISIBLE]
+    partes = ([] if ya_lo_dice else [AVISO]) + [cuerpo]
     if etiquetas and etiquetas not in cuerpo:
         partes.append(etiquetas)
     return "\n\n".join(p for p in partes if p)
