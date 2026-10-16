@@ -82,6 +82,9 @@ jobs:
         if: steps.toca.outputs.seguir == 'si'
         run: pip install -r requirements.txt
 
+      - name: Comprobar que nadie recibe un privado sin saber que es un bot
+        run: python app/prueba_aviso_ia.py
+
       - name: Comprobar que en público no se publican datos de nadie
         run: python app/prueba_discrecion.py
 

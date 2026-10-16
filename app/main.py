@@ -94,6 +94,65 @@ def _origen(secreto):
     return hashlib.sha256(b"origen:" + secreto.encode()).hexdigest()[:16]
 
 
+# ------------------------------------------------- decir que es un bot
+#
+# En un comentario público el contexto lo da todo: la cuenta se llama
+# @allie.the.ai y la biografía dice que es un personaje creado con IA. En un
+# PRIVADO no hay nada de eso: hay una conversación de dos, y quien escribe
+# asume razonablemente que le contesta una persona. Por eso el aviso va en el
+# primer mensaje de cada conversación nueva.
+#
+# Una vez por persona, no en cada mensaje: a quien ya lo sabía no le repite
+# nada y a quien no lo sabía se lo dice antes de que la conversación vaya a
+# más. El artículo 50.1 del reglamento europeo de IA va de esto: que la gente
+# sepa que habla con un sistema cuando no es evidente.
+AVISO_IA_POR_OMISION = ("Por cierto, te contesta mi asistente: soy un personaje "
+                        "creado con IA 🤖 pero te leo igual.")
+
+DIARIO = BASE_DIR / "estado" / "privados.enc"
+
+
+def _quien(secreto, igsid):
+    """Un identificador estable de la persona que NO la identifica.
+
+    El repositorio es público: guardar el identificador de Instagram de quien
+    escribe sería publicar a quién le habla Allie. Con un resumen que depende
+    del secreto, se puede saber si a esa persona ya se le avisó, y nadie de
+    fuera puede saber quién es.
+    """
+    return hashlib.sha256(b"quien:" + secreto.encode()
+                          + str(igsid).encode()).hexdigest()[:20]
+
+
+def apuntar_privado(secreto, entrada):
+    """Guarda un intercambio privado CIFRADO, para que quede traza.
+
+    Un bot que mantiene conversaciones privadas en nombre de alguien y no deja
+    rastro de lo que dijo no debería existir. Pero el repositorio es público,
+    así que el rastro no puede estar en claro: va cifrado con la misma llave
+    que las credenciales, que solo vive en los secretos de GitHub.
+
+    (La copia legible de verdad es la bandeja de Instagram de Teresa: ahí
+    están las conversaciones enteras. Esto es el registro que queda aunque
+    alguien borre un mensaje.)
+    """
+    try:
+        f = _fernet(secreto)
+        hasta_ahora = []
+        if DIARIO.exists():
+            try:
+                hasta_ahora = json.loads(f.decrypt(DIARIO.read_bytes()).decode())
+            except Exception:  # noqa: BLE001
+                # Llave distinta (el token cambió): se empieza un diario nuevo
+                # en vez de perder el que hay, que no se puede leer igualmente.
+                hasta_ahora = []
+        hasta_ahora.append(entrada)
+        DIARIO.parent.mkdir(exist_ok=True)
+        DIARIO.write_bytes(f.encrypt(json.dumps(hasta_ahora, ensure_ascii=False).encode()))
+    except Exception as e:  # noqa: BLE001
+        log(f"No pude apuntar el privado en el diario: {e}")
+
+
 def credenciales():
     """Devuelve (token, id_instagram, id_pagina).
 
@@ -408,9 +467,25 @@ def responder_mensajes(ig, gh, p, estado):
             continue
         time.sleep(random.uniform(*PAUSA))
         if accion == "responder" and igsid:
+            # El aviso de que contesta un bot, una vez por persona. Va DELANTE
+            # de la respuesta: si fuera detrás, la conversación ya habría
+            # empezado creyendo otra cosa.
+            secreto = os.environ.get("FB_TOKEN", "")
+            huella = _quien(secreto, igsid) if secreto else None
+            avisados = set(estado.get("avisados_ia") or [])
+            if huella and huella not in avisados:
+                respuesta = (p.get("aviso_ia") or AVISO_IA_POR_OMISION) + "\n\n" + respuesta
+                avisados.add(huella)
+                estado["avisados_ia"] = list(avisados)
+                log("Primera vez con esta persona: le digo que contesta un bot.")
             try:
                 ig.enviar_mensaje(igsid, respuesta)
                 respondidos += 1
+                if secreto:
+                    apuntar_privado(secreto, {
+                        "cuando": ahora().isoformat(), "de": autor,
+                        "recibido": ultimo.get("message") or "",
+                        "contestado": respuesta, "motivo": motivo})
                 log(f"Mensaje respondido a @{quien(autor)}"
                     + (f": {respuesta[:60]}" if PRIVADO else ""))
             except IGError as e:
