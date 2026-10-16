@@ -1,0 +1,61 @@
+{
+ "cuando": "2026-10-16T19:40:22.242385+00:00",
+ "piezas": [
+  {
+   "pieza": "01-crema-dos-manos",
+   "producto": "a plain unbranded white ceramic cosmetic jar with a wooden lid, no label, no text",
+   "escena": "The same woman, upper-body shot, cradling it in BOTH hands at chest height, fingers resting flat against the jar, not gripping, looking down at it with a soft closed-mouth smile. The product is a plain unbranded white ceramic cosmetic jar with a wooden lid, no label, no text, fully visible and in sharp focus. soft natural window light, clean uncluttered background, shallow depth of field",
+   "archivo": "01-crema-dos-manos.jpg",
+   "identidad": "es ella (parecido 0.564 ≥ 0.5)"
+  },
+  {
+   "pieza": "02-crema-senalando",
+   "producto": "a plain unbranded white ceramic cosmetic jar with a wooden lid, no label, no text",
+   "escena": "The same woman, upper-body shot, the jar resting on her open flat palm, her other hand pointing at it with an extended index finger, looking at the camera. The product is a plain unbranded white ceramic cosmetic jar with a wooden lid, no label, no text, fully visible and in sharp focus. soft natural window light, clean uncluttered background, shallow depth of field",
+   "archivo": "02-crema-senalando.jpg",
+   "identidad": "es ella (parecido 0.676 ≥ 0.5)"
+  },
+  {
+   "pieza": "03-taza-dos-manos",
+   "producto": "a plain unbranded matte beige stoneware mug, no label, no text",
+   "escena": "The same woman, upper-body shot, holding it with BOTH hands wrapped around the mug at chest height, elbows on a wooden table, looking at the camera with a soft closed-mouth smile. The product is a plain unbranded matte beige stoneware mug, no label, no text, fully visible and in sharp focus. soft natural window light, clean uncluttered background, shallow depth of field",
+   "archivo": "03-taza-dos-manos.jpg",
+   "identidad": "es ella (parecido 0.691 ≥ 0.5)"
+  },
+  {
+   "pieza": "04-libro-apoyado",
+   "producto": "a plain unbranded hardcover book with a blank linen cover, no title, no text",
+   "escena": "The same woman, upper-body shot, the book resting closed on the table in front of her, one hand laid flat on top of it, fingers together, looking at the camera. The product is a plain unbranded hardcover book with a blank linen cover, no title, no text, fully visible and in sharp focus. soft natural window light, clean uncluttered background, shallow depth of field",
+   "archivo": "04-libro-apoyado.jpg",
+   "identidad": "es ella (parecido 0.667 ≥ 0.5)"
+  },
+  {
+   "pieza": "05-bolsa-hombro",
+   "producto": "a plain unbranded beige canvas tote bag, no print, no text",
+   "escena": "The same woman, upper-body shot, the tote hanging from her shoulder, one hand loosely through the strap with most fingers hidden behind the strap, walking, looking at the camera. The product is a plain unbranded beige canvas tote bag, no print, no text, fully visible and in sharp focus. soft natural window light, clean uncluttered background, shallow depth of field",
+   "archivo": "05-bolsa-hombro.jpg",
+   "identidad": "es ella (parecido 0.779 ≥ 0.5)"
+  },
+  {
+   "pieza": "06-frasco-junto-cara",
+   "producto": "a plain unbranded frosted glass serum bottle with a black dropper cap, no label",
+   "escena": "The same woman, upper-body shot, holding the bottle up beside her cheek with the fingers tucked BEHIND the bottle so only the thumb and one fingertip show, looking at the camera. The product is a plain unbranded frosted glass serum bottle with a black dropper cap, no label, fully visible and in sharp focus. soft natural window light, clean uncluttered background, shallow depth of field",
+   "archivo": "06-frasco-junto-cara.jpg",
+   "identidad": "es ella (parecido 0.645 ≥ 0.5)"
+  },
+  {
+   "pieza": "07-pañuelo-dos-manos",
+   "producto": "a plain unbranded folded silk scarf in a solid muted colour, no pattern, no text",
+   "escena": "The same woman, upper-body shot, holding the folded scarf open with BOTH hands in front of her chest, fingers flat behind the fabric, looking down at it. The product is a plain unbranded folded silk scarf in a solid muted colour, no pattern, no text, fully visible and in sharp focus. soft natural window light, clean uncluttered background, shallow depth of field",
+   "archivo": "07-pañuelo-dos-manos.jpg",
+   "identidad": "es ella (parecido 0.569 ≥ 0.5)"
+  },
+  {
+   "pieza": "08-caja-mesa",
+   "producto": "a plain unbranded square kraft cardboard gift box with a ribbon, no print",
+   "escena": "The same woman, upper-body shot, the box sitting on the table, both hands resting flat on either side of it, looking at the camera with a soft closed-mouth smile. The product is a plain unbranded square kraft cardboard gift box with a ribbon, no print, fully visible and in sharp focus. soft natural window light, clean uncluttered background, shallow depth of field",
+   "archivo": "08-caja-mesa.jpg",
+   "identidad": "es ella (parecido 0.702 ≥ 0.5)"
+  }
+ ]
+}
