@@ -27,6 +27,8 @@ import gemini  # noqa: E402
 import reel  # noqa: E402
 
 BASE = Path(__file__).resolve().parent.parent
+# Saltarse el revisor de manos: las fotos se guardan igual y se miran.
+SIN_REVISOR = (os.environ.get("SIN_REVISOR") or "").strip().lower() in ("si", "sí", "true", "1")
 SALIDA = BASE / "videos" / "ugc"
 INFORME = SALIDA / "informe.json"
 
@@ -100,10 +102,22 @@ def main():
             f = SALIDA / f"{nombre}-{intento + 1}.jpg"
             f.write_bytes(datos)   # se guarda SIEMPRE, buena o mala: es la prueba
 
-            manos = gemini.json_(MANOS, imagenes=[datos, gemini._retrato(datos)])
-            ok_manos = bool(manos.get("ok"))
+            # El revisor de manos es de Gemini, que se queda sin cuota a media
+            # mañana. Para ESTA prueba no es imprescindible: las fotos se
+            # guardan todas y se miran con los ojos, que es justamente el
+            # punto. Sin él se generan las cuatro escenas y se juzgan después.
+            if SIN_REVISOR:
+                manos, ok_manos = {"problema": "no revisado"}, True
+            else:
+                try:
+                    manos = gemini.json_(MANOS, imagenes=[datos, gemini._retrato(datos)])
+                    ok_manos = bool(manos.get("ok"))
+                except Exception as e:  # noqa: BLE001
+                    manos, ok_manos = {"problema": f"no se pudo revisar: {e}"}, True
+                    log(f"Sin revisor de manos ({e}); sigo y lo miramos a ojo")
+            # La identidad NO se salta: la hace OpenCV y no gasta cuota.
             misma, detalle = (True, "sin referencia") if ref is None \
-                else gemini.misma_persona(ref, datos)
+                else gemini._identidad(ref, datos)
             apunte["intentos"].append({
                 "archivo": f.name, "manos_ok": ok_manos,
                 "manos": (manos.get("problema") or "").strip(),
@@ -115,6 +129,8 @@ def main():
             if ok_manos and misma:
                 apunte["sale"] = f.name
                 break
+            if SIN_REVISOR:
+                break   # una por escena basta: lo que importa es verlas todas
             time.sleep(2)
         resultados.append(apunte)
         guardar(resultados)

@@ -10,6 +10,10 @@ on:
         description: "El producto, en inglés, sin marca ni texto"
         type: string
         default: ""
+      sin_revisor:
+        description: "Saltarse el revisor de manos de Gemini (si/no)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -55,6 +59,7 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           PRODUCTO: ${{ inputs.producto }}
+          SIN_REVISOR: ${{ inputs.sin_revisor }}
 
       - name: Guardar las fotos salgan como salgan
         if: always()
