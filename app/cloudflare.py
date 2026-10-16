@@ -105,17 +105,32 @@ def _referencia_pequena(datos):
     return b.getvalue()
 
 
-def generar(referencia, orden, modelos=None):
+MAX_IMAGENES = 4           # input_image_0 … input_image_3, y no hay más
+
+
+def generar(referencia, orden, modelos=None, extras=None):
     """(bytes, segundos, modelo) o (None, 0, motivos).
 
     `referencia` son los bytes de la foto de Allie; `orden`, el texto.
+
+    `extras` son OTRAS imágenes que entran en la escena, hasta tres. Esto es
+    lo que hace posible el encargo de una marca: la foto del producto del
+    cliente va de extra, y el modelo tiene que respetar su forma y su color
+    en vez de inventarse un producto parecido. Sin esto sólo se puede generar
+    «un tarro blanco cualquiera», que a una marca no le sirve de nada.
     """
     cuenta, ficha = credenciales()
     if not cuenta:
         raise SinCredenciales(
             "Faltan CF_ACCOUNT_ID y CF_API_TOKEN; me salto Cloudflare")
 
-    pequena = _referencia_pequena(referencia)
+    imagenes = {"input_image_0": ("allie.jpg", _referencia_pequena(referencia),
+                                  "image/jpeg")}
+    for i, extra in enumerate(extras or [], start=1):
+        if i >= MAX_IMAGENES:
+            break
+        imagenes[f"input_image_{i}"] = (
+            f"extra{i}.jpg", _referencia_pequena(extra), "image/jpeg")
     dichos = []
     for modelo in (modelos or MODELOS):
         t0 = time.time()
@@ -124,7 +139,7 @@ def generar(referencia, orden, modelos=None):
                 f"{BASE}/{cuenta}/ai/run/{modelo}",
                 headers={"Authorization": f"Bearer {ficha}"},
                 # Sin Content-Type a mano: requests le pone el boundary.
-                files={"input_image_0": ("allie.jpg", pequena, "image/jpeg")},
+                files=imagenes,
                 data={"prompt": orden, "width": str(ANCHO), "height": str(ALTO)},
                 timeout=240)
         except Exception as e:  # noqa: BLE001
