@@ -52,11 +52,18 @@ FUENTES = {
          "face_recognition_sface/face_recognition_sface_2021dec.onnx"]),
 }
 
-# OpenCV recomienda 0,363 para «es la misma persona». Se sube a 0,42 porque
-# aquí los dos errores no cuestan lo mismo: descartar una foto buena cuesta
-# unos segundos de Cloudflare y hay noventa al día; publicar a otra mujer en
-# la cuenta de Allie no se arregla.
-UMBRAL = float(os.environ.get("CARA_UMBRAL") or 0.42)
+# OpenCV recomienda 0,363 para «es la misma persona». Aquí se usa 0,50, y
+# el número sale de medir, no de elegirlo a ojo:
+#   · las fotos buenas de Allie puntúan entre 0,56 y 0,80
+#   · la desconocida que llegó a publicarse una semana puntúa 0,411
+# Con 0,42 la desconocida se quedaba fuera por nueve milésimas, que no es un
+# margen: cualquier cara parecida del futuro entraría. Con 0,50 hay 0,09 de
+# hueco por debajo y 0,06 por encima.
+#
+# Y los dos errores no cuestan lo mismo: descartar una foto buena cuesta ocho
+# segundos de Cloudflare y hay noventa al día; publicar a otra mujer en la
+# cuenta de Allie no se arregla.
+UMBRAL = float(os.environ.get("CARA_UMBRAL") or 0.50)
 
 _detector = None
 _rasgos = None

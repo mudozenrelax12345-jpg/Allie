@@ -33,9 +33,29 @@ DESCONOCIDA = BASE / "videos" / "prueba" / "sana-sin-referencia.jpg"
 INFORME = BASE / "cara" / "informe.md"
 
 
-def buenas(cuantas=6):
-    fotos = sorted((BASE / "banco" / "fotos").glob("*.jpg"), reverse=True)
-    return fotos[:cuantas]
+def buenas(cuantas=12):
+    """Fotos de Allie de tandas DISTINTAS, no doce de la misma tarde.
+
+    Una tanda comparte ropa, sitio y luz, así que doce fotos de una sola
+    tanda miden una situación, no el rango real. Se coge una por tanda,
+    empezando por las más recientes, y se añaden las de videos/prueba, que
+    son de otros días y otros generadores.
+    """
+    vistas, fotos = set(), []
+    for f in sorted((BASE / "banco" / "fotos").glob("*.jpg"), reverse=True):
+        tanda = f.name.rsplit("-", 1)[0]
+        if tanda in vistas:
+            continue
+        vistas.add(tanda)
+        fotos.append(f)
+        if len(fotos) >= cuantas:
+            break
+    for n in ("foto-20261008-1408-1.jpg", "foto-20261008-1408-2.jpg",
+              "foto-20261007-2155.jpg", "sana-con-foto-de-referencia.jpg"):
+        otra = BASE / "videos" / "prueba" / n
+        if otra.exists():
+            fotos.append(otra)
+    return fotos
 
 
 def main():
