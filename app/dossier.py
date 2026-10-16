@@ -38,38 +38,50 @@ LUZ = "soft natural window light, clean uncluttered background, shallow depth of
 # repartidas, y productos de sectores distintos para que una marca se vea
 # reflejada sea del ramo que sea.
 PIEZAS = [
-    ("01-crema-dos-manos",
+    # Ninguna de estas pide AGARRAR. La mano apoya, sostiene por debajo o no
+    # aparece. El 16 de octubre el muestrario salió con dedos de más justo
+    # donde dos manos se juntaban alrededor de un objeto: ahí es donde el
+    # generador se pierde, y la solución no es insistir sino no pedírselo.
+    ("01-tarro-mesa",
      "a plain unbranded white ceramic cosmetic jar with a wooden lid, no label, no text",
-     "cradling it in BOTH hands at chest height, fingers resting flat against the jar, "
-     "not gripping, looking down at it with a soft closed-mouth smile"),
-    ("02-crema-senalando",
+     "the jar standing on a pale wooden table in the foreground, sharp and close to "
+     "the camera; she sits behind it slightly out of focus, forearms resting on the "
+     "table, hands relaxed and FLAT on the wood, fingers together and straight, "
+     "looking at the camera with a soft closed-mouth smile"),
+    ("02-tarro-palma",
      "a plain unbranded white ceramic cosmetic jar with a wooden lid, no label, no text",
-     "the jar resting on her open flat palm, her other hand pointing at it with an "
-     "extended index finger, looking at the camera"),
-    ("03-taza-dos-manos",
+     "the jar resting on her upturned OPEN PALM held flat at chest height, fingers "
+     "straight and together, nothing gripping it, her other arm down and out of frame, "
+     "looking down at the jar"),
+    ("03-taza-mesa",
      "a plain unbranded matte beige stoneware mug, no label, no text",
-     "holding it with BOTH hands wrapped around the mug at chest height, elbows on a "
-     "wooden table, looking at the camera with a soft closed-mouth smile"),
-    ("04-libro-apoyado",
+     "the mug on a wooden table in the foreground, sharp; she leans behind it with her "
+     "chin resting on the BACK of one closed hand, knuckles up, fingers curled "
+     "together out of sight, looking at the camera"),
+    ("04-libro-mesa",
      "a plain unbranded hardcover book with a blank linen cover, no title, no text",
-     "the book resting closed on the table in front of her, one hand laid flat on top "
-     "of it, fingers together, looking at the camera"),
+     "the closed book lying flat on a table in the foreground; one hand rests FLAT on "
+     "the cover, fingers straight, together and fully visible against the linen, the "
+     "other arm out of frame"),
     ("05-bolsa-hombro",
      "a plain unbranded beige canvas tote bag, no print, no text",
-     "the tote hanging from her shoulder, one hand loosely through the strap with "
-     "most fingers hidden behind the strap, walking, looking at the camera"),
-    ("06-frasco-junto-cara",
-     "a plain unbranded frosted glass serum bottle with a black dropper cap, no label",
-     "holding the bottle up beside her cheek with the fingers tucked BEHIND the "
-     "bottle so only the thumb and one fingertip show, looking at the camera"),
-    ("07-pañuelo-dos-manos",
-     "a plain unbranded folded silk scarf in a solid muted colour, no pattern, no text",
-     "holding the folded scarf open with BOTH hands in front of her chest, fingers "
-     "flat behind the fabric, looking down at it"),
-    ("08-caja-mesa",
+     "the tote hanging from her shoulder by its strap, BOTH arms hanging relaxed at "
+     "her sides and out of the frame below the elbow, walking down a street, looking "
+     "at the camera"),
+    ("06-panuelo-puesto",
+     "a plain unbranded silk scarf in a solid muted colour, no pattern, no text",
+     "the scarf tied loosely around her neck and draping over her shoulder, WORN not "
+     "held, both hands out of frame, upper-body shot against a plain wall"),
+    ("07-caja-mesa",
      "a plain unbranded square kraft cardboard gift box with a ribbon, no print",
-     "the box sitting on the table, both hands resting flat on either side of it, "
-     "looking at the camera with a soft closed-mouth smile"),
+     "the box on a table in the foreground, sharp; she sits behind it with both "
+     "forearms on the table and hands FLAT on the wood either side of the box, "
+     "fingers together and straight, looking at the camera"),
+    ("08-frasco-detras",
+     "a plain unbranded frosted glass serum bottle with a black dropper cap, no label",
+     "the bottle standing on a windowsill in the foreground, sharp and backlit; she is "
+     "behind it, out of focus, arms crossed loosely with hands tucked under her "
+     "elbows and no fingers visible, looking at the camera"),
 ]
 
 CUANTAS = int(float(os.environ.get("PIEZAS") or len(PIEZAS)))

@@ -47,6 +47,11 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           PIEZAS: ${{ inputs.piezas }}
+          # El modelo GRANDE. Cuesta trece veces más que el pequeño,
+          # pero el cupo diario da para siete imágenes y aquí son ocho
+          # que se van a mirar con lupa. Para el reel diario sigue
+          # usándose el pequeño, que da noventa.
+          CF_MODELOS: "@cf/black-forest-labs/flux-2-klein-9b,@cf/black-forest-labs/flux-2-klein-4b"
 
       - name: Guardar salga como salga
         if: always()
