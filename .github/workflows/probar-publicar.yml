@@ -1,0 +1,50 @@
+name: Probar si Allie puede publicar sola
+
+# A mano. Pregunta a Meta si el token tiene permiso de publicar y hace la
+# primera mitad de una publicación real (crear el contenedor) SIN llegar a
+# publicarla: no aparece nada en la cuenta y el contenedor caduca en 24 h.
+#
+# Existe porque Metricool solo da 20 publicaciones al mes en el plan
+# gratuito, y eso impide publicar a diario teniendo fotos de sobra.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install -r requirements.txt
+
+      - name: Preguntar a Meta
+        run: python app/probar_publicar.py
+        env:
+          FB_TOKEN: ${{ secrets.FB_TOKEN }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_PRIVADO: ${{ github.event.repository.private }}
+
+      - name: Guardar el informe salga como salga
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Prueba de publicación directa [skip ci]"
+            git pull --rebase
+            git push
+          fi
