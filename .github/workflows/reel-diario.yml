@@ -30,9 +30,9 @@ on:
     # nada, la ventana no se vuelve a anclar, y falla otra vez mañana. Un
     # trabajo que se bloquea para siempre sin que nadie entienda por qué.
     # Repartidos, alguno la pilla abierta.
-    - cron: "40 5 * * 1-5"
-    - cron: "40 11 * * 1-5"
-    - cron: "40 16 * * 1-5"
+    - cron: "40 5 * * 1-6"
+    - cron: "40 11 * * 1-6"
+    - cron: "40 16 * * 1-6"
   workflow_dispatch:
     inputs:
       tema:

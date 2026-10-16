@@ -10,10 +10,16 @@ name: Publicar el reel en Instagram
 
 on:
   schedule:
-    # 10:12 en Madrid, que es la mejor hora según las estadísticas de la
-    # cuenta (el pico de los días laborables está sobre las 10:00). Minuto
-    # desplazado: a las horas en punto GitHub va cargado y retrasa.
-    - cron: "12 8 * * *"
+    # 10:12 en Madrid los días que llevan REEL: lunes, miércoles, viernes y
+    # sábado. Las 10:00 son el pico los siete días.
+    #
+    # Domingo, martes y jueves NO: esos días va un carrusel por Metricool, y
+    # publicar dos cosas el mismo día hunde una de las dos. El 9 de octubre
+    # salieron dos publicaciones: la primera llegó a 21 personas y la
+    # segunda a 226.
+    #
+    # Minuto desplazado: a las horas en punto GitHub va cargado y retrasa.
+    - cron: "12 8 * * 1,3,5,6"
   workflow_dispatch:
     inputs:
       en_seco:
