@@ -1,23 +1,33 @@
 # Comprobación de cara (OpenCV, sin API)
 
-Umbral: **0.42**
+Umbral: **0.5**
 
 ## Fotos de Allie (deben pasar)
 
 - ✅ 20261016-114001-3.jpg · parecido 0.799
-- ✅ 20261016-114001-2.jpg · parecido 0.691
-- ✅ 20261016-114001-1.jpg · parecido 0.738
 - ✅ 20261016-113630-3.jpg · parecido 0.562
-- ✅ 20261016-113630-2.jpg · parecido 0.627
-- ✅ 20261016-113630-1.jpg · parecido 0.583
+- ✅ 20261016-113523-3.jpg · parecido 0.649
+- ✅ 20261016-060842-3.jpg · parecido 0.823
+- ✅ 20261016-043429-3.jpg · parecido 0.737
+- ✅ 20261016-043314-3.jpg · parecido 0.657
+- ✅ 20261016-043202-3.jpg · parecido 0.661
+- ✅ 20261015-171718-3.jpg · parecido 0.683
+- ✅ 20261015-171529-3.jpg · parecido 0.570
+- ✅ 20261015-171234-3.jpg · parecido 0.662
+- ✅ 20261015-061234-3.jpg · parecido 0.531
+- ✅ 20261015-061006-3.jpg · parecido 0.565
+- ✅ foto-20261008-1408-1.jpg · parecido 0.889
+- ✅ foto-20261008-1408-2.jpg · parecido 0.798
+- ✅ foto-20261007-2155.jpg · parecido 0.889
+- ❌ sana-con-foto-de-referencia.jpg · parecido 0.411
 
 ## La desconocida (debe fallar)
 
 - ✅ la mujer que se publicó por error NO pasa · parecido 0.411
 
-**Hueco**: la peor foto buena saca 0.562 y la desconocida 0.411 · diferencia 0.151
+**Hueco**: la peor foto buena saca 0.411 y la desconocida 0.411 · diferencia 0.000
 
-- ✅ hay un margen claro entre Allie y la desconocida · diferencia 0.151
+- ❌ hay un margen claro entre Allie y la desconocida · diferencia 0.000
 
-**0 fallos.**
+**2 fallos.**
 
