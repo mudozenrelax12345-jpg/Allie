@@ -1,0 +1,38 @@
+[
+ {
+  "candidato": "cloudflare-klein4b",
+  "con_producto": "@cf/black-forest-labs/flux-2-klein-4b: HTTP 429 · {\"errors\":[{\"message\":\"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (d0c75acd-",
+  "solo_allie": "@cf/black-forest-labs/flux-2-klein-4b: HTTP 429 · {\"errors\":[{\"message\":\"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (a22277a3-",
+  "cual": null
+ },
+ {
+  "candidato": "polli-klein4b",
+  "con_producto": "HTTP 402 · {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~0.0050 pollen, but your available balance is 0.0000. Top up at https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup.\",\"code\":\"INSUFFICIENT_BALANCE\",\"timestamp\"",
+  "solo_allie": "HTTP 402 · {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~0.0050 pollen, but your available balance is 0.0000. Top up at https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup.\",\"code\":\"INSUFFICIENT_BALANCE\",\"timestamp\"",
+  "cual": null
+ },
+ {
+  "candidato": "polli-gemini-image",
+  "con_producto": "HTTP 402 · {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~0.0393 pollen, but your available paid balance is 0.0000. Top up at https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup.\",\"code\":\"INSUFFICIENT_BALANCE\",\"times",
+  "solo_allie": "HTTP 402 · {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~0.0393 pollen, but your available paid balance is 0.0000. Top up at https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup.\",\"code\":\"INSUFFICIENT_BALANCE\",\"times",
+  "cual": null
+ },
+ {
+  "candidato": "polli-kontext-pro",
+  "con_producto": "HTTP 402 · {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~0.0300 pollen, but your available balance is 0.0000. Top up at https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup.\",\"code\":\"INSUFFICIENT_BALANCE\",\"timestamp\"",
+  "solo_allie": "HTTP 402 · {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~0.0300 pollen, but your available balance is 0.0000. Top up at https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup.\",\"code\":\"INSUFFICIENT_BALANCE\",\"timestamp\"",
+  "cual": null
+ },
+ {
+  "candidato": "polli-seedream4",
+  "con_producto": "HTTP 402 · {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~0.0300 pollen, but your available paid balance is 0.0000. Top up at https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup.\",\"code\":\"INSUFFICIENT_BALANCE\",\"times",
+  "solo_allie": "HTTP 402 · {\"success\":false,\"error\":{\"message\":\"Insufficient balance. This request costs ~0.0300 pollen, but your available paid balance is 0.0000. Top up at https://enter.pollinations.ai/top-up?ref=agent_low_balance_topup.\",\"code\":\"INSUFFICIENT_BALANCE\",\"times",
+  "cual": null
+ },
+ {
+  "candidato": "gemini-directo",
+  "con_producto": "HTTP 429 · {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+  "solo_allie": "HTTP 429 · {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+  "cual": null
+ }
+]
