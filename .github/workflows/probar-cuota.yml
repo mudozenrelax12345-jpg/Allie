@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  actions: write      # para disparar la prueba del producto en cuanto vuelva el cupo
 
 concurrency:
   group: sonda-cuota
@@ -40,6 +41,8 @@ jobs:
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
 
       - name: Resumir en qué se va el cupo
         if: always()

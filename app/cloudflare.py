@@ -51,11 +51,20 @@ BASE = "https://api.cloudflare.com/client/v4/accounts"
 # cuánto tardó y si salió. Ni el texto de la orden ni la clave: sólo lo que
 # hace falta para sumar el día y señalar al culpable.
 #
-# Las neuronas son estimaciones MEDIDAS por nosotros, no cifras oficiales de
-# Cloudflare. Sirven para comparar entre sí, no para facturar.
+# Las neuronas salen de la tabla oficial de precios de Cloudflare, aplicada
+# a nuestro tamaño real de imagen (1024×1280, que son 1,31 megapíxeles y
+# cinco baldosas de 512×512) más una referencia pequeña de entrada:
+#
+#   klein-4b · 26,05 por baldosa de salida + 5,37 por baldosa de entrada
+#              → 5 × 26,05 + 5,37 ≈ 136
+#   klein-9b · 1.363,64 por el primer megapíxel + 181,82 por megapíxel de
+#              más y por megapíxel de imagen de entrada
+#              → 1.363,64 + 0,31 × 181,82 + 0,23 × 181,82 ≈ 1.462
+#
+# Trece veces de diferencia, que es exactamente el agujero del 16 de octubre.
 NEURONAS = {
-    "@cf/black-forest-labs/flux-2-klein-4b": 110,
-    "@cf/black-forest-labs/flux-2-klein-9b": 1430,
+    "@cf/black-forest-labs/flux-2-klein-4b": 136,
+    "@cf/black-forest-labs/flux-2-klein-9b": 1462,
 }
 NEURONAS_TEXTO = 3
 GASTO = Path(__file__).resolve().parent.parent / "estado" / "gasto-cloudflare.jsonl"

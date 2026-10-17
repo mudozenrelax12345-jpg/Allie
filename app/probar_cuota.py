@@ -60,6 +60,36 @@ def ultima_linea():
     return lineas[-1] if lineas else ""
 
 
+def avisar_de_que_hay_cupo():
+    """Lanza sola la prueba del producto en cuanto vuelve el cupo.
+
+    Si hay que esperar a que yo esté delante para apretar un botón, la
+    respuesta llega cuando llegue. Así llega sola: la sonda de la hora en
+    que vuelva el cupo dispara la prueba y deja el resultado escrito.
+    """
+    import urllib.error
+    import urllib.request
+    ficha = (os.environ.get("GITHUB_TOKEN") or "").strip()
+    repo = (os.environ.get("GITHUB_REPOSITORY") or "").strip()
+    if not ficha or not repo:
+        print("· sin GITHUB_TOKEN: no disparo nada", flush=True)
+        return
+    url = (f"https://api.github.com/repos/{repo}/actions/workflows/"
+           f"probar-producto.yml/dispatches")
+    peticion = urllib.request.Request(
+        url, data=json.dumps({"ref": "main"}).encode(),
+        headers={"Authorization": f"Bearer {ficha}",
+                 "Accept": "application/vnd.github+json",
+                 "Content-Type": "application/json"}, method="POST")
+    try:
+        with urllib.request.urlopen(peticion, timeout=60) as r:
+            print(f"· prueba del producto disparada ({r.status})", flush=True)
+    except urllib.error.HTTPError as e:
+        print(f"· no se pudo disparar: HTTP {e.code} {e.read()[:150]}", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"· no se pudo disparar: {type(e).__name__}: {e}", flush=True)
+
+
 def main():
     hay, detalle = estado()
     nombre = {True: "hay", False: "agotado", None: "no se sabe"}[hay]
@@ -70,6 +100,10 @@ def main():
     if previa and f"| {nombre} |" in previa:
         print("· mismo estado que la vez anterior; no apunto nada", flush=True)
         return
+
+    # El momento que estábamos esperando: de agotado a hay.
+    if hay and "| agotado |" in previa:
+        avisar_de_que_hay_cupo()
 
     APUNTE.parent.mkdir(parents=True, exist_ok=True)
     if not APUNTE.exists():

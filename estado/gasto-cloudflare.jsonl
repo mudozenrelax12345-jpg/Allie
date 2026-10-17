@@ -3,3 +3,6 @@
 {"cuando": "2026-10-17T09:00:31+00:00", "quien": "prueba_extras", "modelo": "modelo-de-prueba", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-17T09:00:58+00:00", "quien": "probar_salidas", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.1, "neuronas": 0}
 {"cuando": "2026-10-17T09:00:59+00:00", "quien": "probar_salidas", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.1, "neuronas": 0}
+{"cuando": "2026-10-17T09:04:42+00:00", "quien": "prueba_extras", "modelo": "modelo-de-prueba", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-17T09:04:42+00:00", "quien": "prueba_extras", "modelo": "modelo-de-prueba", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-17T09:04:42+00:00", "quien": "prueba_extras", "modelo": "modelo-de-prueba", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
