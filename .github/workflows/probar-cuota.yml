@@ -1,0 +1,55 @@
+name: Sonda del cupo de Cloudflare
+
+# Una pregunta por hora a un modelo de TEXTO, que gasta una fracción de lo
+# que gasta una imagen, para averiguar a qué hora vuelve de verdad el cupo
+# gratuito. Yo daba por hecho que a las 00:00 UTC y el 17 de octubre a las
+# 04:33 UTC seguía agotado, así que lo que había era una suposición mía
+# escrita como si fuera un hecho.
+#
+# Sólo hace commit cuando el estado cambia.
+
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sonda-cuota
+  cancel-in-progress: false
+
+jobs:
+  sondear:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        run: pip install requests pillow
+
+      - name: Preguntar
+        run: python app/probar_cuota.py
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: Apuntar si ha cambiado
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Sonda del cupo [skip ci]"
+            git pull --rebase
+            git push
+          fi
