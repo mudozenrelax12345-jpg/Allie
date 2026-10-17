@@ -71,6 +71,16 @@ jobs:
           python app/prueba_publicar_seguro.py 2>&1 \
             | tee -a estado/ultima-publicacion.txt
 
+      # El marcado de IA se escribe con ffmpeg, y en el runner no viene
+      # puesto. Los trabajos del reel sí lo instalan; aquí se me olvidó al
+      # añadir el marcado, y por eso la publicación del sábado murió antes
+      # de tocar Instagram.
+      - name: Poner ffmpeg
+        run: |
+          echo "## ffmpeg" >> estado/ultima-publicacion.txt
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1 | tee -a estado/ultima-publicacion.txt
+
       - name: Comprobar el marcado de IA del vídeo
         run: |
           echo "## marcado" >> estado/ultima-publicacion.txt
