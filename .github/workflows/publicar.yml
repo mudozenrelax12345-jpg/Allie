@@ -46,17 +46,42 @@ jobs:
           python-version: "3.12"
           cache: pip
 
+      # Los registros de Actions no se pueden leer desde fuera de GitHub, así
+      # que cada paso deja su salida en un fichero que SÍ se guarda en el
+      # repositorio. El 17 de octubre la publicación de las 10:33 falló sin
+      # dejar un solo rastro: ni fichero de fallo, ni commit, nada. Diez
+      # minutos mirando una pared. Eso no vuelve a pasar.
+      - name: Empezar el parte
+        run: |
+          mkdir -p estado
+          echo "# Última publicación · $(date -u '+%Y-%m-%d %H:%M') UTC" \
+            > estado/ultima-publicacion.txt
+
       - name: Instalar
-        run: pip install -r requirements.txt
+        run: |
+          echo "## instalar" >> estado/ultima-publicacion.txt
+          set -o pipefail
+          pip install -r requirements.txt 2>&1 | tail -5 \
+            | tee -a estado/ultima-publicacion.txt
 
       - name: Comprobar las barreras antes de tocar la cuenta
-        run: python app/prueba_publicar_seguro.py
+        run: |
+          echo "## barreras" >> estado/ultima-publicacion.txt
+          set -o pipefail
+          python app/prueba_publicar_seguro.py 2>&1 \
+            | tee -a estado/ultima-publicacion.txt
 
       - name: Comprobar el marcado de IA del vídeo
-        run: python app/prueba_marca.py
+        run: |
+          echo "## marcado" >> estado/ultima-publicacion.txt
+          set -o pipefail
+          python app/prueba_marca.py 2>&1 | tee -a estado/ultima-publicacion.txt
 
       - name: Publicar
-        run: python app/publicar.py
+        run: |
+          echo "## publicar" >> estado/ultima-publicacion.txt
+          set -o pipefail
+          python app/publicar.py 2>&1 | tee -a estado/ultima-publicacion.txt
         env:
           FB_TOKEN: ${{ secrets.FB_TOKEN }}
           META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
