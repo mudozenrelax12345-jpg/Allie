@@ -34,3 +34,6 @@
 {"cuando": "2026-10-17T12:29:51+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
 {"cuando": "2026-10-17T12:29:51+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct-fp8", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
 {"cuando": "2026-10-17T12:29:51+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
+{"cuando": "2026-10-17T13:28:47+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
+{"cuando": "2026-10-17T13:28:48+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct-fp8", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
+{"cuando": "2026-10-17T13:28:48+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
