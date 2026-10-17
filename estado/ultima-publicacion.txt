@@ -1,4 +1,4 @@
-# Última publicación · 2026-10-17 08:45 UTC
+# Última publicación · 2026-10-17 08:46 UTC
 ## instalar
 Using cached truststore-0.10.5-py3-none-any.whl (19 kB)
 Using cached pycparser-3.11-py3-none-any.whl (51 kB)
@@ -19,17 +19,29 @@ ok   no se repite si ya estaba al principio
 ok   el vídeo se sirve desde el repositorio público
 
 las barreras del publicador aguantan
+## ffmpeg
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
 ## marcado
-Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/prueba_marca.py", line 74, in <module>
-    main()
-  File "/home/runner/work/Allie/Allie/app/prueba_marca.py", line 40, in main
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi",
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 548, in run
-    with Popen(*popenargs, **kwargs) as process:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 1026, in __init__
-    self._execute_child(args, executable, preexec_fn, close_fds,
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 1955, in _execute_child
-    raise child_exception_type(errno_num, err_msg, err_filename)
-FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'
+ok   el vídeo se marca
+ok   lleva el DigitalSourceType del IPTC
+ok   y un aviso legible en el comentario
+ok   el vídeo no se ha recodificado
+ok   y dura lo mismo
+ok   un fichero que falta no revienta nada
+
+el vídeo sale marcado y entero
+## publicar
+· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261017_0600.mp4
+· Texto (274 caracteres):
+🤖 Contenido generado con IA · Allie es un personaje creado con IA
+
+¿Jugamos a ver quién sonríe primero? ✨
+Aprovechando la luz dorada y mi gabardina favorita entre ladrillos y horizonte.
+¿Te vienes a disfrutar del atardecer conmigo?
+
+#Allie #AIInfluencer #Sunset #OOTD #Smile
+· Contenedor 18105954491571997
+·   10s · IN_PROGRESS
+·   20s · IN_PROGRESS
+·   30s · FINISHED
+· PUBLICADO · 18100499807637566 · https://www.instagram.com/reel/DeltjqPDT5h/
