@@ -1,0 +1,58 @@
+name: Buscar otra puerta para generar fotos
+
+# Cloudflare se quedó sin cupo y con un solo proveedor eso es un día entero
+# sin fotos y sin poder atender a un cliente. Esto prueba a la vez todas las
+# puertas que quedan, con la misma foto de Allie y el mismo producto
+# inventado, y deja el resultado en salidas/informe.md con las imágenes al
+# lado para poder mirarlas.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reel-allie
+  cancel-in-progress: false
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - uses: actions/cache@v4
+        with:
+          path: /tmp/modelos-cara
+          key: modelos-cara-v1
+
+      - name: Instalar
+        run: pip install -r requirements.txt
+
+      - name: Probar todas las puertas
+        run: python app/probar_salidas.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          POLLINATIONS_KEY: ${{ secrets.POLLINATIONS_KEY }}
+
+      - name: Guardar salga como salga
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Prueba de puertas para generar fotos [skip ci]"
+            git pull --rebase
+            git push
+          fi
