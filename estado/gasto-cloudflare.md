@@ -6,5 +6,7 @@ Diez mil neuronas al día. Estimaciones nuestras por modelo, no cifras oficiales
 
 | trabajo | neuronas | llamadas bien | llamadas mal |
 |---|---|---|---|
-| prueba_extras | 0 | 0 | 3 |
+| prueba_extras | 0 | 0 | 6 |
+| probar_salidas | 0 | 0 | 4 |
+| probar_cuota | 0 | 0 | 3 |
 
