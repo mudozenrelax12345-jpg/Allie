@@ -45,6 +45,7 @@ jobs:
           POLLINATIONS_KEY: ${{ secrets.POLLINATIONS_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           MODELSCOPE_TOKEN: ${{ secrets.MODELSCOPE_TOKEN }}
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
 
       - name: Guardar salga como salga
         if: always()

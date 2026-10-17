@@ -230,6 +230,67 @@ def por_hugging_face(allie, producto, orden):
     return None, " | ".join(str(d) for d in (dichos or []))[:300]
 
 
+
+# ---------------------------------------------------------------- NVIDIA
+#
+# build.nvidia.com da una clave permanente con sólo un correo, sin tarjeta,
+# y sirve los modelos de Black Forest Labs, incluido flux.1-kontext-dev, que
+# es exactamente el que conserva una cara a partir de una referencia.
+#
+# OJO CON LA LICENCIA: kontext-dev es de uso NO COMERCIAL. Para el contenido
+# propio de Allie vale; para una imagen que le cobras a una marca, no. Esa
+# frontera la vigilamos nosotros, no el proveedor.
+#
+# La dirección exacta de los modelos de imagen no está en la documentación
+# pública que he podido leer, así que se prueban las dos formas conocidas y
+# se apunta cuál contesta, que es como hemos acertado todo lo demás hoy.
+NVIDIA_URLS = [
+    "https://ai.api.nvidia.com/v1/genai/{modelo}",
+    "https://integrate.api.nvidia.com/v1/genai/{modelo}",
+]
+
+
+def por_nvidia(modelo):
+    def hacer(allie, producto, orden):
+        clave = (os.environ.get("NVIDIA_API_KEY") or "").strip()
+        if not clave:
+            return None, "sin NVIDIA_API_KEY"
+        if producto:
+            return None, "de momento sólo se le pasa una referencia"
+        cuerpo = {"prompt": orden, "cfg_scale": 3.5, "steps": 30,
+                  "width": 1024, "height": 1024, "seed": 0,
+                  "image": "data:image/jpeg;base64," +
+                           base64.b64encode(allie).decode()}
+        dichos = []
+        for plantilla in NVIDIA_URLS:
+            t0 = time.time()
+            try:
+                r = requests.post(plantilla.format(modelo=modelo),
+                                  headers={"Authorization": f"Bearer {clave}",
+                                           "Accept": "application/json"},
+                                  json=cuerpo, timeout=300)
+            except Exception as e:  # noqa: BLE001
+                dichos.append(f"{type(e).__name__}: {str(e)[:120]}")
+                continue
+            if r.status_code != 200:
+                dichos.append(f"{plantilla.split('//')[1][:22]} HTTP "
+                              f"{r.status_code} · {' '.join(r.text.split())[:160]}")
+                continue
+            try:
+                d = r.json()
+                b64 = ((d.get("artifacts") or [{}])[0].get("base64")
+                       or (d.get("data") or [{}])[0].get("b64_json")
+                       or d.get("image"))
+                if not b64:
+                    dichos.append(f"contestó sin imagen · {str(d)[:150]}")
+                    continue
+                return base64.b64decode(b64), f"{round(time.time() - t0, 1)}s"
+            except Exception as e:  # noqa: BLE001
+                dichos.append(f"respuesta rara · {type(e).__name__}: {str(e)[:120]}")
+        return None, " | ".join(dichos)[:400]
+    return hacer
+
+
 CANDIDATOS = [
     ("cloudflare-klein4b", por_cloudflare),
     ("hugging-face", por_hugging_face),
@@ -240,6 +301,8 @@ CANDIDATOS = [
     ("gemini-directo", lambda a, p, o: por_gemini_imagen("gemini-2.5-flash-image", a, p, o)),
     ("modelscope-qwen-edit", por_modelscope("Qwen/Qwen-Image-Edit-2511")),
     ("modelscope-qwen-edit-v1", por_modelscope("Qwen/Qwen-Image-Edit")),
+    ("nvidia-kontext-dev", por_nvidia("black-forest-labs/flux.1-kontext-dev")),
+    ("nvidia-flux-dev", por_nvidia("black-forest-labs/flux.1-dev")),
 ]
 
 
