@@ -1,14 +1,14 @@
 [
  {
   "candidato": "cloudflare-klein4b",
-  "con_producto": "@cf/black-forest-labs/flux-2-klein-4b: HTTP 429 · {\"errors\":[{\"message\":\"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (6fd248f7-",
-  "solo_allie": "@cf/black-forest-labs/flux-2-klein-4b: HTTP 429 · {\"errors\":[{\"message\":\"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (fd534275-",
+  "con_producto": "@cf/black-forest-labs/flux-2-klein-4b: HTTP 429 · {\"errors\":[{\"message\":\"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (6c519376-",
+  "solo_allie": "@cf/black-forest-labs/flux-2-klein-4b: HTTP 429 · {\"errors\":[{\"message\":\"AiError: AiError: you have used up your daily free allocation of 10,000 neurons, please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage. (60d831ac-",
   "cual": null
  },
  {
   "candidato": "hugging-face",
   "con_producto": "no admite dos referencias; se prueba sólo con Allie",
-  "solo_allie": "multimodalart/Qwen-Image-Edit-Fast (con cuenta): /infer: AppError: RuntimeError | multimodalart/Qwen-Image-Edit-Fast (sin cuenta): /infer: AppError: RuntimeError | linoyts/Qwen-Image-Edit-2511-Fast (con cuenta): /infer: AppError: The upstream Gradio app has raised an exception but has not enabled ve",
+  "solo_allie": "SinCuota: Hugging Face no deja generar más hoy: multimodalart/Qwen-Image-Edit-Fast (con cuenta): sin cuota de ZeroGPU; multimodalart/Qwen-Image-Edit-Fast (sin cuenta): sin cuota de ZeroGPU",
   "cual": null
  },
  {
@@ -37,8 +37,8 @@
  },
  {
   "candidato": "gemini-directo",
-  "con_producto": "HTTP 429 · {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
-  "solo_allie": "HTTP 429 · {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage",
+  "con_producto": "HTTP 429 · { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-preview-image\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-preview-image\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-preview-image\\nPlease retry in 10h23m39.972072455s.\", \"status\": \"RESOURCE_EXHAUSTED\", \"details\": [ { \"@type\": \"type.googleapis.com/google.rpc.Help\", \"links\": [ { \"description\": \"Learn more about Gemini API quotas\", \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\" } ] }, { \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\", \"violations\": [ { \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\", \"quotaId\": \"GenerateRequestsPerDay",
+  "solo_allie": "HTTP 429 · { \"error\": { \"code\": 429, \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-preview-image\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.5-flash-preview-image\\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.5-flash-preview-image\\nPlease retry in 10h23m39.7707061s.\", \"status\": \"RESOURCE_EXHAUSTED\", \"details\": [ { \"@type\": \"type.googleapis.com/google.rpc.Help\", \"links\": [ { \"description\": \"Learn more about Gemini API quotas\", \"url\": \"https://ai.google.dev/gemini-api/docs/rate-limits\" } ] }, { \"@type\": \"type.googleapis.com/google.rpc.QuotaFailure\", \"violations\": [ { \"quotaMetric\": \"generativelanguage.googleapis.com/generate_content_free_tier_requests\", \"quotaId\": \"GenerateRequestsPerDayPe",
   "cual": null
  },
  {
@@ -51,6 +51,18 @@
   "candidato": "modelscope-qwen-edit-v1",
   "con_producto": "sin MODELSCOPE_TOKEN",
   "solo_allie": "sin MODELSCOPE_TOKEN",
+  "cual": null
+ },
+ {
+  "candidato": "nvidia-kontext-dev",
+  "con_producto": "sin NVIDIA_API_KEY",
+  "solo_allie": "sin NVIDIA_API_KEY",
+  "cual": null
+ },
+ {
+  "candidato": "nvidia-flux-dev",
+  "con_producto": "sin NVIDIA_API_KEY",
+  "solo_allie": "sin NVIDIA_API_KEY",
   "cual": null
  }
 ]
