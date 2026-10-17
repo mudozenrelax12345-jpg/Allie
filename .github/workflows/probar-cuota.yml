@@ -41,6 +41,11 @@ jobs:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 
+      - name: Resumir en qué se va el cupo
+        if: always()
+        continue-on-error: true
+        run: python app/gasto.py
+
       - name: Apuntar si ha cambiado
         if: always()
         continue-on-error: true

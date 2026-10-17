@@ -144,8 +144,36 @@ def por_gemini_imagen(modelo, allie, producto, orden):
         return None, f"respuesta rara · {type(e).__name__}: {str(e)[:150]}"
 
 
+PERSONA = None
+
+
+def por_hugging_face(allie, producto, orden):
+    """La puerta vieja. reel.kontext() prueba Cloudflare primero, así que se
+    le esconden las credenciales durante la llamada para que vaya derecho a
+    Hugging Face. No sabe manejar dos referencias: va sólo con Allie."""
+    if producto:
+        return None, "no admite dos referencias; se prueba sólo con Allie"
+    guarda = {}
+    for n in cloudflare.NOMBRES_CUENTA + cloudflare.NOMBRES_FICHA:
+        if n in os.environ:
+            guarda[n] = os.environ.pop(n)
+    t0 = time.time()
+    try:
+        datos, dichos = reel.kontext(
+            "upper-body photograph against a plain wall, soft natural window "
+            "light, both hands out of frame, looking at the camera", PERSONA)
+    except Exception as e:  # noqa: BLE001
+        return None, f"{type(e).__name__}: {str(e)[:200]}"
+    finally:
+        os.environ.update(guarda)
+    if datos:
+        return datos, f"{round(time.time() - t0, 1)}s"
+    return None, " | ".join(str(d) for d in (dichos or []))[:300]
+
+
 CANDIDATOS = [
     ("cloudflare-klein4b", por_cloudflare),
+    ("hugging-face", por_hugging_face),
     ("polli-klein4b", lambda a, p, o: _polli("black-forest-labs/flux.2-klein-4b", a, p, o)),
     ("polli-gemini-image", lambda a, p, o: _polli("google/gemini-2.5-flash-image", a, p, o)),
     ("polli-kontext-pro", lambda a, p, o: _polli("black-forest-labs/flux.1-kontext-pro", a, p, o)),
@@ -155,8 +183,9 @@ CANDIDATOS = [
 
 
 def main():
+    global PERSONA
     SALIDA.mkdir(parents=True, exist_ok=True)
-    p = reel.persona()
+    p = PERSONA = reel.persona()
     allie = reel.referencia_bytes(p)
     if allie is None:
         raise RuntimeError("Sin la foto de referencia de Allie no hay nada que probar.")

@@ -28,14 +28,55 @@ en silencio y se sigue por Hugging Face, así que añadirlas es lo único que
 hace falta para encenderlo.
 """
 import base64
+import json
 import os
+import sys
 import time
+from datetime import datetime, timezone
 from io import BytesIO
+from pathlib import Path
 
 import requests
 from PIL import Image
 
 BASE = "https://api.cloudflare.com/client/v4/accounts"
+
+# ------------------------------------------------------------- contabilidad
+#
+# El 17 de octubre el cupo diario estaba agotado a las 04:35 UTC sin que
+# hubiera corrido nada desde las 21:33 del día anterior, y no había forma
+# de saber quién se lo había comido. Teorías había varias; datos, ninguno.
+#
+# Desde aquí cada llamada deja una línea: qué trabajo la pidió, qué modelo,
+# cuánto tardó y si salió. Ni el texto de la orden ni la clave: sólo lo que
+# hace falta para sumar el día y señalar al culpable.
+#
+# Las neuronas son estimaciones MEDIDAS por nosotros, no cifras oficiales de
+# Cloudflare. Sirven para comparar entre sí, no para facturar.
+NEURONAS = {
+    "@cf/black-forest-labs/flux-2-klein-4b": 110,
+    "@cf/black-forest-labs/flux-2-klein-9b": 1430,
+}
+NEURONAS_TEXTO = 3
+GASTO = Path(__file__).resolve().parent.parent / "estado" / "gasto-cloudflare.jsonl"
+
+
+def _apuntar(modelo, ok, segundos, clase="imagen"):
+    try:
+        GASTO.parent.mkdir(parents=True, exist_ok=True)
+        with GASTO.open("a", encoding="utf-8") as f:
+            f.write(json.dumps({
+                "cuando": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "quien": Path(sys.argv[0]).stem or "?",
+                "modelo": modelo,
+                "clase": clase,
+                "ok": bool(ok),
+                "segundos": segundos,
+                "neuronas": (NEURONAS.get(modelo, 110) if clase == "imagen"
+                             else NEURONAS_TEXTO) if ok else 0,
+            }, ensure_ascii=False) + "\n")
+    except Exception:  # noqa: BLE001
+        pass          # contar nunca puede ser el motivo de que algo falle
 
 # El pequeño primero: trece veces más barato que el grande y hace lo mismo.
 MODELOS = [m.strip() for m in os.environ.get(
@@ -144,10 +185,12 @@ def generar(referencia, orden, modelos=None, extras=None):
                 timeout=240)
         except Exception as e:  # noqa: BLE001
             dichos.append(f"{modelo}: {type(e).__name__}: {str(e)[:160]}")
+            _apuntar(modelo, False, round(time.time() - t0, 1))
             continue
 
         if r.status_code != 200:
             dichos.append(f"{modelo}: HTTP {r.status_code} · {r.text[:200]}")
+            _apuntar(modelo, False, round(time.time() - t0, 1))
             continue
         try:
             cuerpo = r.json()
@@ -171,7 +214,9 @@ def generar(referencia, orden, modelos=None, extras=None):
 
         salida = BytesIO()
         im.save(salida, "JPEG", quality=94)
-        return salida.getvalue(), round(time.time() - t0, 1), modelo
+        segundos = round(time.time() - t0, 1)
+        _apuntar(modelo, True, segundos)
+        return salida.getvalue(), segundos, modelo
 
     return None, 0, dichos
 
@@ -214,6 +259,7 @@ def texto(prompt, modelos=None):
             continue
         if r.status_code != 200:
             dichos.append(f"{modelo}: HTTP {r.status_code} · {r.text[:150]}")
+            _apuntar(modelo, False, 0, "texto")
             continue
         try:
             cuerpo = r.json()
@@ -230,5 +276,6 @@ def texto(prompt, modelos=None):
         if not str(t).strip():
             dichos.append(f"{modelo}: contestó vacío")
             continue
+        _apuntar(modelo, True, 0, "texto")
         return str(t), [modelo]
     return None, dichos
