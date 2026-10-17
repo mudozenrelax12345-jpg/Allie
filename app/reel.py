@@ -329,7 +329,12 @@ def kontext(escena, p):
     # una ventana que se va moviendo. Si no hay credenciales o falla, se sigue
     # por Hugging Face exactamente como antes.
     if cloudflare.hay():
-        datos, segundos, modelo = cloudflare.generar(img.read_bytes(), orden)
+        try:
+            datos, segundos, modelo = cloudflare.generar(img.read_bytes(), orden)
+        except cloudflare.SinCupo as e:
+            # Freno propio, no error de Cloudflare: se sigue por las otras
+            # puertas igual que si hubiera contestado que no.
+            datos, segundos, modelo = None, 0, [str(e)]
         if datos:
             GASTO.append({"espacio": f"cloudflare {modelo}", "api": "ai/run",
                           "segundos": segundos, "pasos": 4})

@@ -61,6 +61,44 @@ NEURONAS_TEXTO = 3
 GASTO = Path(__file__).resolve().parent.parent / "estado" / "gasto-cloudflare.jsonl"
 
 
+# El freno. Lo que pasó el 16 de octubre: regeneré el muestrario DOS veces
+# con el modelo grande, dieciséis imágenes de 1.430 neuronas, casi veintitrés
+# mil. Más de dos días de cupo en veinte minutos, y a la mañana siguiente no
+# había con qué atender a un cliente ni con qué probar nada.
+#
+# Se mira la ventana de las últimas 24 HORAS, no el día natural: es la
+# hipótesis que encaja con lo observado, y además es la más prudente de las
+# dos. Si Cloudflare cuenta por día natural, este freno sobra algunas horas;
+# si cuenta por ventana, evita exactamente el agujero en el que caímos.
+TECHO_NEURONAS = int(float(os.environ.get("CF_TECHO_NEURONAS") or 9000))
+
+
+class SinCupo(RuntimeError):
+    pass
+
+
+def gastado_24h():
+    """Neuronas apuntadas en las últimas 24 horas. 0 si no hay registro."""
+    if not GASTO.exists():
+        return 0
+    desde = datetime.now(timezone.utc).timestamp() - 24 * 3600
+    total = 0
+    try:
+        for linea in GASTO.read_text(encoding="utf-8").splitlines():
+            if not linea.strip():
+                continue
+            try:
+                a = json.loads(linea)
+                cuando = datetime.fromisoformat(a["cuando"]).timestamp()
+            except Exception:  # noqa: BLE001
+                continue
+            if cuando >= desde:
+                total += int(a.get("neuronas") or 0)
+    except Exception:  # noqa: BLE001
+        return 0
+    return total
+
+
 def _apuntar(modelo, ok, segundos, clase="imagen"):
     try:
         GASTO.parent.mkdir(parents=True, exist_ok=True)
@@ -164,6 +202,12 @@ def generar(referencia, orden, modelos=None, extras=None):
     if not cuenta:
         raise SinCredenciales(
             "Faltan CF_ACCOUNT_ID y CF_API_TOKEN; me salto Cloudflare")
+
+    gastado = gastado_24h()
+    if gastado >= TECHO_NEURONAS:
+        raise SinCupo(
+            f"Freno propio: van {gastado} neuronas en 24 h, el techo está en "
+            f"{TECHO_NEURONAS}. No pido más para no dejar sin cupo lo de mañana.")
 
     imagenes = {"input_image_0": ("allie.jpg", _referencia_pequena(referencia),
                                   "image/jpeg")}
