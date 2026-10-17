@@ -264,5 +264,85 @@
    },
    "nota_cambio_de_plan": "Desde el 16-oct la cuenta publica por su cuenta y el reel del dia salio como reel normal, no trial. Si esto se queda asi, la comparacion trial vs normal se mide solo con 13, 14 y 15 de octubre."
   }
+ },
+ {
+  "fecha": "2026-10-17",
+  "fecha_ultimo_dato": "2026-10-16",
+  "seguidores": 3267,
+  "ganados": null,
+  "perdidos": null,
+  "alcance_reels": 76,
+  "visualizaciones_reels": 173,
+  "reels_publicados": 1,
+  "formato": "reel normal",
+  "reel_de_hoy": "https://www.instagram.com/reel/DeltjqPDT5h/",
+  "enlace": "https://www.instagram.com/reel/DeltjqPDT5h/",
+  "nota": "SI SE PUBLICO, y por la API: media_id 18100499807637566, 08:47 UTC. Pero no a la primera. La ejecucion programada de publicar.yml (08:33 UTC, run 39017815191) murio en 'Comprobar el marcado de IA del video' con FileNotFoundError: 'ffmpeg'. El runner de publicar.yml no instalaba ffmpeg; los de reel-diario si. Ya esta corregido en el repositorio (paso 'Poner ffmpeg' en publicar.yml) y el tercer intento (39018586880, workflow_dispatch) publico sin problema. Segunda mirada a las fotos: las tres son Allie (rubia, ojos verdes, misma cara que 0-REFERENCIA.jpg) y el texto encaja con lo que se ve: gabardina beige, luz dorada de atardecer, pared de ladrillo y horizonte de ciudad. OpenCV ya habia dado el visto bueno en generacion. MEDIDA DEL EXPERIMENTO (reel normal vs trial reel), con la regla de no juzgar antes de 72 h: el reel normal del 16-oct lleva 76 de alcance y 173 visualizaciones a las 24 h; el trial del 15-oct iba por 98 a las 24 h y hoy esta en 119; el del 14-oct, 11 a las 24 h y hoy 99; el del 13-oct se quedo en 41. O sea que a un dia vista el reel normal NO reparte mas que el trial. Y los dos formatos siguen muy por debajo de los posts: los carruseles y fotos de las ultimas tres semanas van de 126 a 319 de alcance (14-oct 126, 10-oct 215, 9-oct 228, 4-oct 254, 3-oct 307, 1-oct 319). Si el reel del 16 y el del 17 no pasan de cien al madurar, la conclusion es que el problema no es el formato sino a cuanta gente llega la cuenta. Lo bueno: los seguidores suben. 3267 el 16-oct frente a 3221 el 10-oct (+46 en seis dias), despues de un mes entero bajando poco a poco desde 3240. El salto gordo fue el 11-oct (+27) y el 12-oct (+11). Interacciones por reel (IGRE11): 71 el del 16-oct y 94 el del 15-oct, frente a 0, 2 y 8 de los primeros. No se publico nada por Metricool.",
+  "contexto_30d": {
+   "alcance_por_reel": {
+    "20261009": 140,
+    "20261013": 41,
+    "20261014": 99,
+    "20261015": 119,
+    "20261016": 76
+   },
+   "tipo_por_reel": {
+    "20261009": "reel normal",
+    "20261013": "trial reel",
+    "20261014": "trial reel",
+    "20261015": "trial reel",
+    "20261016": "reel normal",
+    "20261017": "reel normal"
+   },
+   "interacciones_por_reel": {
+    "20261009": 2,
+    "20261013": 0,
+    "20261014": 8,
+    "20261015": 94,
+    "20261016": 71
+   },
+   "alcance_por_post": {
+    "20261001": 319,
+    "20261002": 227,
+    "20261003": 307,
+    "20261004": 254,
+    "20261008": 182,
+    "20261008b": 150,
+    "20261009": 228,
+    "20261009b": 21,
+    "20261010": 215,
+    "20261014": 126
+   },
+   "maduracion": {
+    "20261013": {
+     "24h": 16,
+     "48h": 41,
+     "72h": 41,
+     "hoy": 41
+    },
+    "20261014": {
+     "24h": 11,
+     "48h": 95,
+     "hoy": 99
+    },
+    "20261015": {
+     "24h": 98,
+     "hoy": 119
+    },
+    "20261016": {
+     "24h": 76
+    }
+   },
+   "serie_seguidores": {
+    "20261010": 3221,
+    "20261011": 3243,
+    "20261012": 3256,
+    "20261013": 3262,
+    "20261014": 3262,
+    "20261015": 3263,
+    "20261016": 3267
+   },
+   "nota_cupo_metricool": "No se gasto ninguna publicacion del cupo de Metricool: el reel salio por la API de Instagram."
+  }
  }
 ]
