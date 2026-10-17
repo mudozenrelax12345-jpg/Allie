@@ -146,6 +146,65 @@ def por_gemini_imagen(modelo, allie, producto, orden):
 
 PERSONA = None
 
+MODELSCOPE = "https://api-inference.modelscope.cn/v1"
+
+
+def por_modelscope(modelo):
+    """ModelScope (Alibaba): 200 monedas al día de regalo, una por imagen.
+
+    Trabaja con la URL pública de la foto de Allie, no con el fichero: el
+    repositorio es público, así que la dirección ya existe. Va por tareas:
+    se pide, devuelve un identificador y se pregunta cada pocos segundos.
+    """
+    def hacer(allie, producto, orden):
+        clave = (os.environ.get("MODELSCOPE_TOKEN") or "").strip()
+        if not clave:
+            return None, "sin MODELSCOPE_TOKEN"
+        if producto:
+            return None, "de momento sólo se le pasa una referencia"
+        url_allie = (PERSONA or {}).get("referencia_url")
+        if not url_allie:
+            return None, "no hay URL pública de la referencia"
+        cab = {"Authorization": f"Bearer {clave}"}
+        t0 = time.time()
+        try:
+            r = requests.post(
+                f"{MODELSCOPE}/images/generations",
+                headers={**cab, "Content-Type": "application/json",
+                         "X-ModelScope-Async-Mode": "true"},
+                json={"model": modelo, "prompt": orden, "image_url": url_allie},
+                timeout=120)
+        except Exception as e:  # noqa: BLE001
+            return None, f"{type(e).__name__}: {str(e)[:180]}"
+        if r.status_code not in (200, 201):
+            return None, f"HTTP {r.status_code} · {r.text[:220]}"
+        tarea = (r.json() or {}).get("task_id")
+        if not tarea:
+            return None, f"sin task_id · {r.text[:200]}"
+        for _ in range(40):
+            time.sleep(6)
+            try:
+                e = requests.get(f"{MODELSCOPE}/tasks/{tarea}",
+                                 headers={**cab,
+                                          "X-ModelScope-Task-Type": "image_generation"},
+                                 timeout=60).json()
+            except Exception as ex:  # noqa: BLE001
+                return None, f"preguntando por la tarea: {type(ex).__name__}: {ex}"
+            estado = (e.get("task_status") or "").upper()
+            if estado == "SUCCEED":
+                fotos = e.get("output_images") or []
+                if not fotos:
+                    return None, f"acabó sin imagen · {str(e)[:180]}"
+                try:
+                    return (requests.get(fotos[0], timeout=120).content,
+                            f"{round(time.time() - t0, 1)}s")
+                except Exception as ex:  # noqa: BLE001
+                    return None, f"no se pudo bajar: {ex}"
+            if estado in ("FAILED", "CANCELED"):
+                return None, f"{estado} · {str(e)[:200]}"
+        return None, "la tarea no acabó en cuatro minutos"
+    return hacer
+
 
 def por_hugging_face(allie, producto, orden):
     """La puerta vieja. reel.kontext() prueba Cloudflare primero, así que se
@@ -179,6 +238,8 @@ CANDIDATOS = [
     ("polli-kontext-pro", lambda a, p, o: _polli("black-forest-labs/flux.1-kontext-pro", a, p, o)),
     ("polli-seedream4", lambda a, p, o: _polli("bytedance/seedream-4.0", a, p, o)),
     ("gemini-directo", lambda a, p, o: por_gemini_imagen("gemini-2.5-flash-image", a, p, o)),
+    ("modelscope-qwen-edit", por_modelscope("Qwen/Qwen-Image-Edit-2511")),
+    ("modelscope-qwen-edit-v1", por_modelscope("Qwen/Qwen-Image-Edit")),
 ]
 
 
