@@ -1,5 +1,5 @@
-# Comprobación en Kaggle · 2026-10-17 15:41 UTC
-GPU pedida: false
+# Comprobación en Kaggle · 2026-10-17 15:43 UTC
+GPU pedida: true
 {
   "id": "theresetenn/allie-hola",
   "title": "allie hola",
@@ -7,17 +7,61 @@ GPU pedida: false
   "language": "python",
   "kernel_type": "script",
   "is_private": true,
-  "enable_gpu": false,
+  "enable_gpu": true,
   "enable_internet": false,
   "dataset_sources": [],
   "competition_sources": [],
   "kernel_sources": []
 }
-Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/theresetenn/allie-hola
-15:42:05 · theresetenn/allie-hola has status "KernelWorkerStatus.RUNNING"
-15:42:20 · theresetenn/allie-hola has status "KernelWorkerStatus.COMPLETE"
-Output file downloaded to estado/kaggle-hola/hola.txt
-Kernel log downloaded to estado/kaggle-hola/allie-hola.log 
+Kernel version 2 successfully pushed.  Please check progress at https://www.kaggle.com/code/theresetenn/allie-hola
+15:43:17 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:43:33 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:43:48 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:44:04 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:44:19 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:44:35 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:44:50 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:45:06 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:45:21 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:45:37 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:45:52 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:46:08 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:46:23 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:46:38 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:46:54 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:47:09 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:47:25 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:47:40 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:47:55 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:48:11 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:48:26 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:48:42 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:48:57 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:49:13 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:49:28 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:49:44 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:49:59 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:50:15 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:50:30 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:50:46 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:51:01 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:51:16 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:51:32 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:51:47 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:52:03 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:52:18 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:52:33 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:52:49 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:53:04 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:53:20 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:53:35 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:53:51 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:54:06 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:54:22 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:54:37 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:54:52 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:55:08 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
+15:55:23 · theresetenn/allie-hola has status "KernelWorkerStatus.QUEUED"
 --- lo que dijo el cuaderno ---
 hola desde Kaggle · 2026-10-17 15:41:52 UTC
 python 3.13.15 · Linux-6.18.48+-x86_64-with-glibc2.39
