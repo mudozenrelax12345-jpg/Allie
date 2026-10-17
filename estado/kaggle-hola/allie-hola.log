@@ -1,0 +1,12 @@
+[{"stream_name":"stdout","time":7.590250126,"data":"hola desde Kaggle · 2026-10-17 15:41:52 UTC\n"}
+,{"stream_name":"stdout","time":7.590304811,"data":"python 3.13.15 · Linux-6.18.48+-x86_64-with-glibc2.39\n"}
+,{"stream_name":"stdout","time":7.590310867,"data":"procesadores: 4\n"}
+,{"stream_name":"stdout","time":7.590314474,"data":"torch 2.11.0+cpu\n"}
+,{"stream_name":"stdout","time":7.590318001,"data":"GPU disponible: False\n"}
+,{"stream_name":"stderr","time":11.362455152999999,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":11.362496242,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":11.855494101,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":11.855529819000001,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":12.901474636,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":14.423975917,"data":"[NbConvertApp] Writing 278400 bytes to __results__.html\n"}
+]

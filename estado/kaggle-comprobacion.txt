@@ -1,0 +1,26 @@
+# Comprobación en Kaggle · 2026-10-17 15:41 UTC
+GPU pedida: false
+{
+  "id": "theresetenn/allie-hola",
+  "title": "allie hola",
+  "code_file": "hola.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": false,
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": []
+}
+Kernel version 1 successfully pushed.  Please check progress at https://www.kaggle.com/code/theresetenn/allie-hola
+15:42:05 · theresetenn/allie-hola has status "KernelWorkerStatus.RUNNING"
+15:42:20 · theresetenn/allie-hola has status "KernelWorkerStatus.COMPLETE"
+Output file downloaded to estado/kaggle-hola/hola.txt
+Kernel log downloaded to estado/kaggle-hola/allie-hola.log 
+--- lo que dijo el cuaderno ---
+hola desde Kaggle · 2026-10-17 15:41:52 UTC
+python 3.13.15 · Linux-6.18.48+-x86_64-with-glibc2.39
+procesadores: 4
+torch 2.11.0+cpu
+GPU disponible: False
