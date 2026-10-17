@@ -1,0 +1,138 @@
+name: Generar fotos en la GPU gratuita de Kaggle
+
+# La salida del callejón del 17 de octubre. Ese día se cerraron a la vez
+# todas las puertas que regalan imágenes: Cloudflare sin cupo, Gemini con
+# «limit: 0», NVIDIA pidiendo verificar la cuenta, Leonardo sin API en el
+# plan gratis, Pollinations a cero y los espacios de Hugging Face rotos.
+#
+# La pregunta estaba mal hecha. Imágenes las raciona todo el mundo; lo que
+# se regala por HORAS es la máquina. Kaggle da 30 horas semanales de GPU —
+# una P100 de 16 GB o dos T4 — a cualquiera con el teléfono verificado.
+# A un minuto por imagen eso es más de mil a la semana, sin contarlas.
+#
+# Y Qwen-Image-Edit es Apache 2.0: corriéndolo nosotros, lo que salga se le
+# puede cobrar a una marca sin el asterisco de FLUX.1 Kontext dev, que es de
+# uso no comercial.
+#
+# ESTE TRABAJO NO GENERA NADA: empuja el cuaderno, espera, se baja lo que
+# haya salido y lo guarda. Quien genera es Kaggle.
+
+on:
+  workflow_dispatch:
+    inputs:
+      espera_maxima:
+        description: "Minutos máximos de espera (por defecto 90)"
+        type: string
+        default: "90"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kaggle-allie
+  cancel-in-progress: false
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar la herramienta de Kaggle
+        run: pip install -q kaggle
+
+      - name: Preparar el cuaderno
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+        run: |
+          mkdir -p envio
+          cp kaggle/generar.py envio/generar.py
+          cat > envio/kernel-metadata.json <<JSON
+          {
+            "id": "${KAGGLE_USERNAME}/allie-fotos",
+            "title": "allie fotos",
+            "code_file": "generar.py",
+            "language": "python",
+            "kernel_type": "script",
+            "is_private": true,
+            "enable_gpu": true,
+            "enable_internet": true,
+            "dataset_sources": [],
+            "competition_sources": [],
+            "kernel_sources": []
+          }
+          JSON
+          cat envio/kernel-metadata.json
+
+      - name: Mandarlo a Kaggle
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          mkdir -p estado
+          echo "# Tanda en Kaggle · $(date -u '+%Y-%m-%d %H:%M') UTC" \
+            > estado/ultima-tanda-kaggle.txt
+          kaggle kernels push -p envio 2>&1 | tee -a estado/ultima-tanda-kaggle.txt
+
+      # Kaggle pone la tanda en cola y la ejecuta cuando hay tarjeta libre.
+      # Se pregunta cada medio minuto. Los registros de Actions no se pueden
+      # leer desde fuera, así que todo lo que diga queda en el fichero.
+      - name: Esperar a que termine
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          ESPERA: ${{ inputs.espera_maxima }}
+        run: |
+          limite=$(( ${ESPERA:-90} * 2 ))
+          anterior=""
+          for i in $(seq 1 "$limite"); do
+            sleep 30
+            s=$(kaggle kernels status "${KAGGLE_USERNAME}/allie-fotos" 2>&1 | tr -d '\n')
+            if [ "$s" != "$anterior" ]; then
+              echo "$(date -u '+%H:%M') · $s" | tee -a estado/ultima-tanda-kaggle.txt
+              anterior="$s"
+            fi
+            case "$s" in
+              *complete*|*COMPLETE*) echo "acabó bien" \
+                | tee -a estado/ultima-tanda-kaggle.txt; break;;
+              *error*|*ERROR*|*cancel*) echo "acabó MAL" \
+                | tee -a estado/ultima-tanda-kaggle.txt; break;;
+            esac
+          done
+
+      - name: Bajar lo que haya salido
+        if: always()
+        continue-on-error: true
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          mkdir -p encargos/salida
+          kaggle kernels output "${KAGGLE_USERNAME}/allie-fotos" -p encargos/salida \
+            2>&1 | tee -a estado/ultima-tanda-kaggle.txt
+          ls -la encargos/salida | tee -a estado/ultima-tanda-kaggle.txt
+          # El parte que escribe el propio cuaderno: dice en qué paso se
+          # rompió, que es lo único que no se puede adivinar desde aquí.
+          if [ -f encargos/salida/parte.txt ]; then
+            echo "--- parte del cuaderno ---" >> estado/ultima-tanda-kaggle.txt
+            cat encargos/salida/parte.txt >> estado/ultima-tanda-kaggle.txt
+          fi
+
+      - name: Guardar salga como salga
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Tanda de fotos en Kaggle [skip ci]"
+            git pull --rebase
+            git push
+          fi

@@ -1,0 +1,20 @@
+{
+ "comentario": "Lo que la GPU de Kaggle tiene que generar en la próxima tanda. Cada encargo necesita un nombre, la URL pública de la foto de referencia de Allie y la escena en inglés. La primera tanda es a propósito pequeña y variada: sirve para medir cuánto tarda cada imagen y para ver si Qwen conserva la cara tan bien como Kontext.",
+ "encargos": [
+  {
+   "nombre": "01-prueba-pared",
+   "referencia": "https://i.postimg.cc/023T5BJX/IMG-20261001-215255.jpg",
+   "escena": "Keep her face, hair, skin tone and body exactly as they are — it must be unmistakably the same woman. Upper-body photograph against a plain warm wall, soft natural window light, both hands out of frame, soft closed-mouth smile, looking at the camera. Photorealistic smartphone photo. No text, no logos, no watermark."
+  },
+  {
+   "nombre": "02-prueba-cafe",
+   "referencia": "https://i.postimg.cc/023T5BJX/IMG-20261001-215255.jpg",
+   "escena": "Keep her face, hair, skin tone and body exactly as they are — it must be unmistakably the same woman. She sits at a small café table by a window in the morning, forearms resting flat on the table, fingers together and straight, looking at the camera. Photorealistic smartphone photo, soft natural light. No text, no logos, no watermark."
+  },
+  {
+   "nombre": "03-prueba-panuelo",
+   "referencia": "https://i.postimg.cc/023T5BJX/IMG-20261001-215255.jpg",
+   "escena": "Keep her face, hair, skin tone and body exactly as they are — it must be unmistakably the same woman. She wears a plain silk scarf in a solid muted colour tied loosely around her neck and draping over one shoulder, worn not held, both hands out of frame, upper-body shot against a plain wall, soft natural window light. Photorealistic smartphone photo. No text, no logos, no watermark."
+  }
+ ]
+}
