@@ -1,0 +1,112 @@
+name: Kaggle · comprobar si nos ejecuta algo
+
+# La tanda de verdad se quedó en cola noventa minutos sin arrancar, y desde
+# fuera eso se ve igual tanto si Kaggle va lleno como si esta cuenta no
+# tiene derecho a GPU. Esto empuja un cuaderno mínimo SIN GPU y SIN
+# internet, que es lo que cualquier cuenta puede ejecutar.
+#
+#   · si arranca en un par de minutos → la cuenta va bien y lo que falta es
+#     el permiso de GPU, que en Kaggle depende de verificar el teléfono;
+#   · si tampoco arranca → el problema es la cuenta, no nuestro cuaderno.
+
+on:
+  workflow_dispatch:
+    inputs:
+      con_gpu:
+        description: "Pedir GPU también (si/no). Por defecto no."
+        type: string
+        default: "no"
+
+permissions:
+  contents: write
+
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar la herramienta de Kaggle
+        run: pip install -q kaggle
+
+      - name: Preparar y mandar
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          CON_GPU: ${{ inputs.con_gpu }}
+        run: |
+          gpu=false
+          [ "$CON_GPU" = "si" ] && gpu=true
+          mkdir -p envio-hola estado
+          cp kaggle/hola.py envio-hola/hola.py
+          cat > envio-hola/kernel-metadata.json <<JSON
+          {
+            "id": "${KAGGLE_USERNAME}/allie-hola",
+            "title": "allie hola",
+            "code_file": "hola.py",
+            "language": "python",
+            "kernel_type": "script",
+            "is_private": true,
+            "enable_gpu": ${gpu},
+            "enable_internet": false,
+            "dataset_sources": [],
+            "competition_sources": [],
+            "kernel_sources": []
+          }
+          JSON
+          {
+            echo "# Comprobación en Kaggle · $(date -u '+%Y-%m-%d %H:%M') UTC"
+            echo "GPU pedida: ${gpu}"
+            cat envio-hola/kernel-metadata.json
+          } > estado/kaggle-comprobacion.txt
+          kaggle kernels push -p envio-hola 2>&1 \
+            | tee -a estado/kaggle-comprobacion.txt
+
+      - name: Esperar doce minutos como mucho
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          for i in $(seq 1 48); do
+            sleep 15
+            s=$(kaggle kernels status "${KAGGLE_USERNAME}/allie-hola" 2>&1 | tr -d '\n')
+            echo "$(date -u '+%H:%M:%S') · $s" >> estado/kaggle-comprobacion.txt
+            case "$s" in
+              *COMPLETE*|*complete*|*ERROR*|*error*|*cancel*) break;;
+            esac
+          done
+          tail -5 estado/kaggle-comprobacion.txt
+
+      - name: Traer lo que haya
+        if: always()
+        continue-on-error: true
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          mkdir -p estado/kaggle-hola
+          kaggle kernels output "${KAGGLE_USERNAME}/allie-hola" -p estado/kaggle-hola \
+            2>&1 | tee -a estado/kaggle-comprobacion.txt
+          if [ -f estado/kaggle-hola/hola.txt ]; then
+            echo "--- lo que dijo el cuaderno ---" >> estado/kaggle-comprobacion.txt
+            cat estado/kaggle-hola/hola.txt >> estado/kaggle-comprobacion.txt
+          fi
+
+      - name: Guardar salga como salga
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Comprobación de Kaggle [skip ci]"
+            git pull --rebase
+            git push
+          fi
