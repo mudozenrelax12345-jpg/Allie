@@ -71,3 +71,4 @@
 {"cuando": "2026-10-17T19:23:11+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
 {"cuando": "2026-10-17T19:23:12+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct-fp8", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
 {"cuando": "2026-10-17T19:23:12+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
+{"cuando": "2026-10-17T20:24:43+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
