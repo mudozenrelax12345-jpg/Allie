@@ -133,7 +133,7 @@ def por_gemini_imagen(modelo, allie, producto, orden):
     except Exception as e:  # noqa: BLE001
         return None, f"{type(e).__name__}: {str(e)[:200]}"
     if r.status_code != 200:
-        return None, f"HTTP {r.status_code} · {r.text[:250]}"
+        return None, f"HTTP {r.status_code} · " + " ".join(r.text.split())[:1200]
     try:
         for p in r.json()["candidates"][0]["content"]["parts"]:
             dato = p.get("inline_data") or p.get("inlineData")
