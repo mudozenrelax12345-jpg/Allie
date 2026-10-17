@@ -8,6 +8,6 @@ Diez mil neuronas al día. Estimaciones nuestras por modelo, no cifras oficiales
 |---|---|---|---|
 | prueba_cloudflare | 3196 | 4 | 10 |
 | prueba_extras | 0 | 0 | 6 |
-| probar_salidas | 0 | 0 | 4 |
-| probar_cuota | 0 | 0 | 15 |
+| probar_salidas | 0 | 0 | 6 |
+| probar_cuota | 0 | 0 | 18 |
 
