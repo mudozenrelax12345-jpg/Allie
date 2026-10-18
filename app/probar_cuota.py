@@ -15,6 +15,8 @@ de la hora que yo me creía.
 Sólo escribe cuando el estado CAMBIA, para no llenar el historial de
 commits iguales.
 """
+import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
