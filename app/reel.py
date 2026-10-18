@@ -22,7 +22,8 @@ import requests
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import cloudflare  # noqa: E402
+import cloudflare
+import contexto  # noqa: E402
 import espacio as espacio_mod  # noqa: E402
 from PIL import Image, ImageFilter
 
@@ -56,11 +57,23 @@ def guion(p):
     temas = p.get("temas_reel") or ["un día en Madrid", "rutina de mañana", "look del día",
                                     "paseo con Booby", "café y planes", "finde de descanso"]
     tema = os.environ.get("TEMA", "").strip() or random.choice(temas)
+    # Allie vive en Madrid y en una fecha concreta, no en un octubre eterno.
+    # Sin esto el texto habla de «otoño» en pleno junio y de «la luz dorada»
+    # tres semanas seguidas.
+    cuando, letra = contexto.momento()
+    vestuario, sitio = contexto.elegir(letra)
     prompt = f"""Eres el community manager de la influencer virtual {p.get('nombre', 'Allie')} en Instagram.
 Su forma de ser: {p.get('personalidad', '')}
 Datos suyos: {p.get('sobre_ella', '')}
 
+{cuando}
+Si alguna de esas fechas da juego, úsala; si no, no la fuerces.
+
 Prepara un REEL de {N_FOTOS} fotos sobre el tema: "{tema}".
+Lleva puesto EXACTAMENTE esto en todas las fotos: {vestuario[1]}.
+Está aquí: {sitio[1]}.
+No cambies ni la ropa ni el sitio: vienen decididos de fuera para que el
+perfil no parezca el mismo día repetido.
 Las fotos van seguidas como un pequeño vídeo, así que deben contar una secuencia
 coherente (misma ropa y mismo sitio, cambiando el plano y la acción).
 

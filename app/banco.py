@@ -33,6 +33,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ajustes  # noqa: E402
 import gemini  # noqa: E402
+import contexto  # noqa: E402
 import reel  # noqa: E402
 
 BASE = Path(__file__).resolve().parent.parent
@@ -147,13 +148,31 @@ def etiqueta_de(tema):
     return "varios"
 
 
-def escenas(p, cuantas, tema):
-    """Escenas de una misma tanda: mismo sitio y misma ropa, distinto plano."""
+def escenas(p, cuantas, tema, vestuario=None, sitio=None):
+    """Escenas de una misma tanda: mismo sitio y misma ropa, distinto plano.
+
+    La ropa y el sitio NO los elige el modelo: se le imponen. El 18 de
+    octubre el banco tenía 81 fotos y diecisiete llevaban el mismo jersey
+    beige, porque cuando un modelo de lenguaje elige vestuario libremente
+    elige siempre lo mismo. Pedirle «variedad» no funciona; darle la prenda
+    escrita, sí.
+    """
+    cuando, _ = contexto.momento()
+    ropa = (vestuario or ("", "whatever suits the scene"))[1]
+    donde = (sitio or ("", ""))[1]
     prompt = f"""Eres el director de fotografía de {p.get('nombre', 'Allie')}.
 Su forma de ser: {p.get('personalidad', '')}
 
+{cuando}
+
 Describe {cuantas} fotos del MISMO momento sobre: "{tema}".
 Misma ropa, mismo sitio, misma luz. Lo que cambia es el plano y la pose.
+
+OBLIGATORIO, y no es negociable ni mejorable:
+- Lleva puesto EXACTAMENTE esto, en las {cuantas} fotos: {ropa}.
+  No lo cambies, no lo adornes, no añadas otra prenda encima.
+{"- Está aquí: " + donde + "." if donde else ""}
+- La escena tiene que encajar con la época del año que te he dicho arriba.
 
 Devuelve SOLO un JSON: {{"escenas": [{", ".join(['"escena en inglés"'] * cuantas)}]}}
 
@@ -209,7 +228,7 @@ def _libre(nombre):
     return f"{raiz}-{int(time.time())}{punto}{ext}"
 
 
-def llenar(cuantas, tema):
+def llenar(cuantas, tema, vestuario=None, sitio=None):
     """Genera hasta `cuantas` fotos nuevas y las mete en el banco.
 
     Para en cuanto la cuota se agota y guarda lo conseguido: media tanda en el
@@ -229,7 +248,7 @@ def llenar(cuantas, tema):
     etiqueta = etiqueta_de(tema)
     log(f"Tanda {tanda} · {tema} · etiqueta «{etiqueta}»")
 
-    fila = escenas(p, cuantas, tema)
+    fila = escenas(p, cuantas, tema, vestuario, sitio)
     metidas, motivos = 0, []
     for i, escena in enumerate(fila, 1):
         for intento in range(reel.INTENTOS):
@@ -258,6 +277,8 @@ def llenar(cuantas, tema):
             indice["fotos"].append({
                 "archivo": nombre, "tanda": tanda, "etiqueta": etiqueta,
                 "tema": tema, "escena": escena, "usada": None,
+                "vestuario": (vestuario or ("", ""))[0],
+                "sitio": (sitio or ("", ""))[0],
                 "creada": datetime.now(timezone.utc).isoformat(),
             })
             metidas += 1
@@ -302,9 +323,21 @@ def main():
         guardar(indice)
         return
 
+    # La ropa y el sitio se deciden AQUÍ y no los elige el modelo, que
+    # elegiría beige otra vez. Se mira lo usado en las últimas tandas para
+    # no repetir: con treinta prendas y azar puro, la misma sale dos veces
+    # por semana y el perfil parece el mismo día en bucle.
+    _, letra = contexto.momento()
+    usados_v, usados_s = contexto.ultimos(indice)
+    log(f"Temporada «{letra}» · evito lo último: {', '.join(usados_v[:4]) or '—'}")
+
     total, motivos = 0, []
     for tema in temas:
-        n, m = llenar(por_tema, tema)
+        vestuario, sitio = contexto.elegir(letra, usados_v, usados_s)
+        usados_v = [vestuario[0]] + usados_v
+        usados_s = [sitio[0]] + usados_s
+        log(f"  {tema} → {vestuario[0]} · {sitio[0]}")
+        n, m = llenar(por_tema, tema, vestuario, sitio)
         total += n
         motivos += m
         if any("cuota" in x for x in m):
