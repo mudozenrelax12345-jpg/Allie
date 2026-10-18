@@ -43,6 +43,7 @@ from ig import Instagram  # noqa: E402
 
 CRUDO = "https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/"
 CUANTAS = int(float(os.environ.get("FOTOS_CARRUSEL") or 3))
+COLA = BASE / "contenido" / "cola.json"
 # Con FOTOS_CARRUSEL=1 esto publica una foto suelta, que es lo que lleva el
 # jueves en el plan. Instagram no admite un carrusel de una sola imagen.
 MINIMO = 1
@@ -52,6 +53,28 @@ def log(m):
     print(f"· {m}", flush=True)
 
 
+def siguiente_de_la_cola():
+    """La primera pieza preparada a mano sin publicar, o None.
+
+    Las piezas de la cola son las que se guardan: listas de sitios reales
+    con horarios comprobados. El texto automático describe la foto, que
+    está bien para el día a día pero nadie guarda «qué luz tan bonita».
+    """
+    try:
+        d = json.loads(COLA.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return None, None
+    for pieza in d.get("piezas", []):
+        if not pieza.get("usado"):
+            return pieza, d
+    return None, d
+
+
+def marcar_usada(pieza, cola):
+    pieza["usado"] = datetime.now(timezone.utc).isoformat()
+    COLA.write_text(json.dumps(cola, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
 def main():
     seco = (os.environ.get("EN_SECO") or "").strip().lower() in ("si", "sí", "true", "1")
 
@@ -59,16 +82,24 @@ def main():
     # después falla cualquier cosa hay que devolverlas, o cada intento
     # fallido se come fotos buenas que nunca llegaron a publicarse. El 18 de
     # octubre un simple ensayo en seco se comió tres.
-    rutas, _ = banco.coger(CUANTAS)
+    pieza, cola = siguiente_de_la_cola()
+    if pieza:
+        log(f"De la cola: «{pieza['titulo']}»")
+    # Con etiqueta, para que las fotos no contradigan al texto: una lista de
+    # cafeterías con fotos en la calle chirría aunque nadie sepa decir por qué.
+    rutas, _ = banco.coger(CUANTAS, (pieza or {}).get("etiqueta"))
     try:
-        return _publicar(rutas, seco)
+        salida = _publicar(rutas, seco, pieza)
+        if pieza and not seco:
+            marcar_usada(pieza, cola)
+        return salida
     except Exception:
         banco.devolver(rutas)
         log(f"Devuelvo al banco las {len(rutas)} fotos: no se publicó nada")
         raise
 
 
-def _publicar(rutas, seco):
+def _publicar(rutas, seco, pieza=None):
     if not rutas or len(rutas) < MINIMO:
         raise RuntimeError(
             f"El banco no tiene {MINIMO} fotos libres de una misma tanda. "
@@ -82,12 +113,16 @@ def _publicar(rutas, seco):
     if repetidas:
         raise RuntimeError(f"Estas fotos ya se publicaron: {', '.join(repetidas)}")
 
-    p = reel.persona()
-    d = reel.texto_de_las_fotos(p, rutas)
-    texto = (d.get("texto") or "").strip()
+    if pieza:
+        texto, etiquetas = pieza.get("texto", "").strip(), pieza.get("hashtags", "")
+    else:
+        p = reel.persona()
+        d = reel.texto_de_las_fotos(p, rutas)
+        texto = (d.get("texto") or "").strip()
+        etiquetas = " ".join(d.get("hashtags") or [])
     if not texto:
         raise RuntimeError("Sin texto no se publica. Un carrusel mudo no dice nada.")
-    pie = publicar.con_aviso(texto, " ".join(d.get("hashtags") or []))
+    pie = publicar.con_aviso(texto, etiquetas)
     log(f"Pie ({len(pie)} caracteres):\n{pie}")
 
     urls = [CRUDO + n for n in nombres]
