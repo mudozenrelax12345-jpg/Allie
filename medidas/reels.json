@@ -344,5 +344,72 @@
    },
    "nota_cupo_metricool": "No se gasto ninguna publicacion del cupo de Metricool: el reel salio por la API de Instagram."
   }
+ },
+ {
+  "fecha": "2026-10-18",
+  "fecha_ultimo_dato": "2026-10-17",
+  "seguidores": 3280,
+  "ganados": null,
+  "perdidos": null,
+  "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 17-oct al medir (11:55 Madrid). El 16-oct: 8 ganados, 3 perdidos.",
+  "alcance_reels": 103,
+  "visualizaciones_reels": 221,
+  "reels_publicados": 1,
+  "formato": "carrusel",
+  "enlace": "https://www.instagram.com/p/DeoaOU_lwl-/",
+  "nota": "CAMBIO DE PLAN GRANDE, Y NO LO HIZO ESTA TAREA. Esta madrugada se toco el repositorio desde otra sesion: ahora hay carrusel.yml, que publica carruseles y fotos sueltas POR LA API de Instagram, y el reparto pasa a ser carrusel lunes/miercoles/viernes/domingo, reel martes/sabado y foto suelta el jueves, todo a las 10:00 de Madrid. publicar.yml (el reel) ya solo tiene cron los dias 2 y 6. El motivo esta en los numeros de cinco semanas: carruseles 228 de alcance mediano con 12 guardados y 6 seguidores nuevos, fotos 251 y 4 guardados, reels 112 y 0 guardados y 0 seguidores.\n\nHOY NO SALIO SOLO Y LA CAUSA ES EL PROPIO DESPLIEGUE: hoy es domingo, o sea dia de carrusel, pero carrusel.yml se subio a las 09:14 UTC y la ranura del cron era las 08:12 UTC. El workflow aun no existia cuando tocaba. Las dos ejecuciones de la manana fueron a mano: la de 09:14 reviento con un TypeError al desempaquetar banco.coger() (ya corregido en 957759d) y la de 09:15 fue un ensayo en seco correcto.\n\nLO PUBLICADO HOY: carrusel de 3 fotos de la tanda 20261014-171136 (gabardina beige, parque con luz dorada, perrito pequeño), lanzado a mano con carrusel.yml y sin_guarda=si (run 39117190647) y PUBLICADO a las 09:55 UTC / 11:55 Madrid, media_id 18110868452521321, https://www.instagram.com/p/DeoaOU_lwl-/ . Es el PRIMER carrusel que sale por la API, sin gastar cupo de Metricool. Salio a las 11:55 en vez de las 10:00 por el desfase del despliegue: casi dos horas despues del pico.\n\nSEGUNDA MIRADA A LAS FOTOS: las tres son Allie, rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg, y forman un momento coherente (misma gabardina, mismo parque, misma luz, mismo perro). OpenCV ya habia dado el visto bueno en generacion. PERO EL PIE TIENE UN FALLO: dice '¿Cual de las DOS fotos es tu favorita?' y el carrusel lleva TRES. No es grave y no se borra la publicacion por eso, pero el texto se escribe MIRANDO las fotos y deberia saber cuantas hay: conviene pasarle el numero de fotos al generador del pie.\n\nEL EXPERIMENTO REEL NORMAL vs TRIAL REEL SE PUEDE CERRAR. Con los datos ya maduros (IGRE02 alcance / IGRE11 interacciones): trial 13-oct 41/0, trial 14-oct 105/9, trial 15-oct 135/101, normal 16-oct 120/84, normal 17-oct 103/88, normal 9-oct 140/2. El reel normal NO reparte mas que el trial maduro: los dos se mueven entre 100 y 140. O sea que el formato de reel no era la palanca. Lo que si se separa de verdad son los posts: carruseles y fotos de las ultimas tres semanas van de 126 a 319 (1-oct 319, 3-oct 307, 4-oct 254, 9-oct 228, 10-oct 215, 14-oct 126), mas o menos el doble que cualquier reel. El cambio a carrusel de esta madrugada va en la direccion que dicen los numeros.\n\nLO BUENO: los seguidores siguen subiendo y es lo mas claro del mes. 3280 el 17-oct frente a 3221 el 10-oct (+59 en una semana) y frente a 3241 el 18 de septiembre, despues de todo un mes bajando poco a poco hasta 3217 el 5-oct. El 17-oct solo subio 13. No se gasto ninguna publicacion del cupo de Metricool.",
+  "contexto_30d": {
+   "alcance_por_reel_maduro": {
+    "20261009": 140,
+    "20261013": 41,
+    "20261014": 105,
+    "20261015": 135,
+    "20261016": 120,
+    "20261017": 103
+   },
+   "interacciones_por_reel": {
+    "20261009": 2,
+    "20261013": 0,
+    "20261014": 9,
+    "20261015": 101,
+    "20261016": 84,
+    "20261017": 88
+   },
+   "tipo_por_reel": {
+    "20261009": "reel normal",
+    "20261013": "trial reel",
+    "20261014": "trial reel",
+    "20261015": "trial reel",
+    "20261016": "reel normal",
+    "20261017": "reel normal"
+   },
+   "alcance_por_post": {
+    "20261001": 323,
+    "20261002": 231,
+    "20261003": 313,
+    "20261004": 260,
+    "20261008": 188,
+    "20261008b": 155,
+    "20261009": 236,
+    "20261009b": 21,
+    "20261010": 221,
+    "20261014": 141
+   },
+   "veredicto_experimento": "Reel normal 120 y 103 de alcance; trial reel maduro 41, 105 y 135. Empate. El formato de reel no cambia nada. Los posts (carrusel y foto) doblan a los dos. Experimento cerrado: se pasa a carrusel.",
+   "serie_seguidores": {
+    "20261010": 3221,
+    "20261011": 3243,
+    "20261012": 3256,
+    "20261013": 3262,
+    "20261014": 3262,
+    "20261015": 3263,
+    "20261016": 3267,
+    "20261017": 3280
+   },
+   "variacion_7d": 59,
+   "variacion_30d": 39,
+   "nota_cupo_metricool": "Cero publicaciones del cupo: el carrusel salio por la API de Instagram.",
+   "banco": "56 fotos libres despues de coger las 3 de hoy."
+  }
  }
 ]
