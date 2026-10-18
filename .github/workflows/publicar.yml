@@ -19,9 +19,19 @@ on:
     # segunda a 226.
     #
     # Minuto desplazado: a las horas en punto GitHub va cargado y retrasa.
-    - cron: "12 8 * * 1,3,5,6"
+    #
+    # DOS CRONES A PROPÓSITO. GitHub va en UTC y no entiende de husos: el 25
+    # de octubre España atrasa el reloj y un cron fijo pasaría a disparar a
+    # las nueve, una hora antes del pico, sin fallar ni avisar. app/hora.py
+    # deja pasar solo al que cae a las diez en Madrid.
+    - cron: "12 8 * * 2,6"
+    - cron: "12 9 * * 2,6"
   workflow_dispatch:
     inputs:
+      sin_guarda:
+        description: "Saltarse la comprobación de la hora (si/no)"
+        type: string
+        default: ""
       en_seco:
         description: "Enseñar lo que publicaría, sin publicarlo (si/no)"
         type: string
@@ -51,13 +61,25 @@ jobs:
       # repositorio. El 17 de octubre la publicación de las 10:33 falló sin
       # dejar un solo rastro: ni fichero de fallo, ni commit, nada. Diez
       # minutos mirando una pared. Eso no vuelve a pasar.
+      - name: ¿Son las diez en Madrid?
+        id: hora
+        run: |
+          if [ "${{ inputs.sin_guarda }}" = "si" ]; then
+            echo "toca=si" >> "$GITHUB_OUTPUT"
+            echo "· a mano: me salto la comprobación de la hora"
+          else
+            python app/hora.py
+          fi
+
       - name: Empezar el parte
+        if: steps.hora.outputs.toca == 'si'
         run: |
           mkdir -p estado
           echo "# Última publicación · $(date -u '+%Y-%m-%d %H:%M') UTC" \
             > estado/ultima-publicacion.txt
 
       - name: Instalar
+        if: steps.hora.outputs.toca == 'si'
         run: |
           echo "## instalar" >> estado/ultima-publicacion.txt
           set -o pipefail
@@ -65,6 +87,7 @@ jobs:
             | tee -a estado/ultima-publicacion.txt
 
       - name: Comprobar las barreras antes de tocar la cuenta
+        if: steps.hora.outputs.toca == 'si'
         run: |
           echo "## barreras" >> estado/ultima-publicacion.txt
           set -o pipefail
@@ -76,18 +99,21 @@ jobs:
       # añadir el marcado, y por eso la publicación del sábado murió antes
       # de tocar Instagram.
       - name: Poner ffmpeg
+        if: steps.hora.outputs.toca == 'si'
         run: |
           echo "## ffmpeg" >> estado/ultima-publicacion.txt
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           ffmpeg -version | head -1 | tee -a estado/ultima-publicacion.txt
 
       - name: Comprobar el marcado de IA del vídeo
+        if: steps.hora.outputs.toca == 'si'
         run: |
           echo "## marcado" >> estado/ultima-publicacion.txt
           set -o pipefail
           python app/prueba_marca.py 2>&1 | tee -a estado/ultima-publicacion.txt
 
       - name: Publicar
+        if: steps.hora.outputs.toca == 'si'
         run: |
           echo "## publicar" >> estado/ultima-publicacion.txt
           set -o pipefail

@@ -1,0 +1,110 @@
+name: Publicar carrusel o foto en Instagram
+
+# El formato que de verdad funciona en esta cuenta. Cinco semanas de datos,
+# del 10 de septiembre al 18 de octubre:
+#
+#   carruseles   alcance mediano 228 · 12 guardados · 6 seguidores nuevos
+#   fotos        alcance mediano 251 ·  4 guardados · 1 seguidor
+#   reels        alcance mediano 112 ·  0 guardados · 0 seguidores
+#
+# Hasta hoy los carruseles se programaban a mano en Metricool, que regala
+# veinte publicaciones al mes: con cuatro a la semana ese tope se agota el
+# día 20. Por la API de Instagram son 25 al día.
+#
+# LOS DOS CRONES NO SON UN ERROR. GitHub va en UTC y no entiende de husos.
+# El 25 de octubre España atrasa el reloj y un cron fijo pasaría a disparar
+# a las nueve de la mañana, una hora antes del pico, sin fallar ni avisar.
+# Se ponen los dos y app/hora.py deja pasar al que de verdad cae a las diez
+# en Madrid. El otro se para en el primer paso.
+
+on:
+  schedule:
+    # Lunes, miércoles, viernes y domingo · 10:12 en Madrid.
+    - cron: "12 8 * * 1,3,5,0"
+    - cron: "12 9 * * 1,3,5,0"
+    # Jueves · foto suelta, misma hora.
+    - cron: "12 8 * * 4"
+    - cron: "12 9 * * 4"
+  workflow_dispatch:
+    inputs:
+      fotos:
+        description: "Cuántas fotos (1 = foto suelta, 3 = carrusel)"
+        type: string
+        default: "3"
+      en_seco:
+        description: "Enseñar lo que publicaría, sin publicarlo (si/no)"
+        type: string
+        default: ""
+      sin_guarda:
+        description: "Saltarse la comprobación de la hora (si/no)"
+        type: string
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar-allie
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: ¿Son las diez en Madrid?
+        id: hora
+        run: |
+          if [ "${{ inputs.sin_guarda }}" = "si" ]; then
+            echo "toca=si" >> "$GITHUB_OUTPUT"
+            echo "· a mano: me salto la comprobación de la hora"
+          else
+            python app/hora.py
+          fi
+
+      - name: Instalar
+        if: steps.hora.outputs.toca == 'si'
+        run: pip install -r requirements.txt
+
+      - name: Empezar el parte
+        if: steps.hora.outputs.toca == 'si'
+        run: |
+          mkdir -p estado
+          echo "# Carrusel · $(date -u '+%Y-%m-%d %H:%M') UTC" \
+            > estado/ultimo-carrusel.txt
+
+      - name: Publicar
+        if: steps.hora.outputs.toca == 'si'
+        run: |
+          set -o pipefail
+          python app/publicar_carrusel.py 2>&1 | tee -a estado/ultimo-carrusel.txt
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          FB_TOKEN: ${{ secrets.FB_TOKEN }}
+          META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+          REPO_PRIVADO: ${{ github.event.repository.private }}
+          EN_SECO: ${{ inputs.en_seco }}
+          # Jueves (día 4) una foto suelta; el resto de días, carrusel.
+          FOTOS_CARRUSEL: ${{ inputs.fotos || (github.event.schedule == '12 8 * * 4' || github.event.schedule == '12 9 * * 4') && '1' || '3' }}
+
+      - name: Guardar el registro salga como salga
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Carrusel publicado [skip ci]"
+            git pull --rebase
+            git push
+          fi
