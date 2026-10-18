@@ -61,6 +61,14 @@ def falso_post(url, **kw):
 
 cloudflare.requests.post = falso_post
 
+# El freno del cupo lee un fichero de gasto REAL. Una prueba que mira el
+# estado de producción no es una prueba: el 18 de octubre esta empezó a
+# fallar sola porque ese día se había gastado cupo de verdad. Fichero
+# aparte y techo alto: aquí se mide otra cosa.
+import tempfile  # noqa: E402
+cloudflare.GASTO = Path(tempfile.mkdtemp()) / "gasto.jsonl"
+cloudflare.TECHO_NEURONAS = 10 ** 9
+
 
 def main():
     allie = foto(1200, (200, 180, 160))
