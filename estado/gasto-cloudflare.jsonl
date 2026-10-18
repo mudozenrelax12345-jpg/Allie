@@ -87,3 +87,4 @@
 {"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-18T05:06:40+00:00", "quien": "prueba_producto", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 3.2, "neuronas": 1462}
