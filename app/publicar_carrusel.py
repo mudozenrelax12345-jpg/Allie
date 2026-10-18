@@ -55,7 +55,20 @@ def log(m):
 def main():
     seco = (os.environ.get("EN_SECO") or "").strip().lower() in ("si", "sí", "true", "1")
 
-    rutas = banco.coger(CUANTAS)
+    # coger() devuelve (rutas, índice) y MARCA las fotos como usadas. Si
+    # después falla cualquier cosa hay que devolverlas, o cada intento
+    # fallido se come fotos buenas que nunca llegaron a publicarse. El 18 de
+    # octubre un simple ensayo en seco se comió tres.
+    rutas, _ = banco.coger(CUANTAS)
+    try:
+        return _publicar(rutas, seco)
+    except Exception:
+        banco.devolver(rutas)
+        log(f"Devuelvo al banco las {len(rutas)} fotos: no se publicó nada")
+        raise
+
+
+def _publicar(rutas, seco):
     if not rutas or len(rutas) < MINIMO:
         raise RuntimeError(
             f"El banco no tiene {MINIMO} fotos libres de una misma tanda. "
@@ -83,6 +96,8 @@ def main():
 
     if seco:
         log("EN_SECO: no se publica nada.")
+        banco.devolver(rutas)
+        log("Y devuelvo las fotos al banco: un ensayo no gasta material.")
         return
 
     token, ig_id, page_id = bot.credenciales()
