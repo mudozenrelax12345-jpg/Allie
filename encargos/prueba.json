@@ -1,13 +1,9 @@
 {
- "cuando": "2026-10-18T05:06:43.087413+00:00",
+ "cuando": "2026-10-18T05:26:35.002216+00:00",
  "encargos": [
   {
    "encargo": "panuelo",
-   "producto": {
-    "segundos": 3.2,
-    "modelo": "@cf/black-forest-labs/flux-2-klein-9b"
-   },
-   "error": "no salió la escena: ['SinCupo: Freno propio: van 9479 neuronas en 24 h, el techo está en 9000. No pido más para no dejar sin cupo lo de mañana.']"
+   "error": "no salió la foto de producto: ['SinCupo: Freno propio: van 9479 neuronas en 24 h, el techo está en 9000. No pido más para no dejar sin cupo lo de mañana.']"
   },
   {
    "encargo": "bolso",
