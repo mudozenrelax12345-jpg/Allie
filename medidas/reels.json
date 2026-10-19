@@ -411,5 +411,77 @@
    "nota_cupo_metricool": "Cero publicaciones del cupo: el carrusel salio por la API de Instagram.",
    "banco": "56 fotos libres despues de coger las 3 de hoy."
   }
+ },
+ {
+  "fecha": "2026-10-19",
+  "fecha_ultimo_dato": "2026-10-18",
+  "seguidores": 3277,
+  "ganados": null,
+  "perdidos": null,
+  "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 18-oct al medir (12:05 Madrid). El 17-oct: 15 ganados, 5 perdidos.",
+  "alcance_reels": null,
+  "visualizaciones_reels": null,
+  "reels_publicados": 0,
+  "formato": "carrusel",
+  "enlace": "https://www.instagram.com/p/Deq_d69nNjW/",
+  "nota": "SI SE PUBLICO, pero NO solo: lo lanzo esta tarea a mano. POR QUE NO SALIO SOLO: hoy es lunes, dia de carrusel. El cron de las 08:12 UTC salto a las 08:48 (GitHub iba cargado y lo retraso 36 minutos). En Madrid eran las 10:48 y la guarda de app/hora.py pedia hour==10 y minute<=45. Por TRES MINUTOS el paso de publicar se salto, el trabajo acabo en verde y no aviso nadie. La segunda ejecucion (09:40 UTC, 11:40 Madrid) ya era otra hora. CORREGIDO en 542bade: la ventana pasa a ser la hora entera, que no puede publicar dos veces porque los dos crons van separados una hora justa y la comprobacion de hour descarta al segundo. prueba_hora.py actualizada y en verde.\n\nLAS FOTOS NO ERAN LAS DEL TEXTO Y ESO SI ERA GRAVE. La pieza de hoy es la lista de cafeterias de Madrid para trabajar, etiqueta 'cafe'. Las cinco tandas libres con esa etiqueta eran COCINAS DE CASA: la etiqueta sale del tema ('un cafe por la manana'), no de lo que se ve en la foto. Y la unica tanda que de verdad esta en la terraza de un cafe de Madrid, la 20261015-061006, estaba etiquetada 'calle'. De haber salido solo, habria publicado una lista de cafeterias sobre tres fotos en una cocina: el mismo fallo de las brochas y las manchas de pintura del 15 de octubre. Trece fotos de cocina pasan a 'casa' y la terraza pasa a 'cafe'.\n\nLO PUBLICADO: carrusel de 3 fotos de la tanda 20261015-061006 (terraza de cafe de Madrid, blazer de lino beige, luz de tarde) con la lista de cinco cafeterias para trabajar, run 39234049462 con sin_guarda=si, publicado a las 09:58 UTC / 11:58 Madrid, media_id 18069929354775640, https://www.instagram.com/p/Deq_d69nNjW/ . Cero cupo de Metricool. SEGUNDA MIRADA A LAS FOTOS: las tres son Allie, rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg; misma terraza, mismo blazer, misma luz. Unico pero menor: en la 1 lleva camiseta blanca y en la 2 gris. El pie encaja con lo que se ve.\n\nSEGUNDO DIA SEGUIDO FUERA DEL PICO: ayer a las 11:55 y hoy a las 11:58, casi dos horas despues de las 10:00. Con la guarda arreglada, el miercoles deberia salir ya a su hora sin tocar nada.\n\nEL REEL DIARIO LLEVABA FALLANDO DESDE EL 18. reel-diario.yml murio hoy a las 06:06 (run 39208017373) en prueba_pisadas.py: su escenas() de mentira no aceptaba vestuario ni sitio, que se anadieron a la de verdad. No ha hecho dano porque el banco tiene 56 fotos libres, muy por encima de las 24 del umbral, pero el dia que bajase no habria generado nada. Corregido en 542bade y la prueba pasa.\n\nLOS NUMEROS, Y NO SON BUENOS. El carrusel de ayer lleva 127 de alcance y 104 de interacciones a las 26 h. Los carruseles y fotos de principios de mes iban de 221 a 323 (1-oct 327, 3-oct 315, 4-oct 264, 9-oct 242, 10-oct 230). Los de la ultima semana: 14-oct 149, 18-oct 127. Es decir, el formato que mejor funcionaba tambien esta bajando, y bastante. Los reels normales maduros se quedaron en 119-143 y los trial en 41-105. Con los posts cayendo a la banda de los reels, la lectura honesta es que el problema NO es el formato sino a cuanta gente llega la cuenta. Dos cosas lo enturbian y hay que descontarlas antes de dar nada por cerrado: las dos ultimas piezas salieron casi dos horas tarde, y el carrusel de ayer todavia puede madurar.\n\nLO BUENO SIGUE SIENDO LOS SEGUIDORES: 3277 el 18-oct frente a 3221 el 10-oct, +56 en ocho dias, despues de un mes entero bajando. El 18 bajo 3 respecto al 17 (3280), que es ruido normal.",
+  "contexto_30d": {
+   "alcance_por_post": {
+    "20261001": 327,
+    "20261002": 235,
+    "20261003": 315,
+    "20261004": 264,
+    "20261008": 195,
+    "20261008b": 159,
+    "20261009": 242,
+    "20261009b": 21,
+    "20261010": 230,
+    "20261014": 149,
+    "20261018": 127
+   },
+   "interacciones_por_post": {
+    "20261001": 173,
+    "20261002": 159,
+    "20261003": 161,
+    "20261004": 184,
+    "20261008": 149,
+    "20261008b": 95,
+    "20261009": 191,
+    "20261009b": 8,
+    "20261010": 144,
+    "20261014": 103,
+    "20261018": 104
+   },
+   "alcance_por_reel_maduro": {
+    "20261009": 140,
+    "20261013": 41,
+    "20261014": 105,
+    "20261015": 143,
+    "20261016": 132,
+    "20261017": 119
+   },
+   "tipo_por_reel": {
+    "20261009": "reel normal",
+    "20261013": "trial reel",
+    "20261014": "trial reel",
+    "20261015": "trial reel",
+    "20261016": "reel normal",
+    "20261017": "reel normal"
+   },
+   "serie_seguidores": {
+    "20261012": 3256,
+    "20261013": 3262,
+    "20261014": 3262,
+    "20261015": 3263,
+    "20261016": 3267,
+    "20261017": 3280,
+    "20261018": 3277
+   },
+   "variacion_7d": 21,
+   "veredicto": "Experimento de formato cerrado ayer. El dato nuevo es que los posts tambien caen: de 221-327 a principios de mes a 149 el 14 y 127 el 18. Si el miercoles, ya a su hora, el carrusel sigue por debajo de 150, el problema es la cuenta y no el formato.",
+   "nota_cupo_metricool": "Cero publicaciones del cupo: el carrusel salio por la API de Instagram.",
+   "banco": "56 fotos libres. Sin tandas de 'cafe' libres despues de hoy.",
+   "pendiente": "La pieza de librerias de la cola lleva etiqueta 'cafe' y ya no quedan fotos de cafe libres: si le toca, el publicador fallara con 'El banco no tiene 3 fotos libres'. Por eso la cola se reordeno y el miercoles va la de otono (etiqueta 'calle', tanda de parque 20261015-043521). Hace falta generar una tanda en cafeteria antes de sacar la de librerias."
+  }
  }
 ]
