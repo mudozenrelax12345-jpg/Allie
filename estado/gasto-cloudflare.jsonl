@@ -180,3 +180,4 @@
 {"cuando": "2026-10-19T19:57:45+00:00", "quien": "halloween", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 8.4, "neuronas": 136}
 {"cuando": "2026-10-19T19:57:54+00:00", "quien": "halloween", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 8.7, "neuronas": 136}
 {"cuando": "2026-10-19T20:31:23+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
+{"cuando": "2026-10-19T21:29:29+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
