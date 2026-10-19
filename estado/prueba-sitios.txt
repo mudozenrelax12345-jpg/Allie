@@ -1,10 +1,12 @@
+No se pudieron leer los permisos: IGError: (#100) Tried accessing nonexisting field (permissions) (código 100)
+
 Probando 5 sitios
 
-no   El Retiro Madrid → — · IGError: Authorization Error (código 100)
-no   Malasaña → — · IGError: Authorization Error (código 100)
-no   Mercado de San Fernando → — · IGError: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature or the 'Page Public Metadata Access' feature. Refer to https://developers.facebook.com/d
+no   El Retiro Madrid → — · IGError: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature or the 'Page Public Metadata Access' feature. Refer to https://developers.facebook.com/d
+no   Malasaña → — · IGError: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature or the 'Page Public Metadata Access' feature. Refer to https://developers.facebook.com/d
+no   Mercado de San Fernando → — · IGError: Authorization Error (código 100)
 no   Templo de Debod → — · IGError: Authorization Error (código 100)
-no   Misión Café Madrid → — · IGError: Authorization Error (código 100)
+no   Misión Café Madrid → — · IGError: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature or the 'Page Public Metadata Access' feature. Refer to https://developers.facebook.com/d
 
 0 de 5 encontrados
 Ninguno: o el token no tiene permiso para buscar lugares, o la búsqueda de páginas ya no está disponible. Sin esto, se puede seguir publicando: simplemente sin ubicación.
