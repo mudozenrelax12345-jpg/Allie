@@ -73,6 +73,25 @@ if __name__ == "__main__":
     from ig import Instagram
     token, ig_id, page_id = bot.credenciales()
     ig = Instagram(token=token, ig_id=ig_id, page_id=page_id)
+    # Lo primero: qué permisos tiene EL TOKEN, no los que estén marcados en
+    # el explorador. Teresa señaló —con razón— que los permisos ya estaban
+    # puestos, y lo que se marca en la pantalla no es lo que lleva el token
+    # que se generó hace días. Preguntárselo cuesta una llamada.
+    try:
+        perm = ig._req("GET", "me/permissions")
+        dados = sorted(p["permission"] for p in perm.get("data", [])
+                       if p.get("status") == "granted")
+        otros = sorted(f"{p['permission']}({p.get('status')})"
+                       for p in perm.get("data", []) if p.get("status") != "granted")
+        print("PERMISOS DEL TOKEN:", ", ".join(dados) or "ninguno", flush=True)
+        if otros:
+            print("  no concedidos:", ", ".join(otros), flush=True)
+        print("  ¿pages_read_engagement?",
+              "SÍ" if "pages_read_engagement" in dados else "NO", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"No se pudieron leer los permisos: {type(e).__name__}: {e}", flush=True)
+    print(flush=True)
+
     prueba = sys.argv[1:] or ["El Retiro Madrid", "Malasaña", "Mercado de San Fernando",
                               "Templo de Debod", "Misión Café Madrid"]
     print(f"Probando {len(prueba)} sitios\n", flush=True)
