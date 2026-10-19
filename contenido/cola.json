@@ -47,5 +47,5 @@
   "Olavide Bar de Libros",
   "La Central de Callao"
  ],
- "nota_ubicacion": "El campo «ubicacion» se usa si el token puede buscar lugares. El 19 de octubre no podía: Meta pide pages_read_engagement. Mientras tanto no estorba: si no se encuentra, se publica sin ella."
+ "nota_ubicacion": "CERRADO el 19 de octubre: la ubicación por API NO se puede. Dos muros, y el segundo es definitivo. (1) El token que usamos es el de la PÁGINA de Facebook —main.credenciales() lo deriva así a propósito, porque no caduca— y /pages/search necesita un token de USUARIO. (2) Aunque fuera de usuario, buscar páginas que no son tuyas exige la función «Page Public Content Access», que Meta solo concede pasando revisión de la aplicación y no la da para esto. El campo «ubicacion» se queda puesto y el código lo intenta sin romper nada, por si algún día cambia; mientras tanto, la ubicación se pone a mano editando la publicación en la app."
 }

@@ -6,10 +6,21 @@ nueva vale más: la publicación entra en el feed de ese sitio, que es donde
 mira la gente de Madrid que está buscando dónde ir. Y no depende de acertar
 ningún arroba: un identificador de lugar o existe o no existe.
 
-CÓMO. Instagram acepta `location_id` al crear el contenedor, pero el
-identificador es de una PÁGINA de Facebook, no de Instagram, y hay que
-buscarlo antes con /pages/search. Esa búsqueda necesita permisos que puede
-que el token no tenga: por eso esto se prueba antes de depender de ello.
+CÓMO, y POR QUÉ NO SE PUEDE (comprobado el 19 de octubre). Instagram acepta
+`location_id` al crear el contenedor, pero el identificador es de una PÁGINA
+de Facebook y hay que buscarlo con /pages/search. Dos muros:
+
+  1. Nuestro token es el de la PÁGINA, no el de usuario: main.credenciales()
+     lo deriva así a propósito porque el de página no caduca. /pages/search
+     pide uno de usuario, y /me/permissions ni siquiera existe para una
+     página («nonexisting field»).
+  2. Y aunque fuera de usuario con pages_read_engagement, buscar páginas que
+     no son tuyas exige la función «Page Public Content Access», que Meta
+     concede solo pasando revisión de la aplicación.
+
+O sea que no es cuestión de marcar una casilla. Esto se queda escrito y se
+sigue intentando sin romper nada, por si algún día cambia; la ubicación,
+mientras tanto, se pone a mano editando la publicación en la app.
 
 Lo encontrado se guarda en contenido/sitios.json, porque el identificador
 de un sitio no cambia y no tiene sentido preguntarlo cada vez. Un sitio que
