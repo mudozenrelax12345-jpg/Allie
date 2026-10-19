@@ -114,6 +114,18 @@ def main():
               "ORDEN-SECRETA" not in escrito, escrito[:80])
     comprobar("ni la clave", "ficha-de-mentira" not in escrito)
 
+    # 5 · Una llamada FINGIDA no se apunta como gasto. Sin esto, las
+    #     pruebas inflan la contabilidad y el freno frena por neuronas que
+    #     nadie gastó: el 19 de octubre prueba_cloudflare figuraba con 6.392
+    #     y por eso se quedó sin hacer la prueba del producto de un cliente.
+    temporal.write_text("", encoding="utf-8")
+    cloudflare.FALSO = True
+    cloudflare.generar(foto(), "una escena", modelos=["modelo-de-prueba"])
+    comprobar("una llamada fingida no cuenta como gasto",
+              temporal.read_text(encoding="utf-8").strip() == "",
+              temporal.read_text(encoding="utf-8")[:80])
+    cloudflare.FALSO = False
+
     if fallos:
         print(f"\n{len(fallos)} comprobaciones mal:", flush=True)
         for f in fallos:

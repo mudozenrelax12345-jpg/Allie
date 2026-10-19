@@ -17,16 +17,16 @@
 {"cuando": "2026-10-17T11:24:26+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
 {"cuando": "2026-10-17T11:24:27+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct-fp8", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
 {"cuando": "2026-10-17T11:24:27+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
-{"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
-{"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-17T12:01:27+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-17T11:30:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-17T12:01:27+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-17T12:01:27+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-17T12:01:27+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
+{"cuando": "2026-10-17T12:01:27+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-17T12:01:27+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-17T12:01:27+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-17T12:01:27+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
@@ -48,16 +48,16 @@
 {"cuando": "2026-10-17T16:25:26+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
 {"cuando": "2026-10-17T16:25:26+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct-fp8", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
 {"cuando": "2026-10-17T16:25:26+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.1-8b-instruct", "clase": "texto", "ok": false, "segundos": 0, "neuronas": 0}
-{"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
-{"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-17T17:02:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-17T17:01:25+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
+{"cuando": "2026-10-17T17:02:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-17T17:02:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-17T17:02:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
+{"cuando": "2026-10-17T17:02:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-17T17:02:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-17T17:02:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-17T17:02:20+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
@@ -80,9 +80,9 @@
 {"cuando": "2026-10-18T02:27:19+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-18T03:26:51+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-18T04:27:46+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
-{"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
+{"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-18T04:30:31+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
@@ -100,9 +100,9 @@
 {"cuando": "2026-10-18T14:25:24+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-18T15:24:25+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-18T16:26:25+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
-{"cuando": "2026-10-18T17:03:05+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-18T17:03:05+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-18T17:03:05+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-18T17:03:05+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
+{"cuando": "2026-10-18T17:03:05+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-18T17:03:05+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-18T17:03:05+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-18T17:03:05+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
@@ -119,9 +119,9 @@
 {"cuando": "2026-10-19T02:29:53+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-19T03:31:06+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-19T04:32:56+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
-{"cuando": "2026-10-19T04:34:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-19T04:34:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-19T04:34:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-19T04:34:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
+{"cuando": "2026-10-19T04:34:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-19T04:34:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T04:34:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T04:34:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
@@ -133,16 +133,16 @@
 {"cuando": "2026-10-19T09:35:52+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-19T10:32:56+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-19T11:32:16+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
-{"cuando": "2026-10-19T11:36:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-19T11:36:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-19T11:36:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-19T11:36:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
+{"cuando": "2026-10-19T11:36:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-19T11:36:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T11:36:46+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T11:36:47+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T11:36:47+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-19T12:14:11+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-19T12:14:11+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-19T12:14:11+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-19T12:14:11+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
+{"cuando": "2026-10-19T12:14:11+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-19T12:14:11+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T12:14:11+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T12:14:11+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
@@ -152,9 +152,9 @@
 {"cuando": "2026-10-19T14:36:49+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-19T15:33:16+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-10-19T16:33:18+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
-{"cuando": "2026-10-19T17:10:00+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 136}
+{"cuando": "2026-10-19T17:10:00+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-19T17:10:00+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
-{"cuando": "2026-10-19T17:10:00+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 1462}
+{"cuando": "2026-10-19T17:10:00+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 0.0, "neuronas": 0, "corregido": "llamada fingida: nunca tocó Cloudflare"}
 {"cuando": "2026-10-19T17:10:00+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T17:10:00+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}
 {"cuando": "2026-10-19T17:10:00+00:00", "quien": "prueba_cloudflare", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": false, "segundos": 0.0, "neuronas": 0}

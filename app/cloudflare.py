@@ -108,7 +108,18 @@ def gastado_24h():
     return total
 
 
+# Las pruebas sustituyen requests.post por uno de mentira y la llamada
+# «sale bien» sin tocar Cloudflare. Si eso se apunta como gasto, la
+# contabilidad miente y el freno frena por neuronas que nadie gastó: el 19
+# de octubre prueba_cloudflare figuraba con 6.392 neuronas —el 64 % del día—
+# sin haber hecho una sola llamada de verdad, y por eso el freno paró la
+# prueba del producto de un cliente. Quien finja la red, que lo diga aquí.
+FALSO = False
+
+
 def _apuntar(modelo, ok, segundos, clase="imagen"):
+    if FALSO:
+        return
     try:
         GASTO.parent.mkdir(parents=True, exist_ok=True)
         with GASTO.open("a", encoding="utf-8") as f:

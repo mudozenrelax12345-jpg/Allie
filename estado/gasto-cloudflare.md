@@ -2,27 +2,27 @@
 
 Diez mil neuronas al día. Estimaciones nuestras por modelo, no cifras oficiales: valen para comparar, no para facturar.
 
-## 2026-10-19 · 6452 neuronas (65 % del día)
+## 2026-10-19 · 60 neuronas (1 % del día)
 
 | trabajo | neuronas | llamadas bien | llamadas mal |
 |---|---|---|---|
-| prueba_cloudflare | 6392 | 8 | 20 |
 | probar_cuota | 60 | 20 | 0 |
+| prueba_cloudflare | 0 | 8 | 20 |
 
-## 2026-10-18 · 4730 neuronas (47 % del día)
+## 2026-10-18 · 1534 neuronas (15 % del día)
 
 | trabajo | neuronas | llamadas bien | llamadas mal |
 |---|---|---|---|
-| prueba_cloudflare | 3196 | 4 | 10 |
 | prueba_producto | 1462 | 1 | 0 |
 | probar_cuota | 72 | 24 | 0 |
+| prueba_cloudflare | 0 | 4 | 10 |
 
-## 2026-10-17 · 6404 neuronas (64 % del día)
+## 2026-10-17 · 12 neuronas (0 % del día)
 
 | trabajo | neuronas | llamadas bien | llamadas mal |
 |---|---|---|---|
-| prueba_cloudflare | 6392 | 8 | 20 |
 | probar_cuota | 12 | 4 | 33 |
 | prueba_extras | 0 | 0 | 6 |
 | probar_salidas | 0 | 0 | 6 |
+| prueba_cloudflare | 0 | 8 | 20 |
 

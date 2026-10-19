@@ -23,6 +23,9 @@ from PIL import Image
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import cloudflare  # noqa: E402
 
+# Aquí no se gasta nada de verdad: que la contabilidad no lo apunte.
+cloudflare.FALSO = True
+
 fallos = []
 
 
