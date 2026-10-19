@@ -39,6 +39,7 @@ import banco  # noqa: E402
 import main as bot  # noqa: E402
 import publicar  # noqa: E402
 import reel  # noqa: E402
+import sitios  # noqa: E402
 from ig import Instagram  # noqa: E402
 
 CRUDO = "https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/"
@@ -157,9 +158,21 @@ def _publicar(rutas, seco, pieza=None):
         hijos.append(hijo)
         log(f"  contenedor {hijo}")
 
-    # Paso 2 · el contenedor del carrusel, que es el que lleva el pie.
+    # Paso 2 · el contenedor del carrusel, que es el que lleva el pie y,
+    # si lo hay, la ubicación. La ubicación mete la publicación en el feed
+    # de ese sitio, que es donde mira quien busca dónde ir en Madrid. Si no
+    # la hay, se publica igual: nunca al revés.
+    extra = {}
+    lugar = (pieza or {}).get("ubicacion")
+    if lugar:
+        ident, detalle = sitios.buscar(ig, lugar)
+        if ident:
+            extra["location_id"] = ident
+            log(f"Ubicación: {lugar} → {detalle}")
+        else:
+            log(f"Sin ubicación ({lugar}): {detalle}")
     r = ig._req("POST", f"{ig.yo}/media", media_type="CAROUSEL",
-                children=",".join(hijos), caption=pie)
+                children=",".join(hijos), caption=pie, **extra)
     contenedor = r.get("id")
     if not contenedor:
         raise RuntimeError(f"Instagram no devolvió el contenedor del carrusel: {r}")
