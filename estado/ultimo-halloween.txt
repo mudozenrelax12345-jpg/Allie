@@ -1,16 +1,3 @@
-· 01-calabazas: hecha · 9.7s · @cf/black-forest-labs/flux-2-klein-4b
-· 02-gato-luna: hecha · 7.4s · @cf/black-forest-labs/flux-2-klein-4b
-· 03-ventana: hecha · 5.4s · @cf/black-forest-labs/flux-2-klein-4b
-· 04-botanica: hecha · 7.4s · @cf/black-forest-labs/flux-2-klein-4b
-· 05-casa-niebla: hecha · 7.3s · @cf/black-forest-labs/flux-2-klein-4b
-· 06-murcielagos: hecha · 7.8s · @cf/black-forest-labs/flux-2-klein-4b
-· 07-botica: hecha · 6.2s · @cf/black-forest-labs/flux-2-klein-4b
-· 08-cuervo: hecha · 7.5s · @cf/black-forest-labs/flux-2-klein-4b
-· 09-sendero: hecha · 7.6s · @cf/black-forest-labs/flux-2-klein-4b
-· 10-polilla: hecha · 6.5s · @cf/black-forest-labs/flux-2-klein-4b
-· f1-luna: hecha · 10.2s · @cf/black-forest-labs/flux-2-klein-4b
-· f2-calabaza: hecha · 8.0s · @cf/black-forest-labs/flux-2-klein-4b
-· f3-telaranas: hecha · 6.9s · @cf/black-forest-labs/flux-2-klein-4b
-· f4-velas: hecha · 8.1s · @cf/black-forest-labs/flux-2-klein-4b
-· f5-hojas: hecha · 6.7s · @cf/black-forest-labs/flux-2-klein-4b
-· 15 de 15
+· 05-casa-niebla: hecha · 8.4s · @cf/black-forest-labs/flux-2-klein-4b
+· 07-botica: hecha · 8.7s · @cf/black-forest-labs/flux-2-klein-4b
+· 2 de 2
