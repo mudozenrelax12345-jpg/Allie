@@ -42,7 +42,8 @@ import reel  # noqa: E402
 import sitios  # noqa: E402
 from ig import Instagram  # noqa: E402
 
-CRUDO = "https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/"
+RAIZ = "https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/"
+CRUDO = RAIZ + "banco/fotos/"
 CUANTAS = int(float(os.environ.get("FOTOS_CARRUSEL") or 3))
 COLA = BASE / "contenido" / "cola.json"
 # Con FOTOS_CARRUSEL=1 esto publica una foto suelta, que es lo que lleva el
@@ -88,6 +89,21 @@ def main():
         log(f"De la cola: «{pieza['titulo']}»")
     # Con etiqueta, para que las fotos no contradigan al texto: una lista de
     # cafeterías con fotos en la calle chirría aunque nadie sepa decir por qué.
+    # Una pieza puede traer SUS PROPIAS imágenes en vez de fotos de Allie:
+    # el pack de Halloween se anuncia enseñando las láminas, no su cara.
+    propias = (pieza or {}).get("imagenes")
+    if propias:
+        rutas = [BASE / r for r in propias]
+        faltan = [str(r) for r in rutas if not r.exists()]
+        if faltan:
+            raise RuntimeError("No están estas imágenes: " + ", ".join(faltan))
+        log(f"{len(rutas)} imágenes propias de la pieza")
+        try:
+            return _publicar(rutas, seco, pieza, propias)
+        finally:
+            if pieza and not seco:
+                marcar_usada(pieza, cola)
+
     rutas, _ = banco.coger(CUANTAS, (pieza or {}).get("etiqueta"))
     try:
         salida = _publicar(rutas, seco, pieza)
@@ -100,7 +116,7 @@ def main():
         raise
 
 
-def _publicar(rutas, seco, pieza=None):
+def _publicar(rutas, seco, pieza=None, propias=None):
     if not rutas or len(rutas) < MINIMO:
         raise RuntimeError(
             f"El banco no tiene {MINIMO} fotos libres de una misma tanda. "
@@ -126,7 +142,7 @@ def _publicar(rutas, seco, pieza=None):
     pie = publicar.con_aviso(texto, etiquetas)
     log(f"Pie ({len(pie)} caracteres):\n{pie}")
 
-    urls = [CRUDO + n for n in nombres]
+    urls = [RAIZ + r for r in propias] if propias else [CRUDO + n for n in nombres]
     for u in urls:
         log(f"  {u}")
 

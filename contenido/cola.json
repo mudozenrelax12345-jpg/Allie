@@ -2,6 +2,20 @@
  "comentario": "Carruseles preparados a mano, de los que se guardan. El publicador coge el primero sin usar; cuando no queda ninguno, escribe el pie mirando las fotos como hasta ahora. REGLA: Allie NO dice que ha estado en ningún sitio ni que son sus favoritos. Da información cierta y comprobable. Es un personaje de IA y una recomendación personal suya sería inventada; una lista de datos, no. ETIQUETAS: solo se escribe un @ cuando el arroba está COMPROBADO en la web del sitio o en una ficha fiable. Un arroba inventado etiqueta a un desconocido y deja a Allie en ridículo; mejor el nombre a secas.",
  "piezas": [
   {
+   "id": "halloween-pack",
+   "titulo": "Pack de Halloween · lanzamiento",
+   "imagenes": [
+    "producto/halloween/02-gato-luna.jpg",
+    "producto/halloween/09-sendero.jpg",
+    "producto/halloween/06-murcielagos.jpg",
+    "producto/halloween/07-botica.jpg",
+    "producto/halloween/f2-calabaza.jpg"
+   ],
+   "texto": "He hecho un pack de Halloween para imprimir en casa 🕯️\n\nDiez láminas en A4 y cinco fondos de móvil, todas de la misma familia: calabazas, un gato contra la luna, un sendero con farolillos, murciélagos, botica antigua.\n\nLas imprimes, las pegas con washi tape y tienes la casa puesta en veinte minutos. Sin pedir nada por internet, sin esperar un envío que ya no llega a tiempo.\n\n🤖 Están hechas con IA y seleccionadas a mano: de quince, dos las tiré y las rehice porque salieron mal. Te lo cuento porque es parte de lo que compras y porque no hay nada que esconder.\n\n4,95 € · descarga inmediata · enlace en la bio\n\n¿Cuál te pondrías tú en la puerta? 👇",
+   "hashtags": "#Halloween #HalloweenEnCasa #ImprimiblesHalloween #DecoracionHalloween #Allie #AIInfluencer",
+   "usado": null
+  },
+  {
    "id": "madrid-cafeterias-portatil",
    "etiqueta": "cafe",
    "titulo": "Cafeterías de Madrid para trabajar con portátil",
