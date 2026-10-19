@@ -7,7 +7,8 @@
    "titulo": "Cafeterías de Madrid para trabajar con portátil",
    "texto": "Cinco cafeterías de Madrid donde de verdad puedes abrir el portátil 💻\n\nGuárdalo para el próximo día de teletrabajo que no sepas dónde meterte.\n\n1️⃣ El Patio Vertical · Almadén 26, al lado de Atocha. Mesas grandes y ventanales enormes. Abre de 8:00 a 20:30 todos los días.\n\n2️⃣ Gosto Café · León 30, Barrio de las Letras. Tiene mesas al fondo pensadas para portátil. De 9:00 a 19:00.\n\n3️⃣ La Bicicleta · Plaza de San Ildefonso, Malasaña. Dos mesas grandes compartidas para trabajar. Desde las 10:00.\n\n4️⃣ Misión Café · Los Reyes 5, Conde Duque. Abre a las 8:30 entre semana, que para madrugar está bien.\n\n5️⃣ Despacito · Jacometrezo 15, pegado a Callao. De 8:00 a 20:00 todos los días.\n\n⚠️ Y uno para NO ir a trabajar: el Café de la Luz es precioso, pero no tiene wifi. Para desconectar, perfecto; para una videollamada, un drama.\n\n¿Me falta alguna? Dímela abajo y la añado 📌",
    "hashtags": "#Madrid #TeletrabajoMadrid #CafeteriasDeMadrid #MadridMola #Allie #AIInfluencer",
-   "usado": "2026-10-19T09:59:26.684483+00:00"
+   "usado": "2026-10-19T09:59:26.684483+00:00",
+   "texto_con_arrobas": "Cinco cafeterías de Madrid donde de verdad puedes abrir el portátil 💻\n\nGuárdalo para el próximo día de teletrabajo que no sepas dónde meterte.\n\n1️⃣ El Patio Vertical (@verticalcaffe) · Almadén 26, al lado de Atocha. Mesas grandes y ventanales enormes. Abre de 8:00 a 20:30 todos los días.\n\n2️⃣ Gosto Café (@gosto.cafe) · León 30, Barrio de las Letras. Tiene mesas al fondo pensadas para portátil. De 9:00 a 19:00.\n\n3️⃣ La Bicicleta (@labicicletacafe) · Plaza de San Ildefonso, Malasaña. Dos mesas grandes compartidas para trabajar. Desde las 10:00.\n\n4️⃣ Misión Café (@misioncafe) · Los Reyes 5, Conde Duque. Abre a las 8:30 entre semana, que para madrugar está bien.\n\n5️⃣ Despacito · Jacometrezo 15, pegado a Callao. De 8:00 a 20:00 todos los días.\n\n⚠️ Y uno para NO ir a trabajar: el Café de la Luz es precioso, pero no tiene wifi. Para desconectar, perfecto; para una videollamada, un drama.\n\n¿Me falta alguna? Dímela abajo y la añado 📌"
   },
   {
    "id": "madrid-otono-parques",
@@ -22,12 +23,11 @@
    "id": "madrid-librerias-cafe",
    "etiqueta": "cafe",
    "titulo": "Librerías de Madrid con café dentro",
-   "texto": "Librerías de Madrid donde además puedes sentarte a tomar algo 📚☕\n\nPlan de tarde de otoño que cuesta cuatro euros. Guárdalo.\n\n1️⃣ La Mistral (@librerialamistral) · Travesía del Arenal 2. La cafetería está en el sótano. Abre hasta las 21:00, y los domingos de 12:00 a 20:00.\n\n2️⃣ La Buena Vida (@labuenavidalib) · Vergara 5, junto a Ópera. Cierra a mediodía: abre de 11:00 a 14:30 y de 17:00 a 21:00.\n\n3️⃣ Mansilla Libros y Café · Embajadores 26, Lavapiés. Solo por las mañanas, de 10:00 a 14:30, y los miércoles cierra.\n\n4️⃣ Olavide, Bar de Libros · Olid 14, Chamberí. Mañana y tarde, hasta las 22:00.\n\n5️⃣ La Central de Callao · Postigo de San Martín 9. La más grande de todas, con cafetería y varias plantas. Hasta las 20:45.\n\nApunta los horarios, que varias cierran a mediodía y es el clásico viaje en balde.\n\n¿Cuál es la tuya? 👇",
+   "texto": "Librerías de Madrid donde además puedes sentarte a tomar algo 📚☕\n\nPlan de tarde de otoño que cuesta cuatro euros. Guárdalo.\n\n1️⃣ La Mistral (@librerialamistral) · Travesía del Arenal 2. La cafetería está en el sótano. Abre hasta las 21:00, y los domingos de 12:00 a 20:00.\n\n2️⃣ La Buena Vida (@labuenavidalib) · Vergara 5, junto a Ópera. Cierra a mediodía: abre de 11:00 a 14:30 y de 17:00 a 21:00.\n\n3️⃣ Mansilla Libros y Café · Embajadores 26, Lavapiés. Solo por las mañanas, de 10:00 a 14:30, y los miércoles cierra.\n\n4️⃣ Olavide, Bar de Libros (@olavidebardelibros) · Olid 14, Chamberí. Mañana y tarde, hasta las 22:00.\n\n5️⃣ La Central de Callao · Postigo de San Martín 9. La más grande de todas, con cafetería y varias plantas. Hasta las 20:45.\n\nApunta los horarios, que varias cierran a mediodía y es el clásico viaje en balde.\n\n¿Cuál es la tuya? 👇",
    "hashtags": "#Madrid #LibreriasDeMadrid #PlanesEnMadrid #OtoñoEnMadrid #Allie #AIInfluencer",
    "usado": null,
    "arrobas_pendientes": [
     "Mansilla Libros y Café",
-    "Olavide Bar de Libros",
     "La Central de Callao"
    ],
    "ubicacion": "Madrid, Spain"
@@ -35,16 +35,16 @@
  ],
  "arrobas_comprobados": {
   "El Patio Vertical": "@verticalcaffe",
+  "Gosto Café": "@gosto.cafe",
+  "La Bicicleta": "@labicicletacafe",
   "Misión Café": "@misioncafe",
   "La Mistral": "@librerialamistral",
-  "La Buena Vida": "@labuenavidalib"
+  "La Buena Vida": "@labuenavidalib",
+  "Olavide Bar de Libros": "@olavidebardelibros"
  },
  "arrobas_sin_comprobar": [
-  "Gosto Café",
-  "La Bicicleta",
   "Despacito",
   "Mansilla Libros y Café",
-  "Olavide Bar de Libros",
   "La Central de Callao"
  ],
  "nota_ubicacion": "CERRADO el 19 de octubre: la ubicación por API NO se puede. Dos muros, y el segundo es definitivo. (1) El token que usamos es el de la PÁGINA de Facebook —main.credenciales() lo deriva así a propósito, porque no caduca— y /pages/search necesita un token de USUARIO. (2) Aunque fuera de usuario, buscar páginas que no son tuyas exige la función «Page Public Content Access», que Meta solo concede pasando revisión de la aplicación y no la da para esto. El campo «ubicacion» se queda puesto y el código lo intenta sin romper nada, por si algún día cambia; mientras tanto, la ubicación se pone a mano editando la publicación en la app."
