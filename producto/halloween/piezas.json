@@ -1,0 +1,95 @@
+{
+ "cuando": "2026-10-19T19:56:09.591923+00:00",
+ "piezas": [
+  {
+   "nombre": "01-calabazas",
+   "clase": "lamina",
+   "detalle": "9.7s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "01-calabazas.jpg"
+  },
+  {
+   "nombre": "02-gato-luna",
+   "clase": "lamina",
+   "detalle": "7.4s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "02-gato-luna.jpg"
+  },
+  {
+   "nombre": "03-ventana",
+   "clase": "lamina",
+   "detalle": "5.4s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "03-ventana.jpg"
+  },
+  {
+   "nombre": "04-botanica",
+   "clase": "lamina",
+   "detalle": "7.4s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "04-botanica.jpg"
+  },
+  {
+   "nombre": "05-casa-niebla",
+   "clase": "lamina",
+   "detalle": "7.3s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "05-casa-niebla.jpg"
+  },
+  {
+   "nombre": "06-murcielagos",
+   "clase": "lamina",
+   "detalle": "7.8s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "06-murcielagos.jpg"
+  },
+  {
+   "nombre": "07-botica",
+   "clase": "lamina",
+   "detalle": "6.2s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "07-botica.jpg"
+  },
+  {
+   "nombre": "08-cuervo",
+   "clase": "lamina",
+   "detalle": "7.5s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "08-cuervo.jpg"
+  },
+  {
+   "nombre": "09-sendero",
+   "clase": "lamina",
+   "detalle": "7.6s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "09-sendero.jpg"
+  },
+  {
+   "nombre": "10-polilla",
+   "clase": "lamina",
+   "detalle": "6.5s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "10-polilla.jpg"
+  },
+  {
+   "nombre": "f1-luna",
+   "clase": "fondo",
+   "detalle": "10.2s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "f1-luna.jpg"
+  },
+  {
+   "nombre": "f2-calabaza",
+   "clase": "fondo",
+   "detalle": "8.0s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "f2-calabaza.jpg"
+  },
+  {
+   "nombre": "f3-telaranas",
+   "clase": "fondo",
+   "detalle": "6.9s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "f3-telaranas.jpg"
+  },
+  {
+   "nombre": "f4-velas",
+   "clase": "fondo",
+   "detalle": "8.1s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "f4-velas.jpg"
+  },
+  {
+   "nombre": "f5-hojas",
+   "clase": "fondo",
+   "detalle": "6.7s · @cf/black-forest-labs/flux-2-klein-4b",
+   "archivo": "f5-hojas.jpg"
+  }
+ ]
+}
