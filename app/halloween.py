@@ -46,9 +46,9 @@ LAMINAS = [
     ("02-gato-luna", "the silhouette of a black cat sitting before a large full moon"),
     ("03-ventana", "a gothic arched window at night with melting candles on the sill"),
     ("04-botanica", "a botanical plate of dried thistles, wheat and autumn seed pods"),
-    ("05-casa-niebla", "a lonely old house on a hill wrapped in fog, seen from below"),
+    ("05-casa-niebla", "the dark silhouette of a lonely old house on a hill at dusk, wrapped in fog, against a deep plum and rust sky"),
     ("06-murcielagos", "a flock of bats crossing a pale full moon above bare branches"),
-    ("07-botica", "a shelf of old apothecary bottles with handwritten-looking labels left blank"),
+    ("07-botica", "a group of old glass apothecary bottles with cork stoppers and wax seals, completely unlabelled, bare glass, no paper label of any kind"),
     ("08-cuervo", "a raven perched on a bare branch against a heavy grey sky"),
     ("09-sendero", "a misty forest path lit by two hanging lanterns"),
     ("10-polilla", "a large moth with patterned wings against a dark botanical background"),
@@ -66,6 +66,8 @@ FONDOS = [
 # 512×512, así que estos tamaños salen por unas 160 neuronas cada uno.
 MEDIDAS = {"lamina": (1024, 1448), "fondo": (1024, 1792)}
 MODELO = os.environ.get("CF_MODELOS", "@cf/black-forest-labs/flux-2-klein-4b")
+# Para rehacer piezas sueltas sin volver a pagar las quince.
+SOLO = [s.strip() for s in (os.environ.get("SOLO") or "").split(",") if s.strip()]
 
 
 def log(m):
@@ -105,6 +107,8 @@ def main():
     hechas = []
     for clase, lista in (("lamina", LAMINAS), ("fondo", FONDOS)):
         for nombre, descripcion in lista:
+            if SOLO and nombre not in SOLO:
+                continue
             datos, detalle = una(nombre, descripcion, clase, lienzo)
             apunte = {"nombre": nombre, "clase": clase, "detalle": detalle}
             if datos:

@@ -11,6 +11,11 @@ name: Generar el pack de Halloween
 
 on:
   workflow_dispatch:
+    inputs:
+      solo:
+        description: "Rehacer solo estas piezas, separadas por coma (vacío = todas)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -42,6 +47,7 @@ jobs:
         env:
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          SOLO: ${{ inputs.solo }}
 
       - name: Guardar salga como salga
         if: always()
