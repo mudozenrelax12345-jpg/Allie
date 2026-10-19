@@ -48,9 +48,12 @@ def main():
         comprobar(f"el {dia}/{mes}/{ano} pasa exactamente un cron", len(pasan) == 1,
                   f"{[f'{en_madrid(ano, mes, dia, *c):%H:%M}' for c in crons]}")
 
-    # La ventana no puede ser tan ancha que pasen los dos.
-    comprobar("a las 10:50 ya no toca", not hora.toca(
+    # La ventana es la hora entera: el 19 de octubre GitHub retrasó el cron
+    # 36 minutos y la ventana de 45 lo dejó fuera por tres.
+    comprobar("a las 10:50 todavía toca", hora.toca(
         10, momento=datetime(2026, 10, 20, 10, 50, tzinfo=hora.MADRID)))
+    comprobar("a las 11:00 ya no toca", not hora.toca(
+        10, momento=datetime(2026, 10, 20, 11, 0, tzinfo=hora.MADRID)))
     comprobar("a las 10:05 sí toca", hora.toca(
         10, momento=datetime(2026, 10, 20, 10, 5, tzinfo=hora.MADRID)))
     comprobar("a las 09:59 no toca", not hora.toca(

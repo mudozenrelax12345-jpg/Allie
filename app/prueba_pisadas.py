@@ -57,8 +57,8 @@ def main():
     reel.kontext = falso_kontext
     gemini.revisar_imagen = lambda datos, referencia=None: (True, "")
     reel.referencia_bytes = lambda p: b"referencia"
-    banco.escenas = lambda p, cuantas, tema: [f"escena de {tema} {n}"
-                                              for n in range(1, cuantas + 1)]
+    banco.escenas = lambda p, cuantas, tema, vestuario=None, sitio=None: [
+        f"escena de {tema} {n}" for n in range(1, cuantas + 1)]
 
     try:
         # Dos temas seguidos, que es exactamente lo que hace main(). Se

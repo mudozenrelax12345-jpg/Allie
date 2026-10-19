@@ -27,13 +27,17 @@ def ahora():
     return datetime.now(MADRID)
 
 
-def toca(objetivo=10, margen=45, momento=None):
+def toca(objetivo=10, margen=59, momento=None):
     """¿Estamos dentro de la ventana de la hora objetivo, en Madrid?
 
-    `margen` en minutos: GitHub retrasa los crons cuando va cargado, a veces
-    veinte minutos o más, así que la ventana no puede ser estrecha. Pero
-    tampoco de una hora, o pasarían los dos crons y publicaríamos dos veces,
-    que es exactamente el fallo que hunde una de las dos piezas.
+    `margen` en minutos. El 19 de octubre GitHub retrasó el cron 36 minutos:
+    saltó a las 10:48 de Madrid, tres minutos fuera de la ventana de 45, la
+    guarda lo paró y ese lunes no se publicó nada. La ventana es ahora la
+    hora entera.
+
+    No hay riesgo de publicar dos veces: los dos crons van separados una
+    hora justa, así que el segundo cae siempre en la hora siguiente y la
+    comprobación de `hour` lo descarta pase lo que pase con los minutos.
     """
     m = momento or ahora()
     return m.hour == objetivo and m.minute <= margen
