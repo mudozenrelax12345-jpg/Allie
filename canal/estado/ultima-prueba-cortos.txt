@@ -1,0 +1,73 @@
+ok   hay Shorts definidos · 10
+ok   01-empatia: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   01-empatia: ninguna imagen repetida seguida · repetidas: []
+ok   01-empatia: cierra el bucle · empieza con g-piso-vacio y acaba con g-piso-vacio
+ok   01-empatia: la suma de planos es la duración
+ok   01-empatia: están todas las imágenes · []
+ok   02-rounding-error: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   02-rounding-error: ninguna imagen repetida seguida · repetidas: []
+ok   02-rounding-error: cierra el bucle · empieza con g-escaner-caja y acaba con g-escaner-caja
+ok   02-rounding-error: la suma de planos es la duración
+ok   02-rounding-error: están todas las imágenes · []
+ok   03-cesta: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   03-cesta: ninguna imagen repetida seguida · repetidas: []
+ok   03-cesta: cierra el bucle · empieza con g-cesta y acaba con g-cesta
+ok   03-cesta: la suma de planos es la duración
+ok   03-cesta: están todas las imágenes · []
+ok   04-credito: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   04-credito: ninguna imagen repetida seguida · repetidas: []
+ok   04-credito: cierra el bucle · empieza con g-movil-coche y acaba con g-movil-coche
+ok   04-credito: la suma de planos es la duración
+ok   04-credito: están todas las imágenes · []
+ok   05-ocupacion: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   05-ocupacion: ninguna imagen repetida seguida · repetidas: []
+ok   05-ocupacion: cierra el bucle · empieza con g-torre-pisos y acaba con g-torre-pisos
+ok   05-ocupacion: la suma de planos es la duración
+ok   05-ocupacion: están todas las imágenes · []
+ok   06-nueve-de-diez: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   06-nueve-de-diez: ninguna imagen repetida seguida · repetidas: []
+ok   06-nueve-de-diez: cierra el bucle · empieza con g-boton y acaba con g-boton
+ok   06-nueve-de-diez: la suma de planos es la duración
+ok   06-nueve-de-diez: están todas las imágenes · []
+ok   07-el-dinero: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   07-el-dinero: ninguna imagen repetida seguida · repetidas: []
+ok   07-el-dinero: cierra el bucle · empieza con g-mazo y acaba con g-mazo
+ok   07-el-dinero: la suma de planos es la duración
+ok   07-el-dinero: están todas las imágenes · []
+ok   08-es-expresion: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   08-es-expresion: ninguna imagen repetida seguida · repetidas: []
+ok   08-es-expresion: cierra el bucle · empieza con g-constitucion y acaba con g-constitucion
+ok   08-es-expresion: la suma de planos es la duración
+ok   08-es-expresion: están todas las imágenes · []
+ok   09-delta: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   09-delta: ninguna imagen repetida seguida · repetidas: []
+ok   09-delta: cierra el bucle · empieza con g-avion-noche y acaba con g-avion-noche
+ok   09-delta: la suma de planos es la duración
+ok   09-delta: están todas las imágenes · []
+ok   10-ochenta-trescientos: todos los planos entre 1,2 y 2,5s · 0 fuera: []
+ok   10-ochenta-trescientos: ninguna imagen repetida seguida · repetidas: []
+ok   10-ochenta-trescientos: cierra el bucle · empieza con g-escaner-caja y acaba con g-escaner-caja
+ok   10-ochenta-trescientos: la suma de planos es la duración
+ok   10-ochenta-trescientos: están todas las imágenes · []
+ok   hay un rótulo en el segundo 0 · el primero entra en 0.0s
+ok   ningún rótulo pasa de cuatro palabras
+ok   ningún rótulo cruza un punto · []
+ok   ningún rótulo se sale de la pantalla · el más ancho mide 921px de 930 · []
+ok   los rótulos no se pisan · 0 solapes
+ok   los rótulos cubren toda la narración · 30.40s de 30.40s
+ok   las cifras se reconocen para pintarlas en ámbar · 5 rótulos con cifra
+ok   el ASS lleva la resolución del Short
+ok   el ASS no deja llaves sueltas que rompan el formato
+
+--- montando uno de verdad para mirarlo
+· 17 planos · 1.82s de media
+· 30 rótulos
+ok   el fichero existe
+ok   mide 1080×1920 · 1080×1920
+ok   dura lo que la narración · 30.9s frente a 31.0s
+ok   un Short no pasa de 60s · 30.9s
+ok   lleva audio
+ok   el ritmo sale a menos de 2,5s por plano · 1.82s por plano · 17 planos
+ok   los subtítulos están quemados en la imagen · dos fotogramas distintos en la banda del rótulo
+
+el taller de Shorts funciona · cortos/salida/prueba.mp4
