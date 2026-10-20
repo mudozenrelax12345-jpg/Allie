@@ -1,0 +1,17 @@
+Revisión de los Shorts · 2026-10-20 21:10 UTC
+De la ejecución 39496187018
+
+FICHERO                      SEG      MB RESOLUCIÓN   AUDIO   CORTES
+01-empatia                  28.5       4 1080x1920     aac       12
+02-rounding-error           26.2       4 1080x1920     aac       13
+03-cesta                    26.3       4 1080x1920     aac       14
+04-credito                  23.5       3 1080x1920     aac       12
+05-ocupacion                31.1       4 1080x1920     aac        8
+06-nueve-de-diez            30.2       4 1080x1920     aac       15
+07-el-dinero                27.1       4 1080x1920     aac       14
+08-es-expresion             25.0       4 1080x1920     aac       12
+09-delta                    29.9       4 1080x1920     aac       13
+10-ochenta-trescientos      27.6       4 1080x1920     aac       14
+prueba                      30.9       4 1080x1920     aac       12
+
+Shorts revisados: 11 · avisos: 0
