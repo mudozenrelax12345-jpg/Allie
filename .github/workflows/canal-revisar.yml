@@ -1,0 +1,137 @@
+name: Canal · Revisar y publicar los Shorts
+
+# POR QUÉ EXISTE ESTE FLUJO APARTE.
+#
+# Un montaje que «termina bien» no significa nada: el 15 de octubre un reel
+# salió con el texto hablando de brochas sobre tres fotos de una cafetería,
+# y todos los pasos habían dado verde. La regla de esta casa es mirar la
+# salida, no el registro.
+#
+# El problema es que desde fuera no se puede mirar: los artefactos de
+# Actions se sirven desde el almacenamiento de Azure, al que no se llega, y
+# los registros tampoco se leen. Así que la revisión la hace la propia
+# máquina y deja las pruebas COMMITEADAS en el repositorio, que es lo único
+# que siempre se puede leer:
+#
+#   canal/estado/revision/informe.txt   duración, tamaño, audio, nº de cortes
+#   canal/estado/revision/<id>.jpg      tira de seis fotogramas de cada Short
+#
+# Y de paso publica los diez mp4 como una Release, que es de donde Teresa
+# se los puede ver en el móvil sin bajarse un zip de 36 MB.
+#
+# Se le pasa el número de la ejecución que los montó, para no volver a
+# gastar media hora de máquina montando lo que ya está montado.
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Nº de la ejecución de «Canal · Montar los Shorts»"
+        type: string
+        required: true
+      etiqueta:
+        description: "Nombre de la Release"
+        type: string
+        default: "cortos-1"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Recuperar los Shorts ya montados
+        uses: actions/download-artifact@v4
+        with:
+          name: cortos
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: entrada
+
+      - name: Mirarlos de verdad
+        run: |
+          mkdir -p canal/estado/revision
+          informe=canal/estado/revision/informe.txt
+          : > "$informe"
+          {
+            echo "Revisión de los Shorts · $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo "De la ejecución ${{ inputs.run_id }}"
+            echo
+            printf '%-24s %7s %7s %9s %7s %8s\n' \
+              FICHERO SEG MB RESOLUCIÓN AUDIO CORTES
+          } >> "$informe"
+
+          malos=0
+          for f in entrada/*.mp4; do
+            [ -e "$f" ] || continue
+            id=$(basename "$f" .mp4)
+            dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
+            mb=$(du -m "$f" | cut -f1)
+            wh=$(ffprobe -v error -select_streams v -show_entries stream=width,height \
+                 -of csv=p=0:s=x "$f")
+            aud=$(ffprobe -v error -select_streams a -show_entries stream=codec_name \
+                  -of csv=p=0 "$f")
+            # Cortes de verdad: los cambios de plano que detecta ffmpeg. Si
+            # salieran dos o tres, el Short sería una foto fija con voz.
+            cortes=$(ffprobe -v error -select_streams v -show_entries frame=pts_time \
+                     -f lavfi "movie=$f,select=gt(scene\,0.3)" -of csv=p=0 2>/dev/null \
+                     | grep -c . || true)
+            printf '%-24s %7.1f %7s %9s %7s %8s\n' \
+              "$id" "$dur" "$mb" "$wh" "${aud:-NINGUNO}" "$cortes" >> "$informe"
+
+            # Lo que no dice ningún número: cómo se ve. Seis fotogramas
+            # repartidos, en una tira, para poder leer los rótulos.
+            n=6
+            paso=$(python3 -c "print(max($dur/($n+1), 0.5))")
+            rm -f /tmp/fr*.png
+            for i in $(seq 1 $n); do
+              t=$(python3 -c "print(round($paso*$i, 2))")
+              ffmpeg -v error -y -ss "$t" -i "$f" -frames:v 1 \
+                -vf "scale=320:-1" "/tmp/fr$i.png"
+            done
+            ffmpeg -v error -y -i /tmp/fr%d.png -filter_complex \
+              "tile=3x2:margin=8:padding=8:color=#1a1a1a" \
+              -frames:v 1 "canal/estado/revision/$id.jpg"
+
+            # Lo que descalifica un Short sin discusión.
+            if [ -z "$aud" ]; then echo "  ⚠ $id NO LLEVA AUDIO" >> "$informe"; malos=$((malos+1)); fi
+            if [ "$cortes" -lt 5 ]; then echo "  ⚠ $id solo $cortes cortes: parece una foto fija" >> "$informe"; malos=$((malos+1)); fi
+            if python3 -c "import sys; sys.exit(0 if $dur>60 or $dur<12 else 1)"; then
+              echo "  ⚠ $id dura $dur s, fuera de lo razonable para un Short" >> "$informe"; malos=$((malos+1))
+            fi
+          done
+
+          echo >> "$informe"
+          echo "Shorts revisados: $(ls entrada/*.mp4 2>/dev/null | wc -l) · avisos: $malos" >> "$informe"
+          cat "$informe"
+
+      - name: Publicarlos para poder verlos
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete "${{ inputs.etiqueta }}" --yes --cleanup-tag || true
+          gh release create "${{ inputs.etiqueta }}" \
+            --title "Diez Shorts de Rounding Error" \
+            --notes "Los diez Shorts montados a partir de los tres guiones que ya existían. Toca cualquiera para verlo. Nada de esto se ha subido a YouTube todavía." \
+            entrada/*.mp4
+
+      - name: Dejar la revisión escrita
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "canal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add canal/estado/revision/ 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Canal · revisión de los Shorts [skip ci]"
+            git pull --rebase --autostash || true
+            git push || true
+          fi
