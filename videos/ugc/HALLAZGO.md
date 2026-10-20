@@ -64,3 +64,24 @@ pequeño, que da noventa.
 
 De ocho piezas generadas así, seis pasaron la ampliación. Ese es el número
 honesto: tres de cada cuatro.
+
+## 20 de octubre · Arreglar la fábrica no vacía el almacén
+
+Teresa, mirando el perfil: «llevas 5 días publicando a Allie con color
+beis». El 18 de octubre yo había arreglado el vestuario —treinta prendas
+con color, rotación, prohibido repetir en cinco tandas—, lo había probado
+y lo había subido. Y era verdad lo que decía ella.
+
+Lo que se publica no sale del generador: sale del BANCO, que estaba lleno
+desde antes del arreglo. Cincuenta fotos libres, cuarenta en beige, crema,
+lino o gabardina. Y el banco solo fabrica por debajo de 24, así que con
+cincuenta no iba a fabricar nunca: el arreglo no habría llegado al perfil
+hasta pasadas dos semanas.
+
+LA REGLA: después de arreglar algo, comprobar que el arreglo LLEGA A LA
+SALIDA, no que el código es correcto. Y preguntarse siempre si hay un
+depósito intermedio —un banco, una caché, una cola— lleno de lo de antes.
+
+Lo mismo con el revisor automático: de las doce fotos nuevas, once bien y
+una con canas en la coronilla y cara de más edad. Había pasado la
+comprobación de identidad por los pelos. La máquina aprueba, el ojo decide.

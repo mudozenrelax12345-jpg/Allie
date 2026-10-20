@@ -860,10 +860,11 @@
    "etiqueta": "cafe",
    "tema": "rutina de mañana con café",
    "escena": "The same woman, close-up shot, wearing a cream knitted vest over a pale-blue collared shirt, standing in the brick courtyards of Matadero on an autumn morning, head turned in profile against a textured red brick background, golden hour morning light, serene expression with lips together, eyes closed as if enjoying the breeze.",
-   "usada": null,
+   "usada": "2026-10-20T18:53:36.881655+00:00",
    "vestuario": "chaleco-punto",
    "sitio": "matadero",
-   "creada": "2026-10-20T18:47:31.863051+00:00"
+   "creada": "2026-10-20T18:47:31.863051+00:00",
+   "retirada": "pelo con canas en la coronilla y cara de más edad: pasó la comprobación automática por los pelos (umbral 0,50) pero ampliada no es ella. La máquina aprueba, el ojo decide."
   },
   {
    "archivo": "20261020-184731-1.jpg",
