@@ -776,7 +776,139 @@
    "escena": "The same woman, medium-close shot from the waist up, standing on a historic Madrid rooftop at sunset, wearing a beige trench coat over a white linen shirt, hands loose and empty by her sides, subtle soft smile with lips together, glowing warm light.",
    "usada": "2026-10-16T14:07:48.127792+00:00",
    "creada": "2026-10-16T11:41:19.675326+00:00"
+  },
+  {
+   "archivo": "20261020-184013-1.jpg",
+   "tanda": "20261020-184013",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot, standing at home in a small bright kitchen with open shelves on an autumn afternoon, wearing a black leather biker jacket over a white t-shirt, leaning against the counter with shoulders relaxed, warm golden hour light streaming in through the window, gentle closed-mouth smile, cinematic photography",
+   "usada": null,
+   "vestuario": "cuero-negro",
+   "sitio": "casa-cocina",
+   "creada": "2026-10-20T18:40:54.726553+00:00"
+  },
+  {
+   "archivo": "20261020-184013-2.jpg",
+   "tanda": "20261020-184013",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, close-up shot, wearing a black leather biker jacket over a white t-shirt, warm golden hour light streaming in through the window, soft smile with lips together, cinematic photography, hands out of frame, nothing held in her hands, arms relaxed, framed from the chest up",
+   "usada": null,
+   "vestuario": "cuero-negro",
+   "sitio": "casa-cocina",
+   "creada": "2026-10-20T18:43:27.612171+00:00"
+  },
+  {
+   "archivo": "20261020-184013-3.jpg",
+   "tanda": "20261020-184013",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot, standing at home in a small bright kitchen with open shelves on an autumn afternoon, wearing a black leather biker jacket over a white t-shirt, turned sideways with arms crossed lightly, warm golden hour light streaming in through the window, gentle closed-mouth smile, cinematic photography",
+   "usada": null,
+   "vestuario": "cuero-negro",
+   "sitio": "casa-cocina",
+   "creada": "2026-10-20T18:43:53.260816+00:00"
+  },
+  {
+   "archivo": "20261020-184013-4.jpg",
+   "tanda": "20261020-184013",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, close-up shot, standing at home in a small bright kitchen with open shelves on an autumn afternoon, wearing a black leather biker jacket over a white t-shirt, looking directly at the camera with a subtle knowing glance, warm golden hour light streaming in through the window, soft smile with lips together, cinematic photography",
+   "usada": null,
+   "vestuario": "cuero-negro",
+   "sitio": "casa-cocina",
+   "creada": "2026-10-20T18:44:14.317295+00:00"
+  },
+  {
+   "archivo": "20261020-184414-1.jpg",
+   "tanda": "20261020-184414",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium shot, wearing a cream knitted vest over a pale-blue collared shirt, standing in the brick courtyards of Matadero on an autumn morning, leaning gently against an old brick wall, hands resting softly in her pockets, warm golden autumn light casting long shadows, soft smile with lips together, looking away from the camera.",
+   "usada": null,
+   "vestuario": "chaleco-punto",
+   "sitio": "matadero",
+   "creada": "2026-10-20T18:45:21.668223+00:00"
+  },
+  {
+   "archivo": "20261020-184414-2.jpg",
+   "tanda": "20261020-184414",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, close-up shot, wearing a cream knitted vest over a pale-blue collared shirt, standing in the brick courtyards of Matadero on an autumn morning, angled slightly with a brick archway in the soft-focus background, gentle morning sun illuminating her face, mouth closed in a subtle, relaxed expression, looking straight into the lens.",
+   "usada": null,
+   "vestuario": "chaleco-punto",
+   "sitio": "matadero",
+   "creada": "2026-10-20T18:45:45.174429+00:00"
+  },
+  {
+   "archivo": "20261020-184414-3.jpg",
+   "tanda": "20261020-184414",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium shot, wearing a cream knitted vest over a pale-blue collared shirt, standing in asphalt and brick courtyards of Matadero on an autumn morning, arms casually crossed, crisp autumn air, warm side lighting highlighting the knit texture, soft closed-lip smile, looking slightly off-camera with a playful gaze.",
+   "usada": null,
+   "vestuario": "chaleco-punto",
+   "sitio": "matadero",
+   "creada": "2026-10-20T18:46:33.644750+00:00"
+  },
+  {
+   "archivo": "20261020-184414-4.jpg",
+   "tanda": "20261020-184414",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, close-up shot, wearing a cream knitted vest over a pale-blue collared shirt, standing in the brick courtyards of Matadero on an autumn morning, head turned in profile against a textured red brick background, golden hour morning light, serene expression with lips together, eyes closed as if enjoying the breeze.",
+   "usada": null,
+   "vestuario": "chaleco-punto",
+   "sitio": "matadero",
+   "creada": "2026-10-20T18:47:31.863051+00:00"
+  },
+  {
+   "archivo": "20261020-184731-1.jpg",
+   "tanda": "20261020-184731",
+   "etiqueta": "calle",
+   "tema": "paseo con Booby por el parque",
+   "escena": "The same woman, wearing a deep burgundy cable-knit jumper, in the tropical greenhouse of Atocha station. Medium shot. She stands near giant indoor palm leaves, looking towards the camera with a playful closed-lip smile. Beside her, a small dog sits quietly. Warm golden autumn afternoon sunlight streams through the glass dome roof.",
+   "usada": null,
+   "vestuario": "burdeos-punto",
+   "sitio": "atocha",
+   "creada": "2026-10-20T18:49:42.211379+00:00"
+  },
+  {
+   "archivo": "20261020-184731-2.jpg",
+   "tanda": "20261020-184731",
+   "etiqueta": "calle",
+   "tema": "paseo con Booby por el parque",
+   "escena": "The same woman, wearing a deep burgundy cable-knit jumper, in the tropical greenhouse of Atocha station. Close-up portrait. She turns her head slightly with a gentle closed-lip smile, looking directly into the camera. The background features lush tropical foliage softly blurred under golden late-afternoon autumn light.",
+   "usada": null,
+   "vestuario": "burdeos-punto",
+   "sitio": "atocha",
+   "creada": "2026-10-20T18:50:18.663221+00:00"
+  },
+  {
+   "archivo": "20261020-184731-3.jpg",
+   "tanda": "20261020-184731",
+   "etiqueta": "calle",
+   "tema": "paseo con Booby por el parque",
+   "escena": "The same woman, wearing a deep burgundy cable-knit jumper, in the tropical greenhouse of Atocha station. Medium shot. She leans comfortably against a iron railing, looking toward the lens with a calm expression and lips together. Next to her, a small dog looks up curiously. Golden autumn light filters through the glass structure.",
+   "usada": null,
+   "vestuario": "burdeos-punto",
+   "sitio": "atocha",
+   "creada": "2026-10-20T18:51:27.861924+00:00"
+  },
+  {
+   "archivo": "20261020-184731-4.jpg",
+   "tanda": "20261020-184731",
+   "etiqueta": "calle",
+   "tema": "paseo con Booby por el parque",
+   "escena": "The same woman, wearing a deep burgundy cable-knit jumper, in the tropical greenhouse of Atocha station. Medium close-up. She glance slightly over her shoulder toward the camera with a charming closed-lip smile. The adorable head of a small dog is visible beside her, surrounded by warm golden autumn light and tropical greenery.",
+   "usada": null,
+   "vestuario": "burdeos-punto",
+   "sitio": "atocha",
+   "creada": "2026-10-20T18:51:59.252426+00:00"
   }
  ],
- "actualizado": "2026-10-20T17:16:19.242691+00:00"
+ "actualizado": "2026-10-20T18:51:59.252478+00:00"
 }
