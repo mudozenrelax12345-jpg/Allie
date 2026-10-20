@@ -159,7 +159,12 @@ def main():
 
     # ── 3 · Montar uno de verdad y MIRAR EL FICHERO ───────────────────────
     print("\n--- montando uno de verdad para mirarlo", flush=True)
-    destino = corto.SALIDA / "prueba.mp4"
+    # A una carpeta temporal, NO a cortos/salida. La primera vez el prueba.mp4
+    # acabó en el artefacto y publicado junto a los diez de verdad, porque el
+    # flujo recoge todo lo que hay en salida/. Una prueba que escribe en la
+    # carpeta de producción no es una prueba: es un Short más.
+    import tempfile
+    destino = Path(tempfile.mkdtemp()) / "prueba.mp4"
     planos, n_rotulos = corto.montar(c, marcas, total,
                                      corto.TRABAJO / "prueba.wav", destino)
     comprobar("el fichero existe", destino.exists())
@@ -197,7 +202,7 @@ def main():
         for f in fallos:
             print(f"  · {f}", flush=True)
         sys.exit(1)
-    print(f"\nel taller de Shorts funciona · {destino.relative_to(BASE)}", flush=True)
+    print(f"\nel taller de Shorts funciona · {destino}", flush=True)
 
 
 if __name__ == "__main__":
