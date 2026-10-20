@@ -1,487 +1,571 @@
 [
- {
-  "fecha": "2026-10-11",
-  "fecha_ultimo_dato": "2026-10-10",
-  "seguidores": 3221,
-  "ganados": null,
-  "perdidos": null,
-  "alcance_reels": null,
-  "visualizaciones_reels": null,
-  "reels_publicados": 0,
-  "reel_de_hoy": null,
-  "nota": "Domingo: reel-diario.yml solo corre de lunes a viernes, asi que hoy no tocaba reel. Ademas banco.yml fallo a las 04:21 UTC por cuota de ZeroGPU en Hugging Face (0 fotos nuevas) y el banco solo tiene 2 fotos libres de las 4 que necesita un reel. No se publico nada.",
-  "contexto_30d": {
-   "seguidores_hace_7d_20261004": 3221,
-   "seguidores_hace_30d_20260911": 3242,
-   "reels_en_30d": 1,
-   "ultimo_reel": {
-    "fecha": "2026-10-09",
-    "alcance": 138,
-    "visualizaciones": 164
-   }
-  }
- },
- {
-  "fecha": "2026-10-13",
-  "fecha_ultimo_dato": "2026-10-12",
-  "seguidores": 3256,
-  "ganados": null,
-  "perdidos": null,
-  "alcance_reels": null,
-  "visualizaciones_reels": null,
-  "reels_publicados": 0,
-  "reel_de_hoy": null,
-  "nota": "No hubo reel: reel-diario.yml (run 38354005449, 05:56 UTC) fallo en el paso 'Generar las fotos del dia' por cuota de ZeroGPU en Hugging Face (0 fotos nuevas). El banco solo tiene 2 fotos libres de las 4 que necesita un reel, asi que los pasos de montaje se saltaron. No se publico nada, no se insistio. NOTICIA: salto de seguidores sin publicar nada nuevo: 3221 el 10-oct -> 3243 el 11-oct (+27 ganados, -1 perdido) -> 3256 el 12-oct. Primera subida real desde julio; conviene vigilar si se mantiene o es un pico.",
-  "contexto_30d": {
-   "seguidores_hace_7d_20261005": 3217,
-   "seguidores_hace_30d_20260913": 3245,
-   "reels_en_30d": 1,
-   "ultimo_reel": {
-    "fecha": "2026-10-09",
-    "alcance": 139,
-    "visualizaciones": 165
-   },
-   "alcance_medio_reel_semana_actual_20261006_20261012": 139,
-   "alcance_medio_reel_semana_anterior_20260929_20261005": null,
-   "serie_seguidores": {
-    "20261005": 3217,
-    "20261006": 3218,
-    "20261007": 3218,
-    "20261008": 3220,
-    "20261009": 3221,
-    "20261010": 3221,
-    "20261011": 3243,
-    "20261012": 3256
-   }
-  }
- },
- {
-  "fecha": "2026-10-14",
-  "fecha_ultimo_dato": "2026-10-13",
-  "seguidores": 3262,
-  "ganados": null,
-  "perdidos": null,
-  "alcance_reels": 16,
-  "visualizaciones_reels": 19,
-  "reels_publicados": 1,
-  "reel_de_hoy": "https://app.metricool.com/planner/calendar?blogId=5053196&openWithPostUuid=2969869486641006165",
-  "nota": "Trial Reel programado para hoy 20:00 Madrid (id 395718298). Las cuatro fotos del banco (20261014-054637-1..4) se miraron con las caras recortadas y ampliadas: rubia de ojos verdes en las cuatro, coinciden con 0-REFERENCIA.jpg. El reel de las 05:48 UTC se habia montado bien, pero su URL de uguu.se ya habia caducado y Metricool la rechazo ('Failed to normalize media'). Se relanzo reel.yml con solo_montar=si (run 38545903343), que remonta con LAS MISMAS fotos ya revisadas y no gasta cuota de imagen; URL nueva aceptada y subida a static.metricool.com. LECCION: la URL de uguu dura menos de 4 horas, asi que entre el montaje de las 05:40 y la programacion hay que remontar casi siempre; conviene que reel-diario suba a litterbox (72h) en vez de uguu, o que la tarea remonte de entrada. DATO MALO: el Trial Reel del 13-oct lleva 16 de alcance y 19 visualizaciones; el reel normal del 9-oct lleva 140 y 166. Primer indicio de que el Trial Reel reparte MENOS, no mas. DATO BUENO: los seguidores siguen subiendo, 3221 el 10-oct -> 3262 el 13-oct (+41 en tres dias).",
-  "contexto_30d": {
-   "seguidores_hace_7d_20261007": 3218,
-   "seguidores_hace_30d_20260914": 3241,
-   "reels_en_30d": 2,
-   "ultimo_reel": {
+  {
+    "fecha": "2026-10-11",
+    "fecha_ultimo_dato": "2026-10-10",
+    "seguidores": 3221,
+    "ganados": null,
+    "perdidos": null,
+    "alcance_reels": null,
+    "visualizaciones_reels": null,
+    "reels_publicados": 0,
+    "reel_de_hoy": null,
+    "nota": "Domingo: reel-diario.yml solo corre de lunes a viernes, asi que hoy no tocaba reel. Ademas banco.yml fallo a las 04:21 UTC por cuota de ZeroGPU en Hugging Face (0 fotos nuevas) y el banco solo tiene 2 fotos libres de las 4 que necesita un reel. No se publico nada.",
+    "contexto_30d": {
+      "seguidores_hace_7d_20261004": 3221,
+      "seguidores_hace_30d_20260911": 3242,
+      "reels_en_30d": 1,
+      "ultimo_reel": {
+        "fecha": "2026-10-09",
+        "alcance": 138,
+        "visualizaciones": 164
+      }
+    }
+  },
+  {
     "fecha": "2026-10-13",
-    "alcance": 16,
-    "visualizaciones": 19
-   },
-   "alcance_medio_reel_ultimos_7d_20261008_20261014": 78,
-   "alcance_medio_reel_7d_anteriores_20261001_20261007": null,
-   "reels_por_fecha": {
-    "20261009": {
-     "alcance": 140,
-     "visualizaciones": 166
-    },
-    "20261013": {
-     "alcance": 16,
-     "visualizaciones": 19
+    "fecha_ultimo_dato": "2026-10-12",
+    "seguidores": 3256,
+    "ganados": null,
+    "perdidos": null,
+    "alcance_reels": null,
+    "visualizaciones_reels": null,
+    "reels_publicados": 0,
+    "reel_de_hoy": null,
+    "nota": "No hubo reel: reel-diario.yml (run 38354005449, 05:56 UTC) fallo en el paso 'Generar las fotos del dia' por cuota de ZeroGPU en Hugging Face (0 fotos nuevas). El banco solo tiene 2 fotos libres de las 4 que necesita un reel, asi que los pasos de montaje se saltaron. No se publico nada, no se insistio. NOTICIA: salto de seguidores sin publicar nada nuevo: 3221 el 10-oct -> 3243 el 11-oct (+27 ganados, -1 perdido) -> 3256 el 12-oct. Primera subida real desde julio; conviene vigilar si se mantiene o es un pico.",
+    "contexto_30d": {
+      "seguidores_hace_7d_20261005": 3217,
+      "seguidores_hace_30d_20260913": 3245,
+      "reels_en_30d": 1,
+      "ultimo_reel": {
+        "fecha": "2026-10-09",
+        "alcance": 139,
+        "visualizaciones": 165
+      },
+      "alcance_medio_reel_semana_actual_20261006_20261012": 139,
+      "alcance_medio_reel_semana_anterior_20260929_20261005": null,
+      "serie_seguidores": {
+        "20261005": 3217,
+        "20261006": 3218,
+        "20261007": 3218,
+        "20261008": 3220,
+        "20261009": 3221,
+        "20261010": 3221,
+        "20261011": 3243,
+        "20261012": 3256
+      }
     }
-   },
-   "serie_seguidores": {
-    "20261004": 3221,
-    "20261005": 3217,
-    "20261006": 3218,
-    "20261007": 3218,
-    "20261008": 3220,
-    "20261009": 3221,
-    "20261010": 3221,
-    "20261011": 3243,
-    "20261012": 3256,
-    "20261013": 3262
-   }
-  }
- },
- {
-  "fecha": "2026-10-15",
-  "seguidores": 3262,
-  "seguidores_nota": "Metricool aun no habia publicado la fila del 15-oct al medir (12:00 Madrid); 3262 es el ultimo dato cerrado, del 14-oct.",
-  "ganados": null,
-  "perdidos": null,
-  "alcance_reels": null,
-  "visualizaciones_reels": null,
-  "reels_publicados": 0,
-  "reel_de_hoy": "https://app.metricool.com/planner/calendar?blogId=5053196&openWithPostUuid=4766919430740986346",
-  "nota": "Trial Reel programado hoy 20:00 Madrid (id 396673069, uuid 4766919430740986346), media ya en static.metricool.com. Las tres fotos (20261014-113633-1..3) se miraron con las caras y los ojos recortados y ampliados y comparadas con 0-REFERENCIA.jpg: rubia de ojos verdes en las tres. La 2 tiene el iris verde con motas doradas (verde avellana), mas calido que la referencia, pero verde; las otras dos clavadas. SE REPITIO LO DE AYER: el reel de las 06:15 UTC tenia la URL de uguu.se ya caducada y Metricool la rechazo ('Failed to normalize media'). Se relanzo reel.yml con solo_montar=si (run 38716580951); se comprobo por md5 que videos/fotos/foto1..3.jpg son byte a byte las mismas fotos ya revisadas, asi que el remontaje no gasta cuota de imagen ni mete caras sin revisar. Lo que SI cambia al remontar es el texto y el tema, que se regeneran: el nuevo venia como 'Domingos creativos en casa' y hoy es jueves, asi que se corrigio a 'Tardes creativas en casa'. ARREGLO PENDIENTE (segundo dia seguido): que reel-diario suba a litterbox (72h) en vez de uguu (<4h), o que la tarea remonte de entrada sin probar primero. DATO MALO, Y VA EL SEGUNDO DIA: el Trial Reel reparte MENOS que el reel normal. Reel normal 9-oct: 140 de alcance. Trial Reel 13-oct: 41 (ayer marcaba 16, o sea que maduran y suben). Trial Reel 14-oct: 11 con un dia de vida. Ninguno se acerca a 140. Si el 15 y el 16 siguen por debajo de 50 maduros, la hipotesis del Trial Reel esta fallando y toca volver al reel normal.",
-  "contexto_30d": {
-   "seguidores_hoy_20261014_ultimo_cerrado": 3262,
-   "seguidores_hace_7d_20261008": 3220,
-   "seguidores_hace_30d_20260915": 3241,
-   "variacion_7d": 42,
-   "variacion_30d": 21,
-   "reels_en_30d": 3,
-   "alcance_medio_reel_semana_20261008_20261014": 64,
-   "alcance_medio_reel_semana_20261001_20261007": null,
-   "alcance_medio_reel_semana_nota": "64 = media de 140 (9-oct, reel normal) + 41 (13-oct, trial) + 11 (14-oct, trial). La semana anterior no hubo ningun reel, por eso null.",
-   "reels_por_fecha": {
-    "20261009": {
-     "tipo": "reel normal",
-     "alcance": 140,
-     "visualizaciones": 166
-    },
-    "20261013": {
-     "tipo": "trial reel",
-     "alcance": 41,
-     "visualizaciones": 44
-    },
-    "20261014": {
-     "tipo": "trial reel",
-     "alcance": 11,
-     "visualizaciones": 12
+  },
+  {
+    "fecha": "2026-10-14",
+    "fecha_ultimo_dato": "2026-10-13",
+    "seguidores": 3262,
+    "ganados": null,
+    "perdidos": null,
+    "alcance_reels": 16,
+    "visualizaciones_reels": 19,
+    "reels_publicados": 1,
+    "reel_de_hoy": "https://app.metricool.com/planner/calendar?blogId=5053196&openWithPostUuid=2969869486641006165",
+    "nota": "Trial Reel programado para hoy 20:00 Madrid (id 395718298). Las cuatro fotos del banco (20261014-054637-1..4) se miraron con las caras recortadas y ampliadas: rubia de ojos verdes en las cuatro, coinciden con 0-REFERENCIA.jpg. El reel de las 05:48 UTC se habia montado bien, pero su URL de uguu.se ya habia caducado y Metricool la rechazo ('Failed to normalize media'). Se relanzo reel.yml con solo_montar=si (run 38545903343), que remonta con LAS MISMAS fotos ya revisadas y no gasta cuota de imagen; URL nueva aceptada y subida a static.metricool.com. LECCION: la URL de uguu dura menos de 4 horas, asi que entre el montaje de las 05:40 y la programacion hay que remontar casi siempre; conviene que reel-diario suba a litterbox (72h) en vez de uguu, o que la tarea remonte de entrada. DATO MALO: el Trial Reel del 13-oct lleva 16 de alcance y 19 visualizaciones; el reel normal del 9-oct lleva 140 y 166. Primer indicio de que el Trial Reel reparte MENOS, no mas. DATO BUENO: los seguidores siguen subiendo, 3221 el 10-oct -> 3262 el 13-oct (+41 en tres dias).",
+    "contexto_30d": {
+      "seguidores_hace_7d_20261007": 3218,
+      "seguidores_hace_30d_20260914": 3241,
+      "reels_en_30d": 2,
+      "ultimo_reel": {
+        "fecha": "2026-10-13",
+        "alcance": 16,
+        "visualizaciones": 19
+      },
+      "alcance_medio_reel_ultimos_7d_20261008_20261014": 78,
+      "alcance_medio_reel_7d_anteriores_20261001_20261007": null,
+      "reels_por_fecha": {
+        "20261009": {
+          "alcance": 140,
+          "visualizaciones": 166
+        },
+        "20261013": {
+          "alcance": 16,
+          "visualizaciones": 19
+        }
+      },
+      "serie_seguidores": {
+        "20261004": 3221,
+        "20261005": 3217,
+        "20261006": 3218,
+        "20261007": 3218,
+        "20261008": 3220,
+        "20261009": 3221,
+        "20261010": 3221,
+        "20261011": 3243,
+        "20261012": 3256,
+        "20261013": 3262
+      }
     }
-   },
-   "serie_seguidores": {
-    "20260915": 3241,
-    "20260916": 3240,
-    "20260917": 3240,
-    "20260918": 3241,
-    "20260919": 3239,
-    "20260920": 3239,
-    "20260921": 3238,
-    "20260922": 3228,
-    "20260923": 3233,
-    "20260924": 3231,
-    "20260925": 3231,
-    "20260926": 3230,
-    "20260927": 3229,
-    "20260928": 3228,
-    "20260929": 3225,
-    "20260930": 3224,
-    "20261001": 3225,
-    "20261002": 3224,
-    "20261003": 3222,
-    "20261004": 3221,
-    "20261005": 3217,
-    "20261006": 3218,
-    "20261007": 3218,
-    "20261008": 3220,
-    "20261009": 3221,
-    "20261010": 3221,
-    "20261011": 3243,
-    "20261012": 3256,
-    "20261013": 3262,
-    "20261014": 3262
-   }
-  }
- },
- {
-  "fecha": "2026-10-16",
-  "fecha_ultimo_dato": "2026-10-15",
-  "seguidores": 3263,
-  "ganados": null,
-  "perdidos": null,
-  "alcance_reels": 98,
-  "visualizaciones_reels": 225,
-  "reels_publicados": 1,
-  "reel_de_hoy": "https://www.instagram.com/reel/Dej_JPWE4Bt/",
-  "nota": "NO HUBO REEL HOY y la causa es nueva: no es la cuota de Hugging Face, es la de GEMINI. El intento de las 06:07 UTC (run 38859445535) murio en 'Generar las fotos del dia' con 'gemini-3.5-flash-lite is currently experiencing high demand' (saturacion temporal), asi que a las 09:54 UTC relance reel-diario.yml a mano (run 38883636570): esta vez paro antes, en 'Comprobar que el revisor distingue a Allie', con 'Your project has exceeded a quota' de Gemini. El paro es correcto y conviene que sea asi: sin Gemini no hay quien compare las caras con 0-REFERENCIA.jpg, y publicar a otra mujer en la cuenta es el fallo mas caro del proyecto. No se publico nada y no se insistio mas. El banco NO es el problema: tiene 62 fotos libres de 72. Quedan dos intentos programados hoy, 11:40 y 16:40 UTC; si alguno pilla la ventana de Gemini abierta aun da tiempo a programar el Trial Reel de las 19-21h. NOTICIA BUENA, Y CORRIGE LA ALARMA DE AYER: los Trial Reels maduran mucho mas de lo que parecia a un dia vista. El del 13-oct marcaba 16 el dia 14 y 41 el dia 15; hoy sigue en 41. El del 14-oct marcaba 11 ayer y hoy esta en 95. El del 15-oct, con un dia de vida, ya va por 98 de alcance y 225 visualizaciones: mas visualizaciones que el reel normal del 9-oct (166), que tardo dias en llegar a 140 de alcance. O sea que el Trial Reel NO reparte menos; lo que pasa es que reparte mas despacio y ayer se midio demasiado pronto. Conviene no juzgar ningun reel antes de 72 horas. ACTUALIZACION 12:10 UTC: el segundo intento programado (run 38898026558, 12:04 UTC) tambien fallo, otra vez por 'Your project has exceeded a quota' de Gemini, pero esta vez el paso de identidad SI paso: la cuota de Gemini va y viene. De hecho banco.yml si llego a llenar el banco a las 11:41 UTC con 9 fotos nuevas (una descartada por manos y tres por no ser ella), asi que el banco esta en 71 fotos libres de 81, todas ya revisadas. El cuello de botella es solo Gemini: banco.py lo necesita para escribir las escenas y reel.py para el texto. Queda el intento de las 16:40 UTC (18:40 Madrid), justo a tiempo para una publicacion a las 19-21h si pilla cuota. IDEA PARA ARREGLARLO: con 71 fotos libres ya revisadas, generar MAS fotos antes de montar el reel no aporta nada y es lo que tumba el dia entero. Si 'Generar las fotos del dia' no fuese bloqueante cuando el banco tiene de sobra, hoy habria habido reel. CIERRE DEL DIA 17:10 UTC: AL FINAL SI HUBO REEL, y no lo programo esta tarea. Por la tarde se toco el repositorio desde otra sesion (commits 'La identidad ya no gasta cuota: la comprueba OpenCV y va primero', 'Con el banco lleno no se genera, y el reel no depende de que generar vaya', 'Cloudflare como segundo proveedor de texto' y 'Allie publica sola: se acabo el techo de 20 al mes'), que es exactamente el arreglo que pedia la nota de las 12:10: quitar Gemini del camino critico y no bloquear el reel por generar fotos cuando el banco va sobrado. Las ejecuciones de reel-diario de las 14:43 y 14:44 UTC salieron bien. LO PUBLICADO HOY: reel de gabardina y atardecer en Madrid, id 397811133, salido a las 18:40 Madrid, ya PUBLISHED en https://www.instagram.com/reel/Dej_JPWE4Bt/ . OJO, DOS COSAS QUE CAMBIAN EL EXPERIMENTO: (1) salio como REEL normal, no como TRIAL_REEL, asi que la serie de trial reels se corta hoy y el dato del 16-oct no es comparable con los del 13, 14 y 15; (2) la publicacion ya no pasa por el flujo de esta tarea. Esta tarea no publico nada para no duplicar. PENDIENTE PARA MANANA: el reel de gatos de videos/ultimo.json (creado 14:46 UTC) esta en Metricool como BORRADOR para el 17-oct a las 19:30 Madrid (id 397864212) con draft true y autoPublish false: tal cual esta NO saldra solo. No se toco por no pisar publicaciones programadas, pero manana hay que decidir si se activa y si vuelve a ser TRIAL_REEL.",
-  "contexto_30d": {
-   "seguidores_ultimo_cerrado_20261015": 3263,
-   "seguidores_hace_7d_20261008": 3220,
-   "seguidores_hace_30d_20260916": 3240,
-   "variacion_7d": 43,
-   "variacion_30d": 23,
-   "reels_en_30d": 4,
-   "alcance_medio_reel_semana_20261009_20261015": 93.5,
-   "alcance_medio_reel_semana_20261002_20261008": null,
-   "alcance_medio_reel_semana_nota": "93,5 = media de 140 (9-oct, reel normal), 41, 95 y 98 (13, 14 y 15-oct, trial reels). Solo los tres trial: 78. La semana anterior no hubo ningun reel, por eso null.",
-   "reels_por_fecha": {
-    "20261009": {
-     "tipo": "reel normal",
-     "alcance": 140,
-     "visualizaciones": 166
-    },
-    "20261013": {
-     "tipo": "trial reel",
-     "alcance": 41,
-     "visualizaciones": 44
-    },
-    "20261014": {
-     "tipo": "trial reel",
-     "alcance": 95,
-     "visualizaciones": 123
-    },
-    "20261015": {
-     "tipo": "trial reel",
-     "alcance": 98,
-     "visualizaciones": 225
+  },
+  {
+    "fecha": "2026-10-15",
+    "seguidores": 3262,
+    "seguidores_nota": "Metricool aun no habia publicado la fila del 15-oct al medir (12:00 Madrid); 3262 es el ultimo dato cerrado, del 14-oct.",
+    "ganados": null,
+    "perdidos": null,
+    "alcance_reels": null,
+    "visualizaciones_reels": null,
+    "reels_publicados": 0,
+    "reel_de_hoy": "https://app.metricool.com/planner/calendar?blogId=5053196&openWithPostUuid=4766919430740986346",
+    "nota": "Trial Reel programado hoy 20:00 Madrid (id 396673069, uuid 4766919430740986346), media ya en static.metricool.com. Las tres fotos (20261014-113633-1..3) se miraron con las caras y los ojos recortados y ampliados y comparadas con 0-REFERENCIA.jpg: rubia de ojos verdes en las tres. La 2 tiene el iris verde con motas doradas (verde avellana), mas calido que la referencia, pero verde; las otras dos clavadas. SE REPITIO LO DE AYER: el reel de las 06:15 UTC tenia la URL de uguu.se ya caducada y Metricool la rechazo ('Failed to normalize media'). Se relanzo reel.yml con solo_montar=si (run 38716580951); se comprobo por md5 que videos/fotos/foto1..3.jpg son byte a byte las mismas fotos ya revisadas, asi que el remontaje no gasta cuota de imagen ni mete caras sin revisar. Lo que SI cambia al remontar es el texto y el tema, que se regeneran: el nuevo venia como 'Domingos creativos en casa' y hoy es jueves, asi que se corrigio a 'Tardes creativas en casa'. ARREGLO PENDIENTE (segundo dia seguido): que reel-diario suba a litterbox (72h) en vez de uguu (<4h), o que la tarea remonte de entrada sin probar primero. DATO MALO, Y VA EL SEGUNDO DIA: el Trial Reel reparte MENOS que el reel normal. Reel normal 9-oct: 140 de alcance. Trial Reel 13-oct: 41 (ayer marcaba 16, o sea que maduran y suben). Trial Reel 14-oct: 11 con un dia de vida. Ninguno se acerca a 140. Si el 15 y el 16 siguen por debajo de 50 maduros, la hipotesis del Trial Reel esta fallando y toca volver al reel normal.",
+    "contexto_30d": {
+      "seguidores_hoy_20261014_ultimo_cerrado": 3262,
+      "seguidores_hace_7d_20261008": 3220,
+      "seguidores_hace_30d_20260915": 3241,
+      "variacion_7d": 42,
+      "variacion_30d": 21,
+      "reels_en_30d": 3,
+      "alcance_medio_reel_semana_20261008_20261014": 64,
+      "alcance_medio_reel_semana_20261001_20261007": null,
+      "alcance_medio_reel_semana_nota": "64 = media de 140 (9-oct, reel normal) + 41 (13-oct, trial) + 11 (14-oct, trial). La semana anterior no hubo ningun reel, por eso null.",
+      "reels_por_fecha": {
+        "20261009": {
+          "tipo": "reel normal",
+          "alcance": 140,
+          "visualizaciones": 166
+        },
+        "20261013": {
+          "tipo": "trial reel",
+          "alcance": 41,
+          "visualizaciones": 44
+        },
+        "20261014": {
+          "tipo": "trial reel",
+          "alcance": 11,
+          "visualizaciones": 12
+        }
+      },
+      "serie_seguidores": {
+        "20260915": 3241,
+        "20260916": 3240,
+        "20260917": 3240,
+        "20260918": 3241,
+        "20260919": 3239,
+        "20260920": 3239,
+        "20260921": 3238,
+        "20260922": 3228,
+        "20260923": 3233,
+        "20260924": 3231,
+        "20260925": 3231,
+        "20260926": 3230,
+        "20260927": 3229,
+        "20260928": 3228,
+        "20260929": 3225,
+        "20260930": 3224,
+        "20261001": 3225,
+        "20261002": 3224,
+        "20261003": 3222,
+        "20261004": 3221,
+        "20261005": 3217,
+        "20261006": 3218,
+        "20261007": 3218,
+        "20261008": 3220,
+        "20261009": 3221,
+        "20261010": 3221,
+        "20261011": 3243,
+        "20261012": 3256,
+        "20261013": 3262,
+        "20261014": 3262
+      }
     }
-   },
-   "maduracion_trial_reels": {
-    "20261013": {
-     "medido_14oct": 16,
-     "medido_15oct": 41,
-     "medido_16oct": 41
-    },
-    "20261014": {
-     "medido_15oct": 11,
-     "medido_16oct": 95
-    },
-    "20261015": {
-     "medido_16oct": 98
+  },
+  {
+    "fecha": "2026-10-16",
+    "fecha_ultimo_dato": "2026-10-15",
+    "seguidores": 3263,
+    "ganados": null,
+    "perdidos": null,
+    "alcance_reels": 98,
+    "visualizaciones_reels": 225,
+    "reels_publicados": 1,
+    "reel_de_hoy": "https://www.instagram.com/reel/Dej_JPWE4Bt/",
+    "nota": "NO HUBO REEL HOY y la causa es nueva: no es la cuota de Hugging Face, es la de GEMINI. El intento de las 06:07 UTC (run 38859445535) murio en 'Generar las fotos del dia' con 'gemini-3.5-flash-lite is currently experiencing high demand' (saturacion temporal), asi que a las 09:54 UTC relance reel-diario.yml a mano (run 38883636570): esta vez paro antes, en 'Comprobar que el revisor distingue a Allie', con 'Your project has exceeded a quota' de Gemini. El paro es correcto y conviene que sea asi: sin Gemini no hay quien compare las caras con 0-REFERENCIA.jpg, y publicar a otra mujer en la cuenta es el fallo mas caro del proyecto. No se publico nada y no se insistio mas. El banco NO es el problema: tiene 62 fotos libres de 72. Quedan dos intentos programados hoy, 11:40 y 16:40 UTC; si alguno pilla la ventana de Gemini abierta aun da tiempo a programar el Trial Reel de las 19-21h. NOTICIA BUENA, Y CORRIGE LA ALARMA DE AYER: los Trial Reels maduran mucho mas de lo que parecia a un dia vista. El del 13-oct marcaba 16 el dia 14 y 41 el dia 15; hoy sigue en 41. El del 14-oct marcaba 11 ayer y hoy esta en 95. El del 15-oct, con un dia de vida, ya va por 98 de alcance y 225 visualizaciones: mas visualizaciones que el reel normal del 9-oct (166), que tardo dias en llegar a 140 de alcance. O sea que el Trial Reel NO reparte menos; lo que pasa es que reparte mas despacio y ayer se midio demasiado pronto. Conviene no juzgar ningun reel antes de 72 horas. ACTUALIZACION 12:10 UTC: el segundo intento programado (run 38898026558, 12:04 UTC) tambien fallo, otra vez por 'Your project has exceeded a quota' de Gemini, pero esta vez el paso de identidad SI paso: la cuota de Gemini va y viene. De hecho banco.yml si llego a llenar el banco a las 11:41 UTC con 9 fotos nuevas (una descartada por manos y tres por no ser ella), asi que el banco esta en 71 fotos libres de 81, todas ya revisadas. El cuello de botella es solo Gemini: banco.py lo necesita para escribir las escenas y reel.py para el texto. Queda el intento de las 16:40 UTC (18:40 Madrid), justo a tiempo para una publicacion a las 19-21h si pilla cuota. IDEA PARA ARREGLARLO: con 71 fotos libres ya revisadas, generar MAS fotos antes de montar el reel no aporta nada y es lo que tumba el dia entero. Si 'Generar las fotos del dia' no fuese bloqueante cuando el banco tiene de sobra, hoy habria habido reel. CIERRE DEL DIA 17:10 UTC: AL FINAL SI HUBO REEL, y no lo programo esta tarea. Por la tarde se toco el repositorio desde otra sesion (commits 'La identidad ya no gasta cuota: la comprueba OpenCV y va primero', 'Con el banco lleno no se genera, y el reel no depende de que generar vaya', 'Cloudflare como segundo proveedor de texto' y 'Allie publica sola: se acabo el techo de 20 al mes'), que es exactamente el arreglo que pedia la nota de las 12:10: quitar Gemini del camino critico y no bloquear el reel por generar fotos cuando el banco va sobrado. Las ejecuciones de reel-diario de las 14:43 y 14:44 UTC salieron bien. LO PUBLICADO HOY: reel de gabardina y atardecer en Madrid, id 397811133, salido a las 18:40 Madrid, ya PUBLISHED en https://www.instagram.com/reel/Dej_JPWE4Bt/ . OJO, DOS COSAS QUE CAMBIAN EL EXPERIMENTO: (1) salio como REEL normal, no como TRIAL_REEL, asi que la serie de trial reels se corta hoy y el dato del 16-oct no es comparable con los del 13, 14 y 15; (2) la publicacion ya no pasa por el flujo de esta tarea. Esta tarea no publico nada para no duplicar. PENDIENTE PARA MANANA: el reel de gatos de videos/ultimo.json (creado 14:46 UTC) esta en Metricool como BORRADOR para el 17-oct a las 19:30 Madrid (id 397864212) con draft true y autoPublish false: tal cual esta NO saldra solo. No se toco por no pisar publicaciones programadas, pero manana hay que decidir si se activa y si vuelve a ser TRIAL_REEL.",
+    "contexto_30d": {
+      "seguidores_ultimo_cerrado_20261015": 3263,
+      "seguidores_hace_7d_20261008": 3220,
+      "seguidores_hace_30d_20260916": 3240,
+      "variacion_7d": 43,
+      "variacion_30d": 23,
+      "reels_en_30d": 4,
+      "alcance_medio_reel_semana_20261009_20261015": 93.5,
+      "alcance_medio_reel_semana_20261002_20261008": null,
+      "alcance_medio_reel_semana_nota": "93,5 = media de 140 (9-oct, reel normal), 41, 95 y 98 (13, 14 y 15-oct, trial reels). Solo los tres trial: 78. La semana anterior no hubo ningun reel, por eso null.",
+      "reels_por_fecha": {
+        "20261009": {
+          "tipo": "reel normal",
+          "alcance": 140,
+          "visualizaciones": 166
+        },
+        "20261013": {
+          "tipo": "trial reel",
+          "alcance": 41,
+          "visualizaciones": 44
+        },
+        "20261014": {
+          "tipo": "trial reel",
+          "alcance": 95,
+          "visualizaciones": 123
+        },
+        "20261015": {
+          "tipo": "trial reel",
+          "alcance": 98,
+          "visualizaciones": 225
+        }
+      },
+      "maduracion_trial_reels": {
+        "20261013": {
+          "medido_14oct": 16,
+          "medido_15oct": 41,
+          "medido_16oct": 41
+        },
+        "20261014": {
+          "medido_15oct": 11,
+          "medido_16oct": 95
+        },
+        "20261015": {
+          "medido_16oct": 98
+        }
+      },
+      "serie_seguidores": {
+        "20260916": 3240,
+        "20260917": 3240,
+        "20260918": 3241,
+        "20260919": 3239,
+        "20260920": 3239,
+        "20260921": 3238,
+        "20260922": 3228,
+        "20260923": 3233,
+        "20260924": 3231,
+        "20260925": 3231,
+        "20260926": 3230,
+        "20260927": 3229,
+        "20260928": 3228,
+        "20260929": 3225,
+        "20260930": 3224,
+        "20261001": 3225,
+        "20261002": 3224,
+        "20261003": 3222,
+        "20261004": 3221,
+        "20261005": 3217,
+        "20261006": 3218,
+        "20261007": 3218,
+        "20261008": 3220,
+        "20261009": 3221,
+        "20261010": 3221,
+        "20261011": 3243,
+        "20261012": 3256,
+        "20261013": 3262,
+        "20261014": 3262,
+        "20261015": 3263
+      },
+      "nota_cambio_de_plan": "Desde el 16-oct la cuenta publica por su cuenta y el reel del dia salio como reel normal, no trial. Si esto se queda asi, la comparacion trial vs normal se mide solo con 13, 14 y 15 de octubre."
     }
-   },
-   "serie_seguidores": {
-    "20260916": 3240,
-    "20260917": 3240,
-    "20260918": 3241,
-    "20260919": 3239,
-    "20260920": 3239,
-    "20260921": 3238,
-    "20260922": 3228,
-    "20260923": 3233,
-    "20260924": 3231,
-    "20260925": 3231,
-    "20260926": 3230,
-    "20260927": 3229,
-    "20260928": 3228,
-    "20260929": 3225,
-    "20260930": 3224,
-    "20261001": 3225,
-    "20261002": 3224,
-    "20261003": 3222,
-    "20261004": 3221,
-    "20261005": 3217,
-    "20261006": 3218,
-    "20261007": 3218,
-    "20261008": 3220,
-    "20261009": 3221,
-    "20261010": 3221,
-    "20261011": 3243,
-    "20261012": 3256,
-    "20261013": 3262,
-    "20261014": 3262,
-    "20261015": 3263
-   },
-   "nota_cambio_de_plan": "Desde el 16-oct la cuenta publica por su cuenta y el reel del dia salio como reel normal, no trial. Si esto se queda asi, la comparacion trial vs normal se mide solo con 13, 14 y 15 de octubre."
-  }
- },
- {
-  "fecha": "2026-10-17",
-  "fecha_ultimo_dato": "2026-10-16",
-  "seguidores": 3267,
-  "ganados": null,
-  "perdidos": null,
-  "alcance_reels": 76,
-  "visualizaciones_reels": 173,
-  "reels_publicados": 1,
-  "formato": "reel normal",
-  "reel_de_hoy": "https://www.instagram.com/reel/DeltjqPDT5h/",
-  "enlace": "https://www.instagram.com/reel/DeltjqPDT5h/",
-  "nota": "SI SE PUBLICO, y por la API: media_id 18100499807637566, 08:47 UTC. Pero no a la primera. La ejecucion programada de publicar.yml (08:33 UTC, run 39017815191) murio en 'Comprobar el marcado de IA del video' con FileNotFoundError: 'ffmpeg'. El runner de publicar.yml no instalaba ffmpeg; los de reel-diario si. Ya esta corregido en el repositorio (paso 'Poner ffmpeg' en publicar.yml) y el tercer intento (39018586880, workflow_dispatch) publico sin problema. Segunda mirada a las fotos: las tres son Allie (rubia, ojos verdes, misma cara que 0-REFERENCIA.jpg) y el texto encaja con lo que se ve: gabardina beige, luz dorada de atardecer, pared de ladrillo y horizonte de ciudad. OpenCV ya habia dado el visto bueno en generacion. MEDIDA DEL EXPERIMENTO (reel normal vs trial reel), con la regla de no juzgar antes de 72 h: el reel normal del 16-oct lleva 76 de alcance y 173 visualizaciones a las 24 h; el trial del 15-oct iba por 98 a las 24 h y hoy esta en 119; el del 14-oct, 11 a las 24 h y hoy 99; el del 13-oct se quedo en 41. O sea que a un dia vista el reel normal NO reparte mas que el trial. Y los dos formatos siguen muy por debajo de los posts: los carruseles y fotos de las ultimas tres semanas van de 126 a 319 de alcance (14-oct 126, 10-oct 215, 9-oct 228, 4-oct 254, 3-oct 307, 1-oct 319). Si el reel del 16 y el del 17 no pasan de cien al madurar, la conclusion es que el problema no es el formato sino a cuanta gente llega la cuenta. Lo bueno: los seguidores suben. 3267 el 16-oct frente a 3221 el 10-oct (+46 en seis dias), despues de un mes entero bajando poco a poco desde 3240. El salto gordo fue el 11-oct (+27) y el 12-oct (+11). Interacciones por reel (IGRE11): 71 el del 16-oct y 94 el del 15-oct, frente a 0, 2 y 8 de los primeros. No se publico nada por Metricool.",
-  "contexto_30d": {
-   "alcance_por_reel": {
-    "20261009": 140,
-    "20261013": 41,
-    "20261014": 99,
-    "20261015": 119,
-    "20261016": 76
-   },
-   "tipo_por_reel": {
-    "20261009": "reel normal",
-    "20261013": "trial reel",
-    "20261014": "trial reel",
-    "20261015": "trial reel",
-    "20261016": "reel normal",
-    "20261017": "reel normal"
-   },
-   "interacciones_por_reel": {
-    "20261009": 2,
-    "20261013": 0,
-    "20261014": 8,
-    "20261015": 94,
-    "20261016": 71
-   },
-   "alcance_por_post": {
-    "20261001": 319,
-    "20261002": 227,
-    "20261003": 307,
-    "20261004": 254,
-    "20261008": 182,
-    "20261008b": 150,
-    "20261009": 228,
-    "20261009b": 21,
-    "20261010": 215,
-    "20261014": 126
-   },
-   "maduracion": {
-    "20261013": {
-     "24h": 16,
-     "48h": 41,
-     "72h": 41,
-     "hoy": 41
-    },
-    "20261014": {
-     "24h": 11,
-     "48h": 95,
-     "hoy": 99
-    },
-    "20261015": {
-     "24h": 98,
-     "hoy": 119
-    },
-    "20261016": {
-     "24h": 76
+  },
+  {
+    "fecha": "2026-10-17",
+    "fecha_ultimo_dato": "2026-10-16",
+    "seguidores": 3267,
+    "ganados": null,
+    "perdidos": null,
+    "alcance_reels": 76,
+    "visualizaciones_reels": 173,
+    "reels_publicados": 1,
+    "formato": "reel normal",
+    "reel_de_hoy": "https://www.instagram.com/reel/DeltjqPDT5h/",
+    "enlace": "https://www.instagram.com/reel/DeltjqPDT5h/",
+    "nota": "SI SE PUBLICO, y por la API: media_id 18100499807637566, 08:47 UTC. Pero no a la primera. La ejecucion programada de publicar.yml (08:33 UTC, run 39017815191) murio en 'Comprobar el marcado de IA del video' con FileNotFoundError: 'ffmpeg'. El runner de publicar.yml no instalaba ffmpeg; los de reel-diario si. Ya esta corregido en el repositorio (paso 'Poner ffmpeg' en publicar.yml) y el tercer intento (39018586880, workflow_dispatch) publico sin problema. Segunda mirada a las fotos: las tres son Allie (rubia, ojos verdes, misma cara que 0-REFERENCIA.jpg) y el texto encaja con lo que se ve: gabardina beige, luz dorada de atardecer, pared de ladrillo y horizonte de ciudad. OpenCV ya habia dado el visto bueno en generacion. MEDIDA DEL EXPERIMENTO (reel normal vs trial reel), con la regla de no juzgar antes de 72 h: el reel normal del 16-oct lleva 76 de alcance y 173 visualizaciones a las 24 h; el trial del 15-oct iba por 98 a las 24 h y hoy esta en 119; el del 14-oct, 11 a las 24 h y hoy 99; el del 13-oct se quedo en 41. O sea que a un dia vista el reel normal NO reparte mas que el trial. Y los dos formatos siguen muy por debajo de los posts: los carruseles y fotos de las ultimas tres semanas van de 126 a 319 de alcance (14-oct 126, 10-oct 215, 9-oct 228, 4-oct 254, 3-oct 307, 1-oct 319). Si el reel del 16 y el del 17 no pasan de cien al madurar, la conclusion es que el problema no es el formato sino a cuanta gente llega la cuenta. Lo bueno: los seguidores suben. 3267 el 16-oct frente a 3221 el 10-oct (+46 en seis dias), despues de un mes entero bajando poco a poco desde 3240. El salto gordo fue el 11-oct (+27) y el 12-oct (+11). Interacciones por reel (IGRE11): 71 el del 16-oct y 94 el del 15-oct, frente a 0, 2 y 8 de los primeros. No se publico nada por Metricool.",
+    "contexto_30d": {
+      "alcance_por_reel": {
+        "20261009": 140,
+        "20261013": 41,
+        "20261014": 99,
+        "20261015": 119,
+        "20261016": 76
+      },
+      "tipo_por_reel": {
+        "20261009": "reel normal",
+        "20261013": "trial reel",
+        "20261014": "trial reel",
+        "20261015": "trial reel",
+        "20261016": "reel normal",
+        "20261017": "reel normal"
+      },
+      "interacciones_por_reel": {
+        "20261009": 2,
+        "20261013": 0,
+        "20261014": 8,
+        "20261015": 94,
+        "20261016": 71
+      },
+      "alcance_por_post": {
+        "20261001": 319,
+        "20261002": 227,
+        "20261003": 307,
+        "20261004": 254,
+        "20261008": 182,
+        "20261008b": 150,
+        "20261009": 228,
+        "20261009b": 21,
+        "20261010": 215,
+        "20261014": 126
+      },
+      "maduracion": {
+        "20261013": {
+          "24h": 16,
+          "48h": 41,
+          "72h": 41,
+          "hoy": 41
+        },
+        "20261014": {
+          "24h": 11,
+          "48h": 95,
+          "hoy": 99
+        },
+        "20261015": {
+          "24h": 98,
+          "hoy": 119
+        },
+        "20261016": {
+          "24h": 76
+        }
+      },
+      "serie_seguidores": {
+        "20261010": 3221,
+        "20261011": 3243,
+        "20261012": 3256,
+        "20261013": 3262,
+        "20261014": 3262,
+        "20261015": 3263,
+        "20261016": 3267
+      },
+      "nota_cupo_metricool": "No se gasto ninguna publicacion del cupo de Metricool: el reel salio por la API de Instagram."
     }
-   },
-   "serie_seguidores": {
-    "20261010": 3221,
-    "20261011": 3243,
-    "20261012": 3256,
-    "20261013": 3262,
-    "20261014": 3262,
-    "20261015": 3263,
-    "20261016": 3267
-   },
-   "nota_cupo_metricool": "No se gasto ninguna publicacion del cupo de Metricool: el reel salio por la API de Instagram."
+  },
+  {
+    "fecha": "2026-10-18",
+    "fecha_ultimo_dato": "2026-10-17",
+    "seguidores": 3280,
+    "ganados": null,
+    "perdidos": null,
+    "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 17-oct al medir (11:55 Madrid). El 16-oct: 8 ganados, 3 perdidos.",
+    "alcance_reels": 103,
+    "visualizaciones_reels": 221,
+    "reels_publicados": 1,
+    "formato": "carrusel",
+    "enlace": "https://www.instagram.com/p/DeoaOU_lwl-/",
+    "nota": "CAMBIO DE PLAN GRANDE, Y NO LO HIZO ESTA TAREA. Esta madrugada se toco el repositorio desde otra sesion: ahora hay carrusel.yml, que publica carruseles y fotos sueltas POR LA API de Instagram, y el reparto pasa a ser carrusel lunes/miercoles/viernes/domingo, reel martes/sabado y foto suelta el jueves, todo a las 10:00 de Madrid. publicar.yml (el reel) ya solo tiene cron los dias 2 y 6. El motivo esta en los numeros de cinco semanas: carruseles 228 de alcance mediano con 12 guardados y 6 seguidores nuevos, fotos 251 y 4 guardados, reels 112 y 0 guardados y 0 seguidores.\n\nHOY NO SALIO SOLO Y LA CAUSA ES EL PROPIO DESPLIEGUE: hoy es domingo, o sea dia de carrusel, pero carrusel.yml se subio a las 09:14 UTC y la ranura del cron era las 08:12 UTC. El workflow aun no existia cuando tocaba. Las dos ejecuciones de la manana fueron a mano: la de 09:14 reviento con un TypeError al desempaquetar banco.coger() (ya corregido en 957759d) y la de 09:15 fue un ensayo en seco correcto.\n\nLO PUBLICADO HOY: carrusel de 3 fotos de la tanda 20261014-171136 (gabardina beige, parque con luz dorada, perrito pequeño), lanzado a mano con carrusel.yml y sin_guarda=si (run 39117190647) y PUBLICADO a las 09:55 UTC / 11:55 Madrid, media_id 18110868452521321, https://www.instagram.com/p/DeoaOU_lwl-/ . Es el PRIMER carrusel que sale por la API, sin gastar cupo de Metricool. Salio a las 11:55 en vez de las 10:00 por el desfase del despliegue: casi dos horas despues del pico.\n\nSEGUNDA MIRADA A LAS FOTOS: las tres son Allie, rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg, y forman un momento coherente (misma gabardina, mismo parque, misma luz, mismo perro). OpenCV ya habia dado el visto bueno en generacion. PERO EL PIE TIENE UN FALLO: dice '¿Cual de las DOS fotos es tu favorita?' y el carrusel lleva TRES. No es grave y no se borra la publicacion por eso, pero el texto se escribe MIRANDO las fotos y deberia saber cuantas hay: conviene pasarle el numero de fotos al generador del pie.\n\nEL EXPERIMENTO REEL NORMAL vs TRIAL REEL SE PUEDE CERRAR. Con los datos ya maduros (IGRE02 alcance / IGRE11 interacciones): trial 13-oct 41/0, trial 14-oct 105/9, trial 15-oct 135/101, normal 16-oct 120/84, normal 17-oct 103/88, normal 9-oct 140/2. El reel normal NO reparte mas que el trial maduro: los dos se mueven entre 100 y 140. O sea que el formato de reel no era la palanca. Lo que si se separa de verdad son los posts: carruseles y fotos de las ultimas tres semanas van de 126 a 319 (1-oct 319, 3-oct 307, 4-oct 254, 9-oct 228, 10-oct 215, 14-oct 126), mas o menos el doble que cualquier reel. El cambio a carrusel de esta madrugada va en la direccion que dicen los numeros.\n\nLO BUENO: los seguidores siguen subiendo y es lo mas claro del mes. 3280 el 17-oct frente a 3221 el 10-oct (+59 en una semana) y frente a 3241 el 18 de septiembre, despues de todo un mes bajando poco a poco hasta 3217 el 5-oct. El 17-oct solo subio 13. No se gasto ninguna publicacion del cupo de Metricool.",
+    "contexto_30d": {
+      "alcance_por_reel_maduro": {
+        "20261009": 140,
+        "20261013": 41,
+        "20261014": 105,
+        "20261015": 135,
+        "20261016": 120,
+        "20261017": 103
+      },
+      "interacciones_por_reel": {
+        "20261009": 2,
+        "20261013": 0,
+        "20261014": 9,
+        "20261015": 101,
+        "20261016": 84,
+        "20261017": 88
+      },
+      "tipo_por_reel": {
+        "20261009": "reel normal",
+        "20261013": "trial reel",
+        "20261014": "trial reel",
+        "20261015": "trial reel",
+        "20261016": "reel normal",
+        "20261017": "reel normal"
+      },
+      "alcance_por_post": {
+        "20261001": 323,
+        "20261002": 231,
+        "20261003": 313,
+        "20261004": 260,
+        "20261008": 188,
+        "20261008b": 155,
+        "20261009": 236,
+        "20261009b": 21,
+        "20261010": 221,
+        "20261014": 141
+      },
+      "veredicto_experimento": "Reel normal 120 y 103 de alcance; trial reel maduro 41, 105 y 135. Empate. El formato de reel no cambia nada. Los posts (carrusel y foto) doblan a los dos. Experimento cerrado: se pasa a carrusel.",
+      "serie_seguidores": {
+        "20261010": 3221,
+        "20261011": 3243,
+        "20261012": 3256,
+        "20261013": 3262,
+        "20261014": 3262,
+        "20261015": 3263,
+        "20261016": 3267,
+        "20261017": 3280
+      },
+      "variacion_7d": 59,
+      "variacion_30d": 39,
+      "nota_cupo_metricool": "Cero publicaciones del cupo: el carrusel salio por la API de Instagram.",
+      "banco": "56 fotos libres despues de coger las 3 de hoy."
+    }
+  },
+  {
+    "fecha": "2026-10-19",
+    "fecha_ultimo_dato": "2026-10-18",
+    "seguidores": 3277,
+    "ganados": null,
+    "perdidos": null,
+    "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 18-oct al medir (12:05 Madrid). El 17-oct: 15 ganados, 5 perdidos.",
+    "alcance_reels": null,
+    "visualizaciones_reels": null,
+    "reels_publicados": 0,
+    "formato": "carrusel",
+    "enlace": "https://www.instagram.com/p/Deq_d69nNjW/",
+    "nota": "SI SE PUBLICO, pero NO solo: lo lanzo esta tarea a mano. POR QUE NO SALIO SOLO: hoy es lunes, dia de carrusel. El cron de las 08:12 UTC salto a las 08:48 (GitHub iba cargado y lo retraso 36 minutos). En Madrid eran las 10:48 y la guarda de app/hora.py pedia hour==10 y minute<=45. Por TRES MINUTOS el paso de publicar se salto, el trabajo acabo en verde y no aviso nadie. La segunda ejecucion (09:40 UTC, 11:40 Madrid) ya era otra hora. CORREGIDO en 542bade: la ventana pasa a ser la hora entera, que no puede publicar dos veces porque los dos crons van separados una hora justa y la comprobacion de hour descarta al segundo. prueba_hora.py actualizada y en verde.\n\nLAS FOTOS NO ERAN LAS DEL TEXTO Y ESO SI ERA GRAVE. La pieza de hoy es la lista de cafeterias de Madrid para trabajar, etiqueta 'cafe'. Las cinco tandas libres con esa etiqueta eran COCINAS DE CASA: la etiqueta sale del tema ('un cafe por la manana'), no de lo que se ve en la foto. Y la unica tanda que de verdad esta en la terraza de un cafe de Madrid, la 20261015-061006, estaba etiquetada 'calle'. De haber salido solo, habria publicado una lista de cafeterias sobre tres fotos en una cocina: el mismo fallo de las brochas y las manchas de pintura del 15 de octubre. Trece fotos de cocina pasan a 'casa' y la terraza pasa a 'cafe'.\n\nLO PUBLICADO: carrusel de 3 fotos de la tanda 20261015-061006 (terraza de cafe de Madrid, blazer de lino beige, luz de tarde) con la lista de cinco cafeterias para trabajar, run 39234049462 con sin_guarda=si, publicado a las 09:58 UTC / 11:58 Madrid, media_id 18069929354775640, https://www.instagram.com/p/Deq_d69nNjW/ . Cero cupo de Metricool. SEGUNDA MIRADA A LAS FOTOS: las tres son Allie, rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg; misma terraza, mismo blazer, misma luz. Unico pero menor: en la 1 lleva camiseta blanca y en la 2 gris. El pie encaja con lo que se ve.\n\nSEGUNDO DIA SEGUIDO FUERA DEL PICO: ayer a las 11:55 y hoy a las 11:58, casi dos horas despues de las 10:00. Con la guarda arreglada, el miercoles deberia salir ya a su hora sin tocar nada.\n\nEL REEL DIARIO LLEVABA FALLANDO DESDE EL 18. reel-diario.yml murio hoy a las 06:06 (run 39208017373) en prueba_pisadas.py: su escenas() de mentira no aceptaba vestuario ni sitio, que se anadieron a la de verdad. No ha hecho dano porque el banco tiene 56 fotos libres, muy por encima de las 24 del umbral, pero el dia que bajase no habria generado nada. Corregido en 542bade y la prueba pasa.\n\nLOS NUMEROS, Y NO SON BUENOS. El carrusel de ayer lleva 127 de alcance y 104 de interacciones a las 26 h. Los carruseles y fotos de principios de mes iban de 221 a 323 (1-oct 327, 3-oct 315, 4-oct 264, 9-oct 242, 10-oct 230). Los de la ultima semana: 14-oct 149, 18-oct 127. Es decir, el formato que mejor funcionaba tambien esta bajando, y bastante. Los reels normales maduros se quedaron en 119-143 y los trial en 41-105. Con los posts cayendo a la banda de los reels, la lectura honesta es que el problema NO es el formato sino a cuanta gente llega la cuenta. Dos cosas lo enturbian y hay que descontarlas antes de dar nada por cerrado: las dos ultimas piezas salieron casi dos horas tarde, y el carrusel de ayer todavia puede madurar.\n\nLO BUENO SIGUE SIENDO LOS SEGUIDORES: 3277 el 18-oct frente a 3221 el 10-oct, +56 en ocho dias, despues de un mes entero bajando. El 18 bajo 3 respecto al 17 (3280), que es ruido normal.",
+    "contexto_30d": {
+      "alcance_por_post": {
+        "20261001": 327,
+        "20261002": 235,
+        "20261003": 315,
+        "20261004": 264,
+        "20261008": 195,
+        "20261008b": 159,
+        "20261009": 242,
+        "20261009b": 21,
+        "20261010": 230,
+        "20261014": 149,
+        "20261018": 127
+      },
+      "interacciones_por_post": {
+        "20261001": 173,
+        "20261002": 159,
+        "20261003": 161,
+        "20261004": 184,
+        "20261008": 149,
+        "20261008b": 95,
+        "20261009": 191,
+        "20261009b": 8,
+        "20261010": 144,
+        "20261014": 103,
+        "20261018": 104
+      },
+      "alcance_por_reel_maduro": {
+        "20261009": 140,
+        "20261013": 41,
+        "20261014": 105,
+        "20261015": 143,
+        "20261016": 132,
+        "20261017": 119
+      },
+      "tipo_por_reel": {
+        "20261009": "reel normal",
+        "20261013": "trial reel",
+        "20261014": "trial reel",
+        "20261015": "trial reel",
+        "20261016": "reel normal",
+        "20261017": "reel normal"
+      },
+      "serie_seguidores": {
+        "20261012": 3256,
+        "20261013": 3262,
+        "20261014": 3262,
+        "20261015": 3263,
+        "20261016": 3267,
+        "20261017": 3280,
+        "20261018": 3277
+      },
+      "variacion_7d": 21,
+      "veredicto": "Experimento de formato cerrado ayer. El dato nuevo es que los posts tambien caen: de 221-327 a principios de mes a 149 el 14 y 127 el 18. Si el miercoles, ya a su hora, el carrusel sigue por debajo de 150, el problema es la cuenta y no el formato.",
+      "nota_cupo_metricool": "Cero publicaciones del cupo: el carrusel salio por la API de Instagram.",
+      "banco": "56 fotos libres. Sin tandas de 'cafe' libres despues de hoy.",
+      "pendiente": "La pieza de librerias de la cola lleva etiqueta 'cafe' y ya no quedan fotos de cafe libres: si le toca, el publicador fallara con 'El banco no tiene 3 fotos libres'. Por eso la cola se reordeno y el miercoles va la de otono (etiqueta 'calle', tanda de parque 20261015-043521). Hace falta generar una tanda en cafeteria antes de sacar la de librerias."
+    }
+  },
+  {
+    "fecha": "2026-10-20",
+    "fecha_ultimo_dato": "2026-10-19",
+    "seguidores": 3282,
+    "ganados": null,
+    "perdidos": null,
+    "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 19-oct al medir (11:55 Madrid). El 18-oct: 2 ganados, 2 perdidos. El 17-oct: 15 ganados, 5 perdidos.",
+    "alcance_reels": null,
+    "visualizaciones_reels": null,
+    "reels_publicados": 1,
+    "formato": "reel normal",
+    "enlace": "https://www.instagram.com/reel/Detb6LLH_w1/",
+    "nota": "SI SE PUBLICO Y SALIO SOLO, sin tocar nada: primer dia limpio desde que Allie publica por la API. Hoy es martes, dia de reel en el reparto nuevo. El cron de publicar.yml de las 08:12 UTC salto a las 08:44 (run 39395588168, 32 minutos de retraso de GitHub) y publico a las 08:46 UTC / 10:46 Madrid: media_id 17999539106821302, https://www.instagram.com/reel/Detb6LLH_w1/ . LA GUARDA ARREGLADA AYER (542bade, ventana de la hora entera en vez de minute<=45) ES LO QUE HA SALVADO EL DIA: con la regla vieja, 10:46 se habria saltado otra vez. El segundo cron de las 09:41 (run 39402553055) acabo en verde SIN publicar, que es lo que tenia que pasar; solo hay un commit 'Publicado en Instagram' hoy y una sola entrada en publicados.json. Cero duplicados y cero cupo de Metricool.\n\nSEGUNDA MIRADA A LAS FOTOS: las tres son Allie, rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg. OpenCV ya habia dado el visto bueno. El texto ('a veces solo hace falta sentarse y dejar que pase el tiempo / que te vienes a charlar') encaja con lo que se ve y con el tema (probar sitios nuevos para desayunar): las tres son en cafeteria, sentada, luz natural. PERO EL REEL MEZCLA DOS MOMENTOS DISTINTOS: la foto 1 es una cafeteria blanca y luminosa con camisa de lino beige, y las fotos 2 y 3 son una cafeteria de madera rustica con vestido verde. Misma persona, sitios y ropa distintos en quince segundos. No es el fallo de las brochas (el texto no miente), pero rompe la ilusion de 'un momento'. El montador deberia coger las tres fotos de la MISMA tanda, como hace el carrusel; el hashtag #Verde, ademas, sale del vestido de dos de las tres.\n\nLOS NUMEROS, Y SIGUEN SIN SER BUENOS. El carrusel de ayer (19-oct, cafeterias de Madrid) lleva 97 de alcance y 87 de interacciones a las 26 h. El de anteayer iba por 127 a las 26 h y ha madurado a 142. La serie de posts cae sin parar: 1-oct 327, 3-oct 315, 4-oct 264, 9-oct 246, 10-oct 234, 14-oct 158, 18-oct 142, 19-oct 97. Los reels maduros se quedan entre 105 y 148 (9-oct 140 normal; 13, 14 y 15-oct trial 41, 105 y 148; 16-oct 139 y 17-oct 126 normales). VEREDICTO, SIN RODEOS: el carrusel ya no dobla al reel, se ha metido en su misma banda y por debajo. Se cumple el criterio que se puso ayer. El problema NO es el formato, es a cuanta gente llega la cuenta. La prueba mas clara es la proporcion: 87 interacciones sobre 97 de alcance (19-oct) y 104 sobre 126 (17-oct). Casi todo el que lo ve interactua; lo que falta es que Instagram se lo ensene a mas gente. El problema esta en la distribucion, no en lo que se publica.\n\nLO BUENO SIGUE SIENDO LOS SEGUIDORES: 3282 el 19-oct frente a 3221 el 10-oct, +61 en nueve dias, y +43 en 30 dias despues de un mes entero bajando hasta 3217 el 5-oct. La cuenta gana seguidores mientras pierde alcance, que es raro y apunta a que los que llegan vienen de fuera del feed (perfil, busqueda) y no del reparto de publicaciones.\n\nOTRAS COSAS: ULTIMO-FALLO.txt sigue teniendo el TypeError del carrusel del 18-oct, ya corregido en 957759d; no se ha vuelto a tocar el fichero y despista. El banco esta sobrado (81 fotos libres) pero mal repartido: 39 de casa, 24 varios, 12 calle, 3 de cafe y 3 de viaje. Sigue sin haber tandas de cafe de sobra para la pieza de librerias de la cola.",
+    "contexto_30d": {
+      "alcance_por_post": {
+        "20261001": 327,
+        "20261002": 235,
+        "20261003": 315,
+        "20261004": 264,
+        "20261008": 196,
+        "20261008b": 160,
+        "20261009": 246,
+        "20261009b": 21,
+        "20261010": 234,
+        "20261014": 158,
+        "20261018": 142,
+        "20261019": 97
+      },
+      "interacciones_por_post": {
+        "20261001": 173,
+        "20261002": 159,
+        "20261003": 161,
+        "20261004": 184,
+        "20261008": 149,
+        "20261008b": 95,
+        "20261009": 192,
+        "20261009b": 8,
+        "20261010": 145,
+        "20261014": 106,
+        "20261018": 117,
+        "20261019": 87
+      },
+      "alcance_por_reel_maduro": {
+        "20261009": 140,
+        "20261013": 41,
+        "20261014": 105,
+        "20261015": 148,
+        "20261016": 139,
+        "20261017": 126
+      },
+      "interacciones_por_reel": {
+        "20261009": 2,
+        "20261013": 0,
+        "20261014": 9,
+        "20261015": 106,
+        "20261016": 101,
+        "20261017": 104
+      },
+      "tipo_por_reel": {
+        "20261009": "reel normal",
+        "20261013": "trial reel",
+        "20261014": "trial reel",
+        "20261015": "trial reel",
+        "20261016": "reel normal",
+        "20261017": "reel normal",
+        "20261020": "reel normal"
+      },
+      "serie_seguidores": {
+        "20261013": 3262,
+        "20261014": 3262,
+        "20261015": 3263,
+        "20261016": 3267,
+        "20261017": 3280,
+        "20261018": 3277,
+        "20261019": 3282
+      },
+      "variacion_7d": 20,
+      "variacion_30d": 43,
+      "veredicto": "El carrusel ha dejado de doblar al reel: 142 el 18-oct y 97 el 19-oct, dentro de la banda de los reels (105-148) y por debajo. Se cumple el criterio de ayer: el limite es el alcance de la cuenta, no el formato. Con 87 interacciones sobre 97 de alcance, el contenido convierte; lo que no llega es la distribucion.",
+      "nota_cupo_metricool": "Cero publicaciones del cupo: el reel salio por la API de Instagram.",
+      "banco": "81 fotos libres: 39 casa, 24 varios, 12 calle, 3 cafe, 3 viaje.",
+      "pendiente": "1) El montador del reel mezcla fotos de tandas distintas (hoy: una cafeteria blanca con camisa beige y dos de cafeteria de madera con vestido verde); deberia coger las tres de la misma tanda como el carrusel. 2) ULTIMO-FALLO.txt sigue mostrando el fallo del 18-oct ya corregido. 3) Hacen falta mas tandas de 'cafe' (solo 3 fotos libres) para la pieza de librerias."
+    }
   }
- },
- {
-  "fecha": "2026-10-18",
-  "fecha_ultimo_dato": "2026-10-17",
-  "seguidores": 3280,
-  "ganados": null,
-  "perdidos": null,
-  "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 17-oct al medir (11:55 Madrid). El 16-oct: 8 ganados, 3 perdidos.",
-  "alcance_reels": 103,
-  "visualizaciones_reels": 221,
-  "reels_publicados": 1,
-  "formato": "carrusel",
-  "enlace": "https://www.instagram.com/p/DeoaOU_lwl-/",
-  "nota": "CAMBIO DE PLAN GRANDE, Y NO LO HIZO ESTA TAREA. Esta madrugada se toco el repositorio desde otra sesion: ahora hay carrusel.yml, que publica carruseles y fotos sueltas POR LA API de Instagram, y el reparto pasa a ser carrusel lunes/miercoles/viernes/domingo, reel martes/sabado y foto suelta el jueves, todo a las 10:00 de Madrid. publicar.yml (el reel) ya solo tiene cron los dias 2 y 6. El motivo esta en los numeros de cinco semanas: carruseles 228 de alcance mediano con 12 guardados y 6 seguidores nuevos, fotos 251 y 4 guardados, reels 112 y 0 guardados y 0 seguidores.\n\nHOY NO SALIO SOLO Y LA CAUSA ES EL PROPIO DESPLIEGUE: hoy es domingo, o sea dia de carrusel, pero carrusel.yml se subio a las 09:14 UTC y la ranura del cron era las 08:12 UTC. El workflow aun no existia cuando tocaba. Las dos ejecuciones de la manana fueron a mano: la de 09:14 reviento con un TypeError al desempaquetar banco.coger() (ya corregido en 957759d) y la de 09:15 fue un ensayo en seco correcto.\n\nLO PUBLICADO HOY: carrusel de 3 fotos de la tanda 20261014-171136 (gabardina beige, parque con luz dorada, perrito pequeño), lanzado a mano con carrusel.yml y sin_guarda=si (run 39117190647) y PUBLICADO a las 09:55 UTC / 11:55 Madrid, media_id 18110868452521321, https://www.instagram.com/p/DeoaOU_lwl-/ . Es el PRIMER carrusel que sale por la API, sin gastar cupo de Metricool. Salio a las 11:55 en vez de las 10:00 por el desfase del despliegue: casi dos horas despues del pico.\n\nSEGUNDA MIRADA A LAS FOTOS: las tres son Allie, rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg, y forman un momento coherente (misma gabardina, mismo parque, misma luz, mismo perro). OpenCV ya habia dado el visto bueno en generacion. PERO EL PIE TIENE UN FALLO: dice '¿Cual de las DOS fotos es tu favorita?' y el carrusel lleva TRES. No es grave y no se borra la publicacion por eso, pero el texto se escribe MIRANDO las fotos y deberia saber cuantas hay: conviene pasarle el numero de fotos al generador del pie.\n\nEL EXPERIMENTO REEL NORMAL vs TRIAL REEL SE PUEDE CERRAR. Con los datos ya maduros (IGRE02 alcance / IGRE11 interacciones): trial 13-oct 41/0, trial 14-oct 105/9, trial 15-oct 135/101, normal 16-oct 120/84, normal 17-oct 103/88, normal 9-oct 140/2. El reel normal NO reparte mas que el trial maduro: los dos se mueven entre 100 y 140. O sea que el formato de reel no era la palanca. Lo que si se separa de verdad son los posts: carruseles y fotos de las ultimas tres semanas van de 126 a 319 (1-oct 319, 3-oct 307, 4-oct 254, 9-oct 228, 10-oct 215, 14-oct 126), mas o menos el doble que cualquier reel. El cambio a carrusel de esta madrugada va en la direccion que dicen los numeros.\n\nLO BUENO: los seguidores siguen subiendo y es lo mas claro del mes. 3280 el 17-oct frente a 3221 el 10-oct (+59 en una semana) y frente a 3241 el 18 de septiembre, despues de todo un mes bajando poco a poco hasta 3217 el 5-oct. El 17-oct solo subio 13. No se gasto ninguna publicacion del cupo de Metricool.",
-  "contexto_30d": {
-   "alcance_por_reel_maduro": {
-    "20261009": 140,
-    "20261013": 41,
-    "20261014": 105,
-    "20261015": 135,
-    "20261016": 120,
-    "20261017": 103
-   },
-   "interacciones_por_reel": {
-    "20261009": 2,
-    "20261013": 0,
-    "20261014": 9,
-    "20261015": 101,
-    "20261016": 84,
-    "20261017": 88
-   },
-   "tipo_por_reel": {
-    "20261009": "reel normal",
-    "20261013": "trial reel",
-    "20261014": "trial reel",
-    "20261015": "trial reel",
-    "20261016": "reel normal",
-    "20261017": "reel normal"
-   },
-   "alcance_por_post": {
-    "20261001": 323,
-    "20261002": 231,
-    "20261003": 313,
-    "20261004": 260,
-    "20261008": 188,
-    "20261008b": 155,
-    "20261009": 236,
-    "20261009b": 21,
-    "20261010": 221,
-    "20261014": 141
-   },
-   "veredicto_experimento": "Reel normal 120 y 103 de alcance; trial reel maduro 41, 105 y 135. Empate. El formato de reel no cambia nada. Los posts (carrusel y foto) doblan a los dos. Experimento cerrado: se pasa a carrusel.",
-   "serie_seguidores": {
-    "20261010": 3221,
-    "20261011": 3243,
-    "20261012": 3256,
-    "20261013": 3262,
-    "20261014": 3262,
-    "20261015": 3263,
-    "20261016": 3267,
-    "20261017": 3280
-   },
-   "variacion_7d": 59,
-   "variacion_30d": 39,
-   "nota_cupo_metricool": "Cero publicaciones del cupo: el carrusel salio por la API de Instagram.",
-   "banco": "56 fotos libres despues de coger las 3 de hoy."
-  }
- },
- {
-  "fecha": "2026-10-19",
-  "fecha_ultimo_dato": "2026-10-18",
-  "seguidores": 3277,
-  "ganados": null,
-  "perdidos": null,
-  "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 18-oct al medir (12:05 Madrid). El 17-oct: 15 ganados, 5 perdidos.",
-  "alcance_reels": null,
-  "visualizaciones_reels": null,
-  "reels_publicados": 0,
-  "formato": "carrusel",
-  "enlace": "https://www.instagram.com/p/Deq_d69nNjW/",
-  "nota": "SI SE PUBLICO, pero NO solo: lo lanzo esta tarea a mano. POR QUE NO SALIO SOLO: hoy es lunes, dia de carrusel. El cron de las 08:12 UTC salto a las 08:48 (GitHub iba cargado y lo retraso 36 minutos). En Madrid eran las 10:48 y la guarda de app/hora.py pedia hour==10 y minute<=45. Por TRES MINUTOS el paso de publicar se salto, el trabajo acabo en verde y no aviso nadie. La segunda ejecucion (09:40 UTC, 11:40 Madrid) ya era otra hora. CORREGIDO en 542bade: la ventana pasa a ser la hora entera, que no puede publicar dos veces porque los dos crons van separados una hora justa y la comprobacion de hour descarta al segundo. prueba_hora.py actualizada y en verde.\n\nLAS FOTOS NO ERAN LAS DEL TEXTO Y ESO SI ERA GRAVE. La pieza de hoy es la lista de cafeterias de Madrid para trabajar, etiqueta 'cafe'. Las cinco tandas libres con esa etiqueta eran COCINAS DE CASA: la etiqueta sale del tema ('un cafe por la manana'), no de lo que se ve en la foto. Y la unica tanda que de verdad esta en la terraza de un cafe de Madrid, la 20261015-061006, estaba etiquetada 'calle'. De haber salido solo, habria publicado una lista de cafeterias sobre tres fotos en una cocina: el mismo fallo de las brochas y las manchas de pintura del 15 de octubre. Trece fotos de cocina pasan a 'casa' y la terraza pasa a 'cafe'.\n\nLO PUBLICADO: carrusel de 3 fotos de la tanda 20261015-061006 (terraza de cafe de Madrid, blazer de lino beige, luz de tarde) con la lista de cinco cafeterias para trabajar, run 39234049462 con sin_guarda=si, publicado a las 09:58 UTC / 11:58 Madrid, media_id 18069929354775640, https://www.instagram.com/p/Deq_d69nNjW/ . Cero cupo de Metricool. SEGUNDA MIRADA A LAS FOTOS: las tres son Allie, rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg; misma terraza, mismo blazer, misma luz. Unico pero menor: en la 1 lleva camiseta blanca y en la 2 gris. El pie encaja con lo que se ve.\n\nSEGUNDO DIA SEGUIDO FUERA DEL PICO: ayer a las 11:55 y hoy a las 11:58, casi dos horas despues de las 10:00. Con la guarda arreglada, el miercoles deberia salir ya a su hora sin tocar nada.\n\nEL REEL DIARIO LLEVABA FALLANDO DESDE EL 18. reel-diario.yml murio hoy a las 06:06 (run 39208017373) en prueba_pisadas.py: su escenas() de mentira no aceptaba vestuario ni sitio, que se anadieron a la de verdad. No ha hecho dano porque el banco tiene 56 fotos libres, muy por encima de las 24 del umbral, pero el dia que bajase no habria generado nada. Corregido en 542bade y la prueba pasa.\n\nLOS NUMEROS, Y NO SON BUENOS. El carrusel de ayer lleva 127 de alcance y 104 de interacciones a las 26 h. Los carruseles y fotos de principios de mes iban de 221 a 323 (1-oct 327, 3-oct 315, 4-oct 264, 9-oct 242, 10-oct 230). Los de la ultima semana: 14-oct 149, 18-oct 127. Es decir, el formato que mejor funcionaba tambien esta bajando, y bastante. Los reels normales maduros se quedaron en 119-143 y los trial en 41-105. Con los posts cayendo a la banda de los reels, la lectura honesta es que el problema NO es el formato sino a cuanta gente llega la cuenta. Dos cosas lo enturbian y hay que descontarlas antes de dar nada por cerrado: las dos ultimas piezas salieron casi dos horas tarde, y el carrusel de ayer todavia puede madurar.\n\nLO BUENO SIGUE SIENDO LOS SEGUIDORES: 3277 el 18-oct frente a 3221 el 10-oct, +56 en ocho dias, despues de un mes entero bajando. El 18 bajo 3 respecto al 17 (3280), que es ruido normal.",
-  "contexto_30d": {
-   "alcance_por_post": {
-    "20261001": 327,
-    "20261002": 235,
-    "20261003": 315,
-    "20261004": 264,
-    "20261008": 195,
-    "20261008b": 159,
-    "20261009": 242,
-    "20261009b": 21,
-    "20261010": 230,
-    "20261014": 149,
-    "20261018": 127
-   },
-   "interacciones_por_post": {
-    "20261001": 173,
-    "20261002": 159,
-    "20261003": 161,
-    "20261004": 184,
-    "20261008": 149,
-    "20261008b": 95,
-    "20261009": 191,
-    "20261009b": 8,
-    "20261010": 144,
-    "20261014": 103,
-    "20261018": 104
-   },
-   "alcance_por_reel_maduro": {
-    "20261009": 140,
-    "20261013": 41,
-    "20261014": 105,
-    "20261015": 143,
-    "20261016": 132,
-    "20261017": 119
-   },
-   "tipo_por_reel": {
-    "20261009": "reel normal",
-    "20261013": "trial reel",
-    "20261014": "trial reel",
-    "20261015": "trial reel",
-    "20261016": "reel normal",
-    "20261017": "reel normal"
-   },
-   "serie_seguidores": {
-    "20261012": 3256,
-    "20261013": 3262,
-    "20261014": 3262,
-    "20261015": 3263,
-    "20261016": 3267,
-    "20261017": 3280,
-    "20261018": 3277
-   },
-   "variacion_7d": 21,
-   "veredicto": "Experimento de formato cerrado ayer. El dato nuevo es que los posts tambien caen: de 221-327 a principios de mes a 149 el 14 y 127 el 18. Si el miercoles, ya a su hora, el carrusel sigue por debajo de 150, el problema es la cuenta y no el formato.",
-   "nota_cupo_metricool": "Cero publicaciones del cupo: el carrusel salio por la API de Instagram.",
-   "banco": "56 fotos libres. Sin tandas de 'cafe' libres despues de hoy.",
-   "pendiente": "La pieza de librerias de la cola lleva etiqueta 'cafe' y ya no quedan fotos de cafe libres: si le toca, el publicador fallara con 'El banco no tiene 3 fotos libres'. Por eso la cola se reordeno y el miercoles va la de otono (etiqueta 'calle', tanda de parque 20261015-043521). Hace falta generar una tanda en cafeteria antes de sacar la de librerias."
-  }
- }
 ]
