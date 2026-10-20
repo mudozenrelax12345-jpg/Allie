@@ -1,0 +1,6 @@
+kokoro>=0.9
+soundfile
+numpy
+pillow
+requests
+pyyaml

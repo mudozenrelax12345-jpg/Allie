@@ -1,0 +1,93 @@
+# Material del vídeo 3 · RealPage
+#
+# Dos documentos públicos, cinco clips de archivo y las imágenes generadas.
+# Las imágenes llevan el mismo estilo que los otros vídeos —oscuras, con un
+# acento ámbar, sin caras y sin texto— y se quedan guardadas en el repositorio
+# para que una segunda vuelta no las vuelva a pedir.
+
+documentos:
+  - nombre: DOC-A-demanda-realpage
+    url: https://www.justice.gov/atr/media/1365471/dl
+    paginas: 3
+  - nombre: DOC-B-carta-warren
+    url: https://www.warren.senate.gov/imo/media/doc/warren_letters_to_massachusetts_realpage.pdf
+    paginas: 2
+
+# Sin clips de archivo.
+#
+# Dos rondas, diez clips, ninguno aprovechable: nubes de tormenta por «edificio
+# de noche», un pueblo holandés a pleno día por «edificios residenciales», un
+# caracol por «cajas de mudanza», una máquina industrial por «caja de cartón» y
+# el perfil de Dubái con el Burj Khalifa por «pisos de noche». Los que acertaban
+# el tema venían en cian o a pleno sol, que choca con la paleta ámbar.
+#
+# El banco gratuito no da para este canal. Las imágenes generadas sí: de las 41
+# primeras, 35 salieron bien a la primera. Estos cinco planos pasan a ser
+# imágenes.
+clips: []
+
+# Dos que no se usan, y conviene que quede dicho para que nadie las vuelva a
+# meter en el plan:
+#   g-cajas       sale una persona con la cara visible
+#   g-calendario  lleva texto grande inventado en el propio calendario
+# El criterio del canal es sin caras y sin texto dentro de la imagen.
+
+imagenes:
+  # — acto 1 · los pisos vacíos —
+  - { nombre: g-piso-vacio,      busca: "an empty unfurnished apartment room at dusk, bare walls, light falling across the floor from one window" }
+  - { nombre: g-ventana-sola,    busca: "a single lit window in a dark apartment tower at night, all the others black" }
+  - { nombre: g-pasillo-puertas, busca: "a long dim corridor of identical apartment doors, receding into darkness, one warm lamp" }
+  - { nombre: g-balcon,          busca: "an empty balcony of a residential block at night, no furniture, city glow behind" }
+  - { nombre: g-torre-pisos,     busca: "a residential tower block at night seen from below, most windows dark, a few warm" }
+  - { nombre: g-cartel-alquiler, busca: "a blank rental sign on a post outside a dark apartment building at dusk" }
+  - { nombre: g-llaves-mesa,     busca: "a set of keys lying on a dark wooden counter under a single warm lamp" }
+  - { nombre: g-sala-juntas,     busca: "an empty corporate boardroom at night, long table, city lights through the glass" }
+
+  # — acto 2 · lo que hace el programa —
+  - { nombre: g-pantalla-cifras, busca: "a computer monitor filled with dense rows of numbers glowing in a dark room" }
+  - { nombre: g-hoja-calculo,    busca: "a spreadsheet of rent figures glowing on a screen in a dark office, reflection on the desk" }
+  - { nombre: g-servidores,      busca: "a dark server corridor with rows of blinking amber indicator lights" }
+  - { nombre: g-contratos,       busca: "a tall stack of lease paperwork on a dark desk, warm side light" }
+  - { nombre: g-calendario,      busca: "a wall calendar in a dark office with dates circled, single lamp" }
+  - { nombre: g-oficina-alquiler,busca: "an empty leasing office at night, desk, two chairs, brochures, lights off" }
+  - { nombre: g-grafico-subida,  busca: "a single thin amber line rising steadily from left to right across a black screen, faint grid behind it, no numbers and no labels, nobody in the frame" }
+  - { nombre: g-planos,          busca: "architectural floor plans of apartments spread on a dark table under a lamp" }
+  - { nombre: g-mano-teclado,    busca: "a hand resting over a keyboard in a dark room, screen glow on the fingers" }
+  - { nombre: g-ciudad-arriba,   busca: "a city of apartment blocks seen from above at night, grid of streets, warm lights" }
+
+  # — acto 3 · la recomendación —
+  - { nombre: g-boton,           busca: "a single illuminated button on a dark control panel, close up" }
+  - { nombre: g-dos-sillas,      busca: "two empty wooden chairs facing each other in a dark empty room, one shaft of light falling between them, nobody in the frame" }
+  - { nombre: g-sala-vacia,      busca: "an empty meeting room with the lights off, chairs pushed in, door ajar" }
+  - { nombre: g-biblioteca-ley,  busca: "shelves of law books in a dark library, one reading lamp lit" }
+  - { nombre: g-expediente,      busca: "a thick bound legal filing on a dark desk, warm light from one side" }
+  - { nombre: g-aviso-pantalla,  busca: "a small empty dialog window glowing on a dark computer screen, amber border, nothing written in it, the rest of the screen black, nobody in the frame" }
+  - { nombre: g-reloj-pared,     busca: "a plain wall clock in a dark empty room casting a long shadow" }
+
+  # — acto 4 · cómo acabó —
+  - { nombre: g-juzgado-noche,   busca: "a courthouse facade at night, columns lit from below, empty steps" }
+  - { nombre: g-mazo,            busca: "a wooden gavel resting on a dark bench under a single warm light" }
+  - { nombre: g-firma,           busca: "close up of a fountain pen resting on a signed page on a dark desk under a warm lamp, only the paper and the pen, nobody in the frame" }
+  - { nombre: g-cheque,          busca: "a neat stack of banknotes on a dark wooden table, one edge lit by a warm lamp, nobody in the frame" }
+  - { nombre: g-carpetas,        busca: "rows of archive boxes in a dim records room, one aisle lit" }
+  - { nombre: g-sobre-sellado,   busca: "a plain sealed envelope on a dark wooden desk under a single warm lamp" }
+  - { nombre: g-escalera,        busca: "wide stone steps of a public building at night, empty, lit from above" }
+
+  # — acto 5 · el veintinueve de septiembre —
+  - { nombre: g-manhattan,       busca: "a courthouse in lower manhattan at night, tall columns, empty plaza" }
+  - { nombre: g-constitucion,    busca: "an old printed legal document under glass, warm museum light, text unreadable" }
+  - { nombre: g-imprenta,        busca: "close up of the inked metal rollers and gears of an old printing press in a dark workshop, warm amber light on the metal, nobody in the frame" }
+  - { nombre: g-periodico,       busca: "a folded newspaper on a dark table under a single lamp, headline unreadable" }
+  - { nombre: g-megafono,        busca: "an old metal loudspeaker horn mounted on a pole against a dark sky" }
+
+  # — acto 6 · qué significa —
+  - { nombre: g-mapa-estados,    busca: "a folded map spread on a dark wooden table under a desk lamp, one corner lit warm" }
+  - { nombre: g-multitud,        busca: "a crowd crossing a city street at night seen from above, motion blur, warm street lights" }
+  - { nombre: g-recibo-largo,    busca: "a long paper receipt curling off a dark counter, lit from one side" }
+  - { nombre: g-ventanas-muchas, busca: "a grid of apartment windows at night, most dark, a handful lit warm" }
+  # — los cinco planos que antes eran clips de archivo —
+  - { nombre: g-piso-iluminado, busca: "one bare lit apartment window at night seen from the street below, empty room visible inside, no curtains, nobody in the frame" }
+  - { nombre: g-ciudad-noche,   busca: "a wide view of apartment blocks at night from a rooftop, thousands of windows, most of them dark, warm specks of light" }
+  - { nombre: g-puerta-piso,    busca: "a closed apartment front door in a dim corridor, blank number plate, one wall lamp, nobody in the frame" }
+  - { nombre: g-cajas,          busca: "stacked cardboard moving boxes in an empty dim apartment, light falling from one window, nobody in the frame" }
+  - { nombre: g-calle-tarde,    busca: "a residential street of apartment buildings at dusk, warm windows coming on one by one, empty pavement" }

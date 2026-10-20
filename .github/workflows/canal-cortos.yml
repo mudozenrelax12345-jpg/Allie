@@ -1,0 +1,142 @@
+name: Canal · Montar los Shorts
+
+# POR QUÉ ESTO VIVE EN EL REPOSITORIO DE ALLIE. El canal tiene el suyo
+# propio, mudozenrelax12345-jpg/canal, pero es privado, y los repositorios
+# privados solo traen 2.000 minutos de Actions al mes. Se agotaron montando
+# los tres primeros vídeos, y desde entonces cualquier ejecución muere en
+# cinco segundos con «recent account payments have failed or your spending
+# limit needs to be increased». En un repositorio PÚBLICO, Actions es gratis
+# e ilimitado. Este lo es. Así que la maquinaria del canal se trae aquí, a
+# su propia carpeta canal/, sin mezclarse con nada de Instagram.
+#
+# QUÉ MONTA. Diez Shorts verticales sacados de los tres guiones que ya
+# existen y de las 87 imágenes ya generadas. Coste de generación: cero. Solo
+# Kokoro, que es gratis, y ffmpeg.
+#
+# POR QUÉ SHORTS. Tres vídeos largos, veinticinco visualizaciones. Un vídeo
+# largo de un canal con seis suscriptores no se le enseña a nadie; un Short
+# entra en un feed de desconocidos desde el primer día. En el nicho de
+# empresa, mezclar Shorts sube el crecimiento de suscriptores alrededor de
+# un 39 %.
+#
+# Los mp4 NO se guardan en el repositorio —pesan y aquí no pintan nada— sino
+# como artefacto de la ejecución.
+
+on:
+  workflow_dispatch:
+    inputs:
+      corto:
+        description: "Cuáles montar, separados por coma (vacío = los diez)"
+        type: string
+        default: ""
+      subir:
+        description: "Subirlos a YouTube al terminar"
+        type: choice
+        default: "no"
+        options:
+          - "no"
+          - unlisted
+          - public
+
+permissions:
+  contents: write
+
+# Grupo propio: el montaje del canal no tiene por qué esperar a que Allie
+# termine de publicar, ni al revés.
+concurrency:
+  group: canal-cortos
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: canal
+
+jobs:
+  montar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y espeak-ng ffmpeg fonts-dejavu-core
+          pip install -r requirements.txt
+
+      # Antes de gastar una hora de máquina. La prueba finge la voz y monta
+      # un Short de verdad, así que pilla lo que de verdad se rompe: el
+      # recorte vertical, el ritmo, los rótulos y el bucle.
+      - name: Comprobar el taller
+        run: |
+          mkdir -p estado
+          set -o pipefail
+          python app/prueba_corto.py 2>&1 | tee estado/ultima-prueba-cortos.txt
+
+      - name: Montar
+        run: |
+          set -o pipefail
+          python app/corto.py 2>&1 | tee estado/ultimos-cortos.txt
+        env:
+          CORTO: ${{ inputs.corto }}
+          KOKORO_VOZ: af_heart
+          KOKORO_VELOCIDAD: "1.0"
+
+      - name: Qué ha salido
+        if: always()
+        run: |
+          ls -la cortos/salida/ || true
+          for f in cortos/salida/*.mp4; do
+            [ -e "$f" ] || continue
+            printf '%s  %s  %ss\n' "$(basename "$f")" \
+              "$(du -h "$f" | cut -f1)" \
+              "$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")"
+          done
+
+      - name: Guardar los Shorts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cortos
+          path: |
+            canal/cortos/salida/*.mp4
+            canal/cortos/salida/*.yml
+            canal/cortos/salida/hechos.json
+          retention-days: 30
+
+      - name: Subir a YouTube
+        if: inputs.subir != 'no'
+        run: |
+          set -o pipefail
+          for f in cortos/salida/*.mp4; do
+            [ -e "$f" ] || continue
+            id=$(basename "$f" .mp4)
+            echo "━━ $id"
+            MP4="$f" FICHA="cortos/salida/$id.yml" \
+              python app/subir.py 2>&1 | tee -a estado/ultima-subida.txt
+          done
+        env:
+          PRIVACIDAD: ${{ inputs.subir }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+
+      # Los registros de Actions no se leen desde fuera; lo que queda escrito
+      # en el repositorio, sí.
+      - name: Dejar constancia salga como salga
+        if: always()
+        continue-on-error: true
+        working-directory: .
+        run: |
+          git config user.name "canal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add canal/estado/ 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Canal · montaje de Shorts [skip ci]"
+            git pull --rebase --autostash || true
+            git push || true
+          fi

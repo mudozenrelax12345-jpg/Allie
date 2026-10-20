@@ -1,0 +1,179 @@
+PLAN VISUAL · 03-alquiler
+========================================================================
+Lo que se oye y lo que se ve, frase a frase.
+
+57 planos · 5.9 min
+  tarjetas de texto: 31 (54%)
+  documentos:        0
+  imágenes:          26
+  clips de archivo:  0
+  INFORMACIÓN EN PANTALLA: 54%
+
+0:00  ── 1.1 (3.9s) ─────────────────────────────
+       SE OYE:  About a thousand apartments, kept empty on purpose.
+       SE VE:   [  tarjeta] G-VACIOS  (3.9s)
+                    «None»
+
+0:03  ── 1.2 (15.3s) ─────────────────────────────
+       SE OYE:  Not abandoned. Not being repaired. Empty because a piece of software worked out that the rent on the other thirty-nine thousand would more than cover them. It was right. Revenue went up three to four percent.
+       SE VE:   [  tarjeta] T-34  (3.0s)
+                    «+3–4%»
+       SE VE:   [   imagen] g-piso-iluminado  (6.2s)
+       SE VE:   [   imagen] g-piso-iluminado  (6.2s)
+
+0:19  ── 1.3 (10.0s) ─────────────────────────────
+       SE OYE:  This is one American landlord, forty thousand units, in 2017. Before the software, its buildings ran about ninety-eight percent full. After it, ninety-five.
+       SE VE:   [  tarjeta] G-OCUPACION  (10.0s)
+                    «None»
+
+0:29  ── 1.4 (16.3s) ─────────────────────────────
+       SE OYE:  The chief executive of the software company told investors it had been very hard for executives to accept that they could operate at ninety-four or ninety-six percent and make more money. Hard to accept. That is the interesting part.
+       SE VE:   [  tarjeta] T-WINN  (5.8s)
+                    «it was very hard for executives to accept that they could operate at ninety-four or ninety-six percent»
+       SE VE:   [   imagen] g-sala-juntas  (5.3s)
+       SE VE:   [   imagen] g-sala-juntas  (5.3s)
+
+0:45  ── 1.5 (16.3s) ─────────────────────────────
+       SE OYE:  A person looks at a thousand empty flats in a housing shortage and feels something. The software does not. One of the men who built it said exactly that: we said there's way too much empathy going on here.
+       SE VE:   [   imagen] g-ciudad-noche  (5.4s)   ◀ rótulo: R-PROPUBLICA
+       SE VE:   [   imagen] g-ciudad-noche  (5.4s)
+       SE VE:   [  tarjeta] T-EMPATHY  (5.5s)
+                    «we said there's way too much empathy going on here»
+
+1:01  ── 1.6 (16.3s) ─────────────────────────────
+       SE OYE:  The company is RealPage. Its customers manage close to twenty million rental units. The Justice Department sued it, eight states joined, and last month a federal judge ruled that its rent recommendations are speech, protected by the First Amendment.
+       SE VE:   [  tarjeta] T-20M  (2.2s)
+                    «20M»
+       SE VE:   [   imagen] g-torre-pisos  (7.0s)
+       SE VE:   [   imagen] g-torre-pisos  (7.0s)
+
+1:18  ── 1.7 (6.3s) ─────────────────────────────
+       SE OYE:  That is not a loophole somebody found. It is the thing working as designed.
+       SE VE:   [  tarjeta] T-DESIGNED  (6.3s)
+                    «That is not a loophole somebody found. / It is the thing working as designed.»
+
+1:24  ── 2.1 (16.6s) ─────────────────────────────
+       SE OYE:  Here is what it does. A landlord hands over every unit, every lease, every renewal date. The software also holds the same from other landlords using it. Not published numbers. Theirs. Then every day it says what to charge.
+       SE VE:   [  tarjeta] T-DATOS  (5.8s)
+                    «Every unit: · · Every lease: · · Every renewal date: · · And the same from the others: theirs»
+       SE VE:   [   imagen] g-planos  (5.4s)
+       SE VE:   [   imagen] g-planos  (5.4s)
+
+1:40  ── 2.2 (9.2s) ─────────────────────────────
+       SE OYE:  RealPage's answer has always been one sentence, and it is a good one. It is only a recommendation. The landlord decides.
+       SE VE:   [  tarjeta] T-SOLO  (9.2s)
+                    «It is only a recommendation. The landlord decides.»
+
+1:50  ── 2.3 (15.0s) ─────────────────────────────
+       SE OYE:  Former employees told ProPublica that as many as ninety percent of those recommendations get taken. One former executive said that a property accepting all of them basically has a blindfold on and is pushing a button.
+       SE VE:   [  tarjeta] G-NUEVE  (9.5s)
+                    «None»
+       SE VE:   [  tarjeta] T-KIMURA  (5.5s)
+                    «basically has a blindfold on and is pushing a button»
+
+2:05  ── 2.4 (19.2s) ─────────────────────────────
+       SE OYE:  The Justice Department's complaint describes an auto-accept setting, and advisers whose job included watching whether customers complied. In Washington DC, the attorney general alleges landlords followed the suggested rent more than ninety percent of the time. That is an allegation. No court has ruled on it.
+       SE VE:   [  tarjeta] G-DOC  (5.2s)
+                    «None»
+       SE VE:   [  tarjeta] T-AUTO  (3.2s)
+                    «An auto-accept setting: · · Advisers watching compliance: ·»
+       SE VE:   [   imagen] g-aviso-pantalla  (5.2s)
+       SE VE:   [  tarjeta] T-ALEGACION  (5.5s)
+                    «That is an allegation. / No court has ruled on it.»
+
+2:24  ── 2.5 (4.4s) ─────────────────────────────
+       SE OYE:  But hold the number. Nine times out of ten.
+       SE VE:   [   imagen] g-mano-teclado  (4.4s)
+
+2:28  ── 2.6 (22.7s) ─────────────────────────────
+       SE OYE:  Because the law does not ban coordination. It bans agreement. Two landlords in a room deciding not to undercut each other is a crime, and has been for a century. Two landlords who never speak, who both do what the same machine said — there is no room, no conversation, nothing to produce in court.
+       SE VE:   [  tarjeta] T-ACUERDO  (2.2s)
+                    «Coordination: no · Agreement: yes»
+       SE VE:   [   imagen] g-dos-sillas  (5.1s)
+       SE VE:   [   imagen] g-dos-sillas  (5.1s)
+       SE VE:   [   imagen] g-dos-sillas  (5.1s)
+       SE VE:   [  tarjeta] T-SINSALA  (5.1s)
+                    «No room. / No conversation. / Nothing to produce in court.»
+
+2:51  ── 3.1 (8.6s) ─────────────────────────────
+       SE OYE:  August 2024, the Justice Department sues. Fifteen months later it settles. No fine. No damages. No admission of wrongdoing.
+       SE VE:   [  tarjeta] G-TIEMPO  (8.6s)
+                    «None»
+
+2:59  ── 3.2 (17.1s) ─────────────────────────────
+       SE OYE:  What RealPage agreed to is real: competitors' live data out of the engine, training only on data a year old, no models narrower than a state, a court-appointed monitor. It is a rebuilt product. But nobody paid and nobody admitted anything.
+       SE VE:   [  tarjeta] T-ACORDADO  (6.3s)
+                    «Competitors' live data: out · Training data: a year old · Models: no narrower than a state · A court-appointed monitor: yes»
+       SE VE:   [  tarjeta] T-NADA  (3.2s)
+                    «Fine: none · Damages: none · Admission of wrongdoing: none»
+       SE VE:   [   imagen] g-carpetas  (7.5s)
+
+3:17  ── 3.3 (14.0s) ─────────────────────────────
+       SE OYE:  Money moved somewhere else. The private cases, brought by renters, have been settling one after another. A hundred and forty-two million by October 2025. Two hundred and eighteen million more in May 2026.
+       SE VE:   [  tarjeta] G-DINERO  (14.0s)
+                    «None»
+
+3:31  ── 3.4 (19.5s) ─────────────────────────────
+       SE OYE:  So the government case produced a monitor and no money, and the renters' cases produced nearly four hundred million. To be clear, because it matters: no court has found that RealPage or any of these landlords broke the law. Every one of them settled while denying it.
+       SE VE:   [  tarjeta] T-NINGUNO  (5.8s)
+                    «No court has found that anyone broke the law. / Every one of them settled while denying it.»
+       SE VE:   [   imagen] g-juzgado-noche  (6.8s)
+       SE VE:   [   imagen] g-juzgado-noche  (6.8s)
+
+3:50  ── 4.1 (12.0s) ─────────────────────────────
+       SE OYE:  In October 2025 New York banned it. Not the agreement — the tool. It became illegal to operate software that facilitates an agreement between landlords not to compete.
+       SE VE:   [  tarjeta] T-HERRAMIENTA  (12.0s)
+                    «Not the agreement. / The tool.»
+
+4:02  ── 4.2 (7.5s) ─────────────────────────────
+       SE OYE:  RealPage sued the state. On the twenty-ninth of September, a federal judge in Manhattan paused the ban.
+       SE VE:   [  tarjeta] T-SEP29  (2.7s)
+                    «29 Sept»
+       SE VE:   [   imagen] g-manhattan  (4.8s)
+
+4:10  ── 4.3 (17.0s) ─────────────────────────────
+       SE OYE:  The argument is the First Amendment. The court found that an algorithmically-informed recommendation of a housing price is commercial speech, and that RealPage's business is the communication of pricing information to its users — which is exactly what the law regulates.
+       SE VE:   [  tarjeta] T-COMMERCIAL  (3.8s)
+                    «an algorithmically-informed recommendation of a housing price is commercial speech»
+       SE VE:   [   imagen] g-constitucion  (6.6s)
+       SE VE:   [   imagen] g-constitucion  (6.6s)
+
+4:26  ── 4.4 (7.7s) ─────────────────────────────
+       SE OYE:  Read that slowly. The number the software sends is a statement. Statements are speech. Speech is protected.
+       SE VE:   [  tarjeta] T-STATEMENT  (7.7s)
+                    «The number is a statement. / Statements are speech. / Speech is protected.»
+
+4:34  ── 4.5 (12.3s) ─────────────────────────────
+       SE OYE:  New York did not fail because it was weak. It failed because it was precise. It named the tool, and naming the tool meant regulating what the tool says.
+       SE VE:   [  tarjeta] T-PRECISA  (5.2s)
+                    «New York did not fail because it was weak. / It failed because it was precise.»
+       SE VE:   [   imagen] g-imprenta  (7.1s)
+
+4:47  ── 5.1 (11.1s) ─────────────────────────────
+       SE OYE:  This is one judge, one state, one stage of one case. It can be reversed, and Arizona, New Jersey and Washington DC are all still litigating.
+       SE VE:   [  tarjeta] T-PRELIM  (11.1s)
+                    «Arizona: · · New Jersey: · · Washington DC: ·»
+
+4:58  ── 5.2 (11.5s) ─────────────────────────────
+       SE OYE:  But the law has one word at its centre, and the word is agreement. Everything is built on the idea that harm takes two parties deciding together.
+       SE VE:   [  tarjeta] T-PALABRA  (4.4s)
+                    «The law has one word at its centre. / The word is agreement.»
+       SE VE:   [   imagen] g-expediente  (7.1s)
+
+5:09  ── 5.3 (19.2s) ─────────────────────────────
+       SE OYE:  A recommendation taken nine times out of ten is not two parties deciding anything. It is one party publishing, and a thousand others agreeing with the publication. We have a word for a lot of people independently reaching the same conclusion. We call it a market.
+       SE VE:   [  tarjeta] T-MERCADO  (4.6s)
+                    «One party publishing, / and a thousand others agreeing. / We call that a market.»
+       SE VE:   [   imagen] g-multitud  (7.3s)
+       SE VE:   [   imagen] g-multitud  (7.3s)
+
+5:28  ── 5.4 (10.0s) ─────────────────────────────
+       SE OYE:  Scanning a car used to cost money. Guessing what you would pay used to need your data. Coordinating used to need a conversation.
+       SE VE:   [  tarjeta] T-PATRON  (5.2s)
+                    «Scanning a car: cost money · Guessing your price: needed your data · Coordinating: needed a conversation»
+       SE VE:   [   imagen] g-calle-tarde  (4.8s)
+
+5:38  ── 5.5 (6.8s) ─────────────────────────────
+       SE OYE:  Now it needs a subscription. And a conversation is evidence. A subscription is a receipt.
+       SE VE:   [  tarjeta] T-RECIBO  (6.8s)
+                    «Now it needs a subscription. / A conversation is evidence. / A subscription is a receipt.»

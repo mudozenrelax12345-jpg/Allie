@@ -1,0 +1,142 @@
+# Montaje del vídeo 1 · Hertz
+#
+# Por cada acto:
+#
+#   ritmo:    cuánto dura un plano de archivo, de media. Más bajo = más
+#             nervioso. El gancho y el desenlace van más rápidos.
+#
+#   anclas:   lo que TIENE que salir en un párrafo concreto: una tarjeta de
+#             texto, un gráfico o un documento. Se escribe
+#               nº: NOMBRE
+#             o, si hace falta afinar:
+#               nº: { tarjeta: NOMBRE, donde: final, dura: 3.0 }
+#             «donde: final» la pone al final del párrafo, que es lo que
+#             quieres cuando la frase remata una idea.
+#
+#   rotulos:  texto encima de un clip, abajo a la izquierda.
+#               nº: NOMBRE
+#
+#   fondo:    la bolsa de clips para todo lo demás. No se repite nada hasta
+#             pasados 8 planos, y cuando vuelve sale con otro encuadre.
+
+actos:
+  1:                                  # El gancho — rápido
+    ritmo: 3.5
+    anclas:
+      2: G4
+      3: { tarjeta: T-FEE, dura: 3.2 }
+      5: { tarjeta: T-40, donde: final }
+      6: { tarjeta: T-COVERED, donde: final }
+    rotulos:
+      1: R-ATLANTA
+      4: R-NOHUMAN
+      5: R-PRECISION
+    fondo: [mostrador, llaves, aeropuerto, movil-notificacion, arañazo,
+            abolladura, escaner-tunel, carroceria, tarjeta, bolsa-roja,
+            conduciendo, maletas, grafico-caida, volante, factura]
+
+  2:                                  # La máquina
+    ritmo: 4.4
+    anclas:
+      1: { tarjeta: C2, dura: 2.8 }
+      4: T-AIRPORTS
+      5: { tarjeta: T-STOPS, donde: final }
+      6: { tarjeta: T-AUTOMATIC, donde: final }
+      7: G4
+      9: T-97
+      11: G1
+      12: { tarjeta: T-REVENUE, donde: final }
+      13: T-SUBJECT
+    rotulos:
+      1: R-UVEYE
+      2: R-IMAGES
+    fondo: [escaner-arco, sensor-laser, camara, escaner-tunel, carroceria,
+            inspeccion, mecanico, faro, rueda, parabrisas, retrovisor,
+            puerta-coche, aeropuerto, aparcamiento, flota, ia-pantalla,
+            servidores, codigo, pantallas-datos, movil-notificacion,
+            tarjeta, pago, factura, taller, coches-aereo]
+
+  3:                                  # La reacción
+    ritmo: 4.2
+    anclas:
+      1: { tarjeta: C3, dura: 2.8 }
+      2: T-COMPLAINTS
+      3: { tarjeta: T-TELEVISION, donde: final }
+      4: { tarjeta: T-TWICE, donde: final }
+      5: DOC-A
+      6: DOC-B
+      7: T-BIPARTISAN
+      10: T-CHOICE
+      12: { tarjeta: T-WHY, donde: final }
+    rotulos:
+      5: R-OVERSIGHT
+      6: R-SENATE
+      8: R-PUBLIC
+    fondo: [movil-mano, movil-notificacion, arañazo, abolladura, teclado,
+            pago, factura, llaves, mostrador, capitolio, gobierno, carta,
+            abogado, justicia, gente-calle, concesionario, flota, usados,
+            conduciendo, inspeccion]
+
+  4:                                  # La otra historia
+    ritmo: 4.6
+    anclas:
+      1: { tarjeta: C4, dura: 2.8 }
+      2: T-837
+      3: T-SUFFICIENT
+      6: G5
+      8: { tarjeta: T-BET, donde: final }
+      10: { tarjeta: T-TRANSFER, donde: final }
+      12: T-CAREFUL
+      13: G2
+    rotulos:
+      2: R-MAY7
+      7: R-DEPREC
+      10: R-RESALE
+    fondo: [oficinas, reunion, ejecutivo, bolsa-pantallas, calculadora,
+            dolares, concesionario, usados, flota, coches-aereo, aparcamiento,
+            carroceria, arañazo, escaner-tunel, almacen, teclado, contrato,
+            grafico-caida, conduciendo, carretera]
+
+  5:                                  # El veinticuatro de junio — rápido
+    ritmo: 3.7
+    anclas:
+      1: { tarjeta: C5, dura: 2.8 }
+      2: T-300
+      3: { tarjeta: T-DISTRESSED, donde: final }
+      4: T-3DOLLARS
+      5: T-CLASS
+      7: T-ALLEGATIONS
+    rotulos:
+      2: R-JUNE24
+      8: R-COURT
+    fondo: [bolsa-roja, bolsa-pantallas, grafico-caida, dolares, calculadora,
+            contrato, sello, abogado, justicia, oficinas, teclado, factura,
+            trafico-noche, ejecutivo]
+
+  6:                                  # Qué significa
+    ritmo: 4.3
+    anclas:
+      1: { tarjeta: C6, dura: 2.8 }
+      3: T-POLICIES
+      4: { tarjeta: T-CHEAP, donde: final }
+      5: { tarjeta: T-EXPAND, donde: final }
+      7: T-RULES
+      8: G6
+      10: { tarjeta: T-ORDER, donde: final }
+    rotulos:
+      4: R-ENFORCE
+      10: R-FIRST
+    fondo: [escaner-arco, sensor-laser, camara, ia-pantalla, codigo,
+            pantallas-datos, inspeccion, carroceria, arañazo, contrato,
+            factura, tarjeta, gente-calle, carretera, trafico-noche,
+            mostrador, servidores, almacen]
+
+musica:
+  paleta: hertz
+
+# Qué subraya el sonido. Los golpes van en las cifras; los silencios, en las
+# cinco frases que tienen que doler.
+sonido:
+  golpes: [T-40, T-3DOLLARS, T-837, T-AIRPORTS, T-TWICE, T-97, T-REVENUE,
+           T-300, G1, G4]
+  silencios: [T-COVERED, T-REVENUE, T-WHY, T-CHEAP, T-ORDER]

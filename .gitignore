@@ -1,3 +1,8 @@
-__pycache__/
 *.pyc
 .reel/
+__pycache__/
+canal/audio/
+canal/cortos/salida/
+canal/cortos/trozos/
+canal/material/
+canal/musica/

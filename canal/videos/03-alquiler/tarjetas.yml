@@ -1,0 +1,256 @@
+# Tarjetas del vídeo 3 · RealPage · versión de seis minutos
+#
+# La diferencia con los dos vídeos anteriores no es que haya menos texto: es
+# que las pantallas que más pesan ya no repiten la frase que se acaba de oír.
+# Enseñan el dato. Una rejilla de mil celdas con veinticinco encendidas, una
+# barra de cero al lado de una de doscientos dieciocho millones, una línea de
+# tiempo que se traza, y el documento real con la frase subrayándose.
+#
+# Formatos de texto:  capitulo · cifra · cita · frase · lista
+# Formatos que demuestran:  rejilla · barras · cronologia · subrayado
+
+tarjetas:
+
+  # ------------------------------------------------- carteles de capítulo
+  - { nombre: C2, formato: capitulo, numero: "01", titulo: "Only a recommendation",
+      nota: "and how often it is taken" }
+  - { nombre: C3, formato: capitulo, numero: "02", titulo: "What happened next",
+      nota: "and who actually paid" }
+  - { nombre: C4, formato: capitulo, numero: "03", titulo: "29 September",
+      nota: "the ruling nobody covered" }
+  - { nombre: C5, formato: capitulo, numero: "04", titulo: "What is left",
+      nota: "" }
+
+  # -------------------------------------------------------- las que demuestran
+  - nombre: G-VACIOS
+    formato: rejilla
+    etiqueta: "forty thousand apartments · one landlord"
+    columnas: 40
+    filas_n: 25
+    porcentaje: 2.5
+    pie: "about a thousand, kept empty on purpose"
+
+  - nombre: G-OCUPACION
+    formato: barras
+    etiqueta: "how full the buildings were kept"
+    barras:
+      - { nombre: "Before the software", valor: 98, texto: "98%" }
+      - { nombre: "After", valor: 95, texto: "95%", acento: true }
+    pie: "Three points. Revenue went up."
+
+  - nombre: G-NUEVE
+    formato: rejilla
+    etiqueta: "ten rent recommendations"
+    columnas: 10
+    filas_n: 1
+    porcentaje: 90
+    pie: "nine of them are taken"
+
+  - nombre: G-TIEMPO
+    formato: cronologia
+    etiqueta: "two years"
+    hitos:
+      - { fecha: "Aug 2024", texto: "Sued" }
+      - { fecha: "Nov 2025", texto: "Settled" }
+      - { fecha: "May 2026", texto: "$218M" }
+      - { fecha: "Sep 2026", texto: "Speech", acento: true }
+
+  - nombre: G-DINERO
+    formato: barras
+    etiqueta: "who actually paid"
+    barras:
+      - { nombre: "The government case", valor: 0.4, texto: "$0" }
+      - { nombre: "Renters, by Oct 2025", valor: 142, texto: "$142M" }
+      - { nombre: "Renters, May 2026", valor: 218, texto: "$218M", acento: true }
+
+  - nombre: G-DOC
+    formato: subrayado
+    pagina: material/documentos/DOC-A-demanda-realpage-1.png
+    x0: 0.10
+    x1: 0.78
+    y: 0.47
+    pie: "United States v. RealPage · the complaint"
+
+  # --------------------------------------------------------------- acto 1
+  - nombre: T-34
+    formato: cifra
+    etiqueta: "revenue, after the software"
+    numero: "+3–4%"
+    pie: "while a thousand apartments sat empty"
+
+  - nombre: T-WINN
+    formato: cita
+    etiqueta: "the software company's chief executive, 2017"
+    texto: "it was very hard for executives to accept that they could operate at ninety-four or ninety-six percent"
+    fuente: "and make more money"
+
+  - nombre: T-EMPATHY
+    formato: cita
+    etiqueta: "one of the men who built it"
+    texto: "we said there's way too much empathy going on here"
+    fuente: "to ProPublica, 2022"
+
+  - nombre: T-20M
+    formato: cifra
+    etiqueta: "managed by its customers"
+    numero: "20M"
+    pie: "rental units"
+
+  - nombre: T-DESIGNED
+    formato: frase
+    lineas: ["That is not a loophole somebody found.",
+             "It is the thing working as designed."]
+    acento: 1
+
+  # --------------------------------------------------------------- acto 2
+  - nombre: T-DATOS
+    formato: lista
+    etiqueta: "what the landlord hands over"
+    filas:
+      - { de: "Every unit", a: "·", raya: true }
+      - { de: "Every lease", a: "·", raya: true }
+      - { de: "Every renewal date", a: "·", raya: true }
+      - { de: "And the same from the others", a: "theirs", acento: true }
+
+  - nombre: T-SOLO
+    formato: cita
+    etiqueta: "realpage's answer, always"
+    texto: "It is only a recommendation. The landlord decides."
+    fuente: "and it is a good one"
+
+  - nombre: T-KIMURA
+    formato: cita
+    etiqueta: "a former realpage executive"
+    texto: "basically has a blindfold on and is pushing a button"
+    fuente: "on a property that accepts every rate"
+
+  - nombre: T-AUTO
+    formato: lista
+    etiqueta: "what the complaint describes"
+    filas:
+      - { de: "An auto-accept setting", a: "·", raya: true }
+      - { de: "Advisers watching compliance", a: "·", acento: true }
+
+  - nombre: T-ALEGACION
+    formato: frase
+    lineas: ["That is an allegation.", "No court has ruled on it."]
+
+  - nombre: T-ACUERDO
+    formato: lista
+    etiqueta: "what the law actually bans"
+    filas:
+      - { de: "Coordination", a: "no", raya: true }
+      - { de: "Agreement", a: "yes", acento: true }
+
+  - nombre: T-SINSALA
+    formato: frase
+    etiqueta: "two landlords who never speak"
+    lineas: ["No room.", "No conversation.",
+             "Nothing to produce in court."]
+    acento: 2
+
+  # --------------------------------------------------------------- acto 3
+  - nombre: T-NADA
+    formato: lista
+    etiqueta: "the settlement, november 2025"
+    filas:
+      - { de: "Fine", a: "none", raya: true }
+      - { de: "Damages", a: "none", raya: true }
+      - { de: "Admission of wrongdoing", a: "none", acento: true }
+
+  - nombre: T-ACORDADO
+    formato: lista
+    etiqueta: "what realpage did agree to"
+    filas:
+      - { de: "Competitors' live data", a: "out", raya: true }
+      - { de: "Training data", a: "a year old", raya: true }
+      - { de: "Models", a: "no narrower than a state", raya: true }
+      - { de: "A court-appointed monitor", a: "yes", acento: true }
+
+  - nombre: T-NINGUNO
+    formato: frase
+    etiqueta: "to be clear, because it matters"
+    lineas: ["No court has found that anyone broke the law.",
+             "Every one of them settled while denying it."]
+    acento: 1
+
+  # --------------------------------------------------------------- acto 4
+  - nombre: T-HERRAMIENTA
+    formato: frase
+    etiqueta: "october 2025 · new york"
+    lineas: ["Not the agreement.", "The tool."]
+    acento: 1
+
+  - nombre: T-SEP29
+    formato: cifra
+    # El número del caso en pantalla y no en la voz: el criterio del vídeo es
+    # que lo único legible que no se oye son los datos. Y en un vídeo sobre un
+    # caso vivo, poder buscarlo es media credibilidad.
+    etiqueta: "realpage v. james · s.d.n.y. 1:25-cv-09847"
+    numero: "29 Sept"
+    acento: true
+    pie: "the ban is paused"
+
+  - nombre: T-COMMERCIAL
+    formato: cita
+    etiqueta: "the court's order"
+    texto: "an algorithmically-informed recommendation of a housing price is commercial speech"
+    fuente: "29 September 2026"
+
+  - nombre: T-STATEMENT
+    formato: frase
+    etiqueta: "read that slowly"
+    lineas: ["The number is a statement.",
+             "Statements are speech.",
+             "Speech is protected."]
+    acento: 2
+
+  - nombre: T-PRECISA
+    formato: frase
+    lineas: ["New York did not fail because it was weak.",
+             "It failed because it was precise."]
+    acento: 1
+
+  # --------------------------------------------------------------- acto 5
+  - nombre: T-PRELIM
+    formato: lista
+    etiqueta: "still being litigated"
+    filas:
+      - { de: "Arizona", a: "·", raya: true }
+      - { de: "New Jersey", a: "·", raya: true }
+      - { de: "Washington DC", a: "·", acento: true }
+
+  - nombre: T-PALABRA
+    formato: frase
+    lineas: ["The law has one word at its centre.",
+             "The word is agreement."]
+    acento: 1
+
+  - nombre: T-MERCADO
+    formato: frase
+    lineas: ["One party publishing,",
+             "and a thousand others agreeing.",
+             "We call that a market."]
+    acento: 2
+
+  - nombre: T-PATRON
+    formato: lista
+    etiqueta: "the same move, three times"
+    filas:
+      - { de: "Scanning a car", a: "cost money", raya: true }
+      - { de: "Guessing your price", a: "needed your data", raya: true }
+      - { de: "Coordinating", a: "needed a conversation", acento: true }
+
+  - nombre: T-RECIBO
+    formato: frase
+    lineas: ["Now it needs a subscription.",
+             "A conversation is evidence.",
+             "A subscription is a receipt."]
+    acento: 2
+
+# ---------------------------------------------------------------- rótulos
+rotulos:
+  - { nombre: R-PROPUBLICA, texto: "ProPublica, 2022",
+      sub: "the first serious investigation" }
+  - { nombre: R-FUENTES, texto: "Every document is public",
+      sub: "links in the description" }

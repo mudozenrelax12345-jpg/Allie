@@ -1,0 +1,90 @@
+# Material del vídeo 1 · Hertz
+#
+# Esto es lo que descarga el botón "Montar el vídeo" de GitHub.
+# Para cambiar un clip, cambia su "busca" y vuelve a lanzarlo.
+#
+# Hay material de sobra a propósito: el montaje reparte los planos para que
+# nada se repita cerca de sí mismo. Si sobran clips, mejor.
+
+documentos:
+  - nombre: DOC-A-carta-supervision
+    url: https://oversight.house.gov/wp-content/uploads/2025/08/AI-letter-to-Hertz._8.20.2025.pdf
+    paginas: 2
+  - nombre: DOC-B-carta-blumenthal
+    url: https://www.blumenthal.senate.gov/imo/media/doc/2025-08-27_hertz_letter_ai.pdf
+    paginas: 2
+
+clips:
+  # — el escáner y la inspección —
+  - { nombre: escaner-tunel,      busca: "car wash tunnel" }
+  - { nombre: escaner-arco,       busca: "car wash" }
+  - { nombre: sensor-laser,       busca: "laser scan" }
+  - { nombre: camara,             busca: "security camera" }
+  - { nombre: mecanico,           busca: "mechanic car" }
+  - { nombre: taller,             busca: "auto repair" }
+  - { nombre: inspeccion,         busca: "car inspection" }
+
+  # — el coche, de cerca —
+  - { nombre: carroceria,         busca: "car paint" }
+  - { nombre: arañazo,            busca: "car scratch" }
+  - { nombre: abolladura,         busca: "damaged car" }
+  - { nombre: rueda,              busca: "car wheel" }
+  - { nombre: parabrisas,         busca: "windshield" }
+  - { nombre: faro,               busca: "car headlight" }
+  - { nombre: puerta-coche,       busca: "car door" }
+  - { nombre: retrovisor,         busca: "car mirror" }
+
+  # — alquilar un coche —
+  - { nombre: mostrador,          busca: "reception desk" }
+  - { nombre: aeropuerto,         busca: "airport terminal" }
+  - { nombre: maletas,            busca: "luggage" }
+  - { nombre: llaves,             busca: "car keys" }
+  - { nombre: arranque,           busca: "car ignition" }
+  - { nombre: volante,            busca: "steering wheel" }
+  - { nombre: conduciendo,        busca: "driving car" }
+  - { nombre: carretera,          busca: "highway" }
+  - { nombre: trafico-noche,      busca: "city traffic night" }
+
+  # — flotas y concesionarios —
+  - { nombre: aparcamiento,       busca: "parking lot" }
+  - { nombre: flota,              busca: "parked cars" }
+  - { nombre: concesionario,      busca: "car dealership" }
+  - { nombre: usados,             busca: "used cars" }
+  - { nombre: coches-aereo,       busca: "cars aerial" }
+
+  # — el móvil, el cobro, el papeleo —
+  - { nombre: movil-notificacion, busca: "smartphone notification" }
+  - { nombre: movil-mano,         busca: "phone hand" }
+  - { nombre: tarjeta,            busca: "credit card" }
+  - { nombre: pago,               busca: "online payment" }
+  - { nombre: factura,            busca: "paperwork" }
+  - { nombre: teclado,            busca: "typing keyboard" }
+  - { nombre: contrato,           busca: "signing document" }
+  - { nombre: sello,              busca: "stamp document" }
+
+  # — tecnología —
+  - { nombre: servidores,         busca: "data center" }
+  - { nombre: ia-pantalla,        busca: "artificial intelligence" }
+  - { nombre: codigo,             busca: "computer code" }
+  - { nombre: pantallas-datos,    busca: "digital data screen" }
+
+  # — dinero y mercados —
+  - { nombre: bolsa-roja,         busca: "stock market" }
+  - { nombre: bolsa-pantallas,    busca: "trading screen" }
+  - { nombre: grafico-caida,      busca: "financial chart" }
+  - { nombre: dolares,            busca: "dollar money" }
+  - { nombre: calculadora,        busca: "calculator finance" }
+
+  # — instituciones —
+  - { nombre: capitolio,          busca: "capitol washington" }
+  - { nombre: gobierno,           busca: "government building" }
+  - { nombre: carta,              busca: "letter envelope" }
+  - { nombre: abogado,            busca: "law office" }
+  - { nombre: justicia,           busca: "courthouse" }
+
+  # — empresa y gente —
+  - { nombre: oficinas,           busca: "office building" }
+  - { nombre: reunion,            busca: "business meeting" }
+  - { nombre: ejecutivo,          busca: "businessman walking" }
+  - { nombre: gente-calle,        busca: "people walking city" }
+  - { nombre: almacen,            busca: "warehouse" }

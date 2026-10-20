@@ -1,0 +1,9 @@
+2026-10-07 15:23 UTC
+
+Traceback (most recent call last):
+  File "/home/runner/work/canal/canal/app/montar.py", line 436, in <module>
+    main()
+  File "/home/runner/work/canal/canal/app/montar.py", line 247, in main
+    pedidos = ritmo.ordenar(pedidos, p.get("texto", ""),
+              ^^^^^
+UnboundLocalError: cannot access local variable 'ritmo' where it is not associated with a value

@@ -1,0 +1,68 @@
+# Material del vídeo 2 · El precio ya no es del producto
+#
+# Nueve clips y treinta y nueve imágenes. Los clips no son relleno: cada uno
+# está puesto en una frase concreta del plan, donde el movimiento aporta algo
+# que una foto fija no puede dar. El registro de material gastado impide que
+# salga ninguno de los que ya usó el vídeo 1.
+
+documentos:
+  - nombre: DOC-A-carta-senadores-delta
+    url: https://www.gallego.senate.gov/wp-content/uploads/2025/07/Delta-AI-Letter.pdf
+    paginas: 3
+  - nombre: DOC-B-carta-expedia
+    url: https://oversight.house.gov/wp-content/uploads/2026/03/Letter-to-Expedia_3.5.2026.pdf
+    paginas: 3
+
+clips:
+  - { nombre: v-coche-noche,    busca: "driving night" }   # 2.4 · el mismo trayecto
+  # "city night" devolvió el perfil de Shanghái, con la torre Perla Oriental
+  # bien visible. El vídeo habla de empresas y leyes de Estados Unidos: una
+  # ciudad china en pantalla es una mentira pequeña, pero es una mentira.
+  - { nombre: v-ciudad,         busca: "crosswalk night" }   # 3.10 · las dos frases juntas
+  - { nombre: v-juzgado,        busca: "courthouse" }   # 4.10 · y vamos a las leyes
+  # "street morning" devolvió una carretera de extrarradio al atardecer, sin
+  # nadie. El cierre habla de gente, y hacía falta que se viera gente.
+  - { nombre: v-calle,          busca: "people walking street" }   # 6.1 · el cierre
+
+imagenes:
+  - { nombre: g-cesta,               busca: "an abandoned shopping basket in a dim supermarket aisle at night" }
+  - { nombre: g-pasillo,             busca: "a long empty supermarket aisle at night, overhead lights reflecting on the polished floor" }
+  - { nombre: g-etiqueta-digital,    busca: "extreme close up of a small electronic shelf label on a supermarket shelf edge, its screen glowing, the aisle dark behind" }
+  - { nombre: g-dos-cajas,           busca: "two identical product boxes side by side on a dark shelf, one lit warm, the other in shadow" }
+  - { nombre: g-carrito-noche,       busca: "a lone shopping trolley in an empty car park at night under a sodium lamp" }
+  - { nombre: g-bolsa-puerta,        busca: "a grocery delivery bag left on a dark doorstep at night" }
+  - { nombre: g-sala-vista,          busca: "an empty congressional hearing room, wood panelling, name plates and microphones, low light" }
+  - { nombre: g-micro-testigo,       busca: "a lone microphone on a witness table in a dark hearing room, shallow depth of field" }
+  - { nombre: g-sillas-vacias,       busca: "rows of empty chairs in a dark government chamber, single shaft of light" }
+  - { nombre: g-escaner-caja,        busca: "a supermarket checkout scanner glass glowing red in a dark closed store" }
+  - { nombre: g-datacenter,          busca: "a dark server corridor with rows of blinking amber indicator lights" }
+  - { nombre: g-cables,              busca: "a dense bundle of network cables in a dark rack, tiny coloured lights" }
+  - { nombre: g-pantalla-codigo,     busca: "a computer monitor filled with dense scrolling lines of code glowing in a dark room, reflection on the desk" }
+  - { nombre: g-particulas,          busca: "abstract flowing data particles forming the silhouette of a person, dark background, amber accents" }
+  - { nombre: g-camara-techo,        busca: "a dome security camera on a dark ceiling with a small red indicator light" }
+  - { nombre: g-movil-pasillo,       busca: "a smartphone held up inside a dark supermarket aisle, screen glowing on the shelves" }
+  - { nombre: g-movil-coche,         busca: "a phone on a car dashboard at night showing a map, city lights through the windscreen" }
+  - { nombre: g-recibo,              busca: "a long paper receipt curling on a dark counter, lit from one side" }
+  - { nombre: g-datafono,            busca: "a card payment terminal on a dark counter, keypad lit" }
+  - { nombre: g-papeles-seguro,      busca: "a stack of paperwork and reading glasses on a dark desk, warm side light" }
+  - { nombre: g-avion-noche,         busca: "a passenger jet parked at a gate at night, terminal lights on the fuselage" }
+  - { nombre: g-cabina-vacia,        busca: "an empty aircraft cabin at night, reading lights on, aisle receding into darkness" }
+  - { nombre: g-torre,               busca: "an airport control tower silhouetted against a dark dusk sky" }
+  - { nombre: g-maleta-cinta,        busca: "a single suitcase on an empty baggage carousel in a dark terminal" }
+  - { nombre: g-asiento,             busca: "rows of empty airline seats lit by one overhead light" }
+  - { nombre: g-despacho,            busca: "an empty executive office at night, city lights through floor to ceiling glass" }
+  - { nombre: g-pluma,               busca: "a fountain pen resting on paperwork on a dark desk under a single warm light" }
+  - { nombre: g-sobre,               busca: "a plain sealed envelope on a dark wooden desk under a single warm lamp" }
+  - { nombre: g-torre-oficinas,      busca: "a glass office tower at night with a few windows still lit" }
+  - { nombre: g-capitolio-noche,     busca: "the dome of a government building at night, lit against a dark sky" }
+  - { nombre: g-capitolio-estatal,   busca: "the neoclassical dome and columns of an american state capitol building at dusk, warm light in the windows, empty lawn in front" }
+  - { nombre: g-martillo,            busca: "a wooden gavel resting on a dark bench under a single warm light" }
+  - { nombre: g-mapa-estados,        busca: "a folded road map spread on a dark wooden table under a desk lamp, one corner lit warm" }
+  - { nombre: g-estantes-etiquetas,  busca: "a row of small electronic labels glowing along a dark supermarket shelf, receding into the distance" }
+  - { nombre: g-etiqueta-vacia,      busca: "a single blank cardboard swing tag hanging from a string, lit from one side against a black background" }
+  - { nombre: g-lupa,                busca: "a magnifying glass lying on dense printed paperwork on a dark desk" }
+  - { nombre: g-calle-amanecer,      busca: "an empty city shopping street at dawn with the shutters still down" }
+  - { nombre: g-reloj,               busca: "a plain wall clock in a dark empty room casting a long shadow" }
+  - { nombre: g-mapa-rutas,         busca: "a dense airline route map of glowing lines across a dark screen, amber and white arcs" }
+  - { nombre: g-etiqueta-precio,    busca: "a printed cardboard price tag with a clear number on it, hanging from a string, lit from one side against a dark background" }
+  - { nombre: g-multitud-noche,      busca: "a crowd crossing a city street at night seen from above, motion blur, warm street lights" }

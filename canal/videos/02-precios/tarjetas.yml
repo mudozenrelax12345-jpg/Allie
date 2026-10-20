@@ -1,0 +1,510 @@
+# Tarjetas y rótulos del vídeo 2 · El precio ya no es del producto
+#
+# Hay muchas más que antes, y es a propósito. Una imagen generada a pantalla
+# completa se ve blanda; una cifra bien compuesta se ve profesional. Así que
+# el texto pasa a ser el plato principal y la imagen, el respiro.
+#
+# Cada tarjeta dura lo que se tarda en leerla: lo calcula el programa a
+# partir de cuántas palabras tiene. Nunca menos.
+
+tarjetas:
+
+  # ------------------------------------------------- carteles de capítulo
+  - { nombre: C2, formato: capitulo, numero: "01", titulo: "What it looks at",
+      nota: "and what it does not need" }
+  - { nombre: C3, formato: capitulo, numero: "02", titulo: "The denial",
+      nota: "september ninth" }
+  - { nombre: C4, formato: capitulo, numero: "03", titulo: "The wrong hinge",
+      nota: "two words that do the work" }
+  - { nombre: C5, formato: capitulo, numero: "04", titulo: "What the laws say",
+      nota: "and what they leave out" }
+  - { nombre: C6, formato: capitulo, numero: "05", titulo: "What it means",
+      nota: "a price used to be a fact" }
+
+  # ================================================================ acto 1
+  - nombre: T-BASKET
+    formato: cifra
+    etiqueta: "one grocery basket · same shop, same moment"
+    numero: "3 in 4"
+    acento: true
+    pie: "items priced differently depending on who was looking"
+
+  - nombre: T-23
+    formato: cifra
+    etiqueta: "largest gap, identical product"
+    numero: "23%"
+    acento: true
+
+  - nombre: T-GLITCH
+    formato: frase
+    lineas: ["That is not a glitch.", "It is the business model."]
+    acento: 1
+
+  - nombre: T-3ESTADOS
+    formato: lista
+    etiqueta: "and this year, three states made it illegal"
+    filas:
+      - { de: "Connecticut", a: "June 2026", raya: true }
+      - { de: "New Jersey", a: "July 2026", raya: true }
+      - { de: "Maryland", a: "October 2026", acento: true }
+
+  - nombre: T-NOWORK
+    formato: frase
+    lineas: ["The laws are not going to work."]
+    acento: 0
+
+  - nombre: T-HEDGES
+    formato: lista
+    etiqueta: "senate judiciary subcommittee · 4 august 2026"
+    filas:
+      - { de: "Robert Hedges", a: "witness", raya: true }
+      - { de: "Former chief data officer", a: "Visa", acento: true }
+
+  - nombre: T-QUESTIONS
+    formato: lista
+    etiqueta: "what he said these systems ask"
+    filas:
+      - { de: "When did you book the ticket?", a: "·", raya: true }
+      - { de: "Have you already booked the hotel?", a: "·", raya: true }
+      - { de: "Do you have relatives in the area?", a: "·", acento: true }
+
+  - nombre: T-NOTTHESE
+    formato: lista
+    etiqueta: "what it did not ask for"
+    filas:
+      - { de: "Your name", a: "no", raya: true }
+      - { de: "Your income", a: "no", raya: true }
+      - { de: "Your browsing history", a: "no", acento: true }
+
+  - nombre: T-NOTPERSONAL
+    formato: frase
+    lineas: ["None of those is your personal data.", "They are facts about your situation."]
+    acento: 1
+
+  - nombre: T-DENIAL
+    formato: cita
+    etiqueta: "delta air lines to congress · 9 september 2026"
+    texto: "there is no fare product that targets customers with individualized prices based on personal data"
+    fuente: "Letter to Rep. Frank Pallone"
+
+  - nombre: T-TRUE
+    formato: frase
+    lineas: ["That may be completely true.",
+             "This video is about why it does not help you."]
+    acento: 1
+
+  # ================================================================ acto 2
+  - nombre: T-DEF
+    formato: frase
+    etiqueta: "surveillance pricing"
+    lineas: ["A company watches you,",
+             "works out what you will pay,",
+             "and charges you that."]
+    acento: 2
+
+  - nombre: T-250
+    formato: cifra
+    etiqueta: "federal trade commission study, 2024"
+    numero: "250"
+    pie: "companies found using pricing vendors of this kind"
+
+  - nombre: T-INSTACART
+    formato: lista
+    etiqueta: "one test basket on instacart · groundwork collaborative"
+    filas:
+      - { de: "Items priced differently", a: "3 in 4", raya: true }
+      - { de: "Largest gap, identical product", a: "23%", acento: true }
+
+  - nombre: T-RIDE
+    formato: frase
+    etiqueta: "consumer reports · ride-hailing"
+    lineas: ["The same trip, seconds apart.", "Different base rates."]
+    acento: 1
+
+  - nombre: T-TARGET
+    formato: frase
+    etiqueta: "target's app · minnesota investigators"
+    lineas: ["The price changed", "when he walked into the store."]
+    acento: 1
+
+  - nombre: T-115
+    formato: cifra
+    etiqueta: "car insurance, 2023 · identical driving records"
+    numero: "+115%"
+    acento: true
+    pie: "paid by drivers with poor credit scores"
+
+  - nombre: T-SPREADSHEET
+    formato: frase
+    lineas: ["That is not artificial intelligence.", "That is a spreadsheet."]
+    acento: 1
+
+  - nombre: T-CHEAPNOW
+    formato: frase
+    etiqueta: "what actually changed"
+    lineas: ["Not the idea.",
+             "How cheap it became to do it",
+             "to everyone, in real time."]
+    acento: 2
+
+  - nombre: T-TRES
+    formato: lista
+    etiqueta: "look again at the three examples"
+    filas:
+      - { de: "The Instacart basket", a: "·", raya: true }
+      - { de: "The Uber fare", a: "·", raya: true }
+      - { de: "The Target app", a: "·", acento: true }
+
+  - nombre: T-NOTNAME
+    formato: frase
+    etiqueta: "what is doing the work in all three"
+    lineas: ["It is not your name."]
+    acento: 0
+
+  - nombre: T-INPUTS
+    formato: lista
+    etiqueta: "it is this"
+    filas:
+      - { de: "When you shopped", a: "·", raya: true }
+      - { de: "Where you stood", a: "·", raya: true }
+      - { de: "Which device you held", a: "·", raya: true }
+      - { de: "Whether you looked twice", a: "·", acento: true }
+
+  - nombre: T-KIND
+    formato: frase
+    lineas: ["It does not need to know who you are.",
+             "It needs to know how you are behaving."]
+    acento: 2
+
+  - nombre: T-WHOLESTORY
+    formato: frase
+    lineas: ["That sounds like a technicality.", "It is the whole story."]
+    acento: 1
+
+  # ================================================================ acto 3
+  - nombre: T-3PERCENT
+    formato: lista
+    etiqueta: "delta + fetcherr · july 2025"
+    filas:
+      - { de: "Tickets priced with AI at the time", a: "3%", raya: true }
+      - { de: "Target by the end of the year", a: "20%", acento: true }
+
+  - nombre: T-50
+    formato: cifra
+    etiqueta: "ed bastian, chief executive"
+    numero: "+50%"
+    acento: true
+    pie: "the gain in profitability he said AI could eventually bring"
+
+  - nombre: T-SENADORES
+    formato: lista
+    etiqueta: "letter to ed bastian · 21 july 2025"
+    filas:
+      - { de: "Ruben Gallego", a: "·", raya: true }
+      - { de: "Mark Warner", a: "·", raya: true }
+      - { de: "Richard Blumenthal", a: "·", acento: true }
+
+  - nombre: T-BLUMENTHAL
+    formato: frase
+    etiqueta: "the same senator who wrote to hertz"
+    lineas: ["Same senator.", "Same concern.", "One year apart."]
+    acento: 2
+
+  - nombre: T-INDIVIDUALNEED
+    formato: cita
+    etiqueta: "senators gallego, warner and blumenthal"
+    texto: "Prices could be dictated not by supply and demand, but by individual need."
+    fuente: "Letter to Delta Air Lines, 21 July 2025"
+
+  - nombre: T-EXPEDIA
+    formato: lista
+    etiqueta: "house oversight committee · 5 march 2026"
+    filas:
+      - { de: "Letter to", a: "Expedia", raya: true }
+      - { de: "Asking how consumer data is used", a: "in pricing", acento: true }
+
+  - nombre: T-SEPT9
+    formato: cifra
+    etiqueta: "delta replies to congress"
+    numero: "9 Sept"
+    acento: true
+    pie: "the letter to Congressman Frank Pallone"
+
+  - nombre: T-DENIAL2
+    formato: cita
+    etiqueta: "the same letter"
+    texto: "the fares we file do not take any customer's personal data into account"
+    fuente: "Delta Air Lines"
+
+  - nombre: T-BOTH
+    formato: lista
+    etiqueta: "two statements"
+    filas:
+      - { de: "Delta uses AI to set prices", a: "yes", raya: true }
+      - { de: "That AI sees your personal data", a: "no", acento: true }
+
+  - nombre: T-NOTSAME
+    formato: frase
+    lineas: ["Both can be true.",
+             "They are not the same claim.",
+             "The second does not deny the first."]
+    acento: 2
+
+  # ================================================================ acto 4
+  - nombre: T-NOEVIDENCE
+    formato: frase
+    etiqueta: "to be clear"
+    lineas: ["There is no evidence that Delta does",
+             "anything other than its letter says.",
+             "I am not alleging that it does."]
+    acento: 2
+
+  - nombre: T-WRONGTHING
+    formato: frase
+    lineas: ["The thing everyone is arguing about", "is the wrong thing."]
+    acento: 1
+
+  - nombre: T-WHICH
+    formato: frase
+    lineas: ["Which of those would a",
+             "personal data law stop?"]
+    acento: 1
+
+  - nombre: T-NOTDATA
+    formato: lista
+    etiqueta: "none of this is personal data"
+    filas:
+      - { de: "A booking time", a: "·", raya: true }
+      - { de: "A route", a: "·", raya: true }
+      - { de: "The gap between searching and buying", a: "·", acento: true }
+
+  - nombre: T-PATTERN
+    formato: frase
+    lineas: ["A pattern is enough."]
+    acento: 1
+
+  - nombre: T-BEHAVE
+    formato: frase
+    lineas: ["It does not need to know that you are you.",
+             "It needs to know that people behaving",
+             "the way you are will pay more."]
+    acento: 2
+
+  - nombre: T-INFERENCE
+    formato: lista
+    etiqueta: "nobody is reading your messages"
+    filas:
+      - { de: "It is inference", a: "·", raya: true }
+      - { de: "It is cheap", a: "·", raya: true }
+      - { de: "It is legal almost everywhere", a: "·", acento: true }
+
+  # ================================================================ acto 5
+  - nombre: T-24
+    formato: cifra
+    etiqueta: "2026 · algorithmic and surveillance pricing"
+    numero: "24"
+    pie: "states introduced more than forty bills"
+
+  - nombre: T-THREE
+    formato: cifra
+    etiqueta: "and of those twenty-four"
+    numero: "3"
+    acento: true
+    pie: "signed laws"
+
+  - nombre: T-DATES
+    formato: lista
+    etiqueta: "the three laws"
+    filas:
+      - { de: "Maryland", a: "in force 1 October", raya: true }
+      - { de: "New Jersey", a: "signed July", raya: true }
+      - { de: "Connecticut", a: "signed June", acento: true }
+
+  - nombre: T-SHERRILL
+    formato: cita
+    etiqueta: "governor mikie sherrill, new jersey"
+    texto: "The last thing they need is companies secretly using their personal data to charge them more than someone else for the exact same product."
+    fuente: "On signing the New Jersey law"
+
+  - nombre: T-COVERAGE
+    formato: lista
+    etiqueta: "what the three laws actually cover"
+    filas:
+      - { de: "Maryland", a: "groceries over 15,000 sq ft", raya: true }
+      - { de: "New Jersey", a: "grocery prices, shelf labels", raya: true }
+      - { de: "Connecticut", a: "retailers and delivery", acento: true }
+
+  - nombre: T-GROCERIES
+    formato: frase
+    lineas: ["So: groceries.", "Delivery apps.", "Shelf labels."]
+    acento: 2
+
+  - nombre: T-AIRLINE
+    formato: frase
+    lineas: ["The clearest example in the whole debate",
+             "is an airline ticket.",
+             "No law covers it."]
+    acento: 2
+
+  - nombre: T-HINGE
+    formato: frase
+    etiqueta: "and all three turn on the same two words"
+    lineas: ["Personal data.", "The input it does not need."]
+    acento: 1
+
+  # ================================================================ acto 6
+  - nombre: T-FACT
+    formato: frase
+    etiqueta: "a price used to be"
+    lineas: ["A fact about a thing.",
+             "Printed on it.",
+             "Everyone saw the same number."]
+    acento: 2
+
+  - nombre: T-GUESS
+    formato: frase
+    etiqueta: "a price is now"
+    lineas: ["A guess about you.",
+             "Not who you are.",
+             "How you are behaving."]
+    acento: 2
+
+  - nombre: T-LASTVIDEO
+    formato: frase
+    etiqueta: "in the last video, about hertz"
+    lineas: ["Make enforcement cheap,",
+             "and enforcement expands to fill the space."]
+    acento: 1
+
+  - nombre: T-COSTNOW
+    formato: lista
+    etiqueta: "working out what one person would pay"
+    filas:
+      - { de: "Used to cost", a: "more than it returned", raya: true }
+      - { de: "Now costs", a: "almost nothing", acento: true }
+
+  - nombre: T-CHEAP2
+    formato: frase
+    lineas: ["Make inference cheap,",
+             "and the price stops being about the product."]
+    acento: 1
+
+  - nombre: T-HEADLINE
+    formato: frase
+    etiqueta: "the laws are not wrong to exist"
+    lineas: ["They were written against the headline,", "not the mechanism."]
+    acento: 1
+
+  - nombre: T-BYNAME
+    formato: lista
+    etiqueta: "what a personal-data rule can stop"
+    filas:
+      - { de: "Pricing you by name", a: "stopped", raya: true }
+      - { de: "Pricing you by pattern", a: "untouched", acento: true }
+
+  - nombre: T-CANNOT
+    formato: frase
+    lineas: ["I am not accusing any airline."]
+
+  - nombre: T-ORDER2
+    formato: frase
+    lineas: ["I can tell you the rule being written this year",
+             "would not catch it if one were."]
+    acento: 1
+
+  # ------------- tarjetas de apoyo, para que ninguna se estire de más -------
+  # Un párrafo de veinte segundos con una sola tarjeta en pantalla es tan
+  # malo como pasarlas corriendo. Estas parten la idea en dos tiempos.
+
+  - { nombre: T-NOTEORIA, formato: frase, lineas: ["This is not a theory."], acento: 0 }
+
+  - nombre: T-OLDEST
+    formato: frase
+    lineas: ["Charging different people different prices",
+             "is one of the oldest ideas in commerce."]
+    acento: 1
+
+  - nombre: T-CREDITO
+    formato: lista
+    etiqueta: "two drivers, 2023"
+    filas:
+      - { de: "Same driving record", a: "perfect", raya: true }
+      - { de: "Different credit score", a: "·", acento: true }
+
+  - nombre: T-FETCHERR
+    formato: lista
+    etiqueta: "july 2025"
+    filas:
+      - { de: "Delta confirmed it was working with", a: "Fetcherr", raya: true }
+      - { de: "An artificial intelligence company", a: "to set fares", acento: true }
+
+  - nombre: T-HERTZLINK
+    formato: frase
+    etiqueta: "richard blumenthal"
+    lineas: ["He also wrote to Hertz,", "about the damage scanners."]
+    acento: 1
+
+  - nombre: T-ROUTELEVEL
+    formato: frase
+    etiqueta: "what delta says the tool uses"
+    lineas: ["Route-level demand and market data.",
+             "To support human analysts."]
+    acento: 1
+
+  - nombre: T-FUNERAL
+    formato: frase
+    etiqueta: "and neither is this"
+    lineas: ["A week that correlates with a funeral,",
+             "a graduation, a hospital visit."]
+    acento: 1
+
+  - nombre: T-MARYLAND
+    formato: lista
+    etiqueta: "maryland · in force 1 october 2026"
+    filas:
+      - { de: "Grocery stores over", a: "15,000 sq ft", raya: true }
+      - { de: "And food delivery", a: "·", acento: true }
+
+  - nombre: T-NEWJERSEY
+    formato: lista
+    etiqueta: "new jersey · july 2026"
+    filas:
+      - { de: "Retailers setting grocery prices", a: "·", raya: true }
+      - { de: "New electronic shelf labels", a: "paused one year", acento: true }
+
+  - nombre: T-CONNECTICUT
+    formato: lista
+    etiqueta: "connecticut · june 2026"
+    filas:
+      - { de: "Retailers and third-party delivery", a: "·", raya: true }
+      - { de: "Except differences", a: "unrelated to personal data", acento: true }
+
+  - nombre: T-HERTZ
+    formato: lista
+    etiqueta: "the last video"
+    filas:
+      - { de: "Hertz", a: "AI damage scanners", raya: true }
+      - { de: "AI made enforcement", a: "cheap", acento: true }
+
+  - nombre: T-NOTWRONG
+    formato: frase
+    lineas: ["I do not think the laws", "are wrong to exist."]
+
+  - nombre: T-PATTERNWORKS
+    formato: frase
+    lineas: ["And pattern is what works."]
+    acento: 0
+
+# ---------------------------------------------------------------- rótulos
+  - nombre: T-LADO
+    formato: frase
+    lineas: ["Side by side."]
+    acento: 0
+
+rotulos:
+  - { nombre: R-HEARING,  texto: "Senate Judiciary subcommittee", sub: "4 august 2026" }
+  - { nombre: R-DELTA,    texto: "Delta Air Lines", sub: "july 2025" }
+  - { nombre: R-GROCERY,  texto: "Groceries. Delivery. Shelf labels.", sub: "what the laws reach" }
+  - { nombre: R-BASTIAN,  texto: "Ed Bastian", sub: "chief executive, Delta Air Lines" }
+  - { nombre: R-COURT,    texto: "Both letters are public", sub: "links in the description" }
+

@@ -1,0 +1,245 @@
+# Tarjetas de texto y rótulos del vídeo 1 · Hertz
+#
+# Esto es lo que llena la pantalla cuando lo que importa es un dato o una
+# frase, no una imagen de archivo. Cambiar un texto aquí y relanzar basta.
+#
+# Formatos: capitulo · cifra · cita · frase · lista
+# Los rótulos son transparentes y se ponen ENCIMA de un clip.
+
+tarjetas:
+
+  # ------------------------------------------------- carteles de capítulo
+  - { nombre: C2, formato: capitulo, numero: "01", titulo: "The machine",
+      nota: "what it actually does" }
+  - { nombre: C3, formato: capitulo, numero: "02", titulo: "The reaction",
+      nota: "and who noticed" }
+  - { nombre: C4, formato: capitulo, numero: "03", titulo: "The other story",
+      nota: "the one nobody covered" }
+  - { nombre: C5, formato: capitulo, numero: "04", titulo: "The 24th of June",
+      nota: "six weeks later" }
+  - { nombre: C6, formato: capitulo, numero: "05", titulo: "What it means",
+      nota: "and why it is not about cars" }
+
+  # ------------------------------------------------------------- acto 1
+  - nombre: T-FEE
+    formato: frase
+    etiqueta: "the charge"
+    lineas: ["A fee.", "For processing the charge."]
+    acento: 1
+
+  - nombre: T-40
+    formato: cifra
+    etiqueta: "24 june 2026 · one trading day"
+    numero: "−40%"
+    acento: true
+    pie: "Hertz closes at $3.00"
+
+  - nombre: T-COVERED
+    formato: frase
+    lineas: ["Everyone covered the scanners.",
+             "Almost nobody covered the balance sheet."]
+    acento: 1
+
+  # ------------------------------------------------------------- acto 2
+  - nombre: T-AIRPORTS
+    formato: cifra
+    etiqueta: "uveye scanners installed"
+    numero: "10"
+    pie: "airports, with plans to go nationwide"
+
+  - nombre: T-STOPS
+    formato: frase
+    lineas: ["So far, this is a technology story.", "Here is where it stops being one."]
+    acento: 1
+
+  - nombre: T-AUTOMATIC
+    formato: frase
+    etiqueta: "what the machine does"
+    lineas: ["It does not just find the damage.",
+             "It prices it, and it bills you."]
+    acento: 1
+
+  - nombre: T-97
+    formato: cita
+    etiqueta: "hertz, on the scanner programme"
+    texto: "of more than 675,000 rentals scanned, over 97% showed no billable damage"
+    fuente: "Hertz"
+
+  - nombre: T-REVENUE
+    formato: frase
+    etiqueta: "3% of 675,000"
+    lineas: ["That is not a rounding error.", "That is a revenue line."]
+    acento: 1
+
+  - nombre: T-SUBJECT
+    formato: frase
+    lineas: ["The question was never how often", "the machine charges people."]
+
+  # ------------------------------------------------------------- acto 3
+  - nombre: T-COMPLAINTS
+    formato: lista
+    etiqueta: "what people reported"
+    filas:
+      - { de: "Billed for marks they could not see", a: "·" }
+      - { de: "Disputing meant arguing with a system", a: "·" }
+      - { de: "The fastest way to stop it", a: "pay", acento: true }
+
+  - nombre: T-TELEVISION
+    formato: frase
+    lineas: ["Hertz waived the charge",
+             "after a television network called."]
+    acento: 1
+
+  - nombre: T-TWICE
+    formato: cifra
+    etiqueta: "august 2025 · washington"
+    numero: "Twice"
+    pie: "The House Oversight Committee, and a senator, a week apart"
+
+  - nombre: T-BIPARTISAN
+    formato: lista
+    etiqueta: "who wrote the letters"
+    filas:
+      - { de: "Nancy Mace", a: "Republican", raya: true }
+      - { de: "Richard Blumenthal", a: "Democrat" }
+    pie: "Almost nothing is bipartisan right now."
+
+  - nombre: T-CHOICE
+    formato: lista
+    etiqueta: "the same technology, the same market"
+    filas:
+      - { de: "Sixt", a: "adopted it", raya: true }
+      - { de: "Avis", a: "kept human inspection", acento: true }
+    pie: "So it was not inevitable. It was a choice."
+
+  - nombre: T-WHY
+    formato: frase
+    lineas: ["Why did Hertz need this", "so badly?"]
+    acento: 1
+
+  # ------------------------------------------------------------- acto 4
+  - nombre: T-837
+    formato: cifra
+    etiqueta: "7 may 2026 · reported to investors"
+    numero: "$837M"
+    pie: "liquidity, alongside the strongest revenue growth in three years"
+
+  - nombre: T-SUFFICIENT
+    formato: cita
+    etiqueta: "as quoted in the class action complaint"
+    texto: "...will be sufficient to fund our operating activities for the next twelve months"
+    fuente: "Attributed to Hertz · 7 May 2026"
+
+  - nombre: T-BET
+    formato: frase
+    etiqueta: "what the business really is"
+    lineas: ["A rental company is making a bet",
+             "on the used-car market."]
+    acento: 1
+
+  - nombre: T-TRANSFER
+    formato: frase
+    lineas: ["Every mark the machine bills",
+             "is a cost moved off the balance sheet",
+             "and onto a credit card."]
+    acento: 2
+
+  - nombre: T-CAREFUL
+    formato: frase
+    etiqueta: "to be clear"
+    lineas: ["No one has alleged that the scanners",
+             "were installed to cover a financial hole.",
+             "I am showing you a sequence."]
+    acento: 2
+
+  # ------------------------------------------------------------- acto 5
+  - nombre: T-300
+    formato: lista
+    etiqueta: "24 june 2026 · disclosed the same day"
+    filas:
+      - { de: "Used-car market", a: "softened unexpectedly", raya: true }
+      - { de: "Distressed financing arranged", a: "$300M+", acento: true }
+      - { de: "Shares lent", a: "37M+" }
+
+  - nombre: T-DISTRESSED
+    formato: frase
+    lineas: ["Distressed financing is the money you raise",
+             "when the ordinary money is gone."]
+    acento: 1
+
+  - nombre: T-3DOLLARS
+    formato: cifra
+    etiqueta: "close, 24 june 2026"
+    numero: "$3.00"
+    acento: true
+    pie: "down more than 40% in a single day"
+
+  - nombre: T-CLASS
+    formato: lista
+    etiqueta: "securities fraud class action · filed july 2026"
+    filas:
+      - { de: "Class period opens", a: "7 May 2026", raya: true }
+      - { de: "Class period closes", a: "23 June 2026", acento: true }
+
+  - nombre: T-ALLEGATIONS
+    formato: frase
+    etiqueta: "and to be fair"
+    lineas: ["These are allegations.", "No court has ruled on them."]
+
+  # ------------------------------------------------------------- acto 6
+  - nombre: T-POLICIES
+    formato: lista
+    etiqueta: "what the machine did not decide"
+    filas:
+      - { de: "The processing fee", a: "a policy", raya: true }
+      - { de: "The amount", a: "a policy", raya: true }
+      - { de: "That disputes should be hard", a: "a policy", acento: true }
+    pie: "People wrote them."
+
+  - nombre: T-CHEAP
+    formato: frase
+    etiqueta: "what the technology actually changed"
+    lineas: ["It made an old thing cheap."]
+    acento: 0
+
+  - nombre: T-EXPAND
+    formato: frase
+    lineas: ["Remove the cost of enforcement,",
+             "and enforcement expands to fill the space."]
+    acento: 1
+
+  - nombre: T-RULES
+    formato: lista
+    etiqueta: "rules that cost more to enforce than they returned"
+    filas:
+      - { de: "Late fees", a: "·", raya: true }
+      - { de: "Usage limits", a: "·", raya: true }
+      - { de: "Wear and tear", a: "·", raya: true }
+      - { de: "Terms in a contract nobody reads", a: "·", acento: true }
+
+  - nombre: T-ORDER
+    formato: frase
+    lineas: ["I cannot tell you those two facts",
+             "are connected.",
+             "I can tell you they happened in that order."]
+    acento: 2
+
+# ---------------------------------------------------------------- rótulos
+# Van encima de un clip, abajo a la izquierda.
+rotulos:
+  - { nombre: R-ATLANTA,  texto: "Atlanta",            sub: "summer 2025" }
+  - { nombre: R-NOHUMAN,  texto: "No human involved",  sub: "the machine billed him" }
+  - { nombre: R-UVEYE,    texto: "UVeye",              sub: "the company that makes the arch" }
+  - { nombre: R-IMAGES,   texto: "Thousands of images", sub: "before the rental, and after" }
+  - { nombre: R-PRECISION, texto: "“Precision, objectivity, transparency”", sub: "hertz" }
+  - { nombre: R-DISPUTE,  texto: "Disputing the charge", sub: "arguing with a system that decided" }
+  - { nombre: R-OVERSIGHT, texto: "House Oversight Committee", sub: "20 august 2025" }
+  - { nombre: R-SENATE,   texto: "Senator Richard Blumenthal", sub: "27 august 2025" }
+  - { nombre: R-PUBLIC,   texto: "Both letters are public",  sub: "links in the description" }
+  - { nombre: R-MAY7,     texto: "7 May 2026",          sub: "quarterly results" }
+  - { nombre: R-DEPREC,   texto: "Depreciation",        sub: "the largest cost in the business" }
+  - { nombre: R-RESALE,   texto: "A dent comes off the resale price", sub: "every single car" }
+  - { nombre: R-JUNE24,   texto: "24 June 2026",        sub: "three filings in one day" }
+  - { nombre: R-COURT,    texto: "CourtListener",       sub: "read the complaint for free" }
+  - { nombre: R-ENFORCE,  texto: "Enforcement",         sub: "used to cost more than it returned" }
+  - { nombre: R-FIRST,    texto: "Hertz happened to be first", sub: "it will not be the last" }

@@ -1,0 +1,171 @@
+# Los Shorts del canal.
+#
+# POR QUÉ EXISTEN. El canal tenía tres vídeos y veinticinco visualizaciones.
+# No por lo que estaba escrito —eso está bien— sino porque un vídeo largo de
+# un canal con seis suscriptores no se le enseña a nadie, y un Short entra en
+# un feed de desconocidos desde el primer día. En el nicho de empresa, mezclar
+# Shorts sube el crecimiento de suscriptores un 39 %; los canales que combinan
+# los dos formatos crecen un 41 % más rápido que los de un solo formato.
+#
+# DE DÓNDE SALEN. De los tres guiones que ya existen. Ni una línea nueva de
+# investigación: cada uno de estos diez estaba dentro de un vídeo largo, y las
+# imágenes están generadas y pagadas desde el 10 de octubre.
+#
+# LA FORMA, que no es gusto mío sino lo que miden los datos del formato:
+#   · 20-35 segundos. Por encima de 45 es muy difícil sostener el 80 %.
+#   · El gancho en el segundo 1. Entre el 30 y el 50 % de la gente se va ahí.
+#   · Cambio de plano cada 1,5-2 s. Por debajo de 1,2 cansa; por encima de
+#     2,5 la retención baja.
+#   · Subtítulos desde el primer fotograma: suben la retención sin sonido
+#     entre un 25 y un 40 %, y la mayoría lo ve en silencio.
+#   · La última imagen es la primera, para que el bucle no se note. Desde
+#     2025 cada bucle cuenta como visualización nueva.
+#
+# EL ORDEN IMPORTA. El primero es el de la frase de la empatía porque es la
+# mejor línea de todo el material. El segundo es el del «rounding error»,
+# que es literalmente el nombre del canal: ese es el de presentación.
+
+cortos:
+
+  - id: 01-empatia
+    de: 03-alquiler
+    titulo: "They Said There Was Too Much Empathy"
+    narracion:
+      - "About a thousand apartments. Kept empty on purpose."
+      - "Not abandoned. Not being repaired. Empty because a piece of software worked out that the rent on the other thirty-nine thousand would more than cover them."
+      - "It was right. Revenue went up three to four percent."
+      - "One of the men who built that software described the thinking behind it. He said: we said there's way too much empathy going on here."
+      - "A thousand homes. In a housing shortage."
+    imagenes: [g-piso-vacio, g-ventana-sola, g-torre-pisos, g-hoja-calculo,
+               g-pantalla-cifras, g-grafico-subida, g-sala-juntas, g-mano-teclado,
+               g-servidores, g-ciudad-noche, g-ventanas-muchas, g-puerta-piso,
+               g-cartel-alquiler, g-llaves-mesa, g-balcon]
+    hashtags: "#RealPage #housing #rent #algorithms #business"
+
+  - id: 02-rounding-error
+    de: 02-precios            # 01-hertz no tiene imágenes propias: se le prestan
+    titulo: "97% Clean. That's the Trick."
+    narracion:
+      - "Hertz says that of more than six hundred and seventy five thousand rentals scanned by its AI, over ninety seven percent showed no billable damage."
+      - "Sounds reassuring. Do the arithmetic."
+      - "Three percent of six hundred and seventy five thousand is around twenty thousand charges."
+      - "Twenty thousand customers, at a few hundred dollars each."
+      - "That is not a rounding error. That is a revenue line."
+    imagenes: [g-escaner-caja, g-camara-techo, g-lupa, g-pantalla-codigo,
+               g-recibo, g-datafono, g-dos-cajas, g-particulas, g-datacenter,
+               g-cables, g-torre-oficinas, g-despacho, g-reloj, g-sobre]
+    hashtags: "#Hertz #AI #business #cars #rentalcar"
+
+  - id: 03-cesta
+    de: 02-precios
+    titulo: "Same Shop, Same Second, 23% Apart"
+    narracion:
+      - "Three quarters of the items in one grocery basket came back at a different price depending on who was looking."
+      - "Up to twenty-three percent apart. Same shop. Same products. Same moment."
+      - "That basket was filled on Instacart from different accounts, and presented to the United States Senate."
+      - "Three American states have now made this illegal."
+      - "The laws are not going to work. That is a longer story."
+    imagenes: [g-cesta, g-carrito-noche, g-estantes-etiquetas, g-etiqueta-digital,
+               g-etiqueta-precio, g-movil-pasillo, g-pasillo, g-escaner-caja,
+               g-dos-cajas, g-micro-testigo, g-capitolio-estatal, g-mapa-estados,
+               g-martillo, g-etiqueta-vacia]
+    hashtags: "#pricing #groceries #surveillancepricing #business #Instacart"
+
+  - id: 04-credito
+    de: 02-precios
+    titulo: "Perfect Record. Double the Premium."
+    narracion:
+      - "Two drivers. Identical records. Neither has ever had an accident."
+      - "One of them has a bad credit score."
+      - "In twenty twenty-three, that driver was paying up to a hundred and fifteen percent more for car insurance. More than double."
+      - "Not for anything they did on the road."
+      - "This is the part people miss about algorithmic pricing. It did not start this year."
+    imagenes: [g-movil-coche, g-papeles-seguro, g-dos-cajas, g-pluma,
+               g-calle-amanecer, g-recibo, g-lupa, g-pantalla-codigo,
+               g-datafono, g-despacho, g-reloj, g-sobre]
+    hashtags: "#insurance #creditscore #pricing #algorithms #money"
+
+  - id: 05-ocupacion
+    de: 03-alquiler
+    titulo: "They Chose 95% Full Over 98%"
+    narracion:
+      - "Before the software, this landlord's buildings ran about ninety-eight percent full. After it, ninety-five."
+      - "Forty thousand units. Three percent empty is about a thousand homes."
+      - "And revenue went up."
+      - "The chief executive of the software company told investors what the hard part had been. He said it was very hard for executives to accept that they could operate at ninety-four or ninety-six percent and make more money."
+      - "Hard to accept. That is the interesting part."
+    imagenes: [g-torre-pisos, g-ventanas-muchas, g-piso-vacio, g-grafico-subida,
+               g-hoja-calculo, g-pantalla-cifras, g-sala-juntas, g-dos-sillas,
+               g-manhattan, g-ciudad-arriba, g-calendario, g-piso-iluminado,
+               g-escalera, g-balcon]
+    hashtags: "#RealPage #rent #housing #business #algorithms"
+
+  - id: 06-nueve-de-diez
+    de: 03-alquiler
+    titulo: "\"It's Only a Recommendation\""
+    narracion:
+      - "It is only a recommendation. That is the defence."
+      - "Former employees told ProPublica that as many as ninety percent of those recommendations get taken."
+      - "One former executive said a property accepting all of them basically has a blindfold on, and is pushing a button."
+      - "A recommendation taken nine times out of ten is not two parties deciding anything."
+      - "We have a word for a lot of people independently reaching the same conclusion. We call it a market."
+    imagenes: [g-boton, g-aviso-pantalla, g-mano-teclado, g-pantalla-cifras,
+               g-hoja-calculo, g-expediente, g-carpetas, g-oficina-alquiler,
+               g-contratos, g-firma, g-multitud, g-ciudad-arriba, g-megafono]
+    hashtags: "#RealPage #antitrust #housing #rent #business"
+
+  - id: 07-el-dinero
+    de: 03-alquiler
+    titulo: "The Government Got a Monitor. Renters Got $400M."
+    narracion:
+      - "The Justice Department sued. Eight states joined."
+      - "That case produced a monitor, and no money."
+      - "The private cases, brought by renters, have been settling one after another. A hundred and forty-two million dollars by October twenty twenty-five. Two hundred and eighteen million more in May."
+      - "Nearly four hundred million."
+      - "No court has found that anyone broke the law. Every one of them settled while denying it."
+    imagenes: [g-mazo, g-juzgado-noche, g-sala-vacia, g-expediente, g-cheque,
+               g-periodico, g-carpetas, g-firma, g-constitucion, g-biblioteca-ley,
+               g-recibo-largo, g-sobre-sellado, g-calendario]
+    hashtags: "#RealPage #antitrust #housing #law #business"
+
+  - id: 08-es-expresion
+    de: 03-alquiler
+    titulo: "A Judge Ruled the Algorithm Has Free Speech"
+    narracion:
+      - "In September, a federal judge ruled that a rent-setting algorithm's recommendations are speech."
+      - "Protected by the First Amendment."
+      - "The software reads what tens of thousands of landlords are charging, works out what they could charge, and tells them."
+      - "A court has now said that output is expression."
+      - "Which means the question is no longer what the software does. It is what a company is allowed to say."
+    imagenes: [g-constitucion, g-biblioteca-ley, g-juzgado-noche, g-mazo,
+               g-imprenta, g-periodico, g-servidores, g-pantalla-cifras,
+               g-mano-teclado, g-hoja-calculo, g-sala-vacia, g-megafono]
+    hashtags: "#FirstAmendment #RealPage #law #algorithms #housing"
+
+  - id: 09-delta
+    de: 02-precios
+    titulo: "Delta Wants AI Setting 20% of Fares"
+    narracion:
+      - "In July of twenty twenty-five, Delta confirmed it was working with an artificial intelligence company to help set fares."
+      - "At the time the system was influencing around three percent of tickets. Delta said it wanted to reach twenty percent by the end of the year."
+      - "Its chief executive had already told investors that artificial intelligence could eventually improve the airline's profitability by as much as fifty percent."
+      - "Fifty percent. From pricing."
+    imagenes: [g-avion-noche, g-cabina-vacia, g-asiento, g-maleta-cinta,
+               g-mapa-rutas, g-bolsa-puerta, g-pantalla-codigo, g-datacenter,
+               g-torre-oficinas, g-torre, g-despacho, g-reloj]
+    hashtags: "#Delta #airlines #pricing #AI #business"
+
+  - id: 10-ochenta-trescientos
+    de: 02-precios            # prestadas a 01-hertz
+    titulo: "$80 of Damage. A $350 Bill."
+    narracion:
+      - "He returned the rental car. He had driven it a few days. Nothing happened to it that he noticed."
+      - "Then an automated message. Three hundred and fifty dollars."
+      - "Eighty of that was for two small dents. Most of the rest was a processing fee."
+      - "A fee for processing the charge."
+      - "Eighty dollars of alleged damage generated three hundred and fifty dollars of charges."
+      - "The dent is not the product. The dent is the trigger."
+    imagenes: [g-escaner-caja, g-camara-techo, g-lupa, g-recibo, g-movil-coche,
+               g-datafono, g-sobre, g-pantalla-codigo, g-particulas,
+               g-dos-cajas, g-despacho, g-reloj, g-calle-amanecer]
+    hashtags: "#Hertz #rentalcar #fees #AI #business"

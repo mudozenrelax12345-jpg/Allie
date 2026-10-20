@@ -1,0 +1,113 @@
+# Montaje del vídeo 2 · El precio ya no es del producto
+#
+# ESTO ES NUEVO Y ES LO IMPORTANTE.
+#
+# Antes había una «bolsa» de materiales por acto y el programa repartía por
+# orden. Eso garantizaba dos cosas —que fueran del acto correcto y que no se
+# repitieran cerca— y ninguna más. Qué imagen caía sobre qué frase era
+# arbitrario, así que la imagen y la voz no tenían por qué decir lo mismo.
+# Y no lo decían.
+#
+# Ahora hay un plan escrito frase a frase: para cada párrafo del guion se
+# dice exactamente qué se ve, en orden. Lo he decidido leyendo cada frase.
+#
+#   plan:
+#     <acto>:
+#       <párrafo>: [loquesea, otracosa]
+#
+# El reparto del tiempo lo hace el programa: cada tarjeta se queda el tiempo
+# que hace falta para leerla —calculado por el número de palabras— y lo que
+# sobra se lo lleva la imagen. Si no cabe todo, se cae lo último.
+
+plan:
+
+  1:                                    # El gancho
+    1: [T-BASKET, T-23, g-cesta]
+    2: [T-GLITCH]
+    3: [T-NOWORK, g-sala-vista]
+    4: [T-HEDGES, g-micro-testigo]
+    5: [T-QUESTIONS]
+    6: [T-NOTTHESE]
+    7: [T-NOTPERSONAL]
+    8: [g-sobre, T-DENIAL]
+    9: [T-TRUE]
+
+  2:                                    # Lo que mira de verdad
+    1: [C2, T-DEF]
+    2: [T-NOTEORIA, T-250]
+    3: [g-movil-pasillo, T-INSTACART, g-estantes-etiquetas]
+    4: [T-RIDE, v-coche-noche]
+    5: [T-TARGET, g-escaner-caja]
+    6: [T-CREDITO, T-115, g-papeles-seguro]
+    7: [T-SPREADSHEET, T-OLDEST]
+    8: [T-CHEAPNOW]
+    9: [T-TRES]
+    10: [T-NOTNAME]
+    11: [T-INPUTS]
+    12: [T-KIND]
+    13: [T-WHOLESTORY]
+
+  3:                                    # La negación
+    1: [C3, g-avion-noche]
+    2: [g-cabina-vacia, T-FETCHERR, T-3PERCENT]
+    3: [T-50, g-despacho]
+    4: [T-SENADORES, DOC-A]
+    5: [T-HERTZLINK, T-BLUMENTHAL]
+    6: [T-INDIVIDUALNEED, DOC-A]
+    7: [T-EXPEDIA, DOC-B]
+    8: [T-SEPT9]
+    9: [T-DENIAL2, T-ROUTELEVEL, g-mapa-rutas]
+    10: [T-LADO]
+    11: [T-BOTH, v-ciudad]
+    12: [T-NOTSAME]
+
+  4:                                    # La bisagra equivocada
+    1: [C4, g-pantalla-codigo]
+    2: [T-NOEVIDENCE]
+    3: [T-WRONGTHING]
+    4: [T-QUESTIONS]
+    5: [T-WHICH]
+    6: [T-NOTDATA, g-reloj, T-FUNERAL]
+    7: [T-PATTERN]
+    8: [T-BEHAVE]
+    9: [g-particulas, T-INFERENCE]
+    10: [v-juzgado]
+
+  5:                                    # Lo que prohíben las leyes
+    1: [C5, T-24]
+    2: [T-THREE]
+    3: [T-DATES]
+    4: [T-SHERRILL, g-capitolio-noche]
+    5: [g-carrito-noche]
+    6: [T-MARYLAND, T-NEWJERSEY, T-CONNECTICUT]
+    7: [T-GROCERIES]
+    8: [T-AIRLINE, g-avion-noche]
+    9: [T-HINGE, g-micro-testigo]
+
+  6:                                    # Qué significa
+    1: [C6, v-calle]
+    2: [T-FACT, g-etiqueta-precio]
+    3: [T-GUESS, g-etiqueta-vacia]
+    4: [T-HERTZ, T-LASTVIDEO]
+    5: [g-lupa, T-COSTNOW, g-datacenter]
+    6: [T-CHEAP2]
+    7: [T-NOTWRONG, T-HEADLINE]
+    8: [T-BYNAME, T-PATTERNWORKS]
+    9: [T-CANNOT]
+    10: [T-ORDER2]
+
+# Rótulos: se ponen encima del primer plano de imagen del párrafo.
+rotulos:
+  1: { 4: R-HEARING }
+  3: { 2: R-DELTA, 3: R-BASTIAN }
+  5: { 7: R-GROCERY }
+
+# La música de este vídeo: tres semitonos por debajo del vídeo 1, algo más
+# rápida, y con un pulso repetido muy suave. Misma familia, distinto color.
+musica:
+  paleta: precios
+
+# Qué subraya el sonido.
+sonido:
+  golpes: [T-BASKET, T-23, T-250, T-115, T-50, T-24, T-THREE, T-SEPT9]
+  silencios: [T-NOTPERSONAL, T-SPREADSHEET, T-PATTERN, T-AIRLINE, T-ORDER2]

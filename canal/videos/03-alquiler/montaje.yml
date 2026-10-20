@@ -1,0 +1,69 @@
+# Montaje del vídeo 3 · versión de seis minutos
+#
+# Sin carteles de capítulo. Cuatro cartelitos a cuatro segundos son dieciséis
+# de los trescientos sesenta que dura esto: en un vídeo de diez minutos
+# ordenan, en uno de seis son señalización.
+#
+# Criterio: los momentos que llevan un dato van a una pantalla que lo
+# demuestra —rejilla, barras, línea de tiempo, documento subrayado— y no a una
+# tarjeta que repite la frase. Las imágenes generadas quedan para respirar
+# entre medias, no para ilustrar cada idea.
+#
+# Y cada párrafo lleva material para su duración. En la versión anterior once
+# párrafos tenían un solo elemento para diez o diecisiete segundos: el tiempo
+# sobrante se quedaba en la pantalla que hubiera, y salieron ocho tarjetas
+# congeladas de hasta diecisiete segundos y trece pares de planos seguidos con
+# la misma foto. La regla es un elemento distinto por cada ocho segundos como
+# mucho; app/plan.py lo comprueba y no deja montar si no se cumple. Las
+# veintiocho imágenes que se añaden aquí ya estaban generadas y guardadas en el
+# repositorio desde la primera vuelta, sin usar.
+
+plan:
+  1:
+    1: [G-VACIOS]
+    2: [g-piso-iluminado, T-34, g-piso-vacio, g-llaves-mesa]
+    3: [G-OCUPACION, g-ventanas-muchas, g-ciudad-arriba]
+    4: [T-WINN, g-sala-juntas, g-sala-vacia, g-oficina-alquiler]
+    5: [T-EMPATHY, g-ciudad-noche, g-ventana-sola, g-balcon]
+    6: [T-20M, g-torre-pisos, g-servidores, g-escalera]
+    7: [T-DESIGNED, g-boton]
+
+  2:
+    1: [T-DATOS, g-planos, g-contratos, g-hoja-calculo]
+    2: [T-SOLO, g-firma, g-puerta-piso]
+    3: [G-NUEVE, T-KIMURA, g-pantalla-cifras]
+    4: [G-DOC, T-AUTO, g-aviso-pantalla, T-ALEGACION]
+    5: [g-mano-teclado]
+    6: [T-ACUERDO, g-dos-sillas, T-SINSALA, g-biblioteca-ley]
+
+  3:
+    1: [G-TIEMPO, g-sobre-sellado, g-reloj-pared]
+    2: [T-NADA, T-ACORDADO, g-carpetas]
+    3: [G-DINERO, g-cheque, g-periodico]
+    4: [T-NINGUNO, g-juzgado-noche, g-mazo]
+
+  4:
+    1: [T-HERRAMIENTA, g-cartel-alquiler]
+    2: [T-SEP29, g-manhattan]
+    3: [T-COMMERCIAL, g-constitucion, g-megafono]
+    4: [T-STATEMENT, g-grafico-subida]
+    5: [g-imprenta, T-PRECISA]
+
+  5:
+    1: [T-PRELIM, g-mapa-estados]
+    2: [T-PALABRA, g-expediente]
+    3: [T-MERCADO, g-multitud, g-pasillo-puertas]
+    4: [T-PATRON, g-calle-tarde]
+    5: [T-RECIBO, g-recibo-largo]
+
+# Texto encima de una imagen, abajo a la izquierda.
+rotulos:
+  1: { 5: R-PROPUBLICA }
+  3: { 4: R-FUENTES }
+
+# La pieza de cuartas y madera.
+musica: { paleta: vacio }
+
+sonido:
+  golpes: [G-VACIOS, T-34, G-OCUPACION, T-20M, G-NUEVE, G-DINERO, T-SEP29]
+  silencios: [T-ALEGACION, T-NINGUNO, T-PRELIM]

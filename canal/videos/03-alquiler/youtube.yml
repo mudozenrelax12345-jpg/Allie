@@ -1,0 +1,45 @@
+# Lo que YouTube necesita saber del vídeo. Lo lee app/subir.py.
+#
+# El título es la mitad de lo que decide si alguien hace clic; la miniatura,
+# la otra mitad. El resto de este fichero importa bastante menos.
+#
+# Topes de YouTube, que el programa respeta solo: título 100 caracteres,
+# descripción 5.000, todas las etiquetas juntas 500.
+
+titulo: "The Software That Told Landlords to Leave Flats Empty"
+
+descripcion: |
+  About a thousand apartments, kept empty on purpose. Not abandoned, not
+  under repair — empty because a piece of software worked out that the rent
+  on the other thirty-nine thousand would more than cover them.
+
+  It was right. Revenue went up three to four percent.
+
+  This is the story of RealPage, the landlords who used it, and the sentence
+  one of its builders said out loud: "there's way too much empathy going on
+  here."
+
+  ---
+  Rounding Error: business stories told through one number somebody decided
+  did not matter.
+
+  Narration is synthetic. Sources are named on screen as they come up.
+
+# Cuál de las de miniaturas/ se le pone. Si se deja vacío, YouTube elige un
+# fotograma al azar, que casi siempre es el peor del vídeo.
+miniatura: V3-A-mil-vacias.png
+
+etiquetas:
+  - RealPage
+  - rent algorithm
+  - housing
+  - price fixing
+  - antitrust
+  - business documentary
+  - how companies work
+
+# 28 = Ciencia y tecnología · 25 = Noticias y política
+categoria: "25"
+
+idioma: en
+para_ninos: false
