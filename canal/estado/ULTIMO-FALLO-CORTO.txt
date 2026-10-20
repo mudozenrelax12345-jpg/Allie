@@ -1,0 +1,13 @@
+2026-10-20 21:18 UTC · corto
+
+Traceback (most recent call last):
+  File "/home/claude/allie/canal/app/corto.py", line 405, in <module>
+    main()
+    ~~~~^^
+  File "/home/claude/allie/canal/app/corto.py", line 383, in main
+    marcas, total = narrar(corto["narracion"], wav)
+                    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/claude/allie/canal/app/corto.py", line 284, in narrar
+    import soundfile as sf
+ModuleNotFoundError: No module named 'soundfile'
+

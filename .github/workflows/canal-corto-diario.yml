@@ -1,0 +1,109 @@
+name: Canal · Un Short al día
+
+# CUÁNDO Y POR QUÉ, con los datos delante.
+#
+# CINCO A LA SEMANA. Por debajo de tres, el alcance se encoge; por encima
+# de siete, la retención de cada uno baja. Cinco está en la banda buena.
+# Y uno al día, no los diez de golpe: un canal que suelta diez vídeos una
+# tarde y luego nada parece una granja, y los diez compiten entre sí por el
+# mismo hueco del feed.
+#
+# QUÉ DÍAS. Sobre 6.175 publicaciones medidas: sábado 1,13 · domingo 1,12 ·
+# lunes 1,02 · viernes 1,00 · martes 0,97 · jueves 0,96 · miércoles 0,89.
+# Se publica lunes, martes, viernes, sábado y domingo: cinco días, con los
+# tres mejores dentro. Miércoles y jueves, los dos peores, se descansan.
+#
+# A QUÉ HORA. A la una de la tarde de NUEVA YORK, que es donde está la
+# audiencia: el canal va en inglés y habla de empresas americanas. Ese es
+# el pico, 1,28 veces lo normal. Las diez de la mañana de Madrid serían las
+# cuatro de la madrugada allí.
+#
+# POR QUÉ DOS CRON. GitHub solo entiende UTC y no sabe de cambios de hora.
+# Entre el 25 de octubre y el 1 de noviembre España ya cambió y Estados
+# Unidos no, así que la una de Nueva York cae unos días a las 17:00 UTC y
+# otros a las 18:00. Se ponen los dos y app/hora.py deja pasar solo el que
+# de verdad cae a la una allí. Comprobado día a día durante un año entero.
+#
+# EL SHORT SE MONTA EN EL MOMENTO. Tres o cuatro minutos de máquina, que
+# son gratis, en vez de 36 MB de mp4 guardados en el repositorio.
+
+on:
+  schedule:
+    - cron: "5 17 * * 1,2,5,6,0"
+    - cron: "5 18 * * 1,2,5,6,0"
+  workflow_dispatch:
+    inputs:
+      en_seco:
+        description: "Ensayo: lo monta pero no lo sube ni lo da por publicado"
+        type: boolean
+        default: false
+      saltar_hora:
+        description: "Lanzarlo ahora, sin esperar a la una de Nueva York"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canal-cortos
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: canal
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: ¿Es la hora en Nueva York?
+        if: github.event_name == 'schedule' || !inputs.saltar_hora
+        run: python app/hora.py
+
+      - name: Instalar
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y espeak-ng ffmpeg fonts-dejavu-core
+          pip install -r requirements.txt
+
+      - name: Comprobaciones
+        run: |
+          python app/prueba_hora.py
+          python app/prueba_corto.py
+          python app/prueba_subir.py
+
+      - name: Montar y publicar el que toque
+        run: |
+          mkdir -p estado
+          set -o pipefail
+          python app/publicar_corto.py 2>&1 | tee estado/ultimo-corto-diario.txt
+        env:
+          EN_SECO: ${{ inputs.en_seco }}
+          PRIVACIDAD: public
+          KOKORO_VOZ: af_heart
+          KOKORO_VELOCIDAD: "1.0"
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+
+      - name: Anotar qué se publicó
+        if: always()
+        continue-on-error: true
+        working-directory: .
+        run: |
+          git config user.name "canal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add canal/estado/ 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Canal · Short del día [skip ci]"
+            git pull --rebase --autostash || true
+            git push || true
+          fi
