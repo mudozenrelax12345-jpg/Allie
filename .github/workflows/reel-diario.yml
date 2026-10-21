@@ -89,45 +89,68 @@ jobs:
         env:
           FORZAR: ${{ inputs.forzar }}
 
-      - name: Comprobar que arranca con los inputs vacíos
-        if: steps.falta.outputs.falta == 'si'
-        run: python app/prueba_vacias.py
+      # LAS ONCE COMPROBACIONES, EN UN SOLO PASO Y DEJANDO RASTRO.
+      #
+      # Estaban en once pasos separados, cada uno con su nombre bonito en la
+      # pantalla de Actions. El 21 de octubre a las 17:11 falló «Comprobar el
+      # camino de Cloudflare» y se llevó por delante el reel del día y el
+      # relleno del banco. Y no hubo forma de saber por qué: los registros de
+      # Actions se sirven desde un almacenamiento al que no se llega desde
+      # fuera, así que el motivo se perdió. Once pasos con nombre bonito que
+      # no se pueden leer valen menos que uno que escribe lo que pasó en un
+      # fichero del repositorio.
+      #
+      # Así que van juntas, con marca por cada una, y si alguna se cae el
+      # paso siguiente commitea el registro entero.
+      - name: Comprobaciones
+        run: |
+          mkdir -p estado
+          set -o pipefail
+          {
+            echo "Comprobaciones · $(date -u '+%Y-%m-%d %H:%M UTC')"
+            echo "falta el reel de hoy: ${{ steps.falta.outputs.falta }}"
+            echo
+          } > estado/ultimas-comprobaciones.txt
 
-      - name: Comprobar que el revisor distingue a Allie
-        if: steps.falta.outputs.falta == 'si'
-        run: python app/prueba_identidad.py
+          siempre="prueba_texto_mira prueba_manos prueba_gemini_caida prueba_cloudflare"
+          solo_si_falta="prueba_vacias prueba_identidad prueba_marca prueba_pisadas prueba_banco prueba_cuota"
+          lista="$siempre"
+          if [ "${{ steps.falta.outputs.falta }}" = "si" ]; then
+            lista="$lista $solo_si_falta"
+          fi
+
+          malas=""
+          for p in $lista; do
+            echo "━━━━ $p" | tee -a estado/ultimas-comprobaciones.txt
+            if python "app/$p.py" 2>&1 | tee -a estado/ultimas-comprobaciones.txt; then
+              echo "   OK $p" | tee -a estado/ultimas-comprobaciones.txt
+            else
+              echo "   MAL $p" | tee -a estado/ultimas-comprobaciones.txt
+              malas="$malas $p"
+            fi
+          done
+
+          echo | tee -a estado/ultimas-comprobaciones.txt
+          if [ -n "$malas" ]; then
+            echo "FALLARON:$malas" | tee -a estado/ultimas-comprobaciones.txt
+            exit 1
+          fi
+          echo "las $(echo $lista | wc -w) comprobaciones pasan" \
+            | tee -a estado/ultimas-comprobaciones.txt
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-      - name: Comprobar el marcado de IA del vídeo
-        if: steps.falta.outputs.falta == 'si'
-        run: python app/prueba_marca.py
-
-      - name: Comprobar que el texto se escribe mirando las fotos
-        run: python app/prueba_texto_mira.py
-
-      - name: Comprobar que al quitar las manos no quede contradicción
-        run: python app/prueba_manos.py
-
-      - name: Comprobar que ninguna foto pisa a otra
-        if: steps.falta.outputs.falta == 'si'
-        run: python app/prueba_pisadas.py
-
-      - name: Comprobar que el banco reparte bien
-        if: steps.falta.outputs.falta == 'si'
-        run: python app/prueba_banco.py
-
-      # Único gasto de cuota del día. Si no hay, el trabajo se para aquí y el
-      # banco guarda lo que hubiera conseguido.
-      - name: Comprobar que un modelo caído no tumba el trabajo
-        run: python app/prueba_gemini_caida.py
-
-      - name: Comprobar el camino de Cloudflare
-        run: python app/prueba_cloudflare.py
-
-      - name: Comprobar que para en seco si no hay cuota
-        if: steps.falta.outputs.falta == 'si'
-        run: python app/prueba_cuota.py
+      # Lo que se escribe aquí es lo único que se puede leer después.
+      - name: Dejar escrito por qué falló
+        if: failure()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estado/ultimas-comprobaciones.txt
+          git commit -m "Por qué falló una comprobación [skip ci]" || true
+          git pull --rebase --autostash || true
+          git push || true
 
       # Si generar falla, el reel se monta igual con lo que haya en el
       # banco. El 16 de octubre había 71 fotos libres y el día se quedó sin
