@@ -51,32 +51,55 @@ jobs:
       - name: Instalar
         run: pip install -r requirements.txt
 
-      - name: Comprobar que arranca con los inputs vacíos
-        run: python app/prueba_vacias.py
+      # LAS COMPROBACIONES, JUNTAS Y DEJANDO RASTRO. Mismo motivo que en
+      # reel-diario.yml: el 21 de octubre a las 17:12 cayó una de ellas y se
+      # perdió el porqué, porque los registros de Actions no se pueden leer
+      # desde fuera. Lo que se escribe en el repositorio, sí.
+      #
+      # Y DE PASO, UN FALLO QUE LLEVABA AQUÍ DESDE SIEMPRE: prueba_pisadas
+      # tenía la condición «steps.falta.outputs.falta == 'si'», copiada del
+      # flujo del reel. En el banco no hay ningún paso con ese id, así que la
+      # condición era siempre falsa y esa comprobación NUNCA se ejecutaba.
+      # Un paso en verde que no ha hecho nada es peor que no tenerlo.
+      - name: Comprobaciones
+        run: |
+          mkdir -p estado
+          set -o pipefail
+          echo "Comprobaciones del banco · $(date -u '+%Y-%m-%d %H:%M UTC')" \
+            > estado/ultimas-comprobaciones-banco.txt
 
-      - name: Comprobar que el revisor distingue a Allie
-        run: python app/prueba_identidad.py
+          malas=""
+          for p in prueba_vacias prueba_identidad prueba_manos prueba_pisadas \
+                   prueba_banco prueba_gemini_caida prueba_cloudflare prueba_cuota; do
+            echo "━━━━ $p" | tee -a estado/ultimas-comprobaciones-banco.txt
+            if python "app/$p.py" 2>&1 | tee -a estado/ultimas-comprobaciones-banco.txt; then
+              echo "   OK $p" | tee -a estado/ultimas-comprobaciones-banco.txt
+            else
+              echo "   MAL $p" | tee -a estado/ultimas-comprobaciones-banco.txt
+              malas="$malas $p"
+            fi
+          done
+
+          echo | tee -a estado/ultimas-comprobaciones-banco.txt
+          if [ -n "$malas" ]; then
+            echo "FALLARON:$malas" | tee -a estado/ultimas-comprobaciones-banco.txt
+            exit 1
+          fi
+          echo "las ocho comprobaciones pasan" \
+            | tee -a estado/ultimas-comprobaciones-banco.txt
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
-      - name: Comprobar que al quitar las manos no quede contradicción
-        run: python app/prueba_manos.py
-
-      - name: Comprobar que ninguna foto pisa a otra
-        if: steps.falta.outputs.falta == 'si'
-        run: python app/prueba_pisadas.py
-
-      - name: Comprobar que el banco reparte bien
-        run: python app/prueba_banco.py
-
-      - name: Comprobar que un modelo caído no tumba el trabajo
-        run: python app/prueba_gemini_caida.py
-
-      - name: Comprobar el camino de Cloudflare
-        run: python app/prueba_cloudflare.py
-
-      - name: Comprobar que para en seco si no hay cuota
-        run: python app/prueba_cuota.py
+      - name: Dejar escrito por qué falló
+        if: failure()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estado/ultimas-comprobaciones-banco.txt
+          git commit -m "Por qué falló una comprobación del banco [skip ci]" || true
+          git pull --rebase --autostash || true
+          git push || true
 
       - name: Generar y revisar
         run: python app/banco.py
