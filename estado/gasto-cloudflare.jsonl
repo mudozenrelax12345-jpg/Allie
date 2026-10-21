@@ -262,3 +262,4 @@
 {"cuando": "2026-10-21T14:01:23+00:00", "quien": "prueba_producto", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 3.4, "neuronas": 1462}
 {"cuando": "2026-10-21T14:01:26+00:00", "quien": "prueba_producto", "modelo": "@cf/black-forest-labs/flux-2-klein-9b", "clase": "imagen", "ok": true, "segundos": 2.5, "neuronas": 1462}
 {"cuando": "2026-10-21T14:33:24+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
+{"cuando": "2026-10-21T15:34:23+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
