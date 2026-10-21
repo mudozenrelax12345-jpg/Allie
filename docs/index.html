@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Imágenes de producto con Allie, modelo generada con IA. Muestrario y prueba de fidelidad al producto.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Allie · Imagen de producto">
+<meta property="og:description" content="Veinte fotos de tu producto, la misma modelo, en veinticuatro horas.">
+<meta property="og:type" content="website">
+<title>Allie · Imagen de producto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
+
+<style>
+  /* Portafolio de estudio: una columna ancha, la retícula de fotos manda,
+     el texto se aparta. Acento verde tomado del vestido de las propias fotos. */
+  :root {
+    --papel: #f3f5f2;
+    --tarjeta: #ffffff;
+    --tinta: #151a17;
+    --suave: #5d6761;
+    --linea: #dde3dd;
+    --verde: #2f5a45;
+    --verde-claro: #e6efe8;
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --lectura: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --papel: #0f1310;
+      --tarjeta: #171c18;
+      --tinta: #e9ede9;
+      --suave: #98a39c;
+      --linea: #252c27;
+      --verde: #83c3a1;
+      --verde-claro: #1b2720;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --papel: #0f1310;
+    --tarjeta: #171c18;
+    --tinta: #e9ede9;
+    --suave: #98a39c;
+    --linea: #252c27;
+    --verde: #83c3a1;
+    --verde-claro: #1b2720;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--lectura);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .envoltura {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: clamp(2.5rem, 7vw, 5rem) 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .etiqueta {
+    font-family: var(--display);
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--suave);
+  }
+
+  /* ---------------------------------------------------------- portada */
+  .portada { display: flex; flex-direction: column; gap: 1.5rem; }
+  .portada h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2.3rem, 7vw, 4.1rem);
+    line-height: 1.02;
+    letter-spacing: -.03em;
+    margin: 0;
+    max-width: 16ch;
+    text-wrap: balance;
+  }
+  .entradilla {
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    line-height: 1.5;
+    max-width: 54ch;
+    color: var(--suave);
+    margin: 0;
+  }
+  .entradilla strong { color: var(--tinta); font-weight: 400; font-style: italic; }
+
+  .declaracion {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    align-self: flex-start;
+    background: var(--verde-claro);
+    color: var(--verde);
+    border: 1px solid color-mix(in srgb, var(--verde) 25%, transparent);
+    border-radius: 2px;
+    padding: .5rem .8rem;
+    font-family: var(--display);
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .01em;
+  }
+
+  /* ------------------------------------------------------------ cifras */
+  .cifras {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--linea);
+    border-block: 1px solid var(--linea);
+  }
+  .cifra { background: var(--papel); padding: 1.25rem 1.1rem; }
+  .cifra b {
+    display: block;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.9rem;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .cifra span { font-size: .92rem; color: var(--suave); display: block; margin-top: .2rem; }
+
+  /* ------------------------------------------------------------- fotos */
+  .galeria { display: flex; flex-direction: column; gap: 1.5rem; }
+  .rejilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1.1rem;
+  }
+  figure { margin: 0; display: flex; flex-direction: column; gap: .6rem; min-width: 0; }
+  figure img {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    background: var(--tarjeta);
+    border-radius: 2px;
+  }
+  figcaption {
+    font-family: var(--display);
+    font-size: .78rem;
+    letter-spacing: .02em;
+    color: var(--suave);
+    display: flex;
+    justify-content: space-between;
+    gap: .75rem;
+  }
+  figcaption em { font-style: normal; color: var(--tinta); font-weight: 500; }
+
+  /* ----------------------------------------------------------- bloques */
+  section h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    letter-spacing: -.015em;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  section p { max-width: 62ch; margin: 0 0 1rem; }
+  section p:last-child { margin-bottom: 0; }
+
+  .dos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .lista { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .7rem; }
+  .lista li {
+    display: grid;
+    grid-template-columns: 1.1rem 1fr;
+    gap: .6rem;
+    align-items: baseline;
+    min-width: 0;
+  }
+  .lista li::before {
+    content: "";
+    width: .42rem; height: .42rem;
+    border-radius: 50%;
+    background: var(--verde);
+    transform: translateY(-.15rem);
+  }
+
+  /* La prueba de fidelidad. Van numerados porque son tres pasos en orden y el
+     orden es el argumento: dibujo, producto, puesto. */
+  .pasos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.1rem;
+  }
+  .paso { margin: 0; display: flex; flex-direction: column; gap: .6rem; min-width: 0; }
+  .paso img {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    background: var(--tarjeta);
+    border-radius: 2px;
+  }
+  .paso.plano img {
+    object-fit: contain;
+    padding: 9%;
+    border: 1px solid var(--linea);
+  }
+  .paso figcaption {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr;
+    gap: .5rem;
+    align-items: baseline;
+    justify-content: start;
+  }
+  .paso .n {
+    font-family: var(--display);
+    font-weight: 800;
+    color: var(--verde);
+    font-variant-numeric: tabular-nums;
+  }
+  .nota {
+    font-size: .95rem;
+    color: var(--suave);
+    border-left: 2px solid var(--linea);
+    padding-left: 1rem;
+  }
+
+  .limites {
+    background: var(--tarjeta);
+    border: 1px solid var(--linea);
+    border-left: 3px solid var(--verde);
+    border-radius: 2px;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+  }
+  .limites h2 { margin-bottom: .75rem; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .97rem; }
+  .tabla-env { overflow-x: auto; }
+  th, td { text-align: left; padding: .7rem .8rem .7rem 0; border-bottom: 1px solid var(--linea); vertical-align: top; }
+  th {
+    font-family: var(--display);
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--suave);
+  }
+  td:first-child { font-family: var(--display); font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
+
+  .pie {
+    border-top: 1px solid var(--linea);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+  }
+  .pie .contacto {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    letter-spacing: -.01em;
+    user-select: all;
+  }
+  .pie small { color: var(--suave); font-size: .88rem; }
+</style>
+<style>
+  /* Lo que la plataforma de artefactos pone sola y aquí hay que escribir. */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="envoltura">
+
+  <header class="portada">
+    <p class="etiqueta">Imagen de producto · Madrid</p>
+    <h1>Veinte fotos de tu producto. La misma modelo. Mañana.</h1>
+    <p class="entradilla">
+      Allie es una modelo generada con inteligencia artificial. Sostiene tu producto,
+      lo lleva puesto o lo acompaña, en el sitio y con la luz que pidas, sin sesión,
+      sin agenda y sin derechos de imagen que caduquen. <strong>El mismo rostro en
+      todas las entregas, esta semana y dentro de un año.</strong>
+    </p>
+    <p class="declaracion">Contenido generado con IA · Allie no es una persona real</p>
+  </header>
+
+  <div class="cifras">
+    <div class="cifra"><b>24 h</b><span>de encargo a entrega</span></div>
+    <div class="cifra"><b>20+</b><span>variaciones por producto</span></div>
+    <div class="cifra"><b>0</b><span>sesiones que cuadrar</span></div>
+    <div class="cifra"><b>∞</b><span>uso, sin caducidad de derechos</span></div>
+  </div>
+
+  <section class="galeria">
+    <div>
+      <p class="etiqueta">Muestrario</p>
+      <h2>Seis composiciones, seis sectores</h2>
+      <p>Productos genéricos y sin marca, a propósito: en un encargo real va el tuyo.</p>
+    </div>
+    <div class="rejilla">
+      <figure>
+        <img src="img/01-tarro-mesa.jpg" alt="Un tarro blanco de cerámica con tapa de madera en primer plano sobre una mesa clara; Allie, detrás y desenfocada, con los antebrazos apoyados.">
+        <figcaption><em>Cosmética</em><span>Producto en primer plano</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/03-taza-mesa.jpg" alt="Una taza de gres beige sobre una mesa de madera; Allie apoya la barbilla en el dorso de la mano y mira a cámara.">
+        <figcaption><em>Menaje</em><span>Sobremesa</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/04-libro-mesa.jpg" alt="Un libro de tapa dura con cubierta de lino en blanco sobre una mesa, con las dos manos de Allie apoyadas planas encima.">
+        <figcaption><em>Papelería</em><span>Bodegón con presencia</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/06-panuelo-puesto.jpg" alt="Allie lleva un pañuelo de seda liso anudado al cuello, sobre una pared lisa.">
+        <figcaption><em>Moda y complementos</em><span>Producto puesto</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/07-caja-mesa.jpg" alt="Una caja de regalo de cartón kraft con lazo sobre una mesa de madera, con las dos manos de Allie apoyadas planas a los lados.">
+        <figcaption><em>Packaging y regalo</em><span>Mesa, fondo limpio</span></figcaption>
+      </figure>
+      <figure>
+        <img src="img/08-frasco-detras.jpg" alt="Un frasco de cristal esmerilado con cuentagotas negro a contraluz en el alféizar; Allie detrás, desenfocada, con los brazos cruzados.">
+        <figcaption><em>Cuidado personal</em><span>Contraluz de ventana</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="galeria">
+    <div>
+      <p class="etiqueta">La prueba</p>
+      <h2>Tu producto, no uno que se le parezca</h2>
+      <p>
+        La duda razonable es si la máquina copia el producto o se inventa otro
+        con un aire parecido. Para responderla hace falta un producto que no
+        exista: de uno real podría saberse la respuesta de antemano.
+      </p>
+      <p>
+        Así que dibujé uno. Pañuelo verde azulado, borde mostaza, círculos
+        rojos; no se vende en ninguna parte. Estos son los tres pasos, sin
+        retoque entre uno y otro.
+      </p>
+    </div>
+    <div class="pasos">
+      <figure class="paso plano">
+        <img src="img/p0-dibujo.jpg" alt="Dibujo plano de un pañuelo cuadrado: fondo verde azulado, borde mostaza y una retícula de círculos rojos.">
+        <figcaption><span class="n">1</span><span>El dibujo que hace de encargo</span></figcaption>
+      </figure>
+      <figure class="paso">
+        <img src="img/p1-producto.jpg" alt="Foto de producto del mismo pañuelo extendido sobre fondo claro, con la caída y el brillo de la seda.">
+        <figcaption><span class="n">2</span><span>La foto de producto</span></figcaption>
+      </figure>
+      <figure class="paso">
+        <img src="img/p2-puesto.jpg" alt="Allie lleva ese mismo pañuelo anudado al cuello: se reconocen el verde azulado, el borde mostaza y los círculos rojos.">
+        <figcaption><span class="n">3</span><span>Puesto, con su cara de siempre</span></figcaption>
+      </figure>
+    </div>
+    <p class="nota">
+      Los lunares no caen en el mismo sitio exacto, igual que no caerían en un
+      pañuelo de verdad anudado al cuello. Lo que se conserva son los tres
+      colores, el borde y el motivo. Donde esto no funciona es con logotipos y
+      con texto impreso: ahí lo digo antes de aceptar el encargo.
+    </p>
+  </section>
+
+  <div class="dos">
+    <section>
+      <h2>Cómo funciona</h2>
+      <ul class="lista">
+        <li>Me mandas fotos de tu producto y dices dónde y cómo lo quieres ver.</li>
+        <li>Te enseño tres propuestas de encuadre antes de producir nada.</li>
+        <li>Recibes las imágenes en vertical y en cuadrado, listas para feed, ficha de producto y anuncios.</li>
+        <li>¿Que el fondo no encaja con tu marca? Se rehace. Las variaciones no cuestan una sesión nueva.</li>
+      </ul>
+    </section>
+    <section>
+      <h2>Para quién tiene sentido</h2>
+      <ul class="lista">
+        <li>Tiendas que sacan producto nuevo a menudo y no pueden pagar una sesión cada vez.</li>
+        <li>Catálogos donde hace falta la misma persona en cien fichas.</li>
+        <li>Campañas de temporada: el mismo producto en verano, en otoño y en Navidad.</li>
+        <li>Pruebas de concepto antes de gastar en una producción de verdad.</li>
+      </ul>
+    </section>
+  </div>
+
+  <section class="limites">
+    <p class="etiqueta">Lo que no hago</p>
+    <h2>Allie lleva tu producto; no da testimonio sobre él</h2>
+    <p>
+      No dirá que una crema le ha cambiado la piel ni que algo le sabe bien, porque
+      no tiene piel ni paladar. La normativa de la FTC de 2024 prohíbe los testimonios
+      de personas inexistentes, y en España eso es competencia desleal por endoso falso.
+    </p>
+    <p>
+      Cada entrega va marcada como contenido generado con IA, en los metadatos del
+      archivo y a la vista. No es una concesión: es lo que exige el artículo 50 del
+      reglamento europeo de IA, en vigor desde agosto de 2026, y protege a tu marca
+      tanto como al que mira.
+    </p>
+  </section>
+
+  <section>
+    <h2>Lo que recibes</h2>
+    <div class="tabla-env">
+      <table>
+        <thead>
+          <tr><th scope="col">Formato</th><th scope="col">Detalle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Imagen fija</td><td>1024 × 1280 px, JPEG. Vertical 4:5 y cuadrado 1:1 del mismo encuadre.</td></tr>
+          <tr><td>Vídeo corto</td><td>8 a 15 segundos, 1080 × 1920, a partir de cuatro imágenes de la misma serie.</td></tr>
+          <tr><td>Variaciones</td><td>Mismo producto, distinto sitio, luz y encuadre, sin repetir sesión.</td></tr>
+          <tr><td>Uso</td><td>Web, ficha de producto, redes y publicidad de pago, sin límite de tiempo.</td></tr>
+          <tr><td>Marcado</td><td>Declaración de IA visible y metadatos IPTC en cada archivo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="pie">
+    <p class="etiqueta">Hablamos</p>
+    <p class="contacto">@allie.the.ai</p>
+    <p class="contacto" style="font-size:clamp(.95rem,2.4vw,1.15rem)"><a href="mailto:allie.ai12345@gmail.com" style="color:inherit;text-decoration:none">allie.ai12345@gmail.com</a></p>
+    <small>Escríbeme por Instagram o por correo con una foto de tu producto y te digo en el día si encaja.</small>
+  </footer>
+
+</div>
+
+</body>
+</html>
