@@ -1,0 +1,68 @@
+Comprobaciones · 2026-10-21 19:00 UTC
+falta el reel de hoy: no
+
+━━━━ prueba_texto_mira
+ok   las fotos llegan a quien escribe el texto
+ok   y llegan como bytes de imagen, no como rutas
+ok   el encargo prohíbe inventar lo que no se ve
+ok   devuelve el texto nuevo
+· No pude escribir el texto mirando las fotos: Gemini caído
+ok   si el revisor de texto falla, no inventa nada
+· No pude leer /tmp/reel-texto-7zs0ruby/no-existe.jpg para escribir el texto: [Errno 2] No such file or directory: '/tmp/reel-texto-7zs0ruby/no-existe.jpg'
+ok   sin fotos que mirar, no escribe
+ok   un texto en blanco no cuenta como texto
+ok   guion_del_banco encuentra las fotos del apunte real
+ok   y usa el tema de las fotos, no uno al azar
+ok   y devuelve texto
+ok   main() reescribe el texto antes de montar
+
+el texto se escribe mirando las fotos
+   OK prueba_texto_mira
+━━━━ prueba_manos
+ok   The same woman, standing in a bright minimalist kitchen wi
+ok   The same woman, medium shot, holding a coffee cup, looking
+ok   The same woman, sitting at a table, fingers around a mug, 
+ok   The same woman, leaning on a railing, city behind her
+ok   The same woman, typing on a laptop at a café table
+ok   The same woman, walking down a street in autumn, smiling a
+
+ninguna escena pide manos después de quitárselas
+   OK prueba_manos
+━━━━ prueba_gemini_caida
+ok   un modelo saturado no tumba la llamada
+ok   y se prueba el siguiente de la lista
+ok   el saturado NO se descarta: vuelve solo
+ok   sin cupo también sigue adelante
+ok   y ese sí queda descartado
+ok   si fallan todos, el error lo dice
+ok   una clave inválida no se disfraza de otra cosa
+ok   y no se prueban los seis modelos por nada
+
+un modelo caído no tumba el trabajo
+   OK prueba_gemini_caida
+━━━━ prueba_cloudflare
+ok   sin credenciales, hay() dice que no
+ok   sin credenciales avisa en vez de llamar
+ok   con credenciales, hay() dice que sí
+ok   devuelve una imagen
+ok   y se puede abrir
+ok   empieza por el modelo barato
+ok   va como multipart, no como JSON
+ok   la referencia se llama input_image_0
+ok   el prompt viaja en el formulario
+ok   el token va en la cabecera
+ok   NO se pone Content-Type a mano (se perdería el boundary)
+ok   la cuenta va en la URL
+ok   la referencia se encoge por debajo de 512×512
+ok   y no se deforma al encogerla
+ok   si el pequeño falla, prueba el grande
+ok   si fallan todos, devuelve los motivos
+ok   y los motivos dicen algo útil
+ok   un 200 sin imagen no tumba nada
+ok   algo que no es JSON no tumba nada
+ok   la red cortada no tumba nada
+
+el camino de Cloudflare está bien montado
+   OK prueba_cloudflare
+
+las 4 comprobaciones pasan
