@@ -21,6 +21,10 @@ on:
         description: "Temas separados por | (vacío = al azar)"
         type: string
         default: ""
+      techo:
+        description: "Techo de fotos libres (vacío = 24). Súbelo para forzar una tanda concreta"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -111,6 +115,7 @@ jobs:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CUANTAS: ${{ inputs.cuantas }}
           TEMAS: ${{ inputs.temas }}
+          TECHO_BANCO: ${{ inputs.techo }}
 
       - name: Guardar el banco
         if: always()
