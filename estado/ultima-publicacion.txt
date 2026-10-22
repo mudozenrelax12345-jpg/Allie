@@ -1,4 +1,4 @@
-# Última publicación · 2026-10-22 18:31 UTC
+# Última publicación · 2026-10-22 18:34 UTC
 ## instalar
 Using cached truststore-0.10.5-py3-none-any.whl (19 kB)
 Downloading pycparser-3.12-py3-none-any.whl (62 kB)
@@ -38,21 +38,8 @@ el vídeo sale marcado y entero
 Buscando mi mejor perfil... aunque creo que todos me quedan bien. 🖤✨ Esta luz de atardecer en la cocina me tiene enamorada. ¿Cuál de todas las poses es tu favorita?
 
 #Allie #AIInfluencer #SunsetVibes #OOTD #GoodMood
-· Contenedor 18106714220571997
+· Contenedor 18106714481571997
 ·   10s · IN_PROGRESS
 ·   20s · IN_PROGRESS
-·   30s · IN_PROGRESS
-·   40s · ERROR
-Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/publicar.py", line 149, in <module>
-    main()
-  File "/home/runner/work/Allie/Allie/app/publicar.py", line 124, in main
-    raise RuntimeError(f"Instagram rechazó el vídeo ({estado}): "
-RuntimeError: Instagram rechazó el vídeo (ERROR): Error: Media upload has failed with error code 2207085
-
-Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/publicar.py", line 149, in <module>
-    main()
-  File "/home/runner/work/Allie/Allie/app/publicar.py", line 124, in main
-    raise RuntimeError(f"Instagram rechazó el vídeo ({estado}): "
-RuntimeError: Instagram rechazó el vídeo (ERROR): Error: Media upload has failed with error code 2207085
+·   30s · FINISHED
+· PUBLICADO · 18097079345121149 · https://www.instagram.com/reel/Dezo5jMgEby/
