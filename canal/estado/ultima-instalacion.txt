@@ -1,5 +1,6 @@
-Instalación · 2026-10-22 18:39 UTC
+Instalación · 2026-10-22 18:43 UTC
+ya instalado lo demás; falta: ffmpeg espeak-ng
 ━━━━ apt update
-   OK apt update · 6s
+   OK apt update · 21s
 ━━━━ apt install
    MAL apt install · 180s
