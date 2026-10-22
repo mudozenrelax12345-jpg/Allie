@@ -73,11 +73,28 @@ jobs:
         if: github.event_name == 'schedule' || !inputs.saltar_hora
         run: python app/hora.py
 
+      # PYTORCH EN SU VERSIÓN SIN CUDA, Y ESTO NO ES UNA OPTIMIZACIÓN.
+      #
+      # kokoro arrastra torch, y pip por defecto se baja la rueda con CUDA:
+      # unos 2,5 GB de soporte para tarjeta gráfica, en una máquina de
+      # GitHub que no tiene ninguna. El 22 de octubre ese paso se quedó
+      # diecisiete minutos colgado y hubo que cancelarlo; dos días antes, con
+      # la caché caliente, había tardado un minuto cincuenta.
+      #
+      # La rueda de CPU son unos 200 MB y sale del índice propio de PyTorch.
+      # Se instala ANTES que el resto: cuando luego llega requirements.txt,
+      # torch ya está satisfecho y pip ni lo mira.
+      #
+      # El tope de doce minutos es para que, si vuelve a colgarse, falle
+      # rápido en vez de comerse la hora entera del trabajo.
       - name: Instalar
+        timeout-minutes: 12
         run: |
           sudo apt-get update
           sudo apt-get install -y espeak-ng ffmpeg fonts-dejavu-core
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
           pip install -r requirements.txt
+          python -c "import torch; print('torch', torch.__version__)"
 
       - name: Comprobaciones
         run: |
