@@ -87,14 +87,63 @@ jobs:
       #
       # El tope de doce minutos es para que, si vuelve a colgarse, falle
       # rápido en vez de comerse la hora entera del trabajo.
+      # --only-binary NO ES UNA OPTIMIZACIÓN, ES EL ARREGLO.
+      #
+      # El 22 de octubre este paso se colgó dos veces seguidas, más de doce
+      # minutos cada una. Dos días antes había tardado 1:50 con las mismas
+      # órdenes. Para descartar que fuera culpa mía lancé el flujo viejo sin
+      # tocar nada: se colgó igual. O sea que no era la configuración: era la
+      # instalación, ese día.
+      #
+      # La explicación que encaja: requirements.txt no fija ninguna versión
+      # —«kokoro>=0.9», «soundfile», «numpy» a pelo— así que cualquier
+      # dependencia que saque versión nueva sin paquete precompilado para
+      # Python 3.12 hace que pip se ponga a COMPILARLA desde el código
+      # fuente. Eso tarda quince minutos y no dice nada por pantalla.
+      #
+      # --only-binary=:all: prohíbe compilar: si no hay paquete ya hecho,
+      # falla en segundos y con un mensaje claro en vez de colgarse.
+      #
+      # Y cada orden lleva su propio reloj y deja escrito cuánto tardó, para
+      # que la próxima vez no haya que adivinar cuál de las cuatro fue.
       - name: Instalar
         timeout-minutes: 12
         run: |
-          sudo apt-get update
-          sudo apt-get install -y espeak-ng ffmpeg fonts-dejavu-core
-          pip install --index-url https://download.pytorch.org/whl/cpu torch
-          pip install -r requirements.txt
-          python -c "import torch; print('torch', torch.__version__)"
+          mkdir -p estado
+          registro=estado/ultima-instalacion.txt
+          echo "Instalación · $(date -u '+%Y-%m-%d %H:%M UTC')" > $registro
+          corre() {
+            local nombre="$1"; shift
+            local t0=$(date +%s)
+            echo "━━━━ $nombre" | tee -a $registro
+            if timeout "$1" "${@:2}" 2>&1 | tail -25 | tee -a $registro; then
+              echo "   OK $nombre · $(( $(date +%s) - t0 ))s" | tee -a $registro
+            else
+              echo "   MAL $nombre · $(( $(date +%s) - t0 ))s" | tee -a $registro
+              return 1
+            fi
+          }
+          set -o pipefail
+          corre "apt update"  120 sudo apt-get update -qq
+          corre "apt install" 180 sudo apt-get install -y -qq espeak-ng ffmpeg fonts-dejavu-core
+          corre "torch cpu"   420 pip install --only-binary=:all: \
+                                    --index-url https://download.pytorch.org/whl/cpu torch
+          corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
+          python -c "import torch, kokoro; print('torch', torch.__version__)" | tee -a $registro
+
+      # Si la instalación se cuelga o falla, que quede escrito CUÁL de las
+      # cuatro órdenes fue. Es lo único que hoy no se pudo saber.
+      - name: Dejar escrito dónde se atascó
+        if: failure()
+        continue-on-error: true
+        working-directory: .
+        run: |
+          git config user.name "canal-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add canal/estado/ultima-instalacion.txt 2>/dev/null || true
+          git commit -m "Dónde se atascó la instalación [skip ci]" || true
+          git pull --rebase --autostash || true
+          git push || true
 
       - name: Comprobaciones
         run: |
