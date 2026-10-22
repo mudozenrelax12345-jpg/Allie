@@ -56,9 +56,29 @@ DUR_CIERRE = 3.0
 
 # La foto ocupa la mitad de arriba; el texto vive debajo, sobre el fondo
 # desenfocado. Nada baja de 1550: ahí empieza la interfaz de Instagram.
-FOTO_Y, FOTO_ALTO = 90, 1110
-TEXTO_Y = 1250
-SUELO = 1550
+# LAS ZONAS SEGURAS NO SON LAS MISMAS EN LAS DOS REDES, y por eso esto no es
+# el mismo vídeo con otro pie.
+#
+#   Instagram tapa con su interfaz los últimos ~370 píxeles de abajo (nombre
+#   de la cuenta, pie, audio) y poco a la derecha.
+#
+#   TikTok tapa MÁS abajo —el pie va más alto y hay dos líneas de texto— y
+#   además tiene la columna de botones a la derecha (perfil, like, comentar,
+#   compartir, disco de audio), unos 140 píxeles que se comen el margen
+#   derecho entero. Un texto que en Instagram se lee perfectamente, en
+#   TikTok queda debajo del botón de compartir.
+PLATAFORMA = (os.environ.get("PLATAFORMA") or "instagram").strip().lower()
+
+if PLATAFORMA == "tiktok":
+    FOTO_Y, FOTO_ALTO = 150, 1000
+    TEXTO_Y = 1180
+    SUELO = 1440          # el pie de TikTok sube más que el de Instagram
+    MARGEN_DER = 170      # la columna de botones
+else:
+    FOTO_Y, FOTO_ALTO = 90, 1110
+    TEXTO_Y = 1250
+    SUELO = 1550
+    MARGEN_DER = 70
 
 
 def sin_emoji(t):
@@ -175,7 +195,7 @@ def fondo_con_foto(ruta):
 def pintar_ficha(ruta_foto, ficha, total, destino):
     im = fondo_con_foto(ruta_foto)
     d = ImageDraw.Draw(im)
-    margen, ancho = 70, W - 140
+    margen, ancho = 70, W - 70 - MARGEN_DER
     y = TEXTO_Y
 
     d.text((margen, y - 70), f"{ficha['n']} de {total}",
@@ -206,18 +226,31 @@ def pintar_cartel(ruta_foto, titulo, pie, destino):
     titulo, pie = sin_emoji(titulo), sin_emoji(pie or "")
     im = fondo_con_foto(ruta_foto)
     d = ImageDraw.Draw(im)
-    margen, ancho = 70, W - 140
+    margen, ancho = 70, W - 70 - MARGEN_DER
+    # EL BLOQUE SE PEGA AL SUELO, no cuelga desde arriba. Colgando, un
+    # título de tres líneas empujaba el pie fuera de la zona segura y el
+    # programa lo descartaba: en la primera versión de TikTok la frase de
+    # gancho —la que da el motivo para quedarse— no llegó a verse.
+    f_p = ImageFont.truetype(NORMAL, 42)
+    alto_pie = 0
+    lineas_pie = envolver(d, pie, f_p, ancho) if pie else []
+    if lineas_pie:
+        alto_pie = len(lineas_pie) * 50 + 20
+
     f_t = ImageFont.truetype(NEGRITA, 84)
     lineas = envolver(d, titulo, f_t, ancho)
-    while len(lineas) > 3 and f_t.size > 50:
+    while f_t.size > 46 and (len(lineas) * (f_t.size + 14) + alto_pie) > (SUELO - TEXTO_Y + 110):
         f_t = ImageFont.truetype(NEGRITA, f_t.size - 6)
         lineas = envolver(d, titulo, f_t, ancho)
-    y = TEXTO_Y - 40
+
+    alto = len(lineas) * (f_t.size + 14) + alto_pie
+    y = SUELO - alto
     for ln in lineas:
         d.text((margen, y), ln, font=f_t, fill=CLARO)
         y += f_t.size + 14
-    if pie and y < SUELO - 60:
-        d.text((margen, y + 16), pie, font=ImageFont.truetype(NORMAL, 42), fill=ACENTO)
+    for ln in lineas_pie:
+        d.text((margen, y + 10), ln, font=f_p, fill=ACENTO)
+        y += 50
     im.save(destino, "JPEG", quality=93)
 
 
@@ -284,7 +317,12 @@ def main():
         trozos = []
 
         portada_img = TRABAJO / "00.jpg"
-        pintar_cartel(rutas[0], portada, "Desliza… o mejor guárdalo 📌", portada_img)
+        if PLATAFORMA == "tiktok":
+            titulo = pieza.get("gancho_tiktok") or portada
+            pie_portada = pieza.get("pie_tiktok") or "Guárdalo antes de que se te olvide"
+        else:
+            titulo, pie_portada = portada, "Desliza… o mejor guárdalo"
+        pintar_cartel(rutas[0], titulo, pie_portada, portada_img)
         c = TRABAJO / "c00.mp4"
         clip(portada_img, DUR_PORTADA, c)
         trozos.append(c)

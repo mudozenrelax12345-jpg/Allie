@@ -45,7 +45,9 @@
     "Mansilla Libros y Café",
     "La Central de Callao"
    ],
-   "ubicacion": "Madrid, Spain"
+   "ubicacion": "Madrid, Spain",
+   "gancho_tiktok": "5 librerías de Madrid con café dentro",
+   "pie_tiktok": "Apunta los horarios: varias cierran a mediodía y es el clásico viaje en balde"
   }
  ],
  "arrobas_comprobados": {
@@ -62,5 +64,6 @@
   "Mansilla Libros y Café",
   "La Central de Callao"
  ],
- "nota_ubicacion": "CERRADO el 19 de octubre: la ubicación por API NO se puede. Dos muros, y el segundo es definitivo. (1) El token que usamos es el de la PÁGINA de Facebook —main.credenciales() lo deriva así a propósito, porque no caduca— y /pages/search necesita un token de USUARIO. (2) Aunque fuera de usuario, buscar páginas que no son tuyas exige la función «Page Public Content Access», que Meta solo concede pasando revisión de la aplicación y no la da para esto. El campo «ubicacion» se queda puesto y el código lo intenta sin romper nada, por si algún día cambia; mientras tanto, la ubicación se pone a mano editando la publicación en la app."
+ "nota_ubicacion": "CERRADO el 19 de octubre: la ubicación por API NO se puede. Dos muros, y el segundo es definitivo. (1) El token que usamos es el de la PÁGINA de Facebook —main.credenciales() lo deriva así a propósito, porque no caduca— y /pages/search necesita un token de USUARIO. (2) Aunque fuera de usuario, buscar páginas que no son tuyas exige la función «Page Public Content Access», que Meta solo concede pasando revisión de la aplicación y no la da para esto. El campo «ubicacion» se queda puesto y el código lo intenta sin romper nada, por si algún día cambia; mientras tanto, la ubicación se pone a mano editando la publicación en la app.",
+ "comentario_tiktok": "gancho_tiktok y pie_tiktok son la portada del vídeo en TikTok. Van aparte porque TikTok no perdona la primera línea: en Instagram la gente ya está siguiendo y aguanta una frase descriptiva, y en TikTok el vídeo se lo enseñan a desconocidos que deslizan en un segundo. El gancho dice QUÉ hay y cuántos; el pie da el motivo para quedarse y para guardarlo."
 }
