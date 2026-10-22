@@ -1,5 +1,5 @@
-· Pieza: madrid-librerias-cafe
-· 5 fichas: La Mistral, La Buena Vida, Mansilla Libros y Café, Olavide, Bar de Libros, La Central de Callao
+· Pieza: madrid-gildas
+· 5 fichas: Bocaíto, La Castela, Lamiak, Sagaretxe, Txakolina
 · Del banco: 3 fotos de la tanda 20261020-184414 · quedan 28 libres
 · 3 fotos de la tanda, repartidas en 7 planos sin repetir seguidas
 · Narrando en español con ef_dora…
@@ -9,7 +9,8 @@
   WeightNorm.apply(module, name, dim)
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 WARNING: Defaulting repo_id to hexgrad/Kokoro-82M. Pass repo_id='hexgrad/Kokoro-82M' to suppress this warning.
-·   3.2s · 3.2s · 3.3s · 4.3s · 3.6s · 3.6s · 3.2s
-· LISTO · reel_20261022_2003.mp4 · 24.4s · 5.6 MB
+· Tono subido un 6 %
+·   3.5s · 3.2s · 3.7s · 3.4s · 3.5s · 3.5s · 3.2s
+· LISTO · reel_20261022_2045.mp4 · 24.0s · 5.4 MB
 · Devueltas al banco 3 fotos que no se publicaron
 · EN_SECO: fotos devueltas al banco.
