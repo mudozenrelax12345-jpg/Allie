@@ -361,6 +361,16 @@ def main():
         trozos = []
 
         cierre_txt = "¿Cuál es la tuya?"
+        # El título se resuelve aquí y no más abajo: la narración lo necesita
+        # para leer la portada, y definirlo después reventaba la rama con voz
+        # —la única que no se puede probar en local, porque Kokoro solo está
+        # en la máquina de GitHub.
+        if PLATAFORMA == "tiktok":
+            titulo = pieza.get("gancho_tiktok") or portada
+            pie_portada = pieza.get("pie_tiktok") or "Guárdalo antes de que se te olvide"
+        else:
+            titulo, pie_portada = portada, "Desliza… o mejor guárdalo"
+
         if VOZ:
             log(f"Narrando en español con {VOZ}…")
             wav = TRABAJO / "voz.wav"
@@ -372,11 +382,6 @@ def main():
             duraciones = [DUR_PORTADA] + [DUR_FICHA] * len(fichas) + [DUR_CIERRE]
 
         portada_img = TRABAJO / "00.jpg"
-        if PLATAFORMA == "tiktok":
-            titulo = pieza.get("gancho_tiktok") or portada
-            pie_portada = pieza.get("pie_tiktok") or "Guárdalo antes de que se te olvide"
-        else:
-            titulo, pie_portada = portada, "Desliza… o mejor guárdalo"
         pintar_cartel(rutas[0], titulo, pie_portada, portada_img)
         c = TRABAJO / "c00.mp4"
         clip(portada_img, duraciones[0], c)
