@@ -24,14 +24,29 @@ on:
         options:
           - instagram
           - tiktok
+      motor:
+        description: "Qué máquina de voz"
+        type: choice
+        default: kokoro
+        options:
+          - kokoro
+          - piper
       voz:
-        description: "Narración en español (vacío = mudo)"
+        description: "Kokoro: ef_dora · Piper: se elige abajo · vacío = mudo"
         type: choice
         default: ""
         options:
           - ""
           - ef_dora
           - em_alex
+      piper_voz:
+        description: "Voz de Piper. claude-high suena mejor (mexicana) · mls_9972 es de España"
+        type: choice
+        default: es_MX-claude-high
+        options:
+          - es_MX-claude-high
+          - es_ES-mls_9972-low
+          - es_ES-mls_10246-low
       ritmo:
         description: "Ritmo de la voz (1 normal · 0.92 más pausada)"
         type: string
@@ -113,7 +128,19 @@ jobs:
               | tee -a $registro; exit 1; }
           fi
           corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
-          if [ -n "${{ inputs.voz }}" ]; then
+          if [ "${{ inputs.motor }}" = "piper" ] && [ -n "${{ inputs.voz }}" ]; then
+            corre "piper" 300 pip install --only-binary=:all: piper-tts soundfile
+            # El modelo, del repositorio oficial de voces de Piper.
+            v="${{ inputs.piper_voz }}"
+            idioma=$(echo "$v" | cut -d- -f1)           # es_MX
+            nombre=$(echo "$v" | cut -d- -f2)            # claude
+            calidad=$(echo "$v" | cut -d- -f3)           # high
+            base="https://huggingface.co/rhasspy/piper-voices/resolve/main/es/$idioma/$nombre/$calidad/$v"
+            mkdir -p /tmp/piper
+            corre "modelo de voz" 180 curl -fsSL "$base.onnx" -o /tmp/piper/voz.onnx
+            corre "config de voz"  60 curl -fsSL "$base.onnx.json" -o /tmp/piper/voz.onnx.json
+            ls -la /tmp/piper | tee -a $registro
+          elif [ -n "${{ inputs.voz }}" ]; then
             corre "torch cpu" 420 pip install --only-binary=:all: \
               --index-url https://download.pytorch.org/whl/cpu torch
             corre "kokoro" 420 pip install --only-binary=:all: kokoro soundfile
@@ -144,6 +171,7 @@ jobs:
           VOZ: ${{ inputs.voz }}
           VOZ_RITMO: ${{ inputs.ritmo }}
           VOZ_TONO: ${{ inputs.tono }}
+          MOTOR: ${{ inputs.motor }}
           EN_SECO: "si"        # devuelve las fotos al banco: esto no publica
 
       - name: Qué ha salido

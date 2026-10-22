@@ -278,6 +278,23 @@ PAUSA = 0.45
 #               se calculan antes— siguen valiendo.
 #
 # Pasarse de 1,10 en el tono suena a dibujo animado. 1,05-1,07 es el punto.
+# MOTOR=piper usa Piper en vez de Kokoro. Cuatro veces más rápido en
+# procesador normal y el modelo ocupa 61 MB en vez de 341.
+#
+# OJO CON LAS LICENCIAS, que aquí es lo que decide. Las voces españolas que
+# mejor suenan de Piper —davefx, sharvard, ald, daniela— están afinadas
+# sobre la voz «Lessac», cuyas grabaciones originales son de uso NO
+# comercial, aunque el fichero resultante lleve licencia permisiva. Para un
+# proyecto que busca clientes, eso no vale. Quedan limpias:
+#
+#   es_MX-claude-high   la mejor puntuada de todas las españolas (85/100),
+#                       pero acento mexicano, y Allie vive en Madrid.
+#   es_ES-mls_9972-low  española de España, 75,8, calidad «low».
+#
+# Se decide escuchando, no leyendo esta nota.
+MOTOR = (os.environ.get("MOTOR") or "kokoro").strip().lower()
+PIPER_MODELO = os.environ.get("PIPER_MODELO") or "/tmp/piper/voz.onnx"
+
 VOZ_RITMO = float(os.environ.get("VOZ_RITMO") or 1.0)
 VOZ_TONO = float(os.environ.get("VOZ_TONO") or 1.0)
 
@@ -290,30 +307,53 @@ def decir(pipeline, texto):
     return np.concatenate(trozos)
 
 
+def decir_piper(texto, destino):
+    """Piper por línea de órdenes: más estable entre versiones que su API."""
+    r = subprocess.run(
+        ["piper", "--model", PIPER_MODELO, "--output_file", str(destino),
+         "--length-scale", f"{1 / VOZ_RITMO:.3f}"],
+        input=texto, capture_output=True, text=True)
+    if r.returncode or not destino.exists():
+        raise RuntimeError(f"Piper falló ({r.returncode}): {r.stderr[-300:]}")
+    import soundfile as sf
+    audio, frec = sf.read(str(destino), dtype="float32")
+    return audio, frec
+
+
 def narrar_fichas(portada, fichas, cierre, destino_wav):
     """Devuelve la duración que tiene que durar cada plano, por su audio."""
     import numpy as np
     import soundfile as sf
-    from kokoro import KPipeline
 
-    pipeline = KPipeline(lang_code="e")          # español
     frases = [portada] + [f"{x['nombre']}. {x['calle']}." for x in fichas] + [cierre]
+    frec = 24000
+    if MOTOR == "piper":
+        log(f"Motor: Piper · {Path(PIPER_MODELO).name}")
+        pipeline = None
+    else:
+        from kokoro import KPipeline
+        pipeline = KPipeline(lang_code="e")      # español
+        log(f"Motor: Kokoro · {VOZ}")
+
     pistas, duraciones = [], []
-    for frase in frases:
-        a = decir(pipeline, frase)
-        d = len(a) / 24000
+    for i, frase in enumerate(frases):
+        if MOTOR == "piper":
+            a, frec = decir_piper(frase, destino_wav.parent / f"p{i}.wav")
+        else:
+            a = decir(pipeline, frase)
+        d = len(a) / frec
         # El plano dura lo que la voz más un respiro, y nunca menos de 3,2s:
         # una ficha que se va antes de poder leer la calle no sirve de nada.
         duraciones.append(max(d + PAUSA, 3.2))
-        hueco = np.zeros(int(24000 * (duraciones[-1] - d)), dtype="float32")
+        hueco = np.zeros(int(frec * (duraciones[-1] - d)), dtype="float32")
         pistas.append(np.concatenate([a, hueco]))
     destino_wav.parent.mkdir(parents=True, exist_ok=True)
-    sf.write(str(destino_wav), np.concatenate(pistas), 24000)
+    sf.write(str(destino_wav), np.concatenate(pistas), frec)
     if abs(VOZ_TONO - 1.0) > 0.001:
         crudo = destino_wav.with_name("voz-cruda.wav")
         destino_wav.replace(crudo)
         ff("-i", str(crudo),
-           "-af", f"asetrate=24000*{VOZ_TONO},aresample=24000,atempo={1/VOZ_TONO:.6f}",
+           "-af", f"asetrate={frec}*{VOZ_TONO},aresample={frec},atempo={1/VOZ_TONO:.6f}",
            str(destino_wav))
         log(f"Tono subido un {(VOZ_TONO - 1) * 100:.0f} %")
     return duraciones
