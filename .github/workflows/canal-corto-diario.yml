@@ -123,9 +123,26 @@ jobs:
               return 1
             fi
           }
+          # QUÉ FALTA DE VERDAD. La máquina de GitHub ya trae ffmpeg y las
+          # fuentes DejaVu. Pedirlos otra vez no era gratis: arrastraba a apt
+          # a resolver dependencias que ya estaban. Solo se instala lo que no
+          # está, que en la práctica es espeak-ng, el fonetizador de Kokoro.
+          faltan=""
+          command -v ffmpeg     >/dev/null || faltan="$faltan ffmpeg"
+          command -v espeak-ng  >/dev/null || faltan="$faltan espeak-ng"
+          fc-list 2>/dev/null | grep -qi dejavu || faltan="$faltan fonts-dejavu-core"
+          echo "ya instalado lo demás; falta:${faltan:- nada}" | tee -a $registro
+
           set -o pipefail
-          corre "apt update"  120 sudo apt-get update -qq
-          corre "apt install" 180 sudo apt-get install -y -qq espeak-ng ffmpeg fonts-dejavu-core
+          if [ -n "$faltan" ]; then
+            corre "apt update" 120 sudo apt-get update -qq
+            # DPkg::Lock::Timeout en vez de esperar para siempre: en estas
+            # máquinas el proceso de actualizaciones automáticas coge el
+            # candado de dpkg y apt se queda ahí parado sin decir nada. Eso
+            # es lo que colgó el paso tres veces el 22 de octubre.
+            corre "apt install" 180 sudo DEBIAN_FRONTEND=noninteractive \
+              apt-get install -y -qq -o DPkg::Lock::Timeout=120 $faltan
+          fi
           corre "torch cpu"   420 pip install --only-binary=:all: \
                                     --index-url https://download.pytorch.org/whl/cpu torch
           corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
