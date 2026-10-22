@@ -107,7 +107,7 @@ jobs:
       # Y cada orden lleva su propio reloj y deja escrito cuánto tardó, para
       # que la próxima vez no haya que adivinar cuál de las cuatro fue.
       - name: Instalar
-        timeout-minutes: 12
+        timeout-minutes: 20
         run: |
           mkdir -p estado
           registro=estado/ultima-instalacion.txt
@@ -135,13 +135,19 @@ jobs:
 
           set -o pipefail
           if [ -n "$faltan" ]; then
-            corre "apt update" 120 sudo apt-get update -qq
-            # DPkg::Lock::Timeout en vez de esperar para siempre: en estas
-            # máquinas el proceso de actualizaciones automáticas coge el
-            # candado de dpkg y apt se queda ahí parado sin decir nada. Eso
-            # es lo que colgó el paso tres veces el 22 de octubre.
-            corre "apt install" 180 sudo DEBIAN_FRONTEND=noninteractive \
-              apt-get install -y -qq -o DPkg::Lock::Timeout=120 $faltan
+            corre "apt update" 180 sudo apt-get update -qq
+            # --no-install-recommends ES LO QUE ARREGLA ESTO. ffmpeg en
+            # Ubuntu «recomienda» una pila de paquetes que no usamos para
+            # nada, y apt los instala salvo que se le diga que no. Eso es lo
+            # que se pasaba de los tres minutos el 22 de octubre: no era un
+            # candado, era volumen.
+            #
+            # El tope sube a diez minutos porque 180 segundos era un número
+            # que me inventé, y DPkg::Lock::Timeout se queda por si algún día
+            # sí es el candado de las actualizaciones automáticas.
+            corre "apt install" 600 sudo DEBIAN_FRONTEND=noninteractive \
+              apt-get install -y -qq --no-install-recommends \
+              -o DPkg::Lock::Timeout=120 $faltan
           fi
           corre "torch cpu"   420 pip install --only-binary=:all: \
                                     --index-url https://download.pytorch.org/whl/cpu torch
