@@ -99,9 +99,14 @@ jobs:
               return 1
             fi
           }
+          # espeak-ng SOLO lo necesita Kokoro. Piper trae su propia
+          # fonetización dentro del paquete, así que pedirlo con Piper es
+          # arrastrar a apt sin motivo.
           faltan=""
-          command -v ffmpeg    >/dev/null || faltan="$faltan ffmpeg"
-          command -v espeak-ng >/dev/null || faltan="$faltan espeak-ng"
+          command -v ffmpeg >/dev/null || faltan="$faltan ffmpeg"
+          if [ "${{ inputs.motor }}" != "piper" ]; then
+            command -v espeak-ng >/dev/null || faltan="$faltan espeak-ng"
+          fi
           fc-list 2>/dev/null | grep -qi dejavu || faltan="$faltan fonts-dejavu-core"
           echo "falta:${faltan:- nada}" | tee -a $registro
           set -o pipefail
@@ -124,8 +129,32 @@ jobs:
               echo "   reintento en 20s" | tee -a $registro
               sleep 20
             done
-            [ -n "$instalado" ] || { echo "apt no entró en tres intentos" \
+            # PLAN B: ffmpeg SIN apt.
+            #
+            # El 22 de octubre apt falló tres veces seguidas de 240 segundos,
+            # veinte minutos después de haber tardado 12. Cuando la única vía
+            # para una herramienta se cae, no hace falta un cuarto intento:
+            # hace falta otra vía. Los binarios estáticos de ffmpeg viven en
+            # GitHub, que es de donde ya se descarga todo lo demás, y traen
+            # ffmpeg y ffprobe sin instalar nada en el sistema.
+            if [ -z "$instalado" ]; then
+              echo "apt no entró en tres intentos · voy por el plan B" | tee -a $registro
+              url="https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
+              if corre "ffmpeg estático" 300 curl -fsSL "$url" -o /tmp/ff.tar.xz; then
+                mkdir -p /tmp/ffb && tar -xf /tmp/ff.tar.xz -C /tmp/ffb --strip-components=1
+                sudo cp /tmp/ffb/bin/ffmpeg /tmp/ffb/bin/ffprobe /usr/local/bin/
+                hash -r
+                ffmpeg -version | head -1 | tee -a $registro
+              fi
+            fi
+            # Con Piper basta ffmpeg. Con Kokoro hace falta además espeak-ng,
+            # y eso solo lo da apt.
+            command -v ffmpeg >/dev/null || { echo "sin ffmpeg no hay vídeo" \
               | tee -a $registro; exit 1; }
+            if [ "${{ inputs.motor }}" != "piper" ] && [ -n "${{ inputs.voz }}" ]; then
+              command -v espeak-ng >/dev/null || { echo "Kokoro necesita espeak-ng y apt no lo dio. Usa motor=piper." \
+                | tee -a $registro; exit 1; }
+            fi
           fi
           corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
           if [ "${{ inputs.motor }}" = "piper" ] && [ -n "${{ inputs.voz }}" ]; then
@@ -145,8 +174,8 @@ jobs:
               --index-url https://download.pytorch.org/whl/cpu torch
             corre "kokoro" 420 pip install --only-binary=:all: kokoro soundfile
             # espeak-ng tiene que saber hablar español, no solo existir.
-            espeak-ng -v es "prueba" --stdout > /dev/null \
-              && echo "   OK espeak-ng habla español" | tee -a $registro
+            espeak-ng -v es "prueba" --stdout > /dev/null 2>&1 \
+              && echo "   OK espeak-ng habla español" | tee -a $registro || true
           fi
 
       - name: Dejar escrito dónde se atascó
