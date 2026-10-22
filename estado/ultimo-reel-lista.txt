@@ -1,0 +1,22 @@
+· Pieza: madrid-librerias-cafe
+· 5 fichas: La Mistral, La Buena Vida, Mansilla Libros y Café, Olavide, Bar de Libros, La Central de Callao
+· Del banco: 3 fotos de la tanda 20261020-184414 · quedan 28 libres
+· 3 fotos de la tanda, repartidas en 7 planos sin repetir seguidas
+· Narrando en español con ef_dora…
+· Devueltas al banco 3 fotos que no se publicaron
+· Devuelvo las fotos al banco: no salió el reel
+Traceback (most recent call last):
+  File "/home/runner/work/Allie/Allie/app/reel_lista.py", line 433, in <module>
+    main()
+  File "/home/runner/work/Allie/Allie/app/reel_lista.py", line 367, in main
+    duraciones = narrar_fichas(titulo if PLATAFORMA == "tiktok" else portada,
+                               ^^^^^^
+UnboundLocalError: cannot access local variable 'titulo' where it is not associated with a value
+
+Traceback (most recent call last):
+  File "/home/runner/work/Allie/Allie/app/reel_lista.py", line 433, in <module>
+    main()
+  File "/home/runner/work/Allie/Allie/app/reel_lista.py", line 367, in main
+    duraciones = narrar_fichas(titulo if PLATAFORMA == "tiktok" else portada,
+                               ^^^^^^
+UnboundLocalError: cannot access local variable 'titulo' where it is not associated with a value

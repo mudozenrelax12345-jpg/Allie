@@ -1,11 +1,10 @@
-2026-10-22 19:13 UTC
+2026-10-22 19:45 UTC
 
 Traceback (most recent call last):
-  File "/home/claude/allie/app/reel_lista.py", line 302, in <module>
+  File "/home/runner/work/Allie/Allie/app/reel_lista.py", line 433, in <module>
     main()
-    ~~~~^^
-  File "/home/claude/allie/app/reel_lista.py", line 248, in main
-    raise RuntimeError(f"El banco solo dio {len(rutas)} fotos y hacen falta "
-                       f"{len(fichas) + 2}.")
-RuntimeError: El banco solo dio 3 fotos y hacen falta 7.
+  File "/home/runner/work/Allie/Allie/app/reel_lista.py", line 367, in main
+    duraciones = narrar_fichas(titulo if PLATAFORMA == "tiktok" else portada,
+                               ^^^^^^
+UnboundLocalError: cannot access local variable 'titulo' where it is not associated with a value
 
