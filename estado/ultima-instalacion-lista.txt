@@ -1,7 +1,7 @@
-Instalación · 2026-10-22 19:56 UTC
+Instalación · 2026-10-22 20:01 UTC
 falta: ffmpeg espeak-ng
 ━━━━ apt update
-   OK apt update · 12s
+   OK apt update · 5s
 ━━━━ apt install
 Setting up libsdl2-2.0-0:amd64 (2.30.0+dfsg-1ubuntu3.1) ...
 Setting up libespeak-ng1:amd64 (1.51+dfsg-12build1) ...
@@ -23,7 +23,7 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
-   OK apt install · 21s
+   OK apt install · 10s
 ━━━━ requirements
 Downloading httpx2-2.16.0-py3-none-any.whl (97 kB)
 Downloading httpcore2-2.16.0-py3-none-any.whl (85 kB)
@@ -53,21 +53,21 @@ Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch)
 Collecting MarkupSafe>=2.0 (from jinja2->torch)
   Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
 Downloading torch-2.14.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (196.3 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.3/196.3 MB 96.2 MB/s  0:00:02
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.3/196.3 MB 223.2 MB/s  0:00:00
 Downloading networkx-3.6.1-py3-none-any.whl (2.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 19.2 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 33.3 MB/s  0:00:00
 Downloading setuptools-78.1.0-py3-none-any.whl (1.3 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 79.7 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 208.8 MB/s  0:00:00
 Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 27.0 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 179.3 MB/s  0:00:00
 Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 64.9 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 116.5 MB/s  0:00:00
 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
 Downloading markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
 Installing collected packages: mpmath, sympy, setuptools, networkx, MarkupSafe, jinja2, torch
 
 Successfully installed MarkupSafe-3.0.3 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 setuptools-78.1.0 sympy-1.14.0 torch-2.14.1+cpu
-   OK torch cpu · 21s
+   OK torch cpu · 22s
 ━━━━ kokoro
 Downloading markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
 Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
@@ -76,18 +76,18 @@ Downloading smart_open-8.0.4-py3-none-any.whl (73 kB)
 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
 Downloading spacy_curated_transformers-0.3.1-py2.py3-none-any.whl (237 kB)
 Downloading curated_tokenizers-0.0.10-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.3 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 98.9 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 153.1 MB/s  0:00:00
 Downloading curated_transformers-0.1.1-py2.py3-none-any.whl (25 kB)
 Downloading termcolor-3.3.0-py3-none-any.whl (7.7 kB)
 Downloading transformers-5.20.2-py3-none-any.whl (12.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 47.0 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 329.1 MB/s  0:00:00
 Downloading tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 13.0 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 303.0 MB/s  0:00:00
 Downloading safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
 Downloading tzdata-2026.5-py2.py3-none-any.whl (347 kB)
 Downloading wrapt-2.5.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (250 kB)
 Installing collected packages: rfc3986, num2words, addict, wrapt, wasabi, uritemplate, tzdata, typing-inspection, termcolor, spacy-loggers, spacy-legacy, six, shellingham, safetensors, rpds-py, regex, pyparsing, pygments, pydantic-core, murmurhash, mdurl, loguru, language-tags, isodate, espeakng-loader, dlinfo, cymem, confection, cloudpickle, cloudpathlib, catalogue, blis, babel, attrs, annotated-types, annotated-doc, srsly, soundfile, smart-open, referencing, rdflib, python-dateutil, pydantic, preshed, misaki, markdown-it-py, joblib, curated-tokenizers, thinc, rich, jsonschema-specifications, curated-transformers, typer, tokenizers, spacy-curated-transformers, jsonschema, weasel, transformers, csvw, spacy, segments, phonemizer-fork, kokoro
 
 Successfully installed addict-2.4.0 annotated-doc-0.0.5 annotated-types-0.8.0 attrs-26.1.0 babel-2.18.0 blis-1.3.3 catalogue-2.0.10 cloudpathlib-0.26.0 cloudpickle-3.1.2 confection-1.3.3 csvw-4.1.1 curated-tokenizers-0.0.10 curated-transformers-0.1.1 cymem-2.0.13 dlinfo-2.0.0 espeakng-loader-0.2.4 isodate-0.7.2 joblib-1.6.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 kokoro-0.9.4 language-tags-1.3.1 loguru-0.7.3 markdown-it-py-4.2.0 mdurl-0.1.2 misaki-0.9.4 murmurhash-1.0.15 num2words-0.5.6 phonemizer-fork-3.3.2 preshed-3.0.13 pydantic-2.14.1 pydantic-core-2.50.1 pygments-2.21.0 pyparsing-3.3.3 python-dateutil-3.0.0 rdflib-7.6.0 referencing-0.37.0 regex-2026.9.29 rfc3986-1.5.0 rich-15.0.0 rpds-py-2026.9.1 safetensors-0.8.0 segments-2.4.0 shellingham-1.5.4 six-1.17.0 smart-open-8.0.4 soundfile-0.14.0 spacy-3.8.16 spacy-curated-transformers-0.3.1 spacy-legacy-3.0.12 spacy-loggers-1.0.5 srsly-2.5.4 termcolor-3.3.0 thinc-8.3.13 tokenizers-0.23.3 transformers-5.20.2 typer-0.27.3 typing-inspection-0.4.4 tzdata-2026.5 uritemplate-4.2.0 wasabi-1.1.3 weasel-1.0.0 wrapt-2.5.1
-   OK kokoro · 26s
+   OK kokoro · 21s
    OK espeak-ng habla español
