@@ -137,7 +137,23 @@ def main():
         pass
     log(f"PUBLICADO · {media_id} · {enlace}")
 
+    # QUÉ FOTOS LLEVABA ESTE REEL. Hasta el 22 de octubre no se anotaba, y
+    # eso dejó un agujero caro: un carrusel sí registra los nombres de sus
+    # jpg, pero un reel registraba solo el mp4. Cuando una ejecución moría
+    # entre coger las fotos y publicar, quedaban marcadas como gastadas para
+    # siempre y no había forma de saber si se habían llegado a ver o no.
+    # Treinta fotos generadas acabaron así. videos/del-banco.json guarda solo
+    # la última tanda y se sobrescribe, así que no servía de registro.
+    fotos_usadas = []
+    try:
+        d_banco = json.loads((BASE / "videos" / "del-banco.json").read_text(
+            encoding="utf-8"))
+        fotos_usadas = d_banco.get("cogidas") or []
+    except Exception:  # noqa: BLE001
+        pass
+
     ya.append({"archivo": archivo, "media_id": media_id, "enlace": enlace,
+               "fotos": fotos_usadas,
                "cuando": datetime.now(timezone.utc).isoformat(), "texto": pie})
     REGISTRO.write_text(json.dumps(ya, ensure_ascii=False, indent=1), encoding="utf-8")
     d["publicado"] = {"media_id": media_id, "enlace": enlace}
