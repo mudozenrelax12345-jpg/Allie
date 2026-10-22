@@ -90,11 +90,27 @@ jobs:
           fc-list 2>/dev/null | grep -qi dejavu || faltan="$faltan fonts-dejavu-core"
           echo "falta:${faltan:- nada}" | tee -a $registro
           set -o pipefail
+          # apt ES INTERMITENTE EN ESTAS MÁQUINAS. El 22 de octubre el mismo
+          # comando tardó 18 segundos en una ejecución y se pasó de 600 en la
+          # siguiente, media hora después. No es la orden: es el momento —el
+          # espejo de paquetes, o el proceso de actualizaciones automáticas
+          # que tiene cogido el candado de dpkg. Contra algo intermitente no
+          # sirve un tope más largo, sirve volver a intentarlo.
           if [ -n "$faltan" ]; then
-            corre "apt update" 180 sudo apt-get update -qq
-            corre "apt install" 600 sudo DEBIAN_FRONTEND=noninteractive \
-              apt-get install -y -qq --no-install-recommends \
-              -o DPkg::Lock::Timeout=120 $faltan
+            corre "apt update" 180 sudo apt-get update -qq || true
+            instalado=""
+            for intento in 1 2 3; do
+              if corre "apt install (intento $intento)" 240 \
+                   sudo DEBIAN_FRONTEND=noninteractive \
+                   apt-get install -y -qq --no-install-recommends \
+                   -o DPkg::Lock::Timeout=60 $faltan; then
+                instalado="si"; break
+              fi
+              echo "   reintento en 20s" | tee -a $registro
+              sleep 20
+            done
+            [ -n "$instalado" ] || { echo "apt no entró en tres intentos" \
+              | tee -a $registro; exit 1; }
           fi
           corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
           if [ -n "${{ inputs.voz }}" ]; then
