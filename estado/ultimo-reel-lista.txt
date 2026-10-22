@@ -1,16 +1,10 @@
 · Pieza: madrid-gildas
 · 5 fichas: Bocaíto, La Castela, Lamiak, Sagaretxe, Txakolina
-· Del banco: 3 fotos de la tanda 20261020-184414 · quedan 28 libres
+· Del banco: 3 fotos de la tanda 20261020-184414 · quedan 32 libres
 · 3 fotos de la tanda, repartidas en 7 planos sin repetir seguidas
 · Narrando en español con ef_dora…
-/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
-  super().__init__("LSTM", *args, **kwargs)
-/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:145: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
-  WeightNorm.apply(module, name, dim)
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-WARNING: Defaulting repo_id to hexgrad/Kokoro-82M. Pass repo_id='hexgrad/Kokoro-82M' to suppress this warning.
-· Tono subido un 6 %
-·   3.5s · 3.2s · 3.7s · 3.4s · 3.5s · 3.5s · 3.2s
-· LISTO · reel_20261022_2045.mp4 · 24.0s · 5.4 MB
+· Motor: Piper · voz.onnx
+·   3.5s · 3.2s · 3.7s · 3.6s · 3.8s · 3.7s · 3.2s
+· LISTO · reel_20261022_2056.mp4 · 24.6s · 5.5 MB
 · Devueltas al banco 3 fotos que no se publicaron
 · EN_SECO: fotos devueltas al banco.
