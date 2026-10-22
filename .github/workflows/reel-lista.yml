@@ -32,6 +32,14 @@ on:
           - ""
           - ef_dora
           - em_alex
+      ritmo:
+        description: "Ritmo de la voz (1 normal · 0.92 más pausada)"
+        type: string
+        default: "1.0"
+      tono:
+        description: "Tono de la voz (1 normal · 1.06 más dulce · más de 1.10 suena a dibujos)"
+        type: string
+        default: "1.0"
       etiqueta:
         description: "Nombre de la Release donde dejarlo"
         type: string
@@ -118,6 +126,8 @@ jobs:
           PIEZA: ${{ inputs.pieza }}
           PLATAFORMA: ${{ inputs.plataforma }}
           VOZ: ${{ inputs.voz }}
+          VOZ_RITMO: ${{ inputs.ritmo }}
+          VOZ_TONO: ${{ inputs.tono }}
           EN_SECO: "si"        # devuelve las fotos al banco: esto no publica
 
       - name: Qué ha salido

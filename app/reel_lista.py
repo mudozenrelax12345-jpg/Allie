@@ -267,10 +267,24 @@ def pintar_cartel(ruta_foto, titulo, pie, destino):
 VOZ = (os.environ.get("VOZ") or "").strip()
 PAUSA = 0.45
 
+# MÁS DULCE NO ES OTRA VOZ: Kokoro solo tiene una femenina en español,
+# ef_dora. Lo que sí se puede es cambiar cómo suena esa:
+#
+#   VOZ_RITMO   por debajo de 1 habla más despacio. Una voz que corre suena
+#               a locutora de megafonía; una que respira, no.
+#   VOZ_TONO    por encima de 1 sube el tono. Se hace con asetrate, que
+#               también acelera, y se compensa la velocidad con atempo, así
+#               que la duración no cambia y los tiempos de los planos —que
+#               se calculan antes— siguen valiendo.
+#
+# Pasarse de 1,10 en el tono suena a dibujo animado. 1,05-1,07 es el punto.
+VOZ_RITMO = float(os.environ.get("VOZ_RITMO") or 1.0)
+VOZ_TONO = float(os.environ.get("VOZ_TONO") or 1.0)
+
 
 def decir(pipeline, texto):
     import numpy as np
-    trozos = [a for _, _, a in pipeline(texto, voice=VOZ, speed=1.0)]
+    trozos = [a for _, _, a in pipeline(texto, voice=VOZ, speed=VOZ_RITMO)]
     if not trozos:
         raise RuntimeError(f"Kokoro no devolvió audio para: {texto[:50]}")
     return np.concatenate(trozos)
@@ -295,6 +309,13 @@ def narrar_fichas(portada, fichas, cierre, destino_wav):
         pistas.append(np.concatenate([a, hueco]))
     destino_wav.parent.mkdir(parents=True, exist_ok=True)
     sf.write(str(destino_wav), np.concatenate(pistas), 24000)
+    if abs(VOZ_TONO - 1.0) > 0.001:
+        crudo = destino_wav.with_name("voz-cruda.wav")
+        destino_wav.replace(crudo)
+        ff("-i", str(crudo),
+           "-af", f"asetrate=24000*{VOZ_TONO},aresample=24000,atempo={1/VOZ_TONO:.6f}",
+           str(destino_wav))
+        log(f"Tono subido un {(VOZ_TONO - 1) * 100:.0f} %")
     return duraciones
 
 
