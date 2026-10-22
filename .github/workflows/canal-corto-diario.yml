@@ -60,9 +60,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # La caché de pip no es un lujo: Kokoro arrastra PyTorch, que son casi
+      # dos gigas. Sin ella, cada publicación diaria se pasa ocho minutos
+      # descargando lo mismo que ayer.
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
+          cache-dependency-path: canal/requirements.txt
 
       - name: ¿Es la hora en Nueva York?
         if: github.event_name == 'schedule' || !inputs.saltar_hora
