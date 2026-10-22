@@ -1,0 +1,5 @@
+Instalación · 2026-10-22 18:39 UTC
+━━━━ apt update
+   OK apt update · 6s
+━━━━ apt install
+   MAL apt install · 180s
