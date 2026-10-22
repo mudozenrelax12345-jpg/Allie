@@ -1,0 +1,157 @@
+name: Montar un reel de lista
+
+# El reel que lleva dentro la información del carrusel: portada, una ficha
+# por sitio con su calle y su horario, y cierre.
+#
+# POR QUÉ EXISTE. En cinco semanas los carruseles dieron 228 de alcance con
+# 12 guardados y 6 seguidores; los reels, 130 con cero y cero. La diferencia
+# no es el formato: es que el carrusel contiene algo que alguien quiere
+# guardar y el reel no. Esto pone el contenido del carrusel en vertical.
+#
+# No publica. Deja el mp4 descargable para mirarlo antes de soltarlo.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pieza:
+        description: "Id de la pieza de contenido/cola.json (vacío = la primera libre)"
+        type: string
+        default: ""
+      plataforma:
+        description: "Dónde va: cambia las zonas seguras y el gancho"
+        type: choice
+        default: instagram
+        options:
+          - instagram
+          - tiktok
+      voz:
+        description: "Narración en español (vacío = mudo)"
+        type: choice
+        default: ""
+        options:
+          - ""
+          - ef_dora
+          - em_alex
+      etiqueta:
+        description: "Nombre de la Release donde dejarlo"
+        type: string
+        default: "reel-lista"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reel-allie
+  cancel-in-progress: false
+
+jobs:
+  montar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Con las lecciones del 22 de octubre ya puestas: no pedir lo que ya
+      # está, prohibir compilar desde el código fuente, un reloj por orden y
+      # dejar escrito dónde se atasca. Aquel día tres arreglos a ojo costaron
+      # cuarenta minutos y el registro lo resolvió en tres.
+      - name: Instalar
+        timeout-minutes: 20
+        run: |
+          mkdir -p estado
+          registro=estado/ultima-instalacion-lista.txt
+          echo "Instalación · $(date -u '+%Y-%m-%d %H:%M UTC')" > $registro
+          corre() {
+            local nombre="$1"; shift
+            local t0=$(date +%s)
+            echo "━━━━ $nombre" | tee -a $registro
+            if timeout "$1" "${@:2}" 2>&1 | tail -20 | tee -a $registro; then
+              echo "   OK $nombre · $(( $(date +%s) - t0 ))s" | tee -a $registro
+            else
+              echo "   MAL $nombre · $(( $(date +%s) - t0 ))s" | tee -a $registro
+              return 1
+            fi
+          }
+          faltan=""
+          command -v ffmpeg    >/dev/null || faltan="$faltan ffmpeg"
+          command -v espeak-ng >/dev/null || faltan="$faltan espeak-ng"
+          fc-list 2>/dev/null | grep -qi dejavu || faltan="$faltan fonts-dejavu-core"
+          echo "falta:${faltan:- nada}" | tee -a $registro
+          set -o pipefail
+          if [ -n "$faltan" ]; then
+            corre "apt update" 180 sudo apt-get update -qq
+            corre "apt install" 600 sudo DEBIAN_FRONTEND=noninteractive \
+              apt-get install -y -qq --no-install-recommends \
+              -o DPkg::Lock::Timeout=120 $faltan
+          fi
+          corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
+          if [ -n "${{ inputs.voz }}" ]; then
+            corre "torch cpu" 420 pip install --only-binary=:all: \
+              --index-url https://download.pytorch.org/whl/cpu torch
+            corre "kokoro" 420 pip install --only-binary=:all: kokoro soundfile
+            # espeak-ng tiene que saber hablar español, no solo existir.
+            espeak-ng -v es "prueba" --stdout > /dev/null \
+              && echo "   OK espeak-ng habla español" | tee -a $registro
+          fi
+
+      - name: Dejar escrito dónde se atascó
+        if: failure()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estado/ultima-instalacion-lista.txt 2>/dev/null || true
+          git commit -m "Dónde se atascó la instalación [skip ci]" || true
+          git pull --rebase --autostash || true
+          git push || true
+
+      - name: Montar
+        run: |
+          mkdir -p estado
+          set -o pipefail
+          python app/reel_lista.py 2>&1 | tee estado/ultimo-reel-lista.txt
+        env:
+          PIEZA: ${{ inputs.pieza }}
+          PLATAFORMA: ${{ inputs.plataforma }}
+          VOZ: ${{ inputs.voz }}
+          EN_SECO: "si"        # devuelve las fotos al banco: esto no publica
+
+      - name: Qué ha salido
+        if: always()
+        run: |
+          for f in videos/reel_*.mp4; do
+            [ -e "$f" ] || continue
+            printf '%s  %s  %ss  audio:%s\n' "$(basename $f)" "$(du -h $f|cut -f1)" \
+              "$(ffprobe -v error -show_entries format=duration -of csv=p=0 $f)" \
+              "$(ffprobe -v error -select_streams a -show_entries stream=codec_name,duration -of csv=p=0 $f)"
+          done
+
+      - name: Dejarlo descargable
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          nuevo=$(ls -t videos/reel_*.mp4 | head -1)
+          nombre="${{ inputs.plataforma }}-${{ inputs.voz && 'con-voz' || 'mudo' }}.mp4"
+          cp "$nuevo" "/tmp/$nombre"
+          gh release delete "${{ inputs.etiqueta }}" --yes --cleanup-tag || true
+          gh release create "${{ inputs.etiqueta }}" \
+            --title "Reel de lista · ${{ inputs.plataforma }}" \
+            --notes "Montado sin publicar. Las fotos han vuelto al banco." \
+            "/tmp/$nombre"
+
+      - name: Guardar el registro
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estado/ 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Reel de lista [skip ci]"
+            git pull --rebase --autostash || true
+            git push || true
+          fi

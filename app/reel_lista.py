@@ -254,6 +254,50 @@ def pintar_cartel(ruta_foto, titulo, pie, destino):
     im.save(destino, "JPEG", quality=93)
 
 
+# ──────────────────────────────────────────────── voz
+# VOZ=ef_dora pone narración en español. Kokoro la trae gratis y corre en la
+# misma máquina, pero su propia documentación avisa de que el español «puede
+# ser flojo por falta de datos de entrenamiento», así que esto es opcional y
+# se decide escuchándolo, no leyendo el código.
+#
+# LO QUE SE LEE EN ALTO NO ES LO QUE PONE EN PANTALLA. El horario «de 11:00 a
+# 14:30» en pantalla se entiende de un vistazo; dicho en alto por una máquina
+# que no sabe leer relojes, suena a cualquier cosa. Así que la voz dice el
+# nombre y la calle, y los horarios se quedan para los ojos.
+VOZ = (os.environ.get("VOZ") or "").strip()
+PAUSA = 0.45
+
+
+def decir(pipeline, texto):
+    import numpy as np
+    trozos = [a for _, _, a in pipeline(texto, voice=VOZ, speed=1.0)]
+    if not trozos:
+        raise RuntimeError(f"Kokoro no devolvió audio para: {texto[:50]}")
+    return np.concatenate(trozos)
+
+
+def narrar_fichas(portada, fichas, cierre, destino_wav):
+    """Devuelve la duración que tiene que durar cada plano, por su audio."""
+    import numpy as np
+    import soundfile as sf
+    from kokoro import KPipeline
+
+    pipeline = KPipeline(lang_code="e")          # español
+    frases = [portada] + [f"{x['nombre']}. {x['calle']}." for x in fichas] + [cierre]
+    pistas, duraciones = [], []
+    for frase in frases:
+        a = decir(pipeline, frase)
+        d = len(a) / 24000
+        # El plano dura lo que la voz más un respiro, y nunca menos de 3,2s:
+        # una ficha que se va antes de poder leer la calle no sirve de nada.
+        duraciones.append(max(d + PAUSA, 3.2))
+        hueco = np.zeros(int(24000 * (duraciones[-1] - d)), dtype="float32")
+        pistas.append(np.concatenate([a, hueco]))
+    destino_wav.parent.mkdir(parents=True, exist_ok=True)
+    sf.write(str(destino_wav), np.concatenate(pistas), 24000)
+    return duraciones
+
+
 # ──────────────────────────────────────────────── montar
 def clip(imagen, dur, destino, acerca=True):
     fot = max(2, int(dur * FPS))
@@ -316,6 +360,17 @@ def main():
         TRABAJO.mkdir(parents=True, exist_ok=True)
         trozos = []
 
+        cierre_txt = "¿Cuál es la tuya?"
+        if VOZ:
+            log(f"Narrando en español con {VOZ}…")
+            wav = TRABAJO / "voz.wav"
+            duraciones = narrar_fichas(titulo if PLATAFORMA == "tiktok" else portada,
+                                       fichas, cierre_txt, wav)
+            log("  " + " · ".join(f"{d:.1f}s" for d in duraciones))
+        else:
+            wav = None
+            duraciones = [DUR_PORTADA] + [DUR_FICHA] * len(fichas) + [DUR_CIERRE]
+
         portada_img = TRABAJO / "00.jpg"
         if PLATAFORMA == "tiktok":
             titulo = pieza.get("gancho_tiktok") or portada
@@ -324,20 +379,20 @@ def main():
             titulo, pie_portada = portada, "Desliza… o mejor guárdalo"
         pintar_cartel(rutas[0], titulo, pie_portada, portada_img)
         c = TRABAJO / "c00.mp4"
-        clip(portada_img, DUR_PORTADA, c)
+        clip(portada_img, duraciones[0], c)
         trozos.append(c)
 
         for i, ficha in enumerate(fichas):
             img = TRABAJO / f"{i+1:02d}.jpg"
             pintar_ficha(rutas[i + 1], ficha, len(fichas), img)
             c = TRABAJO / f"c{i+1:02d}.mp4"
-            clip(img, DUR_FICHA, c, acerca=(i % 2 == 0))
+            clip(img, duraciones[i + 1], c, acerca=(i % 2 == 0))
             trozos.append(c)
 
         cierre_img = TRABAJO / "99.jpg"
-        pintar_cartel(rutas[-1], "¿Cuál es la tuya?", "Dímela en comentarios 👇", cierre_img)
+        pintar_cartel(rutas[-1], cierre_txt, "Dímela en comentarios", cierre_img)
         c = TRABAJO / "c99.mp4"
-        clip(cierre_img, DUR_CIERRE, c, acerca=False)
+        clip(cierre_img, duraciones[-1], c, acerca=False)
         trozos.append(c)
 
         lista = TRABAJO / "lista.txt"
@@ -347,11 +402,17 @@ def main():
 
         SALIDA.mkdir(exist_ok=True)
         final = SALIDA / f"reel_{datetime.now(timezone.utc):%Y%m%d_%H%M}.mp4"
-        ff("-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
-           "-i", str(mudo), "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
-           "-shortest", "-movflags", "+faststart", str(final))
+        if wav and wav.exists():
+            ff("-i", str(mudo), "-i", str(wav), "-c:v", "copy",
+               "-c:a", "aac", "-b:a", "128k", "-shortest",
+               "-movflags", "+faststart", str(final))
+        else:
+            # Instagram rechaza un vídeo sin pista de audio.
+            ff("-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
+               "-i", str(mudo), "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
+               "-shortest", "-movflags", "+faststart", str(final))
 
-        dur = DUR_PORTADA + len(fichas) * DUR_FICHA + DUR_CIERRE
+        dur = sum(duraciones)
         log(f"LISTO · {final.name} · {dur:.1f}s · {final.stat().st_size/1e6:.1f} MB")
         if seco:
             banco.devolver(rutas_usadas)
