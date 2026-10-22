@@ -1,10 +1,10 @@
-# Última publicación · 2026-10-20 08:44 UTC
+# Última publicación · 2026-10-22 18:31 UTC
 ## instalar
 Using cached truststore-0.10.5-py3-none-any.whl (19 kB)
-Using cached pycparser-3.11-py3-none-any.whl (51 kB)
+Downloading pycparser-3.12-py3-none-any.whl (62 kB)
 Installing collected packages: urllib3, typing-extensions, truststore, tqdm, pyyaml, pycparser, pillow, packaging, numpy, idna, hf-xet, h11, fsspec, filelock, click, charset_normalizer, certifi, requests, opencv-python-headless, httpcore2, httpcore, cffi, anyio, httpx2, httpx, cryptography, huggingface-hub, gradio_client
 
-Successfully installed anyio-4.15.1 certifi-2026.10.19 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 filelock-4.2.4 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.15.1 httpx-0.28.1 httpx2-2.15.1 huggingface-hub-2.2.0 idna-3.20 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 pycparser-3.11 pyyaml-6.0.3 requests-2.34.2 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0
+Successfully installed anyio-4.15.1 certifi-2026.10.19 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 filelock-4.2.4 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.2.0 idna-3.20 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0
 ## barreras
 ok   un reel sin texto no se publica
 · r.mp4 ya se publicó. No lo repito.
@@ -31,23 +31,28 @@ ok   un fichero que falta no revienta nada
 
 el vídeo sale marcado y entero
 ## publicar
-· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261020_0606.mp4
-· Texto (200 caracteres):
+· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261022_0608.mp4
+· Texto (282 caracteres):
 🤖 Contenido generado con IA · Allie es un personaje creado con IA
 
-A veces solo hace falta sentarse y dejar que pase el tiempo.
+Buscando mi mejor perfil... aunque creo que todos me quedan bien. 🖤✨ Esta luz de atardecer en la cocina me tiene enamorada. ¿Cuál de todas las poses es tu favorita?
 
-¿Te vienes a charlar un rato?
-
-✨
-
-#Allie #AIInfluencer #Momentos #Verde
-· Contenedor 18106388207571997
+#Allie #AIInfluencer #SunsetVibes #OOTD #GoodMood
+· Contenedor 18106714220571997
 ·   10s · IN_PROGRESS
 ·   20s · IN_PROGRESS
 ·   30s · IN_PROGRESS
-·   40s · IN_PROGRESS
-·   50s · IN_PROGRESS
-·   60s · IN_PROGRESS
-·   70s · FINISHED
-· PUBLICADO · 17999539106821302 · https://www.instagram.com/reel/Detb6LLH_w1/
+·   40s · ERROR
+Traceback (most recent call last):
+  File "/home/runner/work/Allie/Allie/app/publicar.py", line 149, in <module>
+    main()
+  File "/home/runner/work/Allie/Allie/app/publicar.py", line 124, in main
+    raise RuntimeError(f"Instagram rechazó el vídeo ({estado}): "
+RuntimeError: Instagram rechazó el vídeo (ERROR): Error: Media upload has failed with error code 2207085
+
+Traceback (most recent call last):
+  File "/home/runner/work/Allie/Allie/app/publicar.py", line 149, in <module>
+    main()
+  File "/home/runner/work/Allie/Allie/app/publicar.py", line 124, in main
+    raise RuntimeError(f"Instagram rechazó el vídeo ({estado}): "
+RuntimeError: Instagram rechazó el vídeo (ERROR): Error: Media upload has failed with error code 2207085

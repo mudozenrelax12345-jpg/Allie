@@ -1,14 +1,9 @@
-2026-10-18 09:14 UTC · carrusel
+2026-10-22 18:32 UTC · publicar
 
 Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 155, in <module>
+  File "/home/runner/work/Allie/Allie/app/publicar.py", line 149, in <module>
     main()
-  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 63, in main
-    nombres = [Path(r).name for r in rutas]
-               ^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/pathlib.py", line 1162, in __init__
-    super().__init__(*args)
-  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/pathlib.py", line 373, in __init__
-    raise TypeError(
-TypeError: argument should be a str or an os.PathLike object where __fspath__ returns a str, not 'list'
+  File "/home/runner/work/Allie/Allie/app/publicar.py", line 124, in main
+    raise RuntimeError(f"Instagram rechazó el vídeo ({estado}): "
+RuntimeError: Instagram rechazó el vídeo (ERROR): Error: Media upload has failed with error code 2207085
 
