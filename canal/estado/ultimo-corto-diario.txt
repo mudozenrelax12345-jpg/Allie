@@ -1,0 +1,2 @@
+· Todavía no están las llaves de YouTube: YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN
+· Se montará y publicará solo en cuanto estén. No hago nada más.
