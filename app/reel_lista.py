@@ -469,7 +469,17 @@ def main():
         SALIDA.mkdir(exist_ok=True)
         final = SALIDA / f"reel_{datetime.now(timezone.utc):%Y%m%d_%H%M}.mp4"
         if wav and wav.exists():
+            # loudnorm NO ES UN ADORNO. Piper saca la voz con picos a 0,0 dB
+            # —medido el 22 de octubre: media -15,3, máximo -0,0— y eso es
+            # saturación grabada en el fichero, que ya no se quita después.
+            # Kokoro sale mucho más bajo, a -27 de media. Sin igualarlas, el
+            # mismo vídeo suena a dos volúmenes distintos según el motor.
+            #
+            # I=-16 y TP=-1,5 es el estándar de audio para web: deja un
+            # margen de seguridad antes del techo y es lo que esperan las
+            # redes, que de todas formas vuelven a normalizar al subirlo.
             ff("-i", str(mudo), "-i", str(wav), "-c:v", "copy",
+               "-af", "loudnorm=I=-16:TP=-1.5:LRA=11",
                "-c:a", "aac", "-b:a", "128k", "-shortest",
                "-movflags", "+faststart", str(final))
         else:
