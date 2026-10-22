@@ -632,5 +632,100 @@
   "nota_cupo_metricool": "Cero publicaciones del cupo: el carrusel salio por la API de Instagram.",
   "banco": "23 fotos libres de 102 en el indice. Ayer eran 81: el 20-oct a las 18:38 otra sesion retiro 43 fotos beige a proposito (commit 9545e0e, 'el arreglo del domingo no llegaba al perfil'). Por debajo de 24, asi que la generacion diaria vuelve a entrar; hoy genero tres tandas de madrugada.",
   "pendiente": "1) El montador del reel sigue mezclando fotos de tandas distintas en vez de coger las tres de la misma tanda, como hace el carrusel. 2) ULTIMO-FALLO.txt sigue mostrando el fallo del 18-oct, ya corregido hace tres dias: o se limpia al acabar en verde o deja de servir para mirar. 3) El cron lleva tres dias seguidos saltando con 30-36 minutos de retraso; la ventana de la hora entera lo aguanta, pero si GitHub se pasa de la hora el dia se cae sin avisar."
+ },
+ {
+  "fecha": "2026-10-22",
+  "fecha_ultimo_dato": "2026-10-21",
+  "seguidores": 3284,
+  "ganados": null,
+  "perdidos": null,
+  "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 21-oct al medir (11:55 Madrid). El 20-oct: 3 ganados, 3 perdidos. El 19-oct: 5 ganados, 1 perdido.",
+  "alcance_reels": 317,
+  "visualizaciones_reels": 441,
+  "reels_publicados": 0,
+  "formato": "foto suelta",
+  "enlace": "https://www.instagram.com/p/DeylQTRoMSH/",
+  "nota": "SI SE PUBLICO Y SALIO SOLO, tercer dia limpio seguido. Hoy es jueves, dia de FOTO SUELTA en el reparto nuevo (carrusel lunes/miercoles/viernes/domingo, reel martes/sabado, foto suelta jueves). Lo saco carrusel.yml, no publicar.yml: el cron de publicar.yml solo tiene los dias 2 y 6, asi que hoy no le tocaba y no hacia falta lanzar nada. PUBLICADO a las 08:44 UTC / 10:44 Madrid, media_id 18021407234932006, https://www.instagram.com/p/DeylQTRoMSH/ . Un solo commit 'Carrusel publicado' y una sola entrada en publicados.json: cero duplicados y cero cupo de Metricool.\n\nSEGUNDA MIRADA A LA FOTO: es Allie, rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg (tanda 20261016-060842, apoyada en un balcon de piedra en una calle de Madrid con luz dorada). OpenCV ya la habia dado por buena en generacion. PERO EL TEXTO Y LA FOTO NO TERMINAN DE ENCAJAR: el pie es la lista de cinco sitios de Madrid para ver el OTONO ('antes de que se caigan todas las hojas', hoja de arce en dos sitios, #OtonoEnMadrid) y en la foto no hay una sola hoja, ni parque, ni ropa de otono: es un vestido verde sin mangas con luz de verano. No miente como lo de las brochas del 15-oct, pero el pie promete otono y la imagen no lo ensena. Es el mismo fallo de fondo de la etiqueta: 'calle' no dice en que estacion se ve la calle. Las tandas de parque con hojas habrian pegado mucho mejor.\n\nEL REEL DEL 20-OCT CONFIRMA Y MEJORA: ha madurado a 317 de alcance, 441 visualizaciones y 76 interacciones (ayer iba por 293/410/69). Es la mejor pieza de toda la ventana de 30 dias, por encima de cualquier post del mes salvo el 1-oct (329) y al triple largo de los dos Trial Reels (41 y 105). El Trial Reel queda descartado sin discusion. Y la respuesta a la pregunta abierta es que SI: el reel normal pasa de cien y de doscientos. Los otros tres reels normales maduros se quedan en 140, 151 y 140, asi que 317 es un pico, no una media; el reel del sabado 24-oct es el que dira si se repite.\n\nEL DATO MALO DE HOY ES EL CARRUSEL DE AYER: el pack de fondos de Halloween lleva 65 de alcance y 23 interacciones a las 27 h. Es el peor numero del mes con diferencia (18-oct iba por 127 a las 26 h y cerro en 161; 19-oct iba por 97 y cerro en 128). Madurara algo, pero no hasta la banda de los demas. La diferencia que salta a la vista: era el unico post del mes en el que NO sale Allie, cinco fondos de pantalla de calabazas y velas en 9:16. La cuenta va de un personaje; cuando el personaje no sale, no reparte. Conviene no repetir packs sin cara, o al menos meter una foto suya de portada.\n\nSEGUIDORES, QUE SIGUEN SIENDO LO BUENO: 3284 el 21-oct, maximo de la serie. +22 en 7 dias (3262 el 14-oct) y +56 en 30 dias (3228 el 22-sep), despues de un mes entero bajando hasta 3217 el 5-oct. Metricool aun no habia cerrado ganados/perdidos del 21-oct al medir (11:55 Madrid); el 20-oct: 3 ganados, 3 perdidos.",
+  "alcance_por_reel": {
+   "20261009": 140,
+   "20261013": 41,
+   "20261014": 105,
+   "20261015": 158,
+   "20261016": 151,
+   "20261017": 140,
+   "20261020": 317
+  },
+  "interacciones_por_reel": {
+   "20261009": 2,
+   "20261013": 0,
+   "20261014": 9,
+   "20261015": 114,
+   "20261016": 113,
+   "20261017": 112,
+   "20261020": 76
+  },
+  "visualizaciones_por_reel": {
+   "20261009": 166,
+   "20261013": 44,
+   "20261014": 135,
+   "20261015": 346,
+   "20261016": 304,
+   "20261017": 299,
+   "20261020": 441
+  },
+  "tipo_por_reel": {
+   "20261009": "reel normal",
+   "20261013": "trial reel",
+   "20261014": "trial reel",
+   "20261015": "trial reel",
+   "20261016": "reel normal",
+   "20261017": "reel normal",
+   "20261020": "reel normal"
+  },
+  "alcance_por_post": {
+   "20261001-2006": 329,
+   "20261002-0805": 236,
+   "20261003-0804": 315,
+   "20261004-0805": 269,
+   "20261008-1344": 203,
+   "20261008-1604": 163,
+   "20261009-0805": 21,
+   "20261009-1159": 252,
+   "20261010-1804": 243,
+   "20261014-0816": 170,
+   "20261018-0955": 161,
+   "20261019-0959": 128,
+   "20261021-0846": 65
+  },
+  "interacciones_por_post": {
+   "20261001-2006": 173,
+   "20261002-0805": 159,
+   "20261003-0804": 162,
+   "20261004-0805": 186,
+   "20261008-1344": 151,
+   "20261008-1604": 96,
+   "20261009-0805": 8,
+   "20261009-1159": 195,
+   "20261010-1804": 149,
+   "20261014-0816": 114,
+   "20261018-0955": 124,
+   "20261019-0959": 108,
+   "20261021-0846": 23
+  },
+  "serie_seguidores": {
+   "20261015": 3263,
+   "20261016": 3267,
+   "20261017": 3280,
+   "20261018": 3277,
+   "20261019": 3282,
+   "20261020": 3282,
+   "20261021": 3284
+  },
+  "variacion_7d": 22,
+  "variacion_30d": 56,
+  "veredicto": "El reel normal del 20-oct cierra en 317 de alcance y 441 visualizaciones: rompe de largo la banda de 100-220 y triplica a los Trial Reels (41 y 105). Trial Reel descartado del todo y la pregunta de si el reel normal pasa de cien queda respondida que si. Falta el reel del sabado 24-oct para saber si 317 es repetible o un pico: los otros tres normales se quedaron en 140-151. El hallazgo nuevo es otro: el carrusel de Halloween sin Allie se hunde en 65 de alcance, el peor del mes; el personaje parece ser lo que reparte.",
+  "nota_cupo_metricool": "Cero publicaciones del cupo: la foto salio por la API de Instagram.",
+  "banco": "31 fotos libres de 111: 13 varios, 6 calle, 6 viaje, 3 cafe, 3 casa. Por encima del umbral de 24, asi que hoy no tocaba generar; aun asi genero de madrugada (commit 32f8905) porque ayer estaba en 23.",
+  "pendiente": "1) La etiqueta no distingue estacion ni tiempo: hoy un pie de otono sobre una foto de verano. Al elegir foto para una pieza estacional habria que mirar la escena, no solo la etiqueta. 2) El montador del reel sigue mezclando fotos de tandas distintas en vez de coger las tres de la misma tanda. 3) ULTIMO-FALLO.txt sigue mostrando el TypeError del 18-oct, corregido hace cuatro dias: o se limpia al acabar en verde o deja de servir. 4) Los packs sin Allie (Halloween, 65 de alcance) no reparten: no repetir sin una foto suya."
  }
 ]
