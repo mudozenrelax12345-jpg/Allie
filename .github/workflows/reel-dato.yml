@@ -1,0 +1,153 @@
+name: Montar un reel de dato
+
+# El formato «¿sabías que…?» montado como vídeo corto: foto a sangre, texto
+# grande que se escribe al ritmo de la voz, un corte a mitad de cada ficha
+# y una base musical sintetizada.
+#
+# POR QUÉ EXISTE APARTE. El otro flujo monta la lista —portada, fichas con
+# calle y horario, cierre— y funciona. Este cambia la forma entera, así que
+# va en su propio programa para no romper lo que ya va bien.
+
+on:
+  workflow_dispatch:
+    inputs:
+      pieza:
+        description: "Id de la pieza (vacío = la primera de formato dato sin usar)"
+        type: string
+        default: ""
+      plataforma:
+        type: choice
+        default: tiktok
+        options: [tiktok, instagram]
+      motor:
+        type: choice
+        default: piper
+        options: [piper, kokoro]
+      voz:
+        description: "Vacío = mudo"
+        type: choice
+        default: ef_dora
+        options: ["", ef_dora]
+      piper_voz:
+        type: choice
+        default: es_MX-claude-high
+        options: [es_MX-claude-high, es_ES-mls_9972-low, es_ES-mls_10246-low]
+      ritmo:
+        type: string
+        default: "1.0"
+      etiqueta:
+        type: string
+        default: "dato"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reel-allie
+  cancel-in-progress: false
+
+jobs:
+  montar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar
+        timeout-minutes: 20
+        run: |
+          mkdir -p estado
+          registro=estado/ultima-instalacion-dato.txt
+          echo "Instalación · $(date -u '+%Y-%m-%d %H:%M UTC')" > $registro
+          corre() {
+            local nombre="$1"; shift
+            local t0=$(date +%s)
+            echo "━━━━ $nombre" | tee -a $registro
+            if timeout "$1" "${@:2}" 2>&1 | tail -20 | tee -a $registro; then
+              echo "   OK $nombre · $(( $(date +%s) - t0 ))s" | tee -a $registro
+            else
+              echo "   MAL $nombre · $(( $(date +%s) - t0 ))s" | tee -a $registro
+              return 1
+            fi
+          }
+          set -o pipefail
+          # ffmpeg POR EL CAMINO CORTO. apt tarda entre 18 segundos y más de
+          # 600 en estas máquinas, sin motivo aparente, y el 22 de octubre
+          # quemó doce minutos antes de fallar tres veces seguidas. El
+          # binario estático de GitHub tardó un segundo. Se prueba primero
+          # lo que funciona y apt queda de reserva.
+          if ! command -v ffmpeg >/dev/null; then
+            url="https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz"
+            if corre "ffmpeg estático" 300 curl -fsSL "$url" -o /tmp/ff.tar.xz; then
+              mkdir -p /tmp/ffb && tar -xf /tmp/ff.tar.xz -C /tmp/ffb --strip-components=1
+              sudo cp /tmp/ffb/bin/ffmpeg /tmp/ffb/bin/ffprobe /usr/local/bin/ && hash -r
+            fi
+            command -v ffmpeg >/dev/null || corre "apt ffmpeg" 300 \
+              sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
+              --no-install-recommends ffmpeg
+          fi
+          ffmpeg -version | head -1 | tee -a $registro
+          fc-list 2>/dev/null | grep -qi dejavu || corre "fuentes" 180 \
+            sudo apt-get install -y -qq --no-install-recommends fonts-dejavu-core
+          corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
+          if [ "${{ inputs.motor }}" = "piper" ] && [ -n "${{ inputs.voz }}" ]; then
+            corre "piper" 300 pip install --only-binary=:all: piper-tts soundfile
+            v="${{ inputs.piper_voz }}"
+            base="https://huggingface.co/rhasspy/piper-voices/resolve/main/es/$(echo $v|cut -d- -f1)/$(echo $v|cut -d- -f2)/$(echo $v|cut -d- -f3)/$v"
+            mkdir -p /tmp/piper
+            corre "modelo de voz" 180 curl -fsSL "$base.onnx" -o /tmp/piper/voz.onnx
+            corre "config de voz"  60 curl -fsSL "$base.onnx.json" -o /tmp/piper/voz.onnx.json
+          fi
+
+      - name: Dejar escrito dónde se atascó
+        if: failure()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estado/ultima-instalacion-dato.txt 2>/dev/null || true
+          git commit -m "Dónde se atascó la instalación del dato [skip ci]" || true
+          git pull --rebase --autostash || true
+          git push || true
+
+      - name: Montar
+        run: |
+          mkdir -p estado
+          set -o pipefail
+          python app/reel_dato.py 2>&1 | tee estado/ultimo-reel-dato.txt
+        env:
+          PIEZA: ${{ inputs.pieza }}
+          PLATAFORMA: ${{ inputs.plataforma }}
+          VOZ: ${{ inputs.voz }}
+          VOZ_RITMO: ${{ inputs.ritmo }}
+          MOTOR: ${{ inputs.motor }}
+          EN_SECO: "si"
+
+      - name: Dejarlo descargable
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          nuevo=$(ls -t videos/dato_*.mp4 | head -1)
+          cp "$nuevo" "/tmp/${{ inputs.plataforma }}-dato.mp4"
+          gh release delete "${{ inputs.etiqueta }}" --yes --cleanup-tag || true
+          gh release create "${{ inputs.etiqueta }}" \
+            --title "Dato · ${{ inputs.plataforma }}" \
+            --notes "Montado sin publicar. Las fotos han vuelto al banco." \
+            "/tmp/${{ inputs.plataforma }}-dato.mp4"
+
+      - name: Guardar el registro
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name "allie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add estado/ video/ultimo-dato.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Reel de dato [skip ci]"
+            git pull --rebase --autostash || true
+            git push || true
+          fi
