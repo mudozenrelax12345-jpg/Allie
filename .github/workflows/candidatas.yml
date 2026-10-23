@@ -1,0 +1,52 @@
+name: Ver las fotos candidatas de un sitio
+
+# Enseña, en una sola imagen, las primeras fotos con licencia libre que
+# Commons da para un término de búsqueda.
+#
+# POR QUÉ. Elegir una foto leyendo el nombre del fichero no funciona: con
+# el templo de Debod fallé tres veces seguidas, y «Atardecer DESDE el
+# Templo de Debod» resultó ser una puesta de sol sin templo. Esto cuesta
+# una ejecución y ahorra tres.
+#
+# Lo que sale se fija en contenido/cola.json como «File:loquesea.jpg».
+
+on:
+  workflow_dispatch:
+    inputs:
+      termino:
+        description: "Qué buscar en Commons (p. ej. Templo de Debod)"
+        type: string
+        required: true
+      cuantas:
+        description: "Cuántas candidatas enseñar"
+        type: string
+        default: "9"
+
+permissions:
+  contents: write
+
+jobs:
+  ver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install --only-binary=:all: pillow
+      - run: |
+          fc-list 2>/dev/null | grep -qi dejavu || \
+            sudo apt-get install -y -qq --no-install-recommends fonts-dejavu-core
+          python app/hoja_candidatas.py
+        env:
+          TERMINO: ${{ inputs.termino }}
+          CUANTAS: ${{ inputs.cuantas }}
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete candidatas --yes --cleanup-tag || true
+          gh release create candidatas --title "Candidatas · ${{ inputs.termino }}" \
+            --notes "Las primeras candidatas libres. Fija la buena en cola.json con File:nombre.jpg" \
+            video/candidatas.jpg
