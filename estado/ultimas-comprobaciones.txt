@@ -1,5 +1,5 @@
-Comprobaciones · 2026-10-22 17:10 UTC
-falta el reel de hoy: no
+Comprobaciones · 2026-10-23 06:06 UTC
+falta el reel de hoy: si
 
 ━━━━ prueba_texto_mira
 ok   las fotos llegan a quien escribe el texto
@@ -8,7 +8,7 @@ ok   el encargo prohíbe inventar lo que no se ve
 ok   devuelve el texto nuevo
 · No pude escribir el texto mirando las fotos: Gemini caído
 ok   si el revisor de texto falla, no inventa nada
-· No pude leer /tmp/reel-texto-1t_7ckst/no-existe.jpg para escribir el texto: [Errno 2] No such file or directory: '/tmp/reel-texto-1t_7ckst/no-existe.jpg'
+· No pude leer /tmp/reel-texto-sqg314ia/no-existe.jpg para escribir el texto: [Errno 2] No such file or directory: '/tmp/reel-texto-sqg314ia/no-existe.jpg'
 ok   sin fotos que mirar, no escribe
 ok   un texto en blanco no cuenta como texto
 ok   guion_del_banco encuentra las fotos del apunte real
@@ -64,5 +64,119 @@ ok   la red cortada no tumba nada
 
 el camino de Cloudflare está bien montado
    OK prueba_cloudflare
+━━━━ prueba_vacias
+ok   ajustes arranca con los inputs vacíos
+ok   cloudflare arranca con los inputs vacíos
+ok   espacio arranca con los inputs vacíos
+ok   reel arranca con los inputs vacíos
+ok   foto arranca con los inputs vacíos
+ok   banco arranca con los inputs vacíos
+ok   semana arranca con los inputs vacíos
+ok   buscar_espacios arranca con los inputs vacíos
+ok   subir_banco arranca con los inputs vacíos
+ok   del_banco_a_fotos arranca con los inputs vacíos
+ok   devolver_fotos arranca con los inputs vacíos
+ok   prueba_ugc arranca con los inputs vacíos
+ok   falta_reel arranca con los inputs vacíos
+ok   probar_gemini arranca con los inputs vacíos
+ok   prueba_cuota arranca con los inputs vacíos
+ok   prueba_gemini_caida arranca con los inputs vacíos
+ok   prueba_cloudflare arranca con los inputs vacíos
+ok   prueba_discrecion arranca con los inputs vacíos
+ok   prueba_pisadas arranca con los inputs vacíos
+ok   prueba_manos arranca con los inputs vacíos
+ok   prueba_texto_mira arranca con los inputs vacíos
+ok   cara arranca con los inputs vacíos
+ok   publicar arranca con los inputs vacíos
+ok   prueba_publicar_seguro arranca con los inputs vacíos
+ok   marca arranca con los inputs vacíos
+ok   prueba_marca arranca con los inputs vacíos
+ok   prueba_aviso_ia arranca con los inputs vacíos
+ok   dossier arranca con los inputs vacíos
+ok   prueba_extras arranca con los inputs vacíos
+ok   prueba_freno arranca con los inputs vacíos
+ok   gasto arranca con los inputs vacíos
+ok   probar_cuota arranca con los inputs vacíos
+ok   prueba_sonda arranca con los inputs vacíos
+ok   contexto arranca con los inputs vacíos
+ok   prueba_variedad arranca con los inputs vacíos
+ok   hora arranca con los inputs vacíos
+ok   prueba_hora arranca con los inputs vacíos
+ok   publicar_carrusel arranca con los inputs vacíos
+ok   halloween arranca con los inputs vacíos
+ok   sitios arranca con los inputs vacíos
+ok   vacío da el valor por omisión
+ok   un número se lee
+ok   espacios cuentan como vacío
+· CUANTAS='ocho' no es un número; uso 9
+ok   texto no numérico no revienta
+ok   lista vacía es lista vacía
 
-las 4 comprobaciones pasan
+todo arranca con los inputs vacíos
+   OK prueba_vacias
+━━━━ prueba_identidad
+· No se pudo traer la referencia para comparar caras: 504 Server Error: Gateway Time-out for url: https://i.postimg.cc/023T5BJX/IMG-20261001-215255.jpg
+· no se pudo traer la referencia: me salto la comprobación
+   OK prueba_identidad
+━━━━ prueba_marca
+ok   el vídeo se marca
+ok   lleva el DigitalSourceType del IPTC
+ok   y un aviso legible en el comentario
+ok   el vídeo no se ha recodificado
+ok   y dura lo mismo
+ok   un fichero que falta no revienta nada
+
+el vídeo sale marcado y entero
+   OK prueba_marca
+━━━━ prueba_pisadas
+· Tanda 20261023-060713 · un café por la mañana · etiqueta «cafe»
+· Foto 1 al banco (20261023-060713-1.jpg)
+· Foto 2 al banco (20261023-060713-2.jpg)
+· Tanda 20261023-060713b · un paseo por el barrio · etiqueta «calle»
+· Foto 1 al banco (20261023-060713b-1.jpg)
+· Foto 2 al banco (20261023-060713b-2.jpg)
+ok   dice haber metido 4
+ok   y hay 4 ficheros de verdad en el banco
+ok   ninguna ficha del índice repite archivo
+ok   cada ficha apunta a un fichero que existe
+ok   las 4 fotos son distintas, ninguna pisada
+ok   las dos tandas quedan separadas
+
+ninguna foto se pisa con otra
+   OK prueba_pisadas
+━━━━ prueba_banco
+ok   hay 9 libres al empezar
+· Del banco: 3 fotos de la tanda 20260101-1000 · quedan 6 libres
+ok   3 de casa salen de una sola tanda
+ok   coge la tanda más antigua que da el número
+ok   las cogidas quedan marcadas como usadas
+· Del banco: 2 fotos de la tanda 20260202-1000 · quedan 4 libres
+ok   no repite fotos ya usadas
+· Del banco: 4 fotos de la tanda 20260303-1000 · quedan 0 libres
+ok   la etiqueta se respeta
+ok   pedir de más no revienta
+· Devueltas al banco 4 fotos que no se publicaron
+ok   devolver libera las fotos no publicadas
+ok   una foto sin archivo no se ofrece
+· El índice no se podía leer; empiezo uno nuevo
+· El índice no se podía leer; empiezo uno nuevo
+ok   un índice roto no revienta
+
+el banco reparte bien
+   OK prueba_banco
+━━━━ prueba_cuota
+ok   sin cuota en el único espacio levanta SinCuota
+ok   con uno sin cuota y otro con error propio, también para
+ok   y no sigue probando los demás espacios
+ok   un error que no es de cuota no levanta SinCuota
+· uno · /infer · 7.5s · 8 pasos
+ok   si un espacio funciona, devuelve la imagen
+ok   y apunta los segundos que costó
+· uno · /infer · 9.1s · 8 pasos
+ok   sin cuota con el token, aún prueba sin cuenta
+ok   y si la vía anónima tiene cuota, sale la foto
+
+el corte por falta de cuota funciona
+   OK prueba_cuota
+
+las 10 comprobaciones pasan
