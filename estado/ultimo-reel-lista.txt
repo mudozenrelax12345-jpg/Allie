@@ -1,10 +1,10 @@
-· Pieza: madrid-gildas
-· 5 fichas: Bocaíto, La Castela, Lamiak, Sagaretxe, Txakolina
-· Del banco: 4 fotos de la tanda 20261020-184731 · quedan 31 libres
+· Pieza: madrid-datos
+· 5 fichas: El restaurante más antiguo del mundo está aquí, Hay un parque cinco veces mayor que Central Park, Hay una estación de metro cerrada desde 1966, Hay un templo egipcio de verdad en el centro, La Gran Vía tardó más de cuarenta años
+· Del banco: 4 fotos de la tanda 20261022-205106 · quedan 24 libres
 · 4 fotos de la tanda, repartidas en 7 planos sin repetir seguidas
 · Narrando en español con ef_dora…
 · Motor: Piper · voz.onnx
-·   3.5s · 3.2s · 3.7s · 3.7s · 3.9s · 3.6s · 3.2s
-· LISTO · reel_20261022_2140.mp4 · 24.8s · 6.3 MB
+·   3.2s · 10.9s · 10.6s · 10.1s · 11.1s · 9.7s · 3.2s
+· LISTO · reel_20261023_0957.mp4 · 58.9s · 13.4 MB
 · Devueltas al banco 4 fotos que no se publicaron
 · EN_SECO: fotos devueltas al banco.
