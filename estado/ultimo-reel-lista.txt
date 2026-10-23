@@ -1,42 +1,44 @@
-· Pieza: madrid-datos
-· 5 fichas: Hay un templo egipcio de verdad en el centro, El restaurante más antiguo del mundo está aquí, Hay un parque cinco veces mayor que Central Park, Hay una estación de metro cerrada desde 1966, La Gran Vía tardó más de cuarenta años
+· Pieza: comida-datos
+· 5 fichas: El gazpacho original no llevaba tomate, Paella es el nombre de la sartén, no del arroz, La ensaladilla rusa es rusa de verdad, La tortilla de patatas aparece por escrito en 1817, España guardó la receta del chocolate un siglo
 · Del banco: 4 fotos de la tanda 20261022-205106 · quedan 24 libres
 · 4 fotos de la tanda, repartidas en 7 planos sin repetir seguidas
 · Buscando fotos libres de 5 sitios en Commons…
-·     candidata     77 · Atardecer desde el Templo de Debod-Madrid (6110177303 · cc by 2.0
-·     candidata     76 · Yoann Bourgeois sobrevuela el atardecer del Templo de · cc by 4.0
-·     candidata     76 · Yoann Bourgeois sobrevuela el atardecer del Templo de · cc by 4.0
-·     candidata     76 · Yoann Bourgeois sobrevuela el atardecer del Templo de · cc by 4.0
-·     candidata     76 · Yoann Bourgeois sobrevuela el atardecer del Templo de · cc by 4.0
-· «Templo de Debod atardecer» · Atardecer desde el Templo de Debod-Madrid (6110177303). · cc by 2.0 · 1600×970 · 167 kB
-·     candidata     66 · Sobrino de Botín (47065520984).jpg · cc by 2.0
-·     candidata     60 · Casa Botín-Madrid-2009.jpg · cc by 3.0
-·     candidata     53 · Sobrino de Botín (29031580068).jpg · cc by 2.0
-·     candidata     53 · Sobrino de Botín (42903791431).jpg · cc by 2.0
-·     candidata     53 · Sobrino de Botín (42903788591).jpg · cc by 2.0
-· «Sobrino de Botín Madrid restaurante» · Sobrino de Botín (47065520984).jpg · cc by 2.0 · 4608×3456 · 902 kB
+·     candidata     70 · Sopa fría española. Gazpacho andaluz con su guarnició · cc by 4.0
+·     candidata     57 · Guarnición de verduras para el gazpacho andaluz.jpg · cc by 4.0
+·     candidata     57 · Tropezones de verduras y pan tostado para el gazpacho · cc by 4.0
+·     candidata     33 · Gazpacho (Tropezones).jpg · cc by 2.0
+·     candidata     31 · Gazpacho 001.jpg · cc0
+· «Gazpacho andaluz» · Sopa fría española. Gazpacho andaluz con su guarnición. · cc by 4.0 · 5184×3888 · 310 kB
+·     candidata    295 · Paella de fruit de mer.jpg · cc0
+·     candidata     70 · Empezando a hervir el caldo, es uno de los procesos d · cc by 4.0
+·     candidata     70 · Paella terminada haciendo el socarrat, uno de los pro · cc by 4.0
+·     candidata     70 · Paella valenciana con pato.jpg · cc by 4.0
+·     candidata     70 · Tirar el arroz, uno de los procesos de elaboración y  · cc by 4.0
+· «Paella valenciana» · Paella de fruit de mer.jpg · cc0 · 7867×5504 · 435 kB
 ·     descartadas 2 que no hablan del sitio
-· «Lago Casa de Campo Palacio Real»: nada libre, pruebo otro término
-·     candidata     85 · ® S.D. (ES,EN) MADRID LAGO DE LA CASA DE CAMPO - pano · cc by 3.0
-·     candidata     85 · Lago de la Casa de Campo (12727876375).jpg · cc by 2.0
-·     candidata     78 · Lago de la Casa de Campo.jpg · cc by 2.5
-·     candidata     78 · El lago de la Casa de Campo.jpg · public domain
-·     candidata     76 · Finaliza la rehabilitación del lago de La Casa de Cam · cc by 4.0
-· «Lago de la Casa de Campo» · ® S.D. (ES,EN) MADRID LAGO DE LA CASA DE CAMPO - panora · cc by 3.0 · 3872×2592 · 842 kB
-·     candidata     51 · Estación de Chamberí (16).jpg · cc by 2.0
-·     candidata     51 · Estación de Chamberí (2).jpg · cc by 2.0
-·     candidata     51 · Estación de Chamberí (7) edited.jpg · cc by 2.0
-· «Estación de Chamberí» · Estación de Chamberí (16).jpg · cc by 2.0 · 1200×674 · 761 kB
-·     candidata     62 · Gran Vía (Madrid) 1.jpg · cc by 2.0
-·     candidata     61 · Gran Vía (Madrid) 19.jpg · cc by 2.0
-·     candidata     60 · Gran Vía (Madrid) 42.jpg · cc by 2.0
-·     candidata     58 · Gran Vía (Madrid) 02.jpg · cc by 2.0
-·     candidata     53 · Gran Vía (Madrid) 01.jpg · cc by 2.0
-· «Gran Vía Madrid» · Gran Vía (Madrid) 1.jpg · cc by 2.0 · 4310×2868 · 775 kB
+·     candidata     60 · Ensaladilla Rusa - Decorada (2011).JPG · cc by 3.0
+·     candidata     60 · Ensaladilla Rusa - Patata y huevo.JPG · cc by 3.0
+·     candidata     60 · Ensaladilla rusa - (Sin mahonesa).JPG · cc by 3.0
+·     candidata     55 · Ensaladilla rusa en envase.jpg · cc0
+·     candidata     53 · Ensaladilla rusa estilo bar congelada.JPG · cc0
+· «Ensaladilla rusa» · Ensaladilla Rusa - Decorada (2011).JPG · cc by 3.0 · 3888×2592 · 397 kB
+·     descartadas 1 que no hablan del sitio
+·     candidata     70 · Tortilla española con patatas y cebolla.jpg · cc by 4.0
+·     candidata     60 · Aplilamiento (Tortilla de Patatas).jpg · cc by 3.0
+·     candidata     60 · Bocadillo de Tortilla de patatas - 34.jpg · cc by 3.0
+·     candidata     60 · Patata - Tortilla de Patatas.JPG · cc by 3.0
+·     candidata     60 · Tortilla de patatas en un plato.jpg · cc by 3.0
+· «Tortilla de patatas» · Tortilla española con patatas y cebolla.jpg · cc by 4.0 · 5184×3888 · 674 kB
+·     candidata     60 · Churros con chocolate Barcelona.jpg · cc by 2.0
+·     candidata     60 · Chocolate, churros y café.jpg · cc by 2.0
+·     candidata     58 · Churros con Chocolate en San Sebastián.jpg · cc by 2.0
+·     candidata     58 · Churros with dark chocolate dip.jpg · cc by 2.0
+·     candidata     58 · Chocolate con churros and purros (26770893323).jpg · cc by 2.0
+· «Chocolate con churros» · Churros con chocolate Barcelona.jpg · cc by 2.0 · 3888×2592 · 366 kB
 · 5 de 5 fichas llevan foto del sitio
 · Narrando en español con ef_dora…
 · Motor: Piper · voz.onnx
-·   3.2s · 3.2s · 3.2s · 3.4s · 4.4s · 3.3s · 3.2s
-· LISTO · reel_20261023_1322.mp4 · 23.9s · 6.6 MB
+·   3.2s · 3.2s · 3.3s · 3.2s · 4.7s · 3.4s · 3.2s
+· LISTO · reel_20261023_1334.mp4 · 24.2s · 5.0 MB
 · Devueltas al banco 4 fotos que no se publicaron
 · EN_SECO: fotos devueltas al banco.
