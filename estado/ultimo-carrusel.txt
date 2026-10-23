@@ -1,30 +1,36 @@
-# Carrusel · 2026-10-22 08:44 UTC
-· De la cola: «Dónde ver el otoño en Madrid»
-· Del banco: 1 fotos de la tanda 20261016-060842 · quedan 31 libres
-· 1 fotos: 20261016-060842-1.jpg
-· Pie (979 caracteres):
+# Carrusel · 2026-10-23 08:43 UTC
+· De la cola: «Librerías de Madrid con café dentro»
+· Del banco: 3 fotos de la tanda 20261020-184414 · quedan 28 libres
+· 3 fotos: 20261020-184414-1.jpg, 20261020-184414-2.jpg, 20261020-184414-3.jpg
+· Pie (1000 caracteres):
 🤖 Contenido generado con IA · Allie es un personaje creado con IA
 
-Cinco sitios de Madrid para ver el otoño antes de que se caigan todas las hojas 🍂
+Librerías de Madrid donde además puedes sentarte a tomar algo 📚☕
 
-Quedan dos o tres semanas buenas. Guárdalo y ve a por ellas.
+Plan de tarde de otoño que cuesta cuatro euros. Guárdalo.
 
-1️⃣ El Retiro · el Paseo de Coches y la zona del Palacio de Cristal. El más conocido y el más lleno: ve temprano.
+1️⃣ La Mistral (@librerialamistral) · Travesía del Arenal 2. La cafetería está en el sótano. Abre hasta las 21:00, y los domingos de 12:00 a 20:00.
 
-2️⃣ La Rosaleda del Parque del Oeste · menos gente y la luz de la tarde entra de lado.
+2️⃣ La Buena Vida (@labuenavidalib) · Vergara 5, junto a Ópera. Cierra a mediodía: abre de 11:00 a 14:30 y de 17:00 a 21:00.
 
-3️⃣ Campo del Moro · detrás del Palacio Real. Casi nadie lo pisa y es de los más bonitos de la ciudad.
+3️⃣ Mansilla Libros y Café · Embajadores 26, Lavapiés. Solo por las mañanas, de 10:00 a 14:30, y los miércoles cierra.
 
-4️⃣ Quinta de los Molinos · todo el mundo va en febrero por los almendros y se pierde el otoño, que también está.
+4️⃣ Olavide, Bar de Libros (@olavidebardelibros) · Olid 14, Chamberí. Mañana y tarde, hasta las 22:00.
 
-5️⃣ El Capricho · el parque más cuidado de Madrid. Ojo: no abre todos los días, mira el horario antes de ir.
+5️⃣ La Central de Callao · Postigo de San Martín 9. La más grande de todas, con cafetería y varias plantas. Hasta las 20:45.
 
-Y un apunte: el domingo 25 se cambia la hora. A partir de ahí anochece a las seis y la luz buena se acaba sobre las cinco.
+Apunta los horarios, que varias cierran a mediodía y es el clásico viaje en balde.
 
-¿Cuál es tu rincón de otoño en Madrid? 🍂
+¿Cuál es la tuya? 👇
 
-#Madrid #OtoñoEnMadrid #ElRetiro #PlanesEnMadrid #Allie #AIInfluencer
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261016-060842-1.jpg
-· Foto suelta · contenedor 18106656050571997
+#Madrid #LibreriasDeMadrid #PlanesEnMadrid #OtoñoEnMadrid #Allie #AIInfluencer
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261020-184414-1.jpg
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261020-184414-2.jpg
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261020-184414-3.jpg
+·   contenedor 18106775756571997
+·   contenedor 18106775801571997
+·   contenedor 18106775822571997
+· Sin ubicación (Madrid, Spain): IGError: Authorization Error (código 100)
+· Carrusel 18106775849571997
 ·   6s · FINISHED
-· PUBLICADO · 18021407234932006 · https://www.instagram.com/p/DeylQTRoMSH/
+· PUBLICADO · 18031081604909558 · https://www.instagram.com/p/De1KDPVl4tp/
