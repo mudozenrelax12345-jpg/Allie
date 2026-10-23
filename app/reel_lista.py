@@ -196,35 +196,45 @@ def fondo_con_foto(ruta, velo=True):
     fondo = fondo.filter(ImageFilter.GaussianBlur(44))
     x, y = (fondo.width - W) // 2, (fondo.height - H) // 2
     fondo = fondo.crop((x, y, x + W, y + H))
-    # Oscurecer la mitad de abajo para que el texto se lea sobre cualquier foto.
-    velo_img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    dv = ImageDraw.Draw(velo_img)
-    for i in range(240):
-        a = int(215 * i / 240)
-        dv.rectangle([0, FOTO_Y + FOTO_ALTO - 240 + i, W,
-                      FOTO_Y + FOTO_ALTO - 240 + i + 1], fill=(10, 10, 12, a))
-    dv.rectangle([0, FOTO_Y + FOTO_ALTO, W, H], fill=(10, 10, 12, 215))
-    frente = src.resize((W, int(src.height * W / src.width)), Image.LANCZOS)
-    caja = frente.crop((0, 0, W, min(FOTO_ALTO, frente.height)))
-    fondo.paste(caja, (0, FOTO_Y))
+
+    # LA FOTO LLENA SU HUECO, de arriba del todo hasta donde empieza el
+    # texto. Antes se ajustaba al ancho y se pegaba tal cual: con una foto
+    # apaisada —y las de los sitios lo son casi todas— sobraban trescientos
+    # píxeles por abajo que se quedaban en fondo desenfocado. Una franja
+    # muerta entre la foto y el texto, y una tira borrosa arriba del todo.
+    #
+    # Se recorta centrado para llenar. Se pierde parte de los lados, sí,
+    # pero el plano se mueve un 16 % con desplazamiento: lo que se recorta
+    # acaba entrando en campo mientras el plano avanza.
+    alto_hueco = FOTO_Y + FOTO_ALTO
+    e = max(W / src.width, alto_hueco / src.height)
+    gr = src.resize((max(W, int(src.width * e)), max(alto_hueco, int(src.height * e))),
+                    Image.LANCZOS)
+    cx, cy = (gr.width - W) // 2, (gr.height - alto_hueco) // 2
+    fondo.paste(gr.crop((cx, cy, cx + W, cy + alto_hueco)), (0, 0))
     if not velo:
         return fondo.convert("RGB")
-    return Image.alpha_composite(fondo.convert("RGBA"), velo_img).convert("RGB")
+    return Image.alpha_composite(fondo.convert("RGBA"), velo_capa()).convert("RGB")
 
 
 def velo_capa():
     """El degradado oscuro de abajo, en su propia capa transparente.
 
-    Vive aparte del fondo porque el fondo se mueve y esto no. Es el mismo
-    degradado que antes iba pegado a la foto.
+    Vive aparte del fondo porque el fondo se mueve y esto no.
+
+    Y YA NO ES NEGRO PLANO. Estaba a 215 de opacidad sobre un desenfoque,
+    que a efectos prácticos es negro: un tercio de la pantalla apagado. A
+    185 se ve el color de la propia foto detrás del texto y el cuadro deja
+    de parecer dos piezas pegadas. El texto se sigue leyendo, y eso está
+    medido con el contraste, no mirado a ojo.
     """
     capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     dv = ImageDraw.Draw(capa)
-    for i in range(240):
-        a = int(215 * i / 240)
-        dv.rectangle([0, FOTO_Y + FOTO_ALTO - 240 + i, W,
-                      FOTO_Y + FOTO_ALTO - 240 + i + 1], fill=(10, 10, 12, a))
-    dv.rectangle([0, FOTO_Y + FOTO_ALTO, W, H], fill=(10, 10, 12, 215))
+    inicio, largo = FOTO_Y + FOTO_ALTO - 300, 300
+    for i in range(largo):
+        a = int(185 * (i / largo) ** 0.75)
+        dv.rectangle([0, inicio + i, W, inicio + i + 1], fill=(10, 10, 12, a))
+    dv.rectangle([0, inicio + largo, W, H], fill=(10, 10, 12, 185))
     return capa
 
 

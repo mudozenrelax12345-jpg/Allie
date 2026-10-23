@@ -138,10 +138,35 @@ def mueve(mp4, etiqueta):
             return
         ims.append(np.asarray(Image.open(p).convert("L"), dtype=float))
         p.unlink(missing_ok=True)
+    # SE MIRAN LAS LETRAS, NO LA BANDA. La primera versión medía la
+    # diferencia media de toda la franja del texto y empezó a fallar en
+    # Instagram —0,58 y 0,82— en cuanto el velo bajó a 185 de opacidad.
+    # No era el texto moviéndose: era el fondo viéndose a través del velo,
+    # que es exactamente lo que se buscaba con ese cambio. Una comprobación
+    # que se queja de la mejora está midiendo otra cosa.
+    #
+    # Las letras son casi blancas (242) y lo que hay detrás es oscuro (11),
+    # así que quedarse con lo que pasa de 200 aísla el texto. Lo que se
+    # exige es que ocupe los MISMOS PÍXELES en los dos fotogramas.
     txt = slice(1180, 1460)
-    d_txt = np.abs(ims[0][txt] - ims[1][txt]).mean()
-    comprobar(f"{etiqueta}: el texto no se mueve", d_txt < 0.5,
-              f"{d_txt:.2f} · si se moviera, se saldría de la zona segura")
+    m0, m1 = ims[0][txt] > 200, ims[1][txt] > 200
+    comunes = (m0 & m1).sum()
+    union = (m0 | m1).sum()
+    igual = comunes / union if union else 1.0
+    comprobar(f"{etiqueta}: el texto no se mueve", igual > 0.985,
+              f"{igual*100:.1f} % de las letras caen en el mismo píxel")
+
+    # QUE EL TEXTO SE LEA SOBRE LA FOTO. El velo bajó de 215 a 185 de
+    # opacidad para que el tercio de abajo no fuese negro plano, y eso es
+    # exactamente el cambio que puede dejar un titular blanco ilegible
+    # sobre una foto clara. Se mide el contraste de verdad: la distancia
+    # entre lo más claro (las letras) y el fondo sobre el que caen.
+    banda = ims[0][1240:1420]
+    letras = np.percentile(banda, 97)
+    fondo_t = np.percentile(banda, 40)
+    comprobar(f"{etiqueta}: el texto contrasta con el fondo",
+              letras - fondo_t > 90,
+              f"letras {letras:.0f} sobre fondo {fondo_t:.0f}")
 
 
 def una(plataforma, con_voz, antes):
