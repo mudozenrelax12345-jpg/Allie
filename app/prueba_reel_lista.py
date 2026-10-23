@@ -70,9 +70,18 @@ def libres():
     return sum(1 for x in f if not x.get("usada") and not x.get("retirada"))
 
 
-def voz_fingida(portada, fichas, cierre, destino_wav):
-    """Lo que devolvería Kokoro: una duración por plano y un wav."""
-    frases = [portada] + [f"{x['nombre']}. {x['calle']}." for x in fichas] + [cierre]
+def voz_fingida(portada, fichas, cierre, destino_wav, formato="lista"):
+    """Lo que devolvería Kokoro: una duración por plano y un wav.
+
+    Tiene que fingir lo MISMO que hace la de verdad, formato incluido: en
+    «dato» la voz lee solo el titular. Si aquí se leyera el detalle entero,
+    la prueba mediría un vídeo que no existe.
+    """
+    if formato == "dato":
+        dichas = [x["nombre"] for x in fichas]
+    else:
+        dichas = [f"{x['nombre']}. {x['calle']}." for x in fichas]
+    frases = [portada] + dichas + [cierre]
     # 14 caracteres por segundo es el ritmo de una voz leyendo en español.
     duraciones = [max(len(f) / 14 + 0.45, 3.2) for f in frases]
     destino_wav.parent.mkdir(parents=True, exist_ok=True)
@@ -131,7 +140,19 @@ def una(plataforma, con_voz, antes):
               f"{v.get('width')}×{v.get('height')}")
     comprobar(f"{etiqueta}: lleva audio", bool(a),
               "Instagram rechaza un vídeo sin pista de audio")
-    comprobar(f"{etiqueta}: dura entre 20 y 60s", 20 <= dur <= 60, f"{dur:.1f}s")
+    comprobar(f"{etiqueta}: dura entre 20 y 45s", 20 <= dur <= 45, f"{dur:.1f}s")
+    # Y ninguna ficha puede quedarse diez segundos en pantalla. El 23 de
+    # octubre el formato «dato» salió a 58,9 s porque la voz leía el detalle
+    # entero: once segundos por ficha, una pantalla quieta. La comprobación
+    # de 20-60 s lo dejaba pasar.
+    import json as _j
+    reg = BASE / "video" / "ultimo-reel-lista.json"
+    if reg.exists():
+        planos = _j.loads(reg.read_text(encoding="utf-8")).get("fichas") or []
+        if planos:
+            medio = dur / (len(planos) + 2)
+            comprobar(f"{etiqueta}: ninguna ficha se eterniza", medio <= 6.0,
+                      f"{medio:.1f}s de media por plano")
     comprobar(f"{etiqueta}: las fotos vuelven al banco", libres() == antes,
               f"antes {antes}, ahora {libres()}")
     Path(final).unlink(missing_ok=True)

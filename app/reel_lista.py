@@ -347,12 +347,26 @@ def decir_piper(texto, destino):
     return audio, frec
 
 
-def narrar_fichas(portada, fichas, cierre, destino_wav):
+def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
     """Devuelve la duración que tiene que durar cada plano, por su audio."""
     import numpy as np
     import soundfile as sf
 
-    frases = [portada] + [f"{x['nombre']}. {x['calle']}." for x in fichas] + [cierre]
+    # EN EL FORMATO «DATO», LA VOZ LEE SOLO EL TITULAR.
+    #
+    # Leyendo también el detalle, cada ficha se iba a once segundos y el
+    # vídeo entero a 58,9. Una pantalla quieta diez segundos es lo que peor
+    # funciona: cambiar de plano cada cuatro da un 58 % de retención frente
+    # al 41 % de un vídeo estático.
+    #
+    # Es el mismo principio que ya se aplicaba a los horarios: lo que se lee
+    # en alto no tiene por qué ser lo que pone en pantalla. La voz lleva el
+    # ritmo, el texto lleva los datos.
+    if formato == "dato":
+        dichas = [x["nombre"] for x in fichas]
+    else:
+        dichas = [f"{x['nombre']}. {x['calle']}." for x in fichas]
+    frases = [portada] + dichas + [cierre]
     frec = 24000
     if MOTOR == "piper":
         log(f"Motor: Piper · {Path(PIPER_MODELO).name}")
@@ -467,7 +481,7 @@ def main():
             log(f"Narrando en español con {VOZ}…")
             wav = TRABAJO / "voz.wav"
             duraciones = narrar_fichas(titulo if PLATAFORMA == "tiktok" else portada,
-                                       fichas, cierre_txt, wav)
+                                       fichas, cierre_txt, wav, formato)
             log("  " + " · ".join(f"{d:.1f}s" for d in duraciones))
         else:
             wav = None
