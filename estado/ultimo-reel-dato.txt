@@ -13,7 +13,7 @@
 ·     candidata     70 · Paella valenciana con pato.jpg · cc by 4.0
 ·     candidata     70 · Tirar el arroz, uno de los procesos de elaboración y  · cc by 4.0
 · «Paella valenciana» · Paella de fruit de mer.jpg · cc0 · 7867×5504 · 435 kB
-·     descartadas 2 que no hablan del sitio
+·     descartadas 3 que no hablan del sitio
 ·     candidata     60 · Ensaladilla Rusa - Decorada (2011).JPG · cc by 3.0
 ·     candidata     60 · Ensaladilla Rusa - Patata y huevo.JPG · cc by 3.0
 ·     candidata     60 · Ensaladilla rusa - (Sin mahonesa).JPG · cc by 3.0
@@ -34,9 +34,9 @@
 ·     candidata     58 · Chocolate con churros and purros (26770893323).jpg · cc by 2.0
 · «Chocolate con churros» · Churros con chocolate Barcelona.jpg · cc by 2.0 · 3888×2592 · 366 kB
 · 5 de 5 fichas con foto propia
-· Motor: Piper · voz.onnx
-·   3.2s · 3.2s · 3.3s · 3.2s · 4.6s · 3.4s · 3.2s
-· Base musical de 24.5s
-· LISTO · dato_20261023_1400.mp4 · 24.2s · 6.6 MB
+· Motor: Edge TTS · es-ES-ElviraNeural
+·   3.8s · 3.8s · 4.2s · 3.6s · 5.3s · 4.0s · 3.2s
+· Base musical de 28.3s
+· LISTO · dato_20261023_1432.mp4 · 27.9s · 7.4 MB
 · Devueltas al banco 2 fotos que no se publicaron
 · EN_SECO: fotos devueltas al banco.
