@@ -124,7 +124,38 @@ def nota(cand, termino):
     return puntos
 
 
+# Palabras que no distinguen nada: salen en media Commons.
+GENERICAS = {"madrid", "españa", "spain", "vista", "aerea", "aérea", "foto",
+             "panoramica", "panorámica", "street", "city", "calle", "atardecer",
+             "noche", "skyline", "temple", "museo", "estacion", "estación"}
+
+
+def habla_del_sitio(cand, termino):
+    """Que la foto sea DE ESO, y no de otra cosa que está en Madrid.
+
+    Buscando «Casa de Campo Madrid vista aérea» salió elegida «Madrid.
+    Estación del Norte, septiembre de 1979», que no tiene nada que ver: el
+    buscador se quedó con «Madrid» y la nota la premió por eso. Puntuar el
+    parecido no basta, porque una foto sin ningún parecido también puntúa
+    si las demás puntúan poco.
+
+    Así que esto no es una puntuación, es un requisito: al menos una
+    palabra que distinga de verdad —quitando las que salen en media
+    Commons— tiene que aparecer en el título o en las categorías.
+    """
+    claves = [p for p in termino.lower().replace(",", " ").split()
+              if len(p) > 3 and p not in GENERICAS]
+    if not claves:
+        return True
+    donde = (cand["titulo"] + " " + " ".join(cand.get("categorias") or [])).lower()
+    return any(k in donde for k in claves)
+
+
 def _ordenar(salida, termino):
+    fuera = len(salida)
+    salida = [c for c in salida if habla_del_sitio(c, termino)]
+    if fuera - len(salida):
+        log(f"    descartadas {fuera - len(salida)} que no hablan del sitio")
     salida.sort(key=lambda x: -nota(x, termino))
     for c in salida[:5]:
         log(f"    candidata {nota(c, termino):6.0f} · {c['titulo'][5:58]} · "
