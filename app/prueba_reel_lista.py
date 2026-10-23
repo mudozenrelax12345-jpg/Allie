@@ -101,6 +101,49 @@ def sondear(mp4):
     return json.loads(r.stdout or "{}")
 
 
+def mueve(mp4, etiqueta):
+    """Que la foto se mueva de verdad y que el texto NO se mueva nada.
+
+    Esta es la comprobación que faltaba el 23 de octubre. El vídeo de aquel
+    día tenía un zoom del 5 % repartido en tres segundos: estaba en el
+    código, pasaba por «tiene movimiento», y en pantalla era una foto
+    congelada. Teresa lo vio en dos segundos; ninguna comprobación lo veía.
+
+    Se mide donde importa y por separado, porque las dos capas tienen
+    obligaciones contrarias: el fondo tiene que viajar, y el texto tiene
+    que estar a seis píxeles de la columna de botones de TikTok sin moverse
+    ni uno. Tres fotogramas DENTRO DE UN MISMO PLANO, para no medir un
+    corte y creerse que es movimiento.
+
+    EL LISTÓN, MEDIDO Y NO ESTIMADO. Montando el mismo vídeo con el
+    movimiento viejo y con el nuevo: 3,0 px/s el congelado, 13,0 px/s el
+    bueno. El umbral va en 8.
+    """
+    import numpy as np
+    from PIL import Image
+
+    import medir_movimiento
+    px = medir_movimiento.por_segundo(mp4, 5.0, 6.0)
+    if px is None:
+        return
+    comprobar(f"{etiqueta}: la foto se mueve", px >= 8.0,
+              f"{px:.1f} px/s · el congelado del 23-oct daba 3,0")
+
+    ims = []
+    for t in (5.0, 6.0):
+        p = BASE / "video" / f"_mov{t}.png"
+        subprocess.run(["ffmpeg", "-v", "error", "-ss", str(t), "-i", str(mp4),
+                        "-frames:v", "1", str(p), "-y"], check=False)
+        if not p.exists():
+            return
+        ims.append(np.asarray(Image.open(p).convert("L"), dtype=float))
+        p.unlink(missing_ok=True)
+    txt = slice(1180, 1460)
+    d_txt = np.abs(ims[0][txt] - ims[1][txt]).mean()
+    comprobar(f"{etiqueta}: el texto no se mueve", d_txt < 0.5,
+              f"{d_txt:.2f} · si se moviera, se saldría de la zona segura")
+
+
 def una(plataforma, con_voz, antes):
     import importlib
     import os
@@ -155,6 +198,7 @@ def una(plataforma, con_voz, antes):
                       f"{medio:.1f}s de media por plano")
     comprobar(f"{etiqueta}: las fotos vuelven al banco", libres() == antes,
               f"antes {antes}, ahora {libres()}")
+    mueve(final, etiqueta)
     Path(final).unlink(missing_ok=True)
 
 

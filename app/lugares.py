@@ -1,0 +1,214 @@
+"""Fotos reales de cada sitio, con licencia libre, desde Wikimedia Commons.
+
+DE DÓNDE SALE ESTO. El 23 de octubre el primer vídeo del formato «dato»
+hablaba del templo de Debod, de Botín, de la Casa de Campo, del metro de
+Chamberí y de la Gran Vía… enseñando siempre la misma calle de tapas con
+Allie delante. Veinticuatro segundos de una imagen que no cuenta nada de lo
+que se está diciendo. Teresa lo dijo en una línea: «es una mierda». Lo era.
+
+Un vídeo de «¿sabías que…?» tiene que ENSEÑAR la cosa. Y las fotos de los
+sitios no se pueden inventar con IA: un templo de Debod inventado es un
+templo que no existe, y el dato deja de ser un dato.
+
+LA LICENCIA ES LO QUE DECIDE, no la calidad. Esto solo se queda con dominio
+público, CC0 y CC BY. Deliberadamente NO coge CC BY-SA: esa licencia obliga
+a publicar la obra derivada —el vídeo entero— con la misma licencia, y eso
+es una decisión que no me toca tomar por una cuenta ajena. Si un sitio no
+tiene ninguna foto libre, se dice y se deja sin foto, que es mejor que
+colarla.
+
+LA ATRIBUCIÓN SE GUARDA SIEMPRE, incluso para dominio público, donde no hace
+falta. Queda en estado/creditos-fotos.json para que el pie de la publicación
+pueda llevar los créditos. CC BY sin crédito es una infracción, no un
+descuido.
+
+ESTO NO CORRE EN MI MÁQUINA. El entorno donde escribo no llega a Wikimedia:
+la salida a internet está limitada a los repositorios de paquetes y a
+GitHub. La máquina que monta los vídeos sí llega, así que esto se ejecuta
+allí. Por eso no depende de ninguna biblioteca que haya que instalar.
+"""
+import json
+import os
+import sys
+import time
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+BASE = Path(__file__).resolve().parent.parent
+DESTINO = BASE / "video" / "lugares"
+CREDITOS = BASE / "estado" / "creditos-fotos.json"
+
+API = "https://commons.wikimedia.org/w/api.php"
+AGENTE = "AllieBot/1.0 (https://github.com/mudozenrelax12345-jpg/Allie)"
+
+# Las etiquetas de licencia tal y como las devuelve Commons. La lista es
+# blanca a propósito: lo que no esté aquí, no entra.
+LIBRES = {
+    "cc0", "cc zero", "public domain", "pd", "pd-old", "pd-self", "pd-us",
+    "cc by 1.0", "cc by 2.0", "cc by 2.5", "cc by 3.0", "cc by 4.0",
+    "attribution",
+}
+ANCHO = 1400
+
+
+def log(m):
+    print(f"· {m}", flush=True)
+
+
+def limpiar(html):
+    """Commons devuelve el autor como un trozo de HTML."""
+    import re
+    t = re.sub(r"<[^>]+>", " ", html or "")
+    t = t.replace("&amp;", "&").replace("&nbsp;", " ").replace("&quot;", '"')
+    return " ".join(t.split())[:120]
+
+
+def pedir(params, intentos=3):
+    url = API + "?" + urllib.parse.urlencode({**params, "format": "json"})
+    ultimo = None
+    for i in range(intentos):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": AGENTE})
+            with urllib.request.urlopen(req, timeout=40) as r:
+                return json.loads(r.read().decode("utf-8"))
+        except Exception as e:  # noqa: BLE001
+            ultimo = e
+            time.sleep(2 + 2 * i)
+    raise RuntimeError(f"Commons no responde: {ultimo}")
+
+
+def es_libre(meta):
+    etq = (meta.get("LicenseShortName", {}).get("value") or "").strip().lower()
+    if etq in LIBRES:
+        return etq
+    # Algunas fichas solo traen el campo «License» en forma de código.
+    cod = (meta.get("License", {}).get("value") or "").strip().lower()
+    if cod in ("cc0", "pd", "cc-by-4.0", "cc-by-3.0", "cc-by-2.0"):
+        return cod
+    return None
+
+
+def buscar(termino, cuantas=12):
+    """Las candidatas de Commons para un término, ya filtradas por licencia."""
+    d = pedir({
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": f"{termino} filetype:bitmap",
+        "gsrnamespace": "6",          # 6 = ficheros
+        "gsrlimit": str(cuantas),
+        "prop": "imageinfo",
+        "iiprop": "url|size|extmetadata|mime",
+        "iiurlwidth": str(ANCHO),
+    })
+    salida = []
+    for pag in (d.get("query", {}).get("pages") or {}).values():
+        inf = (pag.get("imageinfo") or [{}])[0]
+        if not inf.get("thumburl"):
+            continue
+        if inf.get("mime") not in ("image/jpeg", "image/png"):
+            continue
+        # Horizontal o cuadrada. Una foto muy apaisada o muy estrecha no
+        # llena el hueco de la foto sin recortar lo que importa.
+        an, al = inf.get("width") or 0, inf.get("height") or 0
+        if not an or not al or not (0.8 <= an / al <= 2.2):
+            continue
+        if an < 900:
+            continue
+        lic = es_libre(inf.get("extmetadata") or {})
+        if not lic:
+            continue
+        meta = inf.get("extmetadata") or {}
+        salida.append({
+            "titulo": pag.get("title", ""),
+            "url": inf["thumburl"],
+            "pagina": inf.get("descriptionurl", ""),
+            "licencia": lic,
+            "autor": limpiar(meta.get("Artist", {}).get("value")),
+            "ancho": an, "alto": al,
+        })
+    # Las más grandes primero: suelen ser las mejores.
+    salida.sort(key=lambda x: -(x["ancho"] * x["alto"]))
+    return salida
+
+
+def bajar(url, destino):
+    req = urllib.request.Request(url, headers={"User-Agent": AGENTE})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        datos = r.read()
+    if len(datos) < 20000:
+        raise RuntimeError(f"la foto pesa {len(datos)} bytes: no me fío")
+    destino.write_bytes(datos)
+    return len(datos)
+
+
+def conseguir(terminos):
+    """Una foto libre por término. Devuelve (rutas, créditos).
+
+    Si un término no da ninguna foto libre, su hueco va a None y quien
+    llame decide: aquí no se rellena con cualquier cosa.
+    """
+    DESTINO.mkdir(parents=True, exist_ok=True)
+    CREDITOS.parent.mkdir(parents=True, exist_ok=True)
+    rutas, creditos = [], []
+    for i, t in enumerate(terminos):
+        try:
+            cand = buscar(t)
+        except Exception as e:  # noqa: BLE001
+            log(f"«{t}»: Commons falló ({e})")
+            rutas.append(None)
+            continue
+        if not cand:
+            log(f"«{t}»: ninguna foto con licencia libre")
+            rutas.append(None)
+            continue
+        puesto = None
+        for c in cand[:4]:
+            ruta = DESTINO / f"{i:02d}.jpg"
+            try:
+                peso = bajar(c["url"], ruta)
+            except Exception as e:  # noqa: BLE001
+                log(f"«{t}»: no baja {c['titulo']} ({e})")
+                continue
+            puesto = c
+            log(f"«{t}» · {c['titulo'][5:60]} · {c['licencia']} · "
+                f"{c['ancho']}×{c['alto']} · {peso/1000:.0f} kB")
+            break
+        if not puesto:
+            rutas.append(None)
+            continue
+        rutas.append(DESTINO / f"{i:02d}.jpg")
+        creditos.append({"termino": t, **{k: puesto[k] for k in
+                                          ("titulo", "licencia", "autor", "pagina")}})
+    CREDITOS.write_text(json.dumps(creditos, ensure_ascii=False, indent=1),
+                        encoding="utf-8")
+    return rutas, creditos
+
+
+def pie_creditos(creditos):
+    """La línea de créditos para el pie de la publicación.
+
+    El dominio público no la necesita; CC BY sí, y no ponerla es incumplir
+    la licencia. Como el pie de un reel es corto, se abrevia al autor y la
+    licencia, que es lo que la licencia exige nombrar.
+    """
+    partes = []
+    for c in creditos:
+        if c["licencia"] in ("cc0", "cc zero", "public domain", "pd",
+                             "pd-old", "pd-self", "pd-us"):
+            continue
+        autor = c["autor"] or "Wikimedia Commons"
+        partes.append(f"{autor} ({c['licencia'].upper()})")
+    if not partes:
+        return ""
+    return "Fotos: " + " · ".join(dict.fromkeys(partes)) + " · vía Wikimedia Commons"
+
+
+if __name__ == "__main__":
+    terminos = sys.argv[1:] or [os.environ.get("TERMINO", "Templo de Debod")]
+    rutas, cred = conseguir(terminos)
+    print()
+    for t, r in zip(terminos, rutas):
+        print(f"  {'OK ' if r else 'NO '} {t}")
+    print()
+    print(pie_creditos(cred) or "(sin créditos obligatorios)")

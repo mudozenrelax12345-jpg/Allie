@@ -182,8 +182,14 @@ def envolver(d, texto, f, ancho):
     return lineas
 
 
-def fondo_con_foto(ruta):
-    """La foto arriba, sobre una copia de sí misma desenfocada que rellena."""
+def fondo_con_foto(ruta, velo=True):
+    """La foto arriba, sobre una copia de sí misma desenfocada que rellena.
+
+    velo=False deja el fondo LIMPIO, sin el degradado oscuro de abajo. Es lo
+    que hace falta cuando el fondo se va a mover: el velo tiene que quedarse
+    quieto con el texto, porque si viaja con el zoom su borde sube y baja y
+    se nota muchísimo más que el propio movimiento de la foto.
+    """
     src = Image.open(ruta).convert("RGB")
     s = max(W / src.width, H / src.height) * 1.1
     fondo = src.resize((int(src.width * s), int(src.height * s)), Image.LANCZOS)
@@ -191,8 +197,8 @@ def fondo_con_foto(ruta):
     x, y = (fondo.width - W) // 2, (fondo.height - H) // 2
     fondo = fondo.crop((x, y, x + W, y + H))
     # Oscurecer la mitad de abajo para que el texto se lea sobre cualquier foto.
-    velo = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    dv = ImageDraw.Draw(velo)
+    velo_img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dv = ImageDraw.Draw(velo_img)
     for i in range(240):
         a = int(215 * i / 240)
         dv.rectangle([0, FOTO_Y + FOTO_ALTO - 240 + i, W,
@@ -201,11 +207,36 @@ def fondo_con_foto(ruta):
     frente = src.resize((W, int(src.height * W / src.width)), Image.LANCZOS)
     caja = frente.crop((0, 0, W, min(FOTO_ALTO, frente.height)))
     fondo.paste(caja, (0, FOTO_Y))
-    return Image.alpha_composite(fondo.convert("RGBA"), velo).convert("RGB")
+    if not velo:
+        return fondo.convert("RGB")
+    return Image.alpha_composite(fondo.convert("RGBA"), velo_img).convert("RGB")
+
+
+def velo_capa():
+    """El degradado oscuro de abajo, en su propia capa transparente.
+
+    Vive aparte del fondo porque el fondo se mueve y esto no. Es el mismo
+    degradado que antes iba pegado a la foto.
+    """
+    capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    dv = ImageDraw.Draw(capa)
+    for i in range(240):
+        a = int(215 * i / 240)
+        dv.rectangle([0, FOTO_Y + FOTO_ALTO - 240 + i, W,
+                      FOTO_Y + FOTO_ALTO - 240 + i + 1], fill=(10, 10, 12, a))
+    dv.rectangle([0, FOTO_Y + FOTO_ALTO, W, H], fill=(10, 10, 12, 215))
+    return capa
+
+
+def guardar_capas(fondo, capa, destino):
+    """El fondo que se moverá, en jpg; el texto quieto, en png con alfa."""
+    fondo.save(destino, "JPEG", quality=93)
+    capa.save(destino.with_suffix(".png"))
 
 
 def pintar_ficha(ruta_foto, ficha, total, destino):
-    im = fondo_con_foto(ruta_foto)
+    fondo = fondo_con_foto(ruta_foto, velo=False)
+    im = velo_capa()
     d = ImageDraw.Draw(im)
     margen, ancho = 70, W - 70 - MARGEN_DER
     y = TEXTO_Y
@@ -246,12 +277,13 @@ def pintar_ficha(ruta_foto, ficha, total, destino):
             d.text((margen, y), ln, font=f_h, fill=APAGADO)
             y += 46
 
-    im.save(destino, "JPEG", quality=93)
+    guardar_capas(fondo, im, destino)
 
 
 def pintar_cartel(ruta_foto, titulo, pie, destino):
     titulo, pie = sin_emoji(titulo), sin_emoji(pie or "")
-    im = fondo_con_foto(ruta_foto)
+    fondo = fondo_con_foto(ruta_foto, velo=False)
+    im = velo_capa()
     d = ImageDraw.Draw(im)
     margen, ancho = 70, W - 70 - MARGEN_DER
     # EL BLOQUE SE PEGA AL SUELO, no cuelga desde arriba. Colgando, un
@@ -278,7 +310,7 @@ def pintar_cartel(ruta_foto, titulo, pie, destino):
     for ln in lineas_pie:
         d.text((margen, y + 10), ln, font=f_p, fill=ACENTO)
         y += 50
-    im.save(destino, "JPEG", quality=93)
+    guardar_capas(fondo, im, destino)
 
 
 # ──────────────────────────────────────────────── voz
@@ -402,12 +434,38 @@ def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
 
 # ──────────────────────────────────────────────── montar
 def clip(imagen, dur, destino, acerca=True):
+    """Un plano: el fondo se mueve, el texto se queda quieto encima.
+
+    POR QUÉ EN DOS CAPAS. Antes esto aplicaba el zoom a la imagen ya
+    terminada, texto incluido. Eso ponía un techo al movimiento: con un 5 %
+    no se nota nada —y no se notaba: el vídeo del 23 de octubre parecía una
+    foto congelada—, pero subirlo a algo visible arrastraba también las
+    letras, y en TikTok el texto está a seis píxeles de la columna de
+    botones. Moviendo solo el fondo, el recorrido puede ser del 16 % sin
+    que una sola letra se mueva de su sitio.
+
+    Y VA Y VIENE. Planos alternos acercan y alejan, y además desplazan en
+    sentidos contrarios. Dos tomas seguidas con el mismo movimiento se leen
+    como una sola toma larga, que es justo lo que había que quitar.
+    """
     fot = max(2, int(dur * FPS))
-    z = f"1.0+0.05*on/{fot}" if acerca else f"1.05-0.05*on/{fot}"
+    R = 0.16
+    if acerca:
+        z, dx = f"1.0+{R}*on/{fot}", f"(iw-iw/zoom)*(0.35+0.30*on/{fot})"
+    else:
+        z, dx = f"{1+R}-{R}*on/{fot}", f"(iw-iw/zoom)*(0.65-0.30*on/{fot})"
+    mov = (f"scale={W*2}:-1,zoompan=z='{z}':d={fot}:x='{dx}':"
+           f"y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS}")
+    capa = Path(imagen).with_suffix(".png")
+    if capa.exists():
+        ff("-loop", "1", "-i", str(imagen), "-loop", "1", "-i", str(capa),
+           "-t", f"{dur:.3f}", "-filter_complex",
+           f"[0:v]{mov}[bg];[bg][1:v]overlay=0:0,format=yuv420p,setsar=1",
+           "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+           "-r", str(FPS), str(destino))
+        return
     ff("-loop", "1", "-i", str(imagen), "-t", f"{dur:.3f}",
-       "-vf", f"scale={W*2}:-1,zoompan=z='{z}':d={fot}:"
-              f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H}:fps={FPS},"
-              f"format=yuv420p,setsar=1",
+       "-vf", f"{mov},format=yuv420p,setsar=1",
        "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-r", str(FPS),
        str(destino))
 
@@ -459,6 +517,39 @@ def main():
     log(f"{len(rutas)} fotos de la tanda, repartidas en {hacen_falta} planos "
         "sin repetir seguidas")
     rutas_usadas, rutas = rutas, fondo
+
+    # FOTOS REALES DE CADA SITIO, cuando la pieza dice dónde buscarlas.
+    #
+    # El primer vídeo del formato «dato» hablaba del templo de Debod, de
+    # Botín y del metro de Chamberí enseñando siempre la misma calle de
+    # tapas con Allie delante. Un «¿sabías que…?» tiene que ENSEÑAR la cosa:
+    # si la imagen no dice nada de lo que se cuenta, no hay motivo para
+    # mirarla veinticuatro segundos.
+    #
+    # Allie se queda en la portada y en el cierre —es su cuenta, y es quien
+    # presenta—; las fichas son del sitio. Y las fotos de sitios reales no
+    # se generan: un Debod inventado convierte el dato en mentira.
+    #
+    # Si Commons no da una foto libre para un sitio, ese hueco se queda con
+    # la foto del banco. Mejor Allie que una foto cuya licencia no conozco.
+    creditos = []
+    terminos = pieza.get("fotos_busqueda") or []
+    if terminos and (os.environ.get("SIN_RED") or "").strip().lower() not in (
+            "si", "sí", "true", "1"):
+        import lugares
+        log(f"Buscando fotos libres de {len(terminos)} sitios en Commons…")
+        try:
+            encontradas, creditos = lugares.conseguir(terminos[:len(fichas)])
+        except Exception as e:  # noqa: BLE001
+            log(f"Commons no dio nada ({e}); sigo con las fotos del banco")
+            encontradas = []
+        puestas = 0
+        for i, r in enumerate(encontradas):
+            if r and i + 1 < len(rutas):
+                rutas[i + 1] = r
+                puestas += 1
+        log(f"{puestas} de {len(terminos)} fichas llevan foto del sitio")
+
     try:
         TRABAJO.mkdir(parents=True, exist_ok=True)
         trozos = []
