@@ -89,7 +89,7 @@ def es_libre(meta):
     return None
 
 
-def buscar(termino, cuantas=12):
+def buscar(termino, cuantas=30):
     """Las candidatas de Commons para un término, ya filtradas por licencia."""
     d = pedir({
         "action": "query",
@@ -111,9 +111,9 @@ def buscar(termino, cuantas=12):
         # Horizontal o cuadrada. Una foto muy apaisada o muy estrecha no
         # llena el hueco de la foto sin recortar lo que importa.
         an, al = inf.get("width") or 0, inf.get("height") or 0
-        if not an or not al or not (0.8 <= an / al <= 2.2):
+        if not an or not al or not (0.7 <= an / al <= 2.6):
             continue
-        if an < 900:
+        if an < 800:
             continue
         lic = es_libre(inf.get("extmetadata") or {})
         if not lic:
@@ -151,15 +151,26 @@ def conseguir(terminos):
     DESTINO.mkdir(parents=True, exist_ok=True)
     CREDITOS.parent.mkdir(parents=True, exist_ok=True)
     rutas, creditos = [], []
-    for i, t in enumerate(terminos):
-        try:
-            cand = buscar(t)
-        except Exception as e:  # noqa: BLE001
-            log(f"«{t}»: Commons falló ({e})")
-            rutas.append(None)
-            continue
+    for i, entrada in enumerate(terminos):
+        # Cada sitio puede traer varios términos: el primero que dé una foto
+        # libre, gana. Hace falta porque el buscador de Commons es literal y
+        # porque en algunos sitios casi todo es CC BY-SA, que aquí no entra:
+        # a Debod y a Chamberí no les encontró nada con un solo término.
+        alternativos = [entrada] if isinstance(entrada, str) else list(entrada)
+        t = alternativos[0]
+        cand = []
+        for alt in alternativos:
+            try:
+                cand = buscar(alt)
+            except Exception as e:  # noqa: BLE001
+                log(f"«{alt}»: Commons falló ({e})")
+                continue
+            if cand:
+                t = alt
+                break
+            log(f"«{alt}»: nada libre, pruebo otro término")
         if not cand:
-            log(f"«{t}»: ninguna foto con licencia libre")
+            log(f"«{alternativos[0]}»: ninguna foto con licencia libre")
             rutas.append(None)
             continue
         puesto = None
