@@ -21,8 +21,8 @@ on:
         options: [tiktok, instagram]
       motor:
         type: choice
-        default: edge
-        options: [edge, piper, kokoro]
+        default: chatterbox
+        options: [chatterbox, edge, piper, kokoro]
       voz:
         description: "Para kokoro: ef_dora. Vacío = mudo (solo kokoro/piper)"
         type: choice
@@ -54,7 +54,7 @@ concurrency:
 jobs:
   montar:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -99,7 +99,11 @@ jobs:
           fc-list 2>/dev/null | grep -qi dejavu || corre "fuentes" 180 \
             sudo apt-get install -y -qq --no-install-recommends fonts-dejavu-core
           corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
-          if [ "${{ inputs.motor }}" = "edge" ]; then
+          if [ "${{ inputs.motor }}" = "chatterbox" ]; then
+            # Chatterbox TTS: el modelo se descarga solo la primera vez.
+            # torch ya viene con chatterbox-tts en requirements.txt.
+            echo "   Motor: Chatterbox Multilingual V3" | tee -a $registro
+          elif [ "${{ inputs.motor }}" = "edge" ]; then
             # Edge TTS ya está en requirements.txt, no necesita modelo local.
             echo "   Motor: Edge TTS · ${{ inputs.edge_voz }}" | tee -a $registro
           elif [ "${{ inputs.motor }}" = "piper" ] && [ -n "${{ inputs.voz }}" ]; then
@@ -130,7 +134,7 @@ jobs:
         env:
           PIEZA: ${{ inputs.pieza }}
           PLATAFORMA: ${{ inputs.plataforma }}
-          VOZ: ${{ inputs.motor == 'edge' && 'edge' || inputs.voz }}
+          VOZ: ${{ (inputs.motor == 'edge' || inputs.motor == 'chatterbox') && inputs.motor || inputs.voz }}
           VOZ_RITMO: ${{ inputs.ritmo }}
           MOTOR: ${{ inputs.motor }}
           EDGE_VOZ: ${{ inputs.edge_voz }}

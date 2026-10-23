@@ -350,11 +350,16 @@ PAUSA = 0.45
 # MOTOR=piper usa Piper en vez de Kokoro. Cuatro veces más rápido en
 # procesador normal y el modelo ocupa 61 MB en vez de 341.
 #
+# MOTOR=chatterbox usa Chatterbox Multilingual V3 (Resemble AI). MIT,
+# gratis, 500M parámetros. En evaluaciones ciegas lo prefirieron sobre
+# ElevenLabs el 63,75 % de las veces. Español nativo (language_id="es").
+# Puede correr en CPU: en Actions (4 vCPU, 16GB) tarda unos 2-3 min para
+# un vídeo de 30s. Se instala con «pip install chatterbox-tts».
+#   pip install chatterbox-tts  (trae torch como dependencia)
+#
 # MOTOR=edge usa Edge TTS: las voces neuronales de Microsoft, gratis, sin
-# API key, sin GPU. Suenan en otra liga porque son las mismas que lee Edge
-# en voz alta —entrenadas con muchísimos más datos que Piper o Kokoro—.
-# No hay licencia que cumplir: el servicio es gratuito para uso personal.
-#   es-ES-ElviraNeural   voz femenina de España, natural y conversacional.
+# API key, sin GPU. Reserva por si Chatterbox falla.
+#   es-ES-ElviraNeural   voz femenina de España.
 #   es-MX-DaliaNeural    voz femenina de México.
 # Se instala con «pip install edge-tts» y corre en CPU.
 #
@@ -366,8 +371,9 @@ PAUSA = 0.45
 #   es_ES-mls_9972-low  española de España, 75,8, calidad «low».
 #
 # Se decide escuchando, no leyendo esta nota.
-MOTOR = (os.environ.get("MOTOR") or "edge").strip().lower()
+MOTOR = (os.environ.get("MOTOR") or "chatterbox").strip().lower()
 EDGE_VOZ = os.environ.get("EDGE_VOZ") or "es-ES-ElviraNeural"
+CHATTERBOX_LANG = os.environ.get("CHATTERBOX_LANG") or "es"
 PIPER_MODELO = os.environ.get("PIPER_MODELO") or "/tmp/piper/voz.onnx"
 
 VOZ_RITMO = float(os.environ.get("VOZ_RITMO") or 1.0)
@@ -392,6 +398,79 @@ def decir_piper(texto, destino):
         raise RuntimeError(f"Piper falló ({r.returncode}): {r.stderr[-300:]}")
     import soundfile as sf
     audio, frec = sf.read(str(destino), dtype="float32")
+    return audio, frec
+
+
+def decir_chatterbox(texto, destino, model_cache={}):
+    """Chatterbox Multilingual V3: la mejor voz TTS gratuita que existe.
+
+    POR QUÉ CHATTERBOX Y NO EDGE. Teresa: «esto es una puta mierda, la
+    voz sigue fea». Edge TTS es la voz de lectura de Microsoft: funcional
+    pero plana, se nota que es una máquina. Chatterbox está entrenado con
+    técnicas de clonación de voz y suena conversacional de verdad. En
+    evaluaciones ciegas lo prefirieron sobre ElevenLabs el 63,75 %.
+
+    El modelo pesa ~2GB. En CPU (4 vCPU de Actions) genera a ~0.5-1x
+    realtime. Para un vídeo de 30s de voz, tarda 1-2 minutos. Cabe en
+    los 16GB de RAM de Actions sin problema.
+
+    Se cachea el modelo entre llamadas para no recargarlo en cada frase.
+    """
+    import numpy as np
+
+    if "model" not in model_cache:
+        from chatterbox.mtl_tts import ChatterboxMultilingualTTS
+        log("Cargando Chatterbox Multilingual V3 (puede tardar 1-2 min)...")
+        model_cache["model"] = ChatterboxMultilingualTTS.from_pretrained(
+            device="cpu", t3_model="v3"
+        )
+        log("Chatterbox cargado")
+
+    model = model_cache["model"]
+    wav_tensor = model.generate(texto, language_id=CHATTERBOX_LANG)
+
+    # wav_tensor es un tensor torch [1, N] o [N]. Convertir a numpy float32.
+    audio = wav_tensor.squeeze().cpu().numpy().astype(np.float32)
+    # Normalizar a [-1, 1] si no lo está
+    peak = np.abs(audio).max()
+    if peak > 1.0:
+        audio = audio / peak
+    frec = model.sr  # frecuencia de muestreo del modelo
+
+    # Aplicar ritmo si se pidió
+    if abs(VOZ_RITMO - 1.0) > 0.01:
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        tmp_wav = destino.with_suffix(".raw.wav")
+        _escribir_wav(tmp_wav, audio, frec)
+        out_wav = destino.with_suffix(".wav")
+        factor = f"{1 / VOZ_RITMO:.4f}"
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error",
+                        "-i", str(tmp_wav), "-af", f"atempo={factor}",
+                        str(out_wav)], check=True)
+        import wave
+        with wave.open(str(out_wav), "r") as w:
+            frames = w.readframes(w.getnframes())
+            audio = np.frombuffer(frames, dtype="<i2").astype(np.float32) / 32767
+        frec_out = frec  # atempo no cambia la frecuencia
+        tmp_wav.unlink(missing_ok=True)
+        return audio, frec_out
+
+    # Resamplear a 24kHz para ser compatible con el resto del pipeline
+    if frec != 24000:
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        tmp_wav = destino.with_suffix(".orig.wav")
+        _escribir_wav(tmp_wav, audio, frec)
+        out_wav = destino.with_suffix(".wav")
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error",
+                        "-i", str(tmp_wav), "-ar", "24000", "-ac", "1",
+                        str(out_wav)], check=True)
+        import wave
+        with wave.open(str(out_wav), "r") as w:
+            frames = w.readframes(w.getnframes())
+            audio = np.frombuffer(frames, dtype="<i2").astype(np.float32) / 32767
+        frec = 24000
+        tmp_wav.unlink(missing_ok=True)
+
     return audio, frec
 
 
@@ -470,7 +549,10 @@ def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
         dichas = [f"{x['nombre']}. {x['calle']}." for x in fichas]
     frases = [portada] + dichas + [cierre]
     frec = 24000
-    if MOTOR == "edge":
+    if MOTOR == "chatterbox":
+        log(f"Motor: Chatterbox Multilingual · {CHATTERBOX_LANG}")
+        pipeline = None
+    elif MOTOR == "edge":
         log(f"Motor: Edge TTS · {EDGE_VOZ}")
         pipeline = None
     elif MOTOR == "piper":
@@ -483,7 +565,9 @@ def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
 
     pistas, duraciones = [], []
     for i, frase in enumerate(frases):
-        if MOTOR == "edge":
+        if MOTOR == "chatterbox":
+            a, frec = decir_chatterbox(frase, destino_wav.parent / f"p{i}.wav")
+        elif MOTOR == "edge":
             a, frec = decir_edge(frase, destino_wav.parent / f"p{i}.mp3")
         elif MOTOR == "piper":
             a, frec = decir_piper(frase, destino_wav.parent / f"p{i}.wav")
