@@ -1,51 +1,29 @@
 {
- "archivo": "dato_20261023_1453.mp4",
- "pieza": "comida-datos",
- "duracion": 24.333333,
+ "archivo": "dato_20261023_1534.mp4",
+ "pieza": "madrid-guiris",
+ "duracion": 56.066667,
  "duraciones": [
-  3.2,
-  3.2,
-  3.65,
-  3.2,
-  4.53,
-  3.33,
-  3.2
+  10.29,
+  8.45,
+  9.61,
+  10.53,
+  9.05,
+  8.09
  ],
  "creditos": [
   {
-   "termino": "Gazpacho andaluz",
-   "titulo": "File:Sopa fría española. Gazpacho andaluz con su guarnición.jpg",
+   "termino": "Gran Vía Madrid noche",
+   "titulo": "File:La ciudad de Madrid se prepara para celebrar la noche de fin de año, las preúvas y la San Silvestre 01.jpg",
    "licencia": "cc by 4.0",
-   "autor": "Juan Emilio Prades Bel",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Sopa_fr%C3%ADa_espa%C3%B1ola._Gazpacho_andaluz_con_su_guarnici%C3%B3n.jpg"
+   "autor": "Diario de Madrid",
+   "pagina": "https://commons.wikimedia.org/wiki/File:La_ciudad_de_Madrid_se_prepara_para_celebrar_la_noche_de_fin_de_a%C3%B1o,_las_pre%C3%BAvas_y_la_San_Silvestre_01.jpg"
   },
   {
-   "termino": "Paella valenciana",
-   "titulo": "File:Paella de fruit de mer.jpg",
-   "licencia": "cc0",
-   "autor": "Wilfredor",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Paella_de_fruit_de_mer.jpg"
-  },
-  {
-   "termino": "Ensaladilla rusa",
-   "titulo": "File:Ensaladilla Rusa - Decorada (2011).JPG",
-   "licencia": "cc by 3.0",
-   "autor": "Tamorlan",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Ensaladilla_Rusa_-_Decorada_(2011).JPG"
-  },
-  {
-   "termino": "Tortilla de patatas",
-   "titulo": "File:Tortilla española con patatas y cebolla.jpg",
-   "licencia": "cc by 4.0",
-   "autor": "Juan Emilio Prades Bel",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Tortilla_espa%C3%B1ola_con_patatas_y_cebolla.jpg"
-  },
-  {
-   "termino": "Chocolate con churros",
-   "titulo": "File:Churros con chocolate Barcelona.jpg",
-   "licencia": "cc by 2.0",
-   "autor": "tahaji",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Churros_con_chocolate_Barcelona.jpg"
+   "termino": "Parque del Retiro Madrid gente",
+   "titulo": "File:Madrid 201.jpg",
+   "licencia": "public domain",
+   "autor": "Desconocido (Publicada por Fototipia Castañeira, Álvarez y Levenfeld, Madrid)",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Madrid_201.jpg"
   }
  ]
 }
