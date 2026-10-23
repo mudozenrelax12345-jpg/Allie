@@ -95,6 +95,38 @@
      "Gran Via Madrid street"
     ]
    ]
+  },
+  {
+   "id": "comida-datos",
+   "formato": "dato",
+   "etiqueta": "calle",
+   "gancho_tiktok": "El gazpacho original no llevaba tomate",
+   "pie_tiktok": "Y cuatro cosas más de la comida española",
+   "texto": "Cinco cosas que no sabías de la comida española 🥘\n\n1️⃣ El gazpacho original no llevaba tomate · Era pan, ajo, aceite y vinagre. El tomate llegó de América en el siglo XVI.\n\n2️⃣ Paella es el nombre de la sartén, no del arroz · Viene del latín patella, un plato hondo. Lo de «para ella» es un cuento.\n\n3️⃣ La ensaladilla rusa es rusa de verdad · La creó el cocinero Lucien Olivier en Moscú hacia 1860. Allí la llaman ensalada Olivier.\n\n4️⃣ La tortilla de patatas aparece por escrito en 1817 · En una carta a las Cortes de Navarra. Decía que en Pamplona se hacía con dos huevos y cinco patatas.\n\n5️⃣ España guardó la receta del chocolate un siglo · Cortés mandó el primer cargamento de cacao en 1524. La corte lo trató como secreto de Estado.\n\n¿Cuál no sabías? 👇",
+   "fotos_busqueda": [
+    [
+     "Gazpacho andaluz",
+     "Gazpacho"
+    ],
+    [
+     "Paella valenciana",
+     "Paella"
+    ],
+    [
+     "Ensaladilla rusa",
+     "Olivier salad",
+     "Russian salad"
+    ],
+    [
+     "Tortilla de patatas",
+     "Spanish omelette tortilla"
+    ],
+    [
+     "Chocolate con churros",
+     "Chocolate a la taza",
+     "Churros"
+    ]
+   ]
   }
  ],
  "arrobas_comprobados": {
