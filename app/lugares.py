@@ -89,6 +89,41 @@ def es_libre(meta):
     return None
 
 
+COMMONS_SELLOS = (
+    ("featured pictures", 400),
+    ("quality images", 250),
+    ("valued images", 120),
+)
+
+
+def nota(cand, termino):
+    """Cuánto vale una candidata. No es la resolución.
+
+    Ordenando por tamaño salía, para «Templo de Debod», una foto nevada con
+    un músico callejero delante en la que el templo parecía un bloque de
+    piedra cualquiera. Era la más grande del montón y la peor de todas: una
+    foto que no deja reconocer la cosa de la que habla el dato no sirve, por
+    muchos megapíxeles que tenga.
+
+    Quien ya ha hecho este trabajo es la propia Commons. Sus comunidades
+    marcan las fotos buenas con tres sellos —«featured», «quality» y
+    «valued»— y esa valoración vale muchísimo más que cualquier regla que
+    yo pueda escribir mirando metadatos. Eso manda; el tamaño solo desempata.
+    """
+    puntos = 0
+    cats = " ".join(cand.get("categorias") or []).lower()
+    for sello, valor in COMMONS_SELLOS:
+        if sello in cats:
+            puntos += valor
+            break
+    # Que el título hable del sitio, no de un detalle suyo.
+    titulo = cand["titulo"].lower()
+    claves = [p for p in termino.lower().split() if len(p) > 3]
+    puntos += 25 * sum(1 for k in claves if k in titulo)
+    puntos += min(cand["ancho"] * cand["alto"] / 1_000_000, 20)
+    return puntos
+
+
 def buscar(termino, cuantas=30):
     """Las candidatas de Commons para un término, ya filtradas por licencia."""
     d = pedir({
@@ -97,9 +132,10 @@ def buscar(termino, cuantas=30):
         "gsrsearch": f"{termino} filetype:bitmap",
         "gsrnamespace": "6",          # 6 = ficheros
         "gsrlimit": str(cuantas),
-        "prop": "imageinfo",
+        "prop": "imageinfo|categories",
         "iiprop": "url|size|extmetadata|mime",
         "iiurlwidth": str(ANCHO),
+        "cllimit": "max",
     })
     salida = []
     for pag in (d.get("query", {}).get("pages") or {}).values():
@@ -120,6 +156,7 @@ def buscar(termino, cuantas=30):
             continue
         meta = inf.get("extmetadata") or {}
         salida.append({
+            "categorias": [c.get("title", "") for c in (pag.get("categories") or [])],
             "titulo": pag.get("title", ""),
             "url": inf["thumburl"],
             "pagina": inf.get("descriptionurl", ""),
@@ -127,8 +164,10 @@ def buscar(termino, cuantas=30):
             "autor": limpiar(meta.get("Artist", {}).get("value")),
             "ancho": an, "alto": al,
         })
-    # Las más grandes primero: suelen ser las mejores.
-    salida.sort(key=lambda x: -(x["ancho"] * x["alto"]))
+    salida.sort(key=lambda x: -nota(x, termino))
+    for c in salida[:5]:
+        log(f"    candidata {nota(c, termino):6.0f} · {c['titulo'][5:58]} · "
+            f"{c['licencia']}")
     return salida
 
 
