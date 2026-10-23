@@ -107,7 +107,7 @@ def ff(*args):
 
 
 # ──────────────────────────────────────────────── leer la pieza
-def partir(texto):
+def partir(texto, formato="lista"):
     """Saca de la pieza la portada y las fichas numeradas.
 
     El texto del carrusel tiene esta forma:
@@ -128,11 +128,23 @@ def partir(texto):
         arroba = (re.search(r"@[\w.]+", cabeza) or [None])
         arroba = arroba.group(0) if hasattr(arroba, "group") else None
         resto = resto.strip()
+        # EN EL FORMATO «DATO» NO HAY CALLE NI HORARIO: hay un titular y un
+        # detalle, y el detalle es todo lo que viene después del punto medio.
+        # Partirlo por frases dejaba «La Casa de Campo tiene 1» y se perdía
+        # el resto del dato.
+        if formato == "dato":
+            fichas.append({"n": m.group(1), "nombre": nombre, "arroba": arroba,
+                           "calle": resto, "horario": ""})
+            continue
+
         # La calle es la primera frase. El horario se busca SOLO en lo que
         # viene después: «La Central de Callao · Postigo de San Martín 9.»
         # tiene una calle que empieza por «de» y lleva número, y buscando en
         # todo el texto el horario salía «de San Martín 9».
-        frases = [f.strip() for f in resto.split(".") if f.strip()]
+        #
+        # El punto de los millares NO separa frases: «1.722 hectáreas» se
+        # partía en «1» y «722 hectáreas».
+        frases = [x.strip() for x in re.split(r"\.(?!\d)", resto) if x.strip()]
         calle = frases[0] if frases else ""
         horario = ""
         for f in frases[1:]:
@@ -201,13 +213,28 @@ def pintar_ficha(ruta_foto, ficha, total, destino):
     d.text((margen, y - 70), f"{ficha['n']} de {total}",
            font=ImageFont.truetype(NEGRITA, 34), fill=ACENTO)
 
-    f_nom = encajar(d, sin_emoji(ficha["nombre"]), NEGRITA, 78, ancho)
-    d.text((margen, y), sin_emoji(ficha["nombre"]), font=f_nom, fill=CLARO)
-    y += f_nom.size + 22
+    if ficha.get("formato") == "dato":
+        # Un titular de nueve palabras no cabe en una línea, y encogerlo
+        # hasta que quepa lo deja ilegible: a 78 píxeles «El restaurante más
+        # antiguo del mundo está aquí» bajaba a cuerpo 24. Aquí se envuelve.
+        f_nom = ImageFont.truetype(NEGRITA, 62)
+        lineas = envolver(d, sin_emoji(ficha["nombre"]), f_nom, ancho)
+        while len(lineas) > 3 and f_nom.size > 42:
+            f_nom = ImageFont.truetype(NEGRITA, f_nom.size - 4)
+            lineas = envolver(d, sin_emoji(ficha["nombre"]), f_nom, ancho)
+        for ln in lineas:
+            d.text((margen, y), ln, font=f_nom, fill=CLARO)
+            y += f_nom.size + 8
+        y += 14
+    else:
+        f_nom = encajar(d, sin_emoji(ficha["nombre"]), NEGRITA, 78, ancho)
+        d.text((margen, y), sin_emoji(ficha["nombre"]), font=f_nom, fill=CLARO)
+        y += f_nom.size + 22
 
     if ficha["calle"]:
         f_c = ImageFont.truetype(NORMAL, 42)
-        for ln in envolver(d, sin_emoji(ficha["calle"]), f_c, ancho)[:2]:
+        tope = 3 if ficha.get("formato") == "dato" else 2
+        for ln in envolver(d, sin_emoji(ficha["calle"]), f_c, ancho)[:tope]:
             d.text((margen, y), ln, font=f_c, fill=CLARO)
             y += 52
 
@@ -384,7 +411,8 @@ def main():
     log(f"Pieza: {pieza['id']}")
 
     texto = pieza.get("texto_con_arrobas") or pieza["texto"]
-    portada, fichas = partir(texto)
+    formato = pieza.get("formato", "lista")
+    portada, fichas = partir(texto, formato)
     if len(fichas) < 3:
         raise RuntimeError(f"Solo he sacado {len(fichas)} fichas del texto. "
                            "Un reel de lista con menos de tres no se sostiene.")
@@ -421,7 +449,10 @@ def main():
         TRABAJO.mkdir(parents=True, exist_ok=True)
         trozos = []
 
-        cierre_txt = "¿Cuál es la tuya?"
+        # El cierre depende del formato: «¿cuál es la tuya?» tiene sentido
+        # tras una lista de sitios y ninguno tras cinco datos históricos.
+        cierre_txt = ("¿Cuál no sabías?" if pieza.get("formato") == "dato"
+                      else "¿Cuál es la tuya?")
         # El título se resuelve aquí y no más abajo: la narración lo necesita
         # para leer la portada, y definirlo después reventaba la rama con voz
         # —la única que no se puede probar en local, porque Kokoro solo está
@@ -450,6 +481,7 @@ def main():
 
         for i, ficha in enumerate(fichas):
             img = TRABAJO / f"{i+1:02d}.jpg"
+            ficha["formato"] = formato
             pintar_ficha(rutas[i + 1], ficha, len(fichas), img)
             c = TRABAJO / f"c{i+1:02d}.mp4"
             clip(img, duraciones[i + 1], c, acerca=(i % 2 == 0))

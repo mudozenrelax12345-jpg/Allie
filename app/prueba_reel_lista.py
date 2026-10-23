@@ -46,6 +46,24 @@ def comprobar(que, bien, detalle=""):
         fallos.append(que)
 
 
+def pieza_con_fotos():
+    """Una pieza de la cola cuya etiqueta tenga al menos tres fotos libres."""
+    from collections import Counter
+    d = json.loads((BASE / "banco" / "indice.json").read_text(encoding="utf-8"))
+    fotos = d if isinstance(d, list) else d.get("fotos", [])
+    hay = Counter(x.get("etiqueta") for x in fotos
+                  if not x.get("usada") and not x.get("retirada"))
+    cola = json.loads((BASE / "contenido" / "cola.json").read_text(encoding="utf-8"))
+    for p in cola.get("piezas", []):
+        if p.get("imagenes"):
+            continue          # las piezas con imágenes propias no usan banco
+        if hay.get(p.get("etiqueta"), 0) >= 3:
+            return p["id"]
+    raise SystemExit("Ninguna pieza de la cola tiene tres fotos libres de su "
+                     "etiqueta. Llena el banco antes de pasar esta prueba:\n"
+                     f"   libres por etiqueta: {dict(hay)}")
+
+
 def libres():
     d = json.loads((BASE / "banco" / "indice.json").read_text(encoding="utf-8"))
     f = d if isinstance(d, list) else d.get("fotos", [])
@@ -80,7 +98,15 @@ def una(plataforma, con_voz, antes):
     os.environ["PLATAFORMA"] = plataforma
     os.environ["VOZ"] = "ef_dora" if con_voz else ""
     os.environ["EN_SECO"] = "si"
-    os.environ["PIEZA"] = "madrid-librerias-cafe"
+    # LA PIEZA SE ELIGE POR LO QUE HAY EN EL BANCO, no a dedo.
+    #
+    # Estaba fija en «madrid-librerias-cafe», cuya etiqueta es «cafe». El 23
+    # de octubre esa etiqueta se quedó sin fotos libres y las cuatro
+    # comprobaciones empezaron a fallar sin que nada estuviera roto. Es la
+    # tercera vez en esta sesión que una prueba depende del estado de
+    # producción: con el gasto de Cloudflare, con la carpeta de salida, y
+    # ahora con el banco.
+    os.environ["PIEZA"] = pieza_con_fotos()
     import reel_lista
     importlib.reload(reel_lista)
     if con_voz:
