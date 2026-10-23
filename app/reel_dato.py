@@ -323,11 +323,21 @@ def main():
 
     titulo = pieza.get("gancho_tiktok") or portada
     pie = pieza.get("pie_tiktok") or "Quédate que son buenos"
-    cierre_txt = "¿Cuál no sabías?"
+    # EN PANTALLA va corto; la VOZ dice una frase más larga y natural.
+    # Así el titular se lee de un vistazo y el audio suena a persona, no a
+    # ficha. Si la pieza no trae versión hablada, la voz lee lo de pantalla.
+    cierre_txt = pieza.get("cierre_tiktok") or "¿Cuál no sabías?"
+    cierre_pie = pieza.get("cierre_pie") or "Dímela en comentarios 👇"
+    intro_voz = pieza.get("intro_voz") or titulo
+    cierre_voz = pieza.get("cierre_voz") or cierre_txt
+    dichos = pieza.get("dichos") or []
+    for i, f in enumerate(fichas):
+        if i < len(dichos) and dichos[i]:
+            f["dicho"] = dichos[i]
 
     try:
         wav = TRABAJO / "voz.wav"
-        duraciones = rl.narrar_fichas(titulo, fichas, cierre_txt, wav, "dato")
+        duraciones = rl.narrar_fichas(intro_voz, fichas, cierre_voz, wav, "dato")
         log("  " + " · ".join(f"{d:.1f}s" for d in duraciones))
 
         trozos_clips = []
@@ -378,7 +388,7 @@ def main():
         fondo = TRABAJO / "f99.jpg"
         foto_plena(rutas_banco[-1]).save(fondo, "JPEG", quality=92)
         png = TRABAJO / "p99.png"
-        pintar_cartel(cierre_txt, "Dímela en comentarios 👇", png)
+        pintar_cartel(cierre_txt, cierre_pie, png)
         c = TRABAJO / "c99.mp4"
         plano(fondo, [(png, 0.1)], duraciones[-1], c, acerca=False)
         trozos_clips.append(c)

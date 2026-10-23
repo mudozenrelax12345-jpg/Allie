@@ -401,20 +401,64 @@ def decir_piper(texto, destino):
     return audio, frec
 
 
+VOZ_REF = os.environ.get("VOZ_REF") or ""
+
+
+def referencia_femenina(cache={}):
+    """Un clip corto de voz FEMENINA de ESPAÑA para que Chatterbox lo clone.
+
+    POR QUÉ. Teresa: «es una voz de hombre cuando es una mujer, no es
+    castellano». Chatterbox sin referencia saca una voz masculina y un
+    español neutro/latino. Chatterbox NO tiene parámetro de género ni de
+    acento: lo único que controla el timbre es un audio de referencia
+    (audio_prompt_path). Así que se le da uno.
+
+    De dónde sale la referencia, siendo todo gratis: la genera Edge TTS con
+    ElviraNeural (femenina, es-ES) una sola vez. OJO: el resultado final NO
+    suena a Elvira. Elvira solo presta el timbre y el acento; la frase de
+    verdad la sintetiza Chatterbox con su prosodia expresiva. Es decir,
+    cogemos de Edge lo único que estaba bien (mujer, castellana) y lo
+    decimos con el motor que suena a persona.
+
+    Se puede forzar otra referencia con la variable VOZ_REF (ruta a un wav).
+    """
+    global VOZ_REF
+    if VOZ_REF and Path(VOZ_REF).exists():
+        return VOZ_REF
+    if "ruta" in cache:
+        return cache["ruta"]
+    ref = Path("/tmp/ref_femenina_es.wav")
+    if not ref.exists():
+        import asyncio
+        import edge_tts
+        # Rico en castellano: ceceo, «vosotros», entonación de España.
+        guion = ("Hola, ¿qué tal? Soy española, de Madrid. Os voy a contar "
+                 "un par de cosas que seguro que no sabíais. Prestad atención, "
+                 "que esto os interesa.")
+        mp3 = ref.with_suffix(".mp3")
+        async def _g():
+            await edge_tts.Communicate(guion, "es-ES-ElviraNeural").save(str(mp3))
+        asyncio.run(_g())
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3),
+                        "-ar", "24000", "-ac", "1", str(ref)], check=True)
+        mp3.unlink(missing_ok=True)
+        log("Referencia femenina castellana generada (Edge→clip)")
+    cache["ruta"] = str(ref)
+    return str(ref)
+
+
 def decir_chatterbox(texto, destino, model_cache={}):
-    """Chatterbox Multilingual V3: la mejor voz TTS gratuita que existe.
+    """Chatterbox Multilingual V3 clonando una voz femenina castellana.
 
-    POR QUÉ CHATTERBOX Y NO EDGE. Teresa: «esto es una puta mierda, la
-    voz sigue fea». Edge TTS es la voz de lectura de Microsoft: funcional
-    pero plana, se nota que es una máquina. Chatterbox está entrenado con
-    técnicas de clonación de voz y suena conversacional de verdad. En
-    evaluaciones ciegas lo prefirieron sobre ElevenLabs el 63,75 %.
+    POR QUÉ CHATTERBOX Y NO EDGE A SECAS. Edge es la voz de lectura de
+    Microsoft: funcional pero plana, se nota la máquina (Teresa: «esa voz
+    fea»). Chatterbox suena conversacional de verdad —en evaluaciones
+    ciegas lo prefirieron sobre ElevenLabs el 63,75 %— pero por defecto
+    saca voz de hombre. La solución: que Chatterbox CLONE un timbre
+    femenino de España (ver referencia_femenina) en vez de inventarse uno.
 
-    El modelo pesa ~2GB. En CPU (4 vCPU de Actions) genera a ~0.5-1x
-    realtime. Para un vídeo de 30s de voz, tarda 1-2 minutos. Cabe en
-    los 16GB de RAM de Actions sin problema.
-
-    Se cachea el modelo entre llamadas para no recargarlo en cada frase.
+    El modelo pesa ~2GB. En CPU (4 vCPU de Actions) tarda 1-2 min para 30s
+    de voz y cabe en los 16GB de RAM. Se cachea entre llamadas.
     """
     import numpy as np
 
@@ -427,7 +471,9 @@ def decir_chatterbox(texto, destino, model_cache={}):
         log("Chatterbox cargado")
 
     model = model_cache["model"]
-    wav_tensor = model.generate(texto, language_id=CHATTERBOX_LANG)
+    ref = referencia_femenina()
+    wav_tensor = model.generate(
+        texto, language_id=CHATTERBOX_LANG, audio_prompt_path=ref)
 
     # wav_tensor es un tensor torch [1, N] o [N]. Convertir a numpy float32.
     audio = wav_tensor.squeeze().cpu().numpy().astype(np.float32)
@@ -544,7 +590,9 @@ def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
     # en alto no tiene por qué ser lo que pone en pantalla. La voz lleva el
     # ritmo, el texto lleva los datos.
     if formato == "dato":
-        dichas = [x["nombre"] for x in fichas]
+        # La voz dice el campo «dicho» si la pieza lo trae (una frase larga y
+        # conversacional), y si no, el titular corto de pantalla.
+        dichas = [x.get("dicho") or x["nombre"] for x in fichas]
     else:
         dichas = [f"{x['nombre']}. {x['calle']}." for x in fichas]
     frases = [portada] + dichas + [cierre]
