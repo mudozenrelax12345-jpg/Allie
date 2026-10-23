@@ -1,14 +1,8 @@
-Instalación · 2026-10-23 12:59 UTC
+Instalación · 2026-10-23 13:11 UTC
 falta: ffmpeg
 ━━━━ apt update
-   OK apt update · 6s
+   OK apt update · 5s
 ━━━━ apt install (intento 1)
-   MAL apt install (intento 1) · 240s
-   reintento en 20s
-━━━━ apt install (intento 2)
-   MAL apt install (intento 2) · 240s
-   reintento en 20s
-━━━━ apt install (intento 3)
 Setting up libavformat60:amd64 (7:6.1.1-3ubuntu5) ...
 Setting up libsphinxbase3t64:amd64 (0.8+5prealpha+1-17build2) ...
 Setting up libsdl2-2.0-0:amd64 (2.30.0+dfsg-1ubuntu3.1) ...
@@ -29,7 +23,7 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
-   OK apt install (intento 3) · 48s
+   OK apt install (intento 1) · 10s
 ━━━━ requirements
 Downloading httpx2-2.16.0-py3-none-any.whl (97 kB)
 Downloading httpcore2-2.16.0-py3-none-any.whl (85 kB)
@@ -51,7 +45,7 @@ Downloading pycparser-3.12-py3-none-any.whl (62 kB)
 Installing collected packages: urllib3, typing-extensions, truststore, tqdm, pyyaml, pycparser, pillow, packaging, numpy, idna, hf-xet, h11, fsspec, filelock, click, charset_normalizer, certifi, requests, opencv-python-headless, httpcore2, httpcore, cffi, anyio, httpx2, httpx, cryptography, huggingface-hub, gradio_client
 
 Successfully installed anyio-4.15.1 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 filelock-4.2.4 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.3.0 idna-3.20 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0
-   OK requirements · 7s
+   OK requirements · 8s
 ━━━━ piper
   Downloading flatbuffers-25.12.19-py2.py3-none-any.whl.metadata (1.0 kB)
 Requirement already satisfied: numpy>=1.21.6 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from onnxruntime<2,>=1->piper-tts) (2.5.4)
@@ -62,12 +56,12 @@ Requirement already satisfied: cffi>=1.0 in /opt/hostedtoolcache/Python/3.12.15/
 Requirement already satisfied: typing-extensions in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from soundfile) (4.16.0)
 Requirement already satisfied: pycparser in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from cffi>=1.0->soundfile) (3.12)
 Downloading piper_tts-1.8.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl (34.1 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.1/34.1 MB 197.8 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.1/34.1 MB 296.5 MB/s  0:00:00
 Downloading onnxruntime-1.31.0-cp312-cp312-manylinux_2_28_x86_64.whl (23.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.8/23.8 MB 219.9 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.8/23.8 MB 350.7 MB/s  0:00:00
 Downloading pathvalidate-3.3.1-py3-none-any.whl (24 kB)
 Downloading soundfile-0.14.0-py2.py3-none-manylinux_2_28_x86_64.whl (1.3 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 268.2 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 241.6 MB/s  0:00:00
 Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
 Downloading flatbuffers-25.12.19-py2.py3-none-any.whl (26 kB)
 Installing collected packages: flatbuffers, protobuf, pathvalidate, soundfile, onnxruntime, piper-tts
@@ -79,7 +73,7 @@ Successfully installed flatbuffers-25.12.19 onnxruntime-1.31.0 pathvalidate-3.3.
 ━━━━ config de voz
    OK config de voz · 0s
 total 61660
-drwxr-xr-x  2 runner runner     4096 Oct 23 13:09 .
-drwxrwxrwt 14 root   root       4096 Oct 23 13:09 ..
--rw-r--r--  1 runner runner 63122309 Oct 23 13:09 voz.onnx
--rw-r--r--  1 runner runner     4963 Oct 23 13:09 voz.onnx.json
+drwxr-xr-x  2 runner runner     4096 Oct 23 13:11 .
+drwxrwxrwt 14 root   root       4096 Oct 23 13:11 ..
+-rw-r--r--  1 runner runner 63122309 Oct 23 13:11 voz.onnx
+-rw-r--r--  1 runner runner     4963 Oct 23 13:11 voz.onnx.json
