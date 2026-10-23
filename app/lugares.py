@@ -124,19 +124,16 @@ def nota(cand, termino):
     return puntos
 
 
-def buscar(termino, cuantas=30):
-    """Las candidatas de Commons para un término, ya filtradas por licencia."""
-    d = pedir({
-        "action": "query",
-        "generator": "search",
-        "gsrsearch": f"{termino} filetype:bitmap",
-        "gsrnamespace": "6",          # 6 = ficheros
-        "gsrlimit": str(cuantas),
-        "prop": "imageinfo|categories",
-        "iiprop": "url|size|extmetadata|mime",
-        "iiurlwidth": str(ANCHO),
-        "cllimit": "max",
-    })
+def _ordenar(salida, termino):
+    salida.sort(key=lambda x: -nota(x, termino))
+    for c in salida[:5]:
+        log(f"    candidata {nota(c, termino):6.0f} · {c['titulo'][5:58]} · "
+            f"{c['licencia']}")
+    return salida
+
+
+def _cosechar(d, termino, exacto=False):
+    """Las páginas que devuelve Commons, filtradas por formato y licencia."""
     salida = []
     for pag in (d.get("query", {}).get("pages") or {}).values():
         inf = (pag.get("imageinfo") or [{}])[0]
@@ -147,9 +144,9 @@ def buscar(termino, cuantas=30):
         # Horizontal o cuadrada. Una foto muy apaisada o muy estrecha no
         # llena el hueco de la foto sin recortar lo que importa.
         an, al = inf.get("width") or 0, inf.get("height") or 0
-        if not an or not al or not (0.7 <= an / al <= 2.6):
+        if not exacto and not (0.7 <= (an / al if al else 0) <= 2.6):
             continue
-        if an < 800:
+        if not exacto and an < 800:
             continue
         lic = es_libre(inf.get("extmetadata") or {})
         if not lic:
@@ -164,11 +161,38 @@ def buscar(termino, cuantas=30):
             "autor": limpiar(meta.get("Artist", {}).get("value")),
             "ancho": an, "alto": al,
         })
-    salida.sort(key=lambda x: -nota(x, termino))
-    for c in salida[:5]:
-        log(f"    candidata {nota(c, termino):6.0f} · {c['titulo'][5:58]} · "
-            f"{c['licencia']}")
     return salida
+
+
+def buscar(termino, cuantas=30):
+    """Las candidatas de Commons para un término, ya filtradas por licencia.
+
+    Un término que empieza por «File:» no se busca: se pide ese fichero y
+    punto. Es la salida de emergencia para cuando el buscador no acierta y
+    yo ya he visto cuál es la buena. Sigue pasando el filtro de licencia:
+    elegirla a mano no la hace libre.
+    """
+    if termino.startswith(("File:", "Archivo:")):
+        d = pedir({"action": "query", "titles": termino,
+                   "prop": "imageinfo|categories",
+                   "iiprop": "url|size|extmetadata|mime",
+                   "iiurlwidth": str(ANCHO), "cllimit": "max"})
+        return _ordenar(_cosechar(d, termino, exacto=True), termino)
+    d = pedir({
+        "action": "query",
+        "generator": "search",
+        "gsrsearch": f"{termino} filetype:bitmap",
+        "gsrnamespace": "6",          # 6 = ficheros
+        "gsrlimit": str(cuantas),
+        "prop": "imageinfo|categories",
+        "iiprop": "url|size|extmetadata|mime",
+        "iiurlwidth": str(ANCHO),
+        "cllimit": "max",
+    })
+    return _ordenar(_cosechar(d, termino), termino)
+
+
+
 
 
 def bajar(url, destino):
