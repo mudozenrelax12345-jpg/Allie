@@ -332,9 +332,16 @@ def main():
 
         trozos_clips = []
 
-        # portada
+        # LA PORTADA ENSEÑA EL PRIMER DATO, no la cara de Allie.
+        #
+        # El gancho dice «el gazpacho original no llevaba tomate» y se veía
+        # un primer plano de una señora. El primer segundo es el que decide
+        # si alguien se queda, y una frase que nombra una cosa mientras se
+        # enseña otra desperdicia justo ese segundo. Allie se queda para el
+        # cierre, que es donde se pide el comentario y donde tiene sentido
+        # que aparezca quien lo pide.
         fondo = TRABAJO / "f00.jpg"
-        foto_plena(rutas_banco[0]).save(fondo, "JPEG", quality=92)
+        foto_plena(fotos[0] or rutas_banco[0]).save(fondo, "JPEG", quality=92)
         tr = trozos(rl.sin_emoji(titulo), 3)
         tiempos = reparto(duraciones[0], len(tr))
         capas = []
@@ -398,7 +405,12 @@ def main():
               "[1:a]loudnorm=I=-16:TP=-1.5:LRA=11[v];"
               "[2:a]volume=-10dB[m];"
               "[v][m]amix=inputs=2:duration=first:dropout_transition=0:"
-              "weights=1 1:normalize=0[a]",
+              # Un limitador al final. Sin él los picos llegaban a -0,6 dB:
+              # la voz sale a -1,5 de techo y la música, al sumarse, se come
+              # ese margen. No es saturación todavía, pero está a medio
+              # decibelio, y las redes vuelven a procesar el audio al
+              # subirlo. Un decibelio de margen cuesta nada.
+              "weights=1 1:normalize=0,alimiter=limit=0.89:level=disabled[a]",
               "-map", "0:v", "-map", "[a]", "-c:v", "copy",
               "-c:a", "aac", "-b:a", "160k", "-shortest",
               "-movflags", "+faststart", str(final))
