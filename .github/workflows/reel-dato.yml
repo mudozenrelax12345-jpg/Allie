@@ -100,8 +100,11 @@ jobs:
             sudo apt-get install -y -qq --no-install-recommends fonts-dejavu-core
           corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
           if [ "${{ inputs.motor }}" = "chatterbox" ]; then
-            # Chatterbox TTS: el modelo se descarga solo la primera vez.
-            # torch ya viene con chatterbox-tts en requirements.txt.
+            # Chatterbox Multilingual V3: instalar desde GitHub (PyPI está
+            # atrasado y no tiene el modelo multilingual).
+            # torch se instala como dependencia de chatterbox.
+            corre "torch cpu" 300 pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+            corre "chatterbox" 300 pip install "chatterbox-tts @ git+https://github.com/resemble-ai/chatterbox.git@master"
             echo "   Motor: Chatterbox Multilingual V3" | tee -a $registro
           elif [ "${{ inputs.motor }}" = "edge" ]; then
             # Edge TTS ya está en requirements.txt, no necesita modelo local.
