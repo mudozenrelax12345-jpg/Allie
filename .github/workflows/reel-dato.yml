@@ -131,29 +131,41 @@ jobs:
 
       - name: Montar
         run: |
-          mkdir -p estado
+          mkdir -p estado /tmp/entrega
           set -o pipefail
-          python app/reel_dato.py 2>&1 | tee estado/ultimo-reel-dato.txt
+          plat="${{ inputs.plataforma }}"
+          montar() {
+            local motor="$1"
+            echo "######## MOTOR=$motor ########"
+            MOTOR="$motor" EDGE_VOZ="auto" \
+              python app/reel_dato.py 2>&1 | tee "estado/ultimo-reel-dato-$motor.txt"
+            local nuevo=$(ls -t videos/dato_*.mp4 | head -1)
+            cp "$nuevo" "/tmp/entrega/${plat}-$motor.mp4"
+            # la voz limpia (sin música) para poder verificar género/acento
+            cp video/dato/voz.wav "/tmp/entrega/voz-$motor.wav" 2>/dev/null || true
+          }
+          # Dos versiones para comparar: Chatterbox (clon, calidad) y Edge
+          # (voz femenina es-ES garantizada). Si una falla, la otra queda.
+          montar chatterbox || echo "chatterbox falló"
+          montar edge || echo "edge falló"
+          cp /tmp/ref_femenina_es.wav /tmp/entrega/ref-femenina.wav 2>/dev/null || true
+          ls -la /tmp/entrega | tee estado/entrega.txt
         env:
           PIEZA: ${{ inputs.pieza }}
           PLATAFORMA: ${{ inputs.plataforma }}
-          VOZ: ${{ (inputs.motor == 'edge' || inputs.motor == 'chatterbox') && inputs.motor || inputs.voz }}
+          VOZ: ${{ inputs.voz }}
           VOZ_RITMO: ${{ inputs.ritmo }}
-          MOTOR: ${{ inputs.motor }}
-          EDGE_VOZ: ${{ inputs.edge_voz }}
           EN_SECO: "si"
 
       - name: Dejarlo descargable
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          nuevo=$(ls -t videos/dato_*.mp4 | head -1)
-          cp "$nuevo" "/tmp/${{ inputs.plataforma }}-dato.mp4"
           gh release delete "${{ inputs.etiqueta }}" --yes --cleanup-tag || true
           gh release create "${{ inputs.etiqueta }}" \
             --title "Dato · ${{ inputs.plataforma }}" \
-            --notes "Montado sin publicar. Las fotos han vuelto al banco." \
-            "/tmp/${{ inputs.plataforma }}-dato.mp4"
+            --notes "Montado sin publicar. Dos versiones de voz + stems para verificar. Las fotos han vuelto al banco." \
+            /tmp/entrega/*
 
       - name: Guardar el registro
         if: always()

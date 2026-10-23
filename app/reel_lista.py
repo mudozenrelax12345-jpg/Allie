@@ -372,8 +372,38 @@ PAUSA = 0.45
 #
 # Se decide escuchando, no leyendo esta nota.
 MOTOR = (os.environ.get("MOTOR") or "chatterbox").strip().lower()
-EDGE_VOZ = os.environ.get("EDGE_VOZ") or "es-ES-ElviraNeural"
+EDGE_VOZ = os.environ.get("EDGE_VOZ") or "auto"
 CHATTERBOX_LANG = os.environ.get("CHATTERBOX_LANG") or "es"
+
+
+def elegir_voz_edge(pedida="auto"):
+    """Escoge la MEJOR voz femenina de España que tenga Edge en este momento.
+
+    Teresa rechazó ElviraNeural («voz fea»). Microsoft ha ido metiendo voces
+    es-ES más nuevas (las «Multilingual» y las «DragonHD») que suenan mucho
+    más naturales. Como la lista cambia, en vez de fijar un nombre se pregunta
+    a Edge qué voces es-ES femeninas hay y se prefiere, por este orden:
+    DragonHD > Multilingual > el resto; Elvira queda de última red.
+    """
+    if pedida and pedida.lower() not in ("auto", ""):
+        return pedida
+    import asyncio
+    import edge_tts
+    vs = asyncio.run(edge_tts.list_voices())
+    fem = [v["ShortName"] for v in vs
+           if v["Locale"] == "es-ES" and v["Gender"] == "Female"]
+    log("Voces femeninas es-ES disponibles: " + (", ".join(fem) or "ninguna"))
+    if not fem:
+        return "es-ES-ElviraNeural"
+    def rango(n):
+        b = n.lower()
+        if "dragonhd" in b: return 0
+        if "multilingual" in b: return 1
+        if "elvira" in b: return 3
+        return 2
+    elegida = sorted(fem, key=rango)[0]
+    log(f"Voz Edge elegida: {elegida}")
+    return elegida
 PIPER_MODELO = os.environ.get("PIPER_MODELO") or "/tmp/piper/voz.onnx"
 
 VOZ_RITMO = float(os.environ.get("VOZ_RITMO") or 1.0)
@@ -535,6 +565,9 @@ def decir_edge(texto, destino):
     """
     import asyncio
     import edge_tts
+    global EDGE_VOZ
+    if EDGE_VOZ.lower() in ("auto", ""):
+        EDGE_VOZ = elegir_voz_edge("auto")
     rate = ""
     if abs(VOZ_RITMO - 1.0) > 0.01:
         pct = int((VOZ_RITMO - 1.0) * 100)
