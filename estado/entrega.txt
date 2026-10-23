@@ -1,0 +1,8 @@
+total 28536
+drwxr-xr-x  2 runner runner     4096 Oct 23 15:50 .
+drwxrwxrwt 15 root   root      12288 Oct 23 15:49 ..
+-rw-r--r--  1 runner runner   565710 Oct 23 15:50 ref-femenina.wav
+-rw-r--r--  1 runner runner 11699539 Oct 23 15:49 tiktok-chatterbox.mp4
+-rw-r--r--  1 runner runner 11716739 Oct 23 15:50 tiktok-edge.mp4
+-rw-r--r--  1 runner runner  2610276 Oct 23 15:49 voz-chatterbox.wav
+-rw-r--r--  1 runner runner  2598372 Oct 23 15:50 voz-edge.wav
