@@ -332,16 +332,16 @@ def main():
 
         trozos_clips = []
 
-        # LA PORTADA ENSEÑA EL PRIMER DATO, no la cara de Allie.
+        # LA PORTADA ENSEÑA A ALLIE, no la foto del dato.
         #
-        # El gancho dice «el gazpacho original no llevaba tomate» y se veía
-        # un primer plano de una señora. El primer segundo es el que decide
-        # si alguien se queda, y una frase que nombra una cosa mientras se
-        # enseña otra desperdicia justo ese segundo. Allie se queda para el
-        # cierre, que es donde se pide el comentario y donde tiene sentido
-        # que aparezca quien lo pide.
+        # Teresa: «no aparece allí». Es una influencer de IA: si no sale en
+        # sus propios vídeos, no tiene sentido que exista. El 77,8 % de los
+        # TikToks virales usa tercera persona (narran sobre B-roll), pero
+        # el PRIMER SEGUNDO necesita una cara. Es lo que para el scroll.
+        #
+        # Estructura: Allie + gancho → datos con fotos → Allie + CTA.
         fondo = TRABAJO / "f00.jpg"
-        foto_plena(fotos[0] or rutas_banco[0]).save(fondo, "JPEG", quality=92)
+        foto_plena(rutas_banco[0]).save(fondo, "JPEG", quality=92)
         tr = trozos(rl.sin_emoji(titulo), 3)
         tiempos = reparto(duraciones[0], len(tr))
         capas = []
@@ -374,11 +374,11 @@ def main():
             plano(fondo, capas, duraciones[i + 1], c, acerca=(i % 2 == 0))
             trozos_clips.append(c)
 
-        # cierre
+        # cierre — Allie vuelve a aparecer, pidiendo el comentario.
         fondo = TRABAJO / "f99.jpg"
         foto_plena(rutas_banco[-1]).save(fondo, "JPEG", quality=92)
         png = TRABAJO / "p99.png"
-        pintar_cartel(cierre_txt, "Dímela en comentarios", png)
+        pintar_cartel(cierre_txt, "Dímela en comentarios 👇", png)
         c = TRABAJO / "c99.mp4"
         plano(fondo, [(png, 0.1)], duraciones[-1], c, acerca=False)
         trozos_clips.append(c)

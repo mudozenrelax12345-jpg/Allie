@@ -350,18 +350,24 @@ PAUSA = 0.45
 # MOTOR=piper usa Piper en vez de Kokoro. Cuatro veces más rápido en
 # procesador normal y el modelo ocupa 61 MB en vez de 341.
 #
-# OJO CON LAS LICENCIAS, que aquí es lo que decide. Las voces españolas que
-# mejor suenan de Piper —davefx, sharvard, ald, daniela— están afinadas
-# sobre la voz «Lessac», cuyas grabaciones originales son de uso NO
-# comercial, aunque el fichero resultante lleve licencia permisiva. Para un
-# proyecto que busca clientes, eso no vale. Quedan limpias:
+# MOTOR=edge usa Edge TTS: las voces neuronales de Microsoft, gratis, sin
+# API key, sin GPU. Suenan en otra liga porque son las mismas que lee Edge
+# en voz alta —entrenadas con muchísimos más datos que Piper o Kokoro—.
+# No hay licencia que cumplir: el servicio es gratuito para uso personal.
+#   es-ES-ElviraNeural   voz femenina de España, natural y conversacional.
+#   es-MX-DaliaNeural    voz femenina de México.
+# Se instala con «pip install edge-tts» y corre en CPU.
 #
-#   es_MX-claude-high   la mejor puntuada de todas las españolas (85/100),
-#                       pero acento mexicano, y Allie vive en Madrid.
+# OJO CON LAS LICENCIAS de Piper, que aquí es lo que decide. Las voces
+# españolas que mejor suenan —davefx, sharvard, ald, daniela— están
+# afinadas sobre la voz «Lessac», cuyas grabaciones originales son de uso
+# NO comercial. Quedan limpias:
+#   es_MX-claude-high   la mejor puntuada (85/100), pero acento mexicano.
 #   es_ES-mls_9972-low  española de España, 75,8, calidad «low».
 #
 # Se decide escuchando, no leyendo esta nota.
-MOTOR = (os.environ.get("MOTOR") or "kokoro").strip().lower()
+MOTOR = (os.environ.get("MOTOR") or "edge").strip().lower()
+EDGE_VOZ = os.environ.get("EDGE_VOZ") or "es-ES-ElviraNeural"
 PIPER_MODELO = os.environ.get("PIPER_MODELO") or "/tmp/piper/voz.onnx"
 
 VOZ_RITMO = float(os.environ.get("VOZ_RITMO") or 1.0)
@@ -389,10 +395,64 @@ def decir_piper(texto, destino):
     return audio, frec
 
 
+def decir_edge(texto, destino):
+    """Edge TTS: voces neuronales de Microsoft, gratis y naturales.
+
+    POR QUÉ EDGE Y NO PIPER. Teresa: «la voz de la chica me parece
+    superartificial». Piper es_MX-claude-high está entrenada con pocas
+    horas de grabación de voluntarios; las voces Neural de Microsoft
+    están entrenadas con órdenes de magnitud más de datos y suenan como
+    una persona de verdad. No necesitan GPU, API key, ni modelo local.
+
+    La velocidad se controla con el parámetro rate: «+20%» habla más
+    rápido, «-10%» más despacio. El ritmo por defecto de ElviraNeural
+    ya es conversacional, así que solo se toca si VOZ_RITMO difiere de 1.
+    """
+    import asyncio
+    import edge_tts
+    rate = ""
+    if abs(VOZ_RITMO - 1.0) > 0.01:
+        pct = int((VOZ_RITMO - 1.0) * 100)
+        rate = f"{pct:+d}%"
+    async def _gen():
+        com = edge_tts.Communicate(texto, EDGE_VOZ, rate=rate or "+0%")
+        await com.save(str(destino))
+    asyncio.run(_gen())
+    if not destino.exists() or destino.stat().st_size < 100:
+        raise RuntimeError(f"Edge TTS no generó audio para: {texto[:50]}")
+    # Edge TTS genera mp3; convertir a wav para el pipeline
+    wav = destino.with_suffix(".wav")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error",
+                    "-i", str(destino), "-ar", "24000", "-ac", "1",
+                    str(wav)], check=True)
+    import numpy as np
+    import wave
+    with wave.open(str(wav), "r") as w:
+        frames = w.readframes(w.getnframes())
+        audio = np.frombuffer(frames, dtype="<i2").astype(np.float32) / 32767
+    frec = 24000
+    return audio, frec
+
+
+def _escribir_wav(destino, audio, frec):
+    """Escribir wav con stdlib, sin depender de soundfile."""
+    import wave as wv
+    import numpy as np
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    with wv.open(str(destino), "w") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(frec)
+        w.writeframes((np.clip(audio, -1, 1) * 32767).astype("<i2").tobytes())
+
+
 def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
     """Devuelve la duración que tiene que durar cada plano, por su audio."""
     import numpy as np
-    import soundfile as sf
+    try:
+        import soundfile as sf
+    except ImportError:
+        sf = None
 
     # EN EL FORMATO «DATO», LA VOZ LEE SOLO EL TITULAR.
     #
@@ -410,7 +470,10 @@ def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
         dichas = [f"{x['nombre']}. {x['calle']}." for x in fichas]
     frases = [portada] + dichas + [cierre]
     frec = 24000
-    if MOTOR == "piper":
+    if MOTOR == "edge":
+        log(f"Motor: Edge TTS · {EDGE_VOZ}")
+        pipeline = None
+    elif MOTOR == "piper":
         log(f"Motor: Piper · {Path(PIPER_MODELO).name}")
         pipeline = None
     else:
@@ -420,7 +483,9 @@ def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
 
     pistas, duraciones = [], []
     for i, frase in enumerate(frases):
-        if MOTOR == "piper":
+        if MOTOR == "edge":
+            a, frec = decir_edge(frase, destino_wav.parent / f"p{i}.mp3")
+        elif MOTOR == "piper":
             a, frec = decir_piper(frase, destino_wav.parent / f"p{i}.wav")
         else:
             a = decir(pipeline, frase)
@@ -431,7 +496,11 @@ def narrar_fichas(portada, fichas, cierre, destino_wav, formato="lista"):
         hueco = np.zeros(int(frec * (duraciones[-1] - d)), dtype="float32")
         pistas.append(np.concatenate([a, hueco]))
     destino_wav.parent.mkdir(parents=True, exist_ok=True)
-    sf.write(str(destino_wav), np.concatenate(pistas), frec)
+    todo = np.concatenate(pistas)
+    if sf:
+        sf.write(str(destino_wav), todo, frec)
+    else:
+        _escribir_wav(destino_wav, todo, frec)
     if abs(VOZ_TONO - 1.0) > 0.001:
         crudo = destino_wav.with_name("voz-cruda.wav")
         destino_wav.replace(crudo)

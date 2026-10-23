@@ -21,13 +21,18 @@ on:
         options: [tiktok, instagram]
       motor:
         type: choice
-        default: piper
-        options: [piper, kokoro]
+        default: edge
+        options: [edge, piper, kokoro]
       voz:
-        description: "Vacío = mudo"
+        description: "Para kokoro: ef_dora. Vacío = mudo (solo kokoro/piper)"
         type: choice
         default: ef_dora
         options: ["", ef_dora]
+      edge_voz:
+        description: "Voz de Edge TTS (solo si motor=edge)"
+        type: choice
+        default: es-ES-ElviraNeural
+        options: [es-ES-ElviraNeural, es-MX-DaliaNeural, es-ES-AlvaroNeural]
       piper_voz:
         type: choice
         default: es_MX-claude-high
@@ -94,7 +99,10 @@ jobs:
           fc-list 2>/dev/null | grep -qi dejavu || corre "fuentes" 180 \
             sudo apt-get install -y -qq --no-install-recommends fonts-dejavu-core
           corre "requirements" 420 pip install --only-binary=:all: -r requirements.txt
-          if [ "${{ inputs.motor }}" = "piper" ] && [ -n "${{ inputs.voz }}" ]; then
+          if [ "${{ inputs.motor }}" = "edge" ]; then
+            # Edge TTS ya está en requirements.txt, no necesita modelo local.
+            echo "   Motor: Edge TTS · ${{ inputs.edge_voz }}" | tee -a $registro
+          elif [ "${{ inputs.motor }}" = "piper" ] && [ -n "${{ inputs.voz }}" ]; then
             corre "piper" 300 pip install --only-binary=:all: piper-tts soundfile
             v="${{ inputs.piper_voz }}"
             base="https://huggingface.co/rhasspy/piper-voices/resolve/main/es/$(echo $v|cut -d- -f1)/$(echo $v|cut -d- -f2)/$(echo $v|cut -d- -f3)/$v"
@@ -122,9 +130,10 @@ jobs:
         env:
           PIEZA: ${{ inputs.pieza }}
           PLATAFORMA: ${{ inputs.plataforma }}
-          VOZ: ${{ inputs.voz }}
+          VOZ: ${{ inputs.motor == 'edge' && 'edge' || inputs.voz }}
           VOZ_RITMO: ${{ inputs.ritmo }}
           MOTOR: ${{ inputs.motor }}
+          EDGE_VOZ: ${{ inputs.edge_voz }}
           EN_SECO: "si"
 
       - name: Dejarlo descargable
