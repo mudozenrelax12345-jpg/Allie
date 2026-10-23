@@ -1,15 +1,51 @@
 {
- "archivo": "dato_20261023_1358.mp4",
+ "archivo": "dato_20261023_1400.mp4",
  "pieza": "comida-datos",
- "duracion": 22.1,
+ "duracion": 24.166667,
  "duraciones": [
-  3.4,
-  3.4,
-  3.736,
-  3.4,
-  4.021,
-  3.736,
-  3.4
+  3.2,
+  3.2,
+  3.329,
+  3.2,
+  4.63,
+  3.387,
+  3.2
  ],
- "creditos": []
+ "creditos": [
+  {
+   "termino": "Gazpacho andaluz",
+   "titulo": "File:Sopa fría española. Gazpacho andaluz con su guarnición.jpg",
+   "licencia": "cc by 4.0",
+   "autor": "Juan Emilio Prades Bel",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Sopa_fr%C3%ADa_espa%C3%B1ola._Gazpacho_andaluz_con_su_guarnici%C3%B3n.jpg"
+  },
+  {
+   "termino": "Paella valenciana",
+   "titulo": "File:Paella de fruit de mer.jpg",
+   "licencia": "cc0",
+   "autor": "Wilfredor",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Paella_de_fruit_de_mer.jpg"
+  },
+  {
+   "termino": "Ensaladilla rusa",
+   "titulo": "File:Ensaladilla Rusa - Decorada (2011).JPG",
+   "licencia": "cc by 3.0",
+   "autor": "Tamorlan",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Ensaladilla_Rusa_-_Decorada_(2011).JPG"
+  },
+  {
+   "termino": "Tortilla de patatas",
+   "titulo": "File:Tortilla española con patatas y cebolla.jpg",
+   "licencia": "cc by 4.0",
+   "autor": "Juan Emilio Prades Bel",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Tortilla_espa%C3%B1ola_con_patatas_y_cebolla.jpg"
+  },
+  {
+   "termino": "Chocolate con churros",
+   "titulo": "File:Churros con chocolate Barcelona.jpg",
+   "licencia": "cc by 2.0",
+   "autor": "tahaji",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Churros_con_chocolate_Barcelona.jpg"
+  }
+ ]
 }
