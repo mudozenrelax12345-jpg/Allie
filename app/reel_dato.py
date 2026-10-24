@@ -295,7 +295,9 @@ def main():
     log(f"{len(fichas)} fichas")
 
     import banco
-    rutas_banco, _ = banco.coger(2, pieza.get("etiqueta"))
+    # En seco (montaje de prueba) se coge al azar, para que dos vídeos
+    # seguidos no abran con la misma foto de Allie.
+    rutas_banco, _ = banco.coger(2, pieza.get("etiqueta"), azar=seco)
     if not rutas_banco:
         raise RuntimeError("El banco no dio fotos para la portada y el cierre.")
 

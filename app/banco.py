@@ -85,12 +85,20 @@ def disponibles(indice, etiqueta=None):
     return fuera
 
 
-def coger(cuantas, etiqueta=None):
+def coger(cuantas, etiqueta=None, azar=False):
     """Devuelve rutas de fotos sin usar de una misma tanda, y las marca.
 
     De una misma tanda porque comparten ropa, sitio y luz: es lo que hace que
     un carrusel parezca un momento y no un collage.
+
+    AZAR. En los montajes de prueba (EN_SECO) las fotos se devuelven al banco,
+    así que la tanda más antigua se elige SIEMPRE y dos vídeos seguidos abren
+    con la misma cara de Allie —Teresa: «la primera foto es idéntica al primer
+    vídeo». Con azar=True se coge una tanda al azar (y fotos al azar dentro),
+    para que cada vídeo sea distinto. En publicación real sigue mandando la
+    antigüedad, que es lo que hace rotar el banco.
     """
+    import random
     indice = leer()
     libres = disponibles(indice, etiqueta)
     if not libres:
@@ -103,8 +111,13 @@ def coger(cuantas, etiqueta=None):
     # más tenga. Antes la más vieja para que el banco rote y no envejezca.
     enteras = sorted((t for t in por_tanda.values() if len(t) >= cuantas),
                      key=lambda t: t[0].get("creada", ""))
-    elegida = enteras[0] if enteras else max(por_tanda.values(), key=len)
-    elegidas = elegida[:cuantas]
+    if azar and enteras:
+        elegida = list(random.choice(enteras))
+        random.shuffle(elegida)
+        elegidas = elegida[:cuantas]
+    else:
+        elegida = enteras[0] if enteras else max(por_tanda.values(), key=len)
+        elegidas = elegida[:cuantas]
 
     cuando = datetime.now(timezone.utc).isoformat()
     for f in elegidas:
