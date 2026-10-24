@@ -170,11 +170,31 @@
       "cierre_pie": "¿A cuál vas primero? 👇",
       "cierre_voz": "Guárdalo para que no se te olvide y dime a cuál vas primero.",
       "fotos_busqueda": [
-        "Museo del Prado Madrid fachada",
-        "Museo Reina Sofía Madrid edificio",
-        "Templo de Debod Madrid",
-        "Museo Sorolla Madrid",
-        "Museo Thyssen Bornemisza Madrid"
+        [
+          "File:Museo del Prado 2016 (25185969599).jpg",
+          "File:Fachada principal del Museo del Prado de Madrid.jpg",
+          "Museo del Prado fachada"
+        ],
+        [
+          "File:Edificio Sabatini. Museo Nacional Centro de Arte Reina Sofía.jpg",
+          "File:Museum Reina Sofia (4251253429).jpg",
+          "Museo Reina Sofía Sabatini"
+        ],
+        [
+          "File:Atardecer en el Templo de Debod (9713233387).jpg",
+          "File:Sunset at Templo de Debod.jpg",
+          "Templo de Debod atardecer"
+        ],
+        [
+          "File:Museo Sorolla (Madrid) 02.jpg",
+          "File:Museo Sorolla en febrero de 2021 04.jpg",
+          "Museo Sorolla fachada edificio"
+        ],
+        [
+          "File:Museo Thyssen-Bornemisza (Madrid) 10.jpg",
+          "File:Museo Thyssen-Bornemisza (Madrid) 02.jpg",
+          "Museo Thyssen-Bornemisza fachada"
+        ]
       ]
     }
   ],
