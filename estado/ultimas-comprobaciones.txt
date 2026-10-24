@@ -1,4 +1,4 @@
-Comprobaciones · 2026-10-24 12:06 UTC
+Comprobaciones · 2026-10-24 17:06 UTC
 falta el reel de hoy: no
 
 ━━━━ prueba_texto_mira
@@ -8,7 +8,7 @@ ok   el encargo prohíbe inventar lo que no se ve
 ok   devuelve el texto nuevo
 · No pude escribir el texto mirando las fotos: Gemini caído
 ok   si el revisor de texto falla, no inventa nada
-· No pude leer /tmp/reel-texto-5cc1v0z7/no-existe.jpg para escribir el texto: [Errno 2] No such file or directory: '/tmp/reel-texto-5cc1v0z7/no-existe.jpg'
+· No pude leer /tmp/reel-texto-lxbyja98/no-existe.jpg para escribir el texto: [Errno 2] No such file or directory: '/tmp/reel-texto-lxbyja98/no-existe.jpg'
 ok   sin fotos que mirar, no escribe
 ok   un texto en blanco no cuenta como texto
 ok   guion_del_banco encuentra las fotos del apunte real
