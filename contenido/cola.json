@@ -150,6 +150,32 @@
         "Madrid Gran Vía gente noche",
         "Parque del Retiro Madrid gente"
       ]
+    },
+    {
+      "id": "madrid-museos-gratis",
+      "formato": "dato",
+      "etiqueta": null,
+      "texto": "5 museos gratis de Madrid y a qué hora\n1️⃣ El Prado 18:00-20:00 · gratis de lunes a sábado\n2️⃣ Reina Sofía 19:00-21:00 · aquí está el Guernica\n3️⃣ Templo de Debod gratis siempre · templo egipcio real\n4️⃣ Museo Sorolla sábados 14:00 · la casa del pintor\n5️⃣ Thyssen los lunes gratis · el tercero del Prado",
+      "gancho_tiktok": "5 museos GRATIS de Madrid",
+      "pie_tiktok": "Guárdalo para tu finde 📌",
+      "intro_voz": "Hola, soy Allie. Cinco museos de Madrid a los que entras gratis, con la hora exacta para no pagar ni un euro. Guárdalo.",
+      "dichos": [
+        "El Prado, gratis de seis a ocho de la tarde de lunes a sábado. Goya y Velázquez sin pagar un euro.",
+        "La Reina Sofía, gratis de siete a nueve. Y aquí está el Guernica de Picasso. Cierra los martes, ¿eh?",
+        "El Templo de Debod es gratis siempre. Un templo egipcio de verdad, con las mejores vistas al atardecer.",
+        "El Sorolla, gratis los sábados desde las dos. La casa del pintor de la luz, con un jardín precioso.",
+        "Y el Thyssen, gratis los lunes enteros. El tercero del Triángulo del Arte. Ya no tienes excusa."
+      ],
+      "cierre_tiktok": "Guárdalo para tu finde",
+      "cierre_pie": "¿A cuál vas primero? 👇",
+      "cierre_voz": "Guárdalo para que no se te olvide y dime a cuál vas primero.",
+      "fotos_busqueda": [
+        "Museo del Prado Madrid fachada",
+        "Museo Reina Sofía Madrid edificio",
+        "Templo de Debod Madrid",
+        "Museo Sorolla Madrid",
+        "Museo Thyssen Bornemisza Madrid"
+      ]
     }
   ],
   "arrobas_comprobados": {
