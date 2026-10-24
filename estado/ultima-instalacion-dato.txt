@@ -1,4 +1,4 @@
-Instalación · 2026-10-24 06:32 UTC
+Instalación · 2026-10-24 08:25 UTC
 ━━━━ ffmpeg estático
    OK ffmpeg estático · 1s
 ffmpeg version N-127957-g935f29eaae-20261023 Copyright (c) 2000-2026 the FFmpeg developers
@@ -23,7 +23,7 @@ Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 any
 
 [notice] A new release of pip is available: 26.2.1 -> 26.2.2
 [notice] To update, run: pip install --upgrade pip
-   OK requirements · 10s
+   OK requirements · 9s
 ━━━━ torch cpu
   Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
 Requirement already satisfied: fsspec>=0.8.5 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from torch) (2026.9.0)
@@ -67,5 +67,5 @@ Successfully installed Pillow-12.3.0 aiofiles-24.1.0 annotated-doc-0.0.5 annotat
 
 [notice] A new release of pip is available: 26.2.1 -> 26.2.2
 [notice] To update, run: pip install --upgrade pip
-   OK chatterbox · 112s
+   OK chatterbox · 111s
    Motor: Chatterbox Multilingual V3
