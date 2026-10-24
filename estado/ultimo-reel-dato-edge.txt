@@ -1,30 +1,40 @@
-· Pieza: madrid-guiris
-· 4 fichas
-· Del banco: 2 fotos de la tanda 20261015-043216 · quedan 26 libres
+· Pieza: madrid-museos-gratis
+· 5 fichas
+· Del banco: 2 fotos de la tanda 20261015-043216 · quedan 22 libres
+·     candidata     89 · Madrid. Fachada meridional del Museo con la estatua d · public domain
+·     candidata     85 · Museo del Prado (Madrid) 17.jpg · cc by 2.0
+·     candidata     82 · Museo del Prado (Madrid) 04.jpg · cc by 2.0
+·     candidata     80 · Museo del Prado (Madrid) 06.jpg · cc by 2.0
+·     candidata     77 · Museo del Prado (Madrid) 19.jpg · cc by 2.0
+· «Museo del Prado Madrid fachada» · Madrid. Fachada meridional del Museo con la estatua de  · public domain · 4096×3313 · 555 kB
+·     candidata    143 · Madrid - Museo Reina Sofía, Edificio Nouvel (36053914 · cc by 2.0
+·     candidata    143 · Madrid - Museo Reina Sofía, Edificio Nouvel (36146045 · cc by 2.0
+·     candidata    143 · Madrid - Museo Reina Sofía, Edificio Nouvel (36146048 · cc by 2.0
+·     candidata    142 · Madrid - Museo Reina Sofía, Edificio Nouvel (36146054 · cc by 2.0
+·     candidata    132 · Museo Reina Sofía, Jardín Edificio Sabatini. Madrid ( · cc by 2.0
+· «Museo Reina Sofía Madrid edificio» · Madrid - Museo Reina Sofía, Edificio Nouvel (3605391465 · cc by 2.0 · 5184×3456 · 467 kB
+·     candidata     91 · Templo de Debod, Madrid 2021-01-13 - 51010009252.jpg · cc0
+·     candidata     81 · Templo de Debod in Madrid Spain.jpg · cc by 3.0
+· «Templo de Debod Madrid» · Templo de Debod, Madrid 2021-01-13 - 51010009252.jpg · cc0 · 4877×3256 · 558 kB
+·     candidata    445 · Joaquín Sorolla y Bastida - Strolling along the Seash · public domain
+·     candidata    444 · Joaquín Sorolla y Bastida - The Horse’s Bath - Google · public domain
+·     candidata    431 · Joaquín Sorolla - Chicos en la playa.jpg · public domain
+·     candidata     89 · Sala I in Museo Sorolla Madrid on 20161106.jpg · cc by 3.0
+·     candidata     70 · Statue-Sorolla-Museum-Madrid.jpg · cc by 4.0
+· «Museo Sorolla Madrid» · Joaquín Sorolla y Bastida - Strolling along the Seashor · public domain · 4832×4894 · 1277 kB
 ·     descartadas 1 que no hablan del sitio
-· «restaurante Madrid terraza»: nada libre, pruebo otro término
-· «restaurante Madrid terraza»: ninguna foto con licencia libre
-·     descartadas 5 que no hablan del sitio
-·     candidata     62 · La ciudad de Madrid se prepara para celebrar la noche · cc by 4.0
-·     candidata     60 · La ciudad de Madrid se prepara para celebrar la noche · cc by 4.0
-·     candidata     37 · Gran Via (Abre los ojos ).jpg · cc0
-·     candidata     27 · Casa Matesanz (Madrid) 02.jpg · cc by 2.0
-·     candidata     25 · Gran via.jpg · cc by 2.0
-· «Gran Vía Madrid noche» · La ciudad de Madrid se prepara para celebrar la noche d · cc by 4.0 · 4288×2848 · 763 kB
-· «Madrid Gran Vía gente noche»: nada libre, pruebo otro término
-· «Madrid Gran Vía gente noche»: ninguna foto con licencia libre
-·     candidata     31 · Madrid 201.jpg · public domain
-·     candidata      1 · Manuela Carmena asiste a la lectura teatralizada, hom · cc by 4.0
-·     candidata      1 · Manuela Carmena asiste a la lectura teatralizada, hom · cc by 4.0
-·     candidata      1 · Manuela Carmena asiste a la lectura teatralizada, hom · cc by 4.0
-·     candidata      1 · Manuela Carmena asiste a la lectura teatralizada, hom · cc by 4.0
-· «Parque del Retiro Madrid gente» · Madrid 201.jpg · public domain · 3150×2031 · 441 kB
-· 2 de 4 fichas con foto propia
+·     candidata    103 · Madrid - Museo Thyssen Bornemisza en 2018 (04).jpg · cc0
+·     candidata    103 · Madrid - Museo Thyssen Bornemisza en 2018 (05).jpg · cc0
+·     candidata    103 · Madrid - Museo Thyssen-Bornemisza 3.jpg · cc0
+·     candidata    102 · Museo Thyssen-Bornemisza (Madrid) 04.jpg · cc by 2.0
+·     candidata    102 · Museo Thyssen-Bornemisza (Madrid) 05.jpg · cc by 2.0
+· «Museo Thyssen Bornemisza Madrid» · Madrid - Museo Thyssen Bornemisza en 2018 (04).jpg · cc0 · 1536×2048 · 675 kB
+· 5 de 5 fichas con foto propia
 · Motor: Edge TTS · auto
 · Voces femeninas es-ES disponibles: es-ES-XimenaNeural, es-ES-ElviraNeural
 · Voz Edge elegida: es-ES-XimenaNeural
-·   9.7s · 8.4s · 9.3s · 10.0s · 8.3s · 8.4s
-· Base musical de 54.5s
-· LISTO · dato_20261023_1550.mp4 · 54.1s · 11.7 MB
+·   10.2s · 8.1s · 9.0s · 8.2s · 8.1s · 9.0s · 4.5s
+· Base musical de 57.5s
+· LISTO · dato_20261024_0643.mp4 · 57.2s · 17.6 MB
 · Devueltas al banco 2 fotos que no se publicaron
 · EN_SECO: fotos devueltas al banco.
