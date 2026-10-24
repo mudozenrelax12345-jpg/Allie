@@ -151,11 +151,30 @@ def habla_del_sitio(cand, termino):
     return any(k in donde for k in claves)
 
 
+# Señales de que una ficha es una OBRA DE ARTE (un cuadro, un grabado) y no
+# una foto del sitio. Buscando «Museo Sorolla» salían elegidos los cuadros de
+# Sorolla —tienen sello de calidad de Commons y ganaban por goleada—, y para
+# el Prado, grabados antiguos. Un vídeo que dice «Museo Sorolla» y enseña una
+# playa pintada no enseña el museo.
+OBRA = ("painting", "paintings", "pintura", "drawing", "dibujo", "engraving",
+        "grabado", "etching", "lithograph", "litografía", "print by",
+        "google art project", "artwork", "oil on canvas", "óleo")
+
+
+def es_obra(cand):
+    donde = (cand["titulo"] + " " + " ".join(cand.get("categorias") or [])).lower()
+    return any(p in donde for p in OBRA)
+
+
 def _ordenar(salida, termino):
     fuera = len(salida)
     salida = [c for c in salida if habla_del_sitio(c, termino)]
     if fuera - len(salida):
         log(f"    descartadas {fuera - len(salida)} que no hablan del sitio")
+    arte = [c for c in salida if es_obra(c)]
+    if arte:
+        salida = [c for c in salida if not es_obra(c)]
+        log(f"    descartadas {len(arte)} que son obras de arte, no el sitio")
     salida.sort(key=lambda x: -nota(x, termino))
     for c in salida[:5]:
         log(f"    candidata {nota(c, termino):6.0f} · {c['titulo'][5:58]} · "
@@ -195,7 +214,7 @@ def _cosechar(d, termino, exacto=False):
     return salida
 
 
-def buscar(termino, cuantas=30):
+def buscar(termino, cuantas=50):
     """Las candidatas de Commons para un término, ya filtradas por licencia.
 
     Un término que empieza por «File:» no se busca: se pide ese fichero y
@@ -236,6 +255,27 @@ def bajar(url, destino):
     return len(datos)
 
 
+def es_color(ruta):
+    """False si la imagen es en blanco y negro.
+
+    Los escaneos antiguos (el Prado de 1870, grabados) salen en gris y para
+    un vídeo de hoy quedan viejos. Se mide la separación media entre canales
+    RGB: una foto en color la tiene alta; un gris, casi cero. El umbral es
+    bajo a propósito, para no tirar fotos de color apagado (un interior beis
+    o un día nublado sí pasan).
+    """
+    try:
+        from PIL import Image
+        import numpy as np
+        im = Image.open(ruta).convert("RGB")
+        im.thumbnail((200, 200))
+        a = np.asarray(im, dtype="float32")
+        sep = (a.max(axis=2) - a.min(axis=2)).mean()
+        return sep >= 7.0
+    except Exception:  # noqa: BLE001
+        return True  # ante la duda, no descartar
+
+
 def conseguir(terminos):
     """Una foto libre por término. Devuelve (rutas, créditos).
 
@@ -274,6 +314,9 @@ def conseguir(terminos):
                 peso = bajar(c["url"], ruta)
             except Exception as e:  # noqa: BLE001
                 log(f"«{t}»: no baja {c['titulo']} ({e})")
+                continue
+            if not es_color(ruta):
+                log(f"«{t}»: {c['titulo'][5:50]} es blanco y negro, siguiente")
                 continue
             puesto = c
             log(f"«{t}» · {c['titulo'][5:60]} · {c['licencia']} · "
