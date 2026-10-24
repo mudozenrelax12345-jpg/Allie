@@ -1,32 +1,44 @@
 · Pieza: madrid-museos-gratis
 · 5 fichas
 · Del banco: 2 fotos de la tanda 20261015-043216 · quedan 22 libres
-· «File:Museo del Prado 2016 (25185969599).jpg»: nada libre, pruebo otro término
-· «File:Fachada principal del Museo del Prado de Madrid.jpg»: nada libre, pruebo otro término
-·     candidata     64 · Madrid. Fachada meridional del Museo con la estatua d · public domain
-·     candidata     60 · Museo del Prado (Madrid) 17.jpg · cc by 2.0
-·     candidata     60 · Museo del Prado (el 2 Dic. 2010).jpg · cc0
-·     candidata     60 · Museo del Prado con especial iluminación.jpg · cc0
-·     candidata     57 · Museo del Prado (Madrid) 04.jpg · cc by 2.0
-· «Museo del Prado fachada» · Madrid. Fachada meridional del Museo con la estatua de  · public domain · 4096×3313 · 555 kB
-· «File:Edificio Sabatini. Museo Nacional Centro de Arte Reina Sofía.jpg»: nada libre, pruebo otro término
-·     candidata    106 · Museum Reina Sofia (4251253429).jpg · cc by 2.0
-· «File:Museum Reina Sofia (4251253429).jpg» · Museum Reina Sofia (4251253429).jpg · cc by 2.0 · 2056×3088 · 772 kB
+· «File:Prado Museum.jpg»: nada libre, pruebo otro término
+· «File:Madrid-prado.jpg»: nada libre, pruebo otro término
+· «File:Museo de El Prado - Madrid - España.jpg»: nada libre, pruebo otro término
+·     candidata    106 · Vista general Museo del Prado.JPG · cc by 3.0
+· «File:Vista general Museo del Prado.JPG» · Vista general Museo del Prado.JPG · cc by 3.0 · 4283×1424 · 552 kB
+·     descartadas 1 que son obras de arte, no el sitio
+· «File:Museum Reina Sofia (4251253429).jpg»: nada libre, pruebo otro término
+·     candidata    132 · Museo Reina Sofía, Jardín Edificio Sabatini. Madrid ( · cc by 2.0
+·     candidata    120 · Sabatini Building, Museo Nacional Centro de Arte Rein · cc by 4.0
+·     candidata    114 · Plaque in Sabatini Building, Museo Nacional Centro de · cc by 4.0
+·     candidata     76 · Museo Reina Sofía 2 (4417639335).jpg · cc by 2.0
+·     candidata     76 · Museo Reina Sofía 2 (4418416200).jpg · cc by 2.0
+· «Museo Reina Sofía Sabatini edificio» · Museo Reina Sofía, Jardín Edificio Sabatini. Madrid (30 · cc by 2.0 · 3072×2304 · 938 kB
 ·     candidata    101 · Atardecer en el Templo de Debod (9713233387).jpg · cc by 2.0
 · «File:Atardecer en el Templo de Debod (9713233387).jpg» · Atardecer en el Templo de Debod (9713233387).jpg · cc by 2.0 · 1200×900 · 727 kB
-· «File:Museo Sorolla (Madrid) 02.jpg»: nada libre, pruebo otro término
-· «File:Museo Sorolla en febrero de 2021 04.jpg»: nada libre, pruebo otro término
-· «Museo Sorolla fachada edificio»: nada libre, pruebo otro término
-· «File:Museo Sorolla (Madrid) 02.jpg»: ninguna foto con licencia libre
-· «File:Museo Thyssen-Bornemisza (Madrid) 10.jpg»: nada libre, pruebo otro término
+· «File:Museo Sorolla - 01274 - Jardín de la Casa Sorolla.jpg»: nada libre, pruebo otro término
+·     descartadas 1 que son obras de arte, no el sitio
+· «File:Jardín de las Flores (Sorolla) 01.jpg»: nada libre, pruebo otro término
+·     descartadas 1 que son obras de arte, no el sitio
+· «File:Patio de la casa Sorolla.jpg»: nada libre, pruebo otro término
+· «File:Museo Sorolla DSC00132.JPG»: nada libre, pruebo otro término
+·     descartadas 1 que no hablan del sitio
+· «Museo Sorolla jardín»: nada libre, pruebo otro término
+·     descartadas 3 que son obras de arte, no el sitio
+·     candidata     89 · Sala I in Museo Sorolla Madrid on 20161106.jpg · cc by 3.0
+·     candidata     70 · Statue-Sorolla-Museum-Madrid.jpg · cc by 4.0
+·     candidata     45 · (Sorolla Museum) - Backlit, Maria in Biarritz 1906 -  · public domain
+·     candidata     45 · (Sorolla Museum) - Clotilde on the beach - Valencia 1 · public domain
+·     candidata     45 · (Sorolla Museum) - Joaquín Sorolla Self portrait 1900 · public domain
+· «Museo Sorolla Madrid» · Sala I in Museo Sorolla Madrid on 20161106.jpg · cc by 3.0 · 4516×3011 · 536 kB
 ·     candidata    102 · Museo Thyssen-Bornemisza (Madrid) 02.jpg · cc by 2.0
 · «File:Museo Thyssen-Bornemisza (Madrid) 02.jpg» · Museo Thyssen-Bornemisza (Madrid) 02.jpg · cc by 2.0 · 1600×1200 · 539 kB
-· 4 de 5 fichas con foto propia
+· 5 de 5 fichas con foto propia
 · Motor: Edge TTS · auto
 · Voces femeninas es-ES disponibles: es-ES-XimenaNeural, es-ES-ElviraNeural
 · Voz Edge elegida: es-ES-XimenaNeural
 ·   10.2s · 8.1s · 9.0s · 8.2s · 8.1s · 9.0s · 4.5s
 · Base musical de 57.5s
-· LISTO · dato_20261024_0837.mp4 · 57.2s · 11.1 MB
+· LISTO · dato_20261024_0906.mp4 · 57.2s · 13.2 MB
 · Devueltas al banco 2 fotos que no se publicaron
 · EN_SECO: fotos devueltas al banco.

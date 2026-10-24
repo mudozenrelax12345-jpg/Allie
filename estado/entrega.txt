@@ -1,8 +1,8 @@
-total 28124
-drwxr-xr-x  2 runner runner     4096 Oct 24 08:37 .
-drwxrwxrwt 15 root   root      12288 Oct 24 08:37 ..
--rw-r--r--  1 runner runner   565710 Oct 24 08:37 ref-femenina.wav
--rw-r--r--  1 runner runner 11545362 Oct 24 08:37 tiktok-chatterbox.mp4
--rw-r--r--  1 runner runner 11139458 Oct 24 08:37 tiktok-edge.mp4
--rw-r--r--  1 runner runner  2777796 Oct 24 08:37 voz-chatterbox.wav
--rw-r--r--  1 runner runner  2742084 Oct 24 08:37 voz-edge.wav
+total 30996
+drwxr-xr-x  2 runner runner     4096 Oct 24 09:06 .
+drwxrwxrwt 15 root   root      12288 Oct 24 09:05 ..
+-rw-r--r--  1 runner runner   565710 Oct 24 09:06 ref-femenina.wav
+-rw-r--r--  1 runner runner 12595817 Oct 24 09:05 tiktok-chatterbox.mp4
+-rw-r--r--  1 runner runner 13151985 Oct 24 09:06 tiktok-edge.mp4
+-rw-r--r--  1 runner runner  2654916 Oct 24 09:05 voz-chatterbox.wav
+-rw-r--r--  1 runner runner  2742084 Oct 24 09:06 voz-edge.wav
