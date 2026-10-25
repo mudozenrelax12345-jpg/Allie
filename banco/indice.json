@@ -1151,7 +1151,106 @@
    "vestuario": "negro-punto",
    "sitio": "malasana",
    "creada": "2026-10-22T20:52:27.977265+00:00"
+  },
+  {
+   "archivo": "20261025-113146-1.jpg",
+   "tanda": "20261025-113146",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot inside Mercado de San Fernando in Lavapiés, stalls behind, wearing a rust-orange oversized cardigan over a white vest top, waist-up, hands empty by her sides, soft closed-mouth smile, warm autumn golden hour light filtering through the market.",
+   "usada": null,
+   "vestuario": "teja-cardigan",
+   "sitio": "mercado",
+   "creada": "2026-10-25T11:32:04.412732+00:00"
+  },
+  {
+   "archivo": "20261025-113146-2.jpg",
+   "tanda": "20261025-113146",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, close-up shot inside Mercado de San Fernando in Lavapiés, stalls blurred behind, wearing a rust-orange oversized cardigan over a white vest top, chest-up, hands empty, gentle closed-mouth smile, soft autumn afternoon lighting.",
+   "usada": null,
+   "vestuario": "teja-cardigan",
+   "sitio": "mercado",
+   "creada": "2026-10-25T11:32:14.475554+00:00"
+  },
+  {
+   "archivo": "20261025-113146-3.jpg",
+   "tanda": "20261025-113146",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium close-up shot inside Mercado de San Fernando in Lavapiés, colorful stalls behind, wearing a rust-orange oversized cardigan over a white vest top, upper body, hands empty, subtle closed-mouth smile, soft natural golden hour light.",
+   "usada": null,
+   "vestuario": "teja-cardigan",
+   "sitio": "mercado",
+   "creada": "2026-10-25T11:32:26.457421+00:00"
+  },
+  {
+   "archivo": "20261025-113226-1.jpg",
+   "tanda": "20261025-113226",
+   "etiqueta": "casa",
+   "tema": "finde de descanso en el sofá con los gatos",
+   "escena": "The same woman, medium shot, wearing a black leather biker jacket over a white t-shirt, sitting outdoors at the Templo de Debod at sunset with the city skyline behind, golden autumn light filtering through the crisp evening air, leaning back against a stone wall with a relaxed posture, gentle closed-mouth smile, hands resting naturally out of sight.",
+   "usada": null,
+   "vestuario": "cuero-negro",
+   "sitio": "debod",
+   "creada": "2026-10-25T11:32:40.018071+00:00"
+  },
+  {
+   "archivo": "20261025-113226-2.jpg",
+   "tanda": "20261025-113226",
+   "etiqueta": "casa",
+   "tema": "finde de descanso en el sofá con los gatos",
+   "escena": "The same woman, close-up shot, wearing a black leather biker jacket over a white t-shirt, standing at the Templo de Debod at sunset with the city skyline behind, warm golden hour light catching the edge of her shoulders, looking slightly away from the camera with a soft expression, lips gently closed, hands relaxed and empty.",
+   "usada": null,
+   "vestuario": "cuero-negro",
+   "sitio": "debod",
+   "creada": "2026-10-25T11:32:51.934346+00:00"
+  },
+  {
+   "archivo": "20261025-113226-3.jpg",
+   "tanda": "20261025-113226",
+   "etiqueta": "casa",
+   "tema": "finde de descanso en el sofá con los gatos",
+   "escena": "The same woman, medium close-up shot, wearing a black leather biker jacket over a white t-shirt, positioned at the Templo de Debod at sunset with the city skyline behind, bathed in rich autumnal golden light, turning her head softly toward the lens with a subtle playful expression, lips closed, hands empty and hidden from view.",
+   "usada": null,
+   "vestuario": "cuero-negro",
+   "sitio": "debod",
+   "creada": "2026-10-25T11:33:04.730094+00:00"
+  },
+  {
+   "archivo": "20261025-113304-1.jpg",
+   "tanda": "20261025-113304",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium shot, wearing a washed denim shirt buttoned to the collar, standing in the brick courtyards of Matadero, leaning gently against an aged brick wall on an autumn morning, soft golden hour light filtering through falling leaves, relaxed pose with arms crossed softly, closed mouth with a gentle smile.",
+   "usada": null,
+   "vestuario": "tejano-camisa",
+   "sitio": "matadero",
+   "creada": "2026-10-25T11:33:18.822626+00:00"
+  },
+  {
+   "archivo": "20261025-113304-2.jpg",
+   "tanda": "20261025-113304",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, close-up shot, wearing a washed denim shirt buttoned to the collar, standing in the brick courtyards of Matadero, framed by warm autumn light reflecting off the terracotta brickwork, subtle morning chill in the air, hands resting naturally out of frame, soft smile with lips together, intimate framing.",
+   "usada": null,
+   "vestuario": "tejano-camisa",
+   "sitio": "matadero",
+   "creada": "2026-10-25T11:33:36.571351+00:00"
+  },
+  {
+   "archivo": "20261025-113304-3.jpg",
+   "tanda": "20261025-113304",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium close-up shot, wearing a washed denim shirt buttoned to the collar, standing in the brick courtyards of Matadero, turned slightly sideways with a playful look over the shoulder, surrounded by scattered autumn leaves on the ground, golden morning sun catching the texture of the fabric, closed mouth and elegant posture.",
+   "usada": null,
+   "vestuario": "tejano-camisa",
+   "sitio": "matadero",
+   "creada": "2026-10-25T11:33:54.304361+00:00"
   }
  ],
- "actualizado": "2026-10-25T09:33:33.704733+00:00"
+ "actualizado": "2026-10-25T11:33:54.304410+00:00"
 }

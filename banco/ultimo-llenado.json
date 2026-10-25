@@ -1,37 +1,69 @@
 {
- "cuando": "2026-10-22T20:52:27.979092+00:00",
+ "cuando": "2026-10-25T11:33:54.306266+00:00",
  "temas": [
-  "de pintxos en una taberna vasca de Madrid, de pie junto a la barra de zinc con platos de gildas y banderillas, luz cálida de tarde"
+  "un día en Madrid",
+  "finde de descanso en el sofá con los gatos",
+  "rutina de mañana con café"
  ],
- "metidas": 4,
+ "metidas": 9,
  "motivos": [],
- "libres": 35,
- "total": 115,
+ "libres": 31,
+ "total": 124,
  "gasto": [
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 12.1,
+   "segundos": 10.1,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 13.4,
+   "segundos": 7.5,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 9.9,
+   "segundos": 9.4,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 12.2,
+   "segundos": 7.9,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 8.7,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 9.8,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 9.4,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 15.2,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 15.0,
    "pasos": 4
   }
  ],
- "segundos_total": 47.6
+ "segundos_total": 93.0
 }
