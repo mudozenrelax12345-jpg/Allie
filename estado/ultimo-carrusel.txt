@@ -1,36 +1,33 @@
-# Carrusel · 2026-10-23 08:43 UTC
-· De la cola: «Librerías de Madrid con café dentro»
-· Del banco: 3 fotos de la tanda 20261020-184414 · quedan 28 libres
-· 3 fotos: 20261020-184414-1.jpg, 20261020-184414-2.jpg, 20261020-184414-3.jpg
-· Pie (1000 caracteres):
+# Carrusel · 2026-10-25 09:33 UTC
+· De la cola: «Barras vascas de Madrid para una gilda»
+· Del banco: 2 fotos de la tanda 20261016-060842 · quedan 22 libres
+· 2 fotos: 20261016-060842-2.jpg, 20261016-060842-3.jpg
+· Pie (910 caracteres):
 🤖 Contenido generado con IA · Allie es un personaje creado con IA
 
-Librerías de Madrid donde además puedes sentarte a tomar algo 📚☕
+Cinco barras vascas de Madrid donde pedir una gilda 🫒
 
-Plan de tarde de otoño que cuesta cuatro euros. Guárdalo.
+Aceituna, anchoa y guindilla en un palillo. Guárdalo, que varias cierran entre horas.
 
-1️⃣ La Mistral (@librerialamistral) · Travesía del Arenal 2. La cafetería está en el sótano. Abre hasta las 21:00, y los domingos de 12:00 a 20:00.
+1️⃣ Bocaíto · Libertad 6, Chueca. Abierto desde 1966, en pleno barrio.
 
-2️⃣ La Buena Vida (@labuenavidalib) · Vergara 5, junto a Ópera. Cierra a mediodía: abre de 11:00 a 14:30 y de 17:00 a 21:00.
+2️⃣ La Castela · Doctor Castelo 22, Retiro. De 12:30 a 17:00 y de 20:00 a 00:00. Los domingos cierra.
 
-3️⃣ Mansilla Libros y Café · Embajadores 26, Lavapiés. Solo por las mañanas, de 10:00 a 14:30, y los miércoles cierra.
+3️⃣ Lamiak · Cava Baja 42, La Latina. De 12:30 a 02:00 todos los días, que es la más fácil de encajar.
 
-4️⃣ Olavide, Bar de Libros (@olavidebardelibros) · Olid 14, Chamberí. Mañana y tarde, hasta las 22:00.
+4️⃣ Sagaretxe · Eloy Gonzalo 26, Chamberí. De 13:30 a 17:00 y de 19:30 a 00:00.
 
-5️⃣ La Central de Callao · Postigo de San Martín 9. La más grande de todas, con cafetería y varias plantas. Hasta las 20:45.
+5️⃣ Txakolina · Cava Baja 26, La Latina. Ojo: de lunes a jueves solo abre por la noche, a partir de las 19:30.
 
-Apunta los horarios, que varias cierran a mediodía y es el clásico viaje en balde.
+⚠️ Y un aviso: la gilda lleva guindilla. Si te gusta suave, pide que te la pongan con piparra de Ibarra en vez de picante.
 
-¿Cuál es la tuya? 👇
+¿Dónde está la mejor que has probado? 👇
 
-#Madrid #LibreriasDeMadrid #PlanesEnMadrid #OtoñoEnMadrid #Allie #AIInfluencer
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261020-184414-1.jpg
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261020-184414-2.jpg
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261020-184414-3.jpg
-·   contenedor 18106775756571997
-·   contenedor 18106775801571997
-·   contenedor 18106775822571997
-· Sin ubicación (Madrid, Spain): IGError: Authorization Error (código 100)
-· Carrusel 18106775849571997
+#Madrid #Gildas #PintxosMadrid #TapasMadrid #Allie #AIInfluencer
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261016-060842-2.jpg
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261016-060842-3.jpg
+·   contenedor 18107070833571997
+·   contenedor 18107070854571997
+· Carrusel 18107070881571997
 ·   6s · FINISHED
-· PUBLICADO · 18031081604909558 · https://www.instagram.com/p/De1KDPVl4tp/
+· PUBLICADO · 18088464299300278 · https://www.instagram.com/p/De6ZUVml5W-/
