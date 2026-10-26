@@ -1158,7 +1158,7 @@
    "etiqueta": "calle",
    "tema": "un día en Madrid",
    "escena": "The same woman, medium shot inside Mercado de San Fernando in Lavapiés, stalls behind, wearing a rust-orange oversized cardigan over a white vest top, waist-up, hands empty by her sides, soft closed-mouth smile, warm autumn golden hour light filtering through the market.",
-   "usada": null,
+   "usada": "2026-10-26T09:45:33.193769+00:00",
    "vestuario": "teja-cardigan",
    "sitio": "mercado",
    "creada": "2026-10-25T11:32:04.412732+00:00"
@@ -1169,7 +1169,7 @@
    "etiqueta": "calle",
    "tema": "un día en Madrid",
    "escena": "The same woman, close-up shot inside Mercado de San Fernando in Lavapiés, stalls blurred behind, wearing a rust-orange oversized cardigan over a white vest top, chest-up, hands empty, gentle closed-mouth smile, soft autumn afternoon lighting.",
-   "usada": null,
+   "usada": "2026-10-26T09:45:33.193769+00:00",
    "vestuario": "teja-cardigan",
    "sitio": "mercado",
    "creada": "2026-10-25T11:32:14.475554+00:00"
@@ -1180,7 +1180,7 @@
    "etiqueta": "calle",
    "tema": "un día en Madrid",
    "escena": "The same woman, medium close-up shot inside Mercado de San Fernando in Lavapiés, colorful stalls behind, wearing a rust-orange oversized cardigan over a white vest top, upper body, hands empty, subtle closed-mouth smile, soft natural golden hour light.",
-   "usada": null,
+   "usada": "2026-10-26T09:45:33.193769+00:00",
    "vestuario": "teja-cardigan",
    "sitio": "mercado",
    "creada": "2026-10-25T11:32:26.457421+00:00"
@@ -1252,5 +1252,5 @@
    "creada": "2026-10-25T11:33:54.304361+00:00"
   }
  ],
- "actualizado": "2026-10-26T06:09:54.548653+00:00"
+ "actualizado": "2026-10-26T09:45:33.193811+00:00"
 }
