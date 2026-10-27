@@ -940,5 +940,103 @@
   "nota_cupo_metricool": "Cero publicaciones del cupo: el reel salio por la API de Instagram.",
   "banco": "24 fotos libres de 115, justo en el umbral (13 varios, 6 viaje, 3 casa, 2 calle). Con 24 no se pasa de 24, asi que esta noche vuelve a entrar la generacion. Cero fotos libres de 'cafe' y solo 2 de 'calle': las piezas de cafeteria y de calle se quedan sin material.",
   "pendiente": "1) Metricool lleva un dia entero sin actualizar (ultimo dato 22-oct, igual que ayer, con cifras identicas hasta el ultimo digito). Si manana sigue igual, medir por la API de Instagram. 2) Los posts pierden alcance semana a semana (de 250-330 a 76-172) mientras el reel aguanta; si se confirma otra semana, mover al menos un dia de carrusel a reel. 3) El comentario de cabecera de publicar.yml sigue diciendo lunes/miercoles/viernes/sabado cuando el cron pone 2,6. El cron esta bien; el comentario confunde. Dos lineas. 4) ULTIMO-FALLO.txt sigue enseniando el rechazo de Instagram del 22-oct 18:32 (codigo 2207085) dos dias despues y tres publicaciones limpias mas tarde: o se limpia al acabar en verde o deja de servir. 5) El desencaje texto-foto y la mezcla de tandas NO han pasado hoy; ver si lo arregla el commit 541851a o fue suerte. 6) Los packs sin Allie (Halloween, 76, el peor del mes) no reparten: no repetir."
+ },
+ {
+  "fecha": "2026-10-27",
+  "fecha_ultimo_dato": "2026-10-26",
+  "seguidores": 3298,
+  "ganados": null,
+  "perdidos": null,
+  "ganados_nota": "Metricool aun no habia cerrado ganados/perdidos del 26-oct al medir (12:00 Madrid). El 25-oct: 5 ganados, 3 perdidos. El 24-oct: 9 y 4. El 23-oct: 6 y 3.",
+  "alcance_reels": 132,
+  "visualizaciones_reels": 212,
+  "reels_publicados": 1,
+  "alcance_reels_nota": "Cifras del ultimo dia con reel que tiene dato (24-oct). El reel de hoy se publico a las 10:57 UTC y Metricool va un dia por detras: sin medida hasta manana.",
+  "formato": "reel normal",
+  "enlace": "https://www.instagram.com/reel/De_sb8cAr-y/",
+  "nota": "NO SALIO SOLO: PRIMER FALLO DEL AUTOMATICO EN SEIS DIAS, Y LO HE ARREGLADO A MANO. La ejecucion programada de publicar.yml (cron 12 9 * * 2,6, que con el cambio de hora del 25-oct es la que cae a las 10:12 Madrid) arranco a las 09:48 UTC, paso la hora, la instalacion y las barreras, y se quedo COLGADA EN EL PASO 'Poner ffmpeg' desde las 09:49:08 hasta las 10:08:56: diecinueve minutos y cincuenta segundos en 'sudo apt-get update && apt-get install ffmpeg'. Ahi choco con el timeout-minutes de 20 del job y GitHub lo marco 'cancelled'. Los pasos de marcado y de publicar quedaron en 'skipped' y el reel NO salio. El commit de las 10:08 que pone 'Publicado en Instagram' MIENTE: es el paso 'Guardar el registro salga como salga' (if: always()) escribiendo el parte a medias; no toco publicados.json.\n\nLo he relanzado a mano a las 10:56 con workflow_dispatch e inputs[sin_guarda]=si (hacia falta saltarse la guarda porque ya eran las 11:56 en Madrid). Esta vez apt tardo lo normal y el reel salio: media_id 18031082933905468, https://www.instagram.com/reel/De_sb8cAr-y/ , publicado a las 10:57:40 UTC / 11:57 Madrid, UNA HORA Y 45 MINUTOS TARDE sobre el pico de las 10:00. Una sola entrada en publicados.json y cero cupo de Metricool: no hay duplicado.\n\nEL FALLO DE FONDO MERECE ARREGLO, PORQUE VA A VOLVER. publicar.yml instala ffmpeg con apt en cada ejecucion solo para comprobar el marcado de IA. Los mirrors de Ubuntu en los runners se atascan de vez en cuando y, cuando lo hacen, se comen el presupuesto entero del job. Tres arreglos posibles, de menos a mas: (a) poner timeout-minutes al paso de ffmpeg (3 o 4) para que falle rapido en vez de llevarse por delante el job entero; (b) usar el ffmpeg estatico que ya se descarga en los trabajos del reel (ultima-instalacion-dato.txt dice 'OK ffmpeg estatico · 1s') en vez de apt; (c) subir timeout-minutes del job. La (b) es la buena: un segundo frente a veinte minutos de ruleta.\n\nSEGUNDA MIRADA A LAS FOTOS: ES ALLIE, SIN DUDA. Las tres de videos/fotos/ son rubia de ojos verdes, misma cara que 0-REFERENCIA.jpg: gabardina beige sobre camisa blanca, parque con hojas en el suelo y luz dorada de tarde. OpenCV ya las habia dado por buenas en generacion. EL TEXTO ENCAJA, con un matiz: el pie habla de 'hojas secas', 'abrigo beige' y 'suelo lleno de color', y eso esta todo en las fotos; pero dice tambien 'arboles pelados' y los arboles estan llenos de hoja (en la segunda foto incluso verde). Es un detalle, no el desencaje grueso del 15, 22 y 23 de octubre (brochas sobre cafeteria, otono sobre vestido de verano, librerias sobre callejon de ladrillo). Segundo dia seguido sin desencaje real.\n\nMETRICOOL HA RESINCRONIZADO Y LAS CIFRAS HAN SUBIDO. El 24-oct avise de que llevaba 24 h clavado; ya no: hay datos hasta el 26-oct y todos los reels han madurado por encima de lo apuntado entonces (15-oct de 159 a 170, 16-oct de 152 a 160, 17-oct de 142 a 154, 20-oct de 326 a 346, 22-oct de 121 a 196). Conviene recordar que cualquier cifra de menos de 48 h esta a medio cocer.\n\nEL EXPERIMENTO, CERRADO Y MAS A FAVOR DEL REEL TODAVIA. Reels normales maduros: 140 (9-oct), 170 (15-oct), 160 (16-oct), 154 (17-oct), 346 (20-oct), 196 (22-oct) y 132 (24-oct); mediana 160, con 85-120 interacciones en los cinco ultimos. Los dos Trial Reels: 41 de alcance con 0 interacciones y 105 con 9. Los siete reels normales pasan de cien, cinco de siete doblan al Trial Reel y uno lo multiplica por ocho. La pregunta de Teresa se contesta NO: el problema no era la base de seguidores sino el formato. Trial Reel enterrado.\n\nY EL REEL YA LE GANA AL CARRUSEL DE FORMA CONSISTENTE. Posts de la ultima semana: 188 (18-oct), 157 (19-oct), 99 (21-oct), 155 (22-oct), 124 (23-oct), 127 (25-oct) y 91 (26-oct), con una pendiente clara de bajada desde los 248-330 de principios de mes. Reels en la misma ventana: 346, 196 y 132. La mediana del reel (160) ya esta por encima de la del post (127) y el techo no se parece. El reparto de dias sigue al reves: cuatro dias de carrusel/foto por dos de reel. Tercera semana seguida apuntandolo; yo moveria ya un dia de carrusel a reel, el miercoles o el domingo.\n\nSEGUIDORES, EN MAXIMO DE LA SERIE. 3298 el 26-oct, por encima del 3297 del 24-oct y del 3284 del 21-oct. +16 en 7 dias (3282 el 19-oct) y +69 en 30 dias (3229 el 27-sep), despues de haber tocado fondo en 3217 el 5-oct. La curva ha vuelto a subir justo la semana en que los reels han repartido mas, que encaja.",
+  "alcance_por_reel": {
+   "20261009-1556": 140,
+   "20261013-1731": 41,
+   "20261014-1804": 105,
+   "20261015-1804": 170,
+   "20261016-1642": 160,
+   "20261017-0847": 154,
+   "20261020-0846": 346,
+   "20261022-1835": 196,
+   "20261024-0843": 132,
+   "20261027-1057": "sin dato todavia"
+  },
+  "interacciones_por_reel": {
+   "20261009-1556": 2,
+   "20261013-1731": 0,
+   "20261014-1804": 9,
+   "20261015-1804": 120,
+   "20261016-1642": 119,
+   "20261017-0847": 119,
+   "20261020-0846": 101,
+   "20261022-1835": 106,
+   "20261024-0843": 85
+  },
+  "visualizaciones_por_reel": {
+   "20261009": 166,
+   "20261013": 44,
+   "20261014": 135,
+   "20261015": 365,
+   "20261016": 319,
+   "20261017": 322,
+   "20261020": 488,
+   "20261022": 324,
+   "20261024": 212
+  },
+  "tipo_por_reel": {
+   "20261009-1556": "reel normal",
+   "20261013-1731": "Trial Reel",
+   "20261014-1804": "Trial Reel",
+   "20261015-1804": "reel normal",
+   "20261016-1642": "reel normal",
+   "20261017-0847": "reel normal",
+   "20261020-0846": "reel normal",
+   "20261022-1835": "reel normal",
+   "20261024-0843": "reel normal",
+   "20261027-1057": "reel normal (sin dato todavia)"
+  },
+  "alcance_por_post": {
+   "20261010-1804": 248,
+   "20261014-0816": 181,
+   "20261018-0955": 188,
+   "20261019-0959": 157,
+   "20261021-0846": 99,
+   "20261022-0844": 155,
+   "20261023-0844": 124,
+   "20261025-0933": 127,
+   "20261026-0945": 91
+  },
+  "interacciones_por_post": {
+   "20261010-1804": 153,
+   "20261014-0816": 120,
+   "20261018-0955": 134,
+   "20261019-0959": 120,
+   "20261021-0846": 44,
+   "20261022-0844": 125,
+   "20261023-0844": 114,
+   "20261025-0933": 110,
+   "20261026-0945": 92
+  },
+  "serie_seguidores": {
+   "20261020": 3282,
+   "20261021": 3284,
+   "20261022": 3283,
+   "20261023": 3291,
+   "20261024": 3297,
+   "20261025": 3296,
+   "20261026": 3298
+  },
+  "variacion_7d": 16,
+  "variacion_30d": 69,
+  "veredicto": "El automatico fallo por primera vez en seis dias: publicar.yml se colgo 20 minutos instalando ffmpeg con apt y el job se murio por timeout sin publicar. Relanzado a mano con sin_guarda=si; el reel salio a las 11:57 Madrid, hora y tres cuartos tarde, sin duplicados ni cupo de Metricool. Arreglo recomendado: usar el ffmpeg estatico (1 s) en vez de apt, o ponerle timeout al paso. En numeros, Metricool ha resincronizado y todo ha subido: los siete reels normales van de 132 a 346 (mediana 160) frente a 41 y 105 de los Trial Reels, y los posts siguen cayendo (188 a 91 en una semana, desde 248-330 a principios de mes). El reel ya le gana al carrusel por mediana y por techo; tercera semana pidiendo mover un dia de carrusel a reel. Seguidores en maximo de la serie: 3298, +69 en 30 dias.",
+  "nota_cupo_metricool": "Cero publicaciones del cupo: el reel salio por la API de Instagram, relanzada a mano.",
+  "banco": "22 fotos libres de 124 (10 varios, 6 casa, 3 viaje, 3 cafe). POR DEBAJO del umbral de 24, asi que esta noche toca generar. Cero libres de 'calle', que es la etiqueta que mas se gasta.",
+  "pendiente": "1) NUEVO Y LO MAS URGENTE: publicar.yml instala ffmpeg con apt en cada ejecucion y hoy eso se ha comido los 20 minutos del job y ha tumbado la publicacion. Cambiarlo por el ffmpeg estatico que ya usan los trabajos del reel (1 s) o, como minimo, ponerle timeout-minutes: 4 al paso para que falle rapido. 2) Los posts pierden alcance semana a semana (188 a 91 en siete dias) mientras el reel aguanta en 132-346; tercera semana apuntandolo: mover ya un dia de carrusel a reel. 3) El comentario de cabecera de publicar.yml sigue diciendo lunes/miercoles/viernes/sabado cuando el cron pone 2,6. El cron esta bien; el comentario confunde. Dos lineas. 4) ULTIMO-FALLO.txt sigue enseniando el rechazo de Instagram del 22-oct (codigo 2207085) cinco dias y seis publicaciones limpias despues: o se limpia al acabar en verde o deja de servir, y hoy que SI habia un fallo de verdad no ha dejado rastro ninguno. 5) El banco esta en 22 libres y sin ninguna de 'calle'. 6) Matiz menor del pie de hoy: habla de 'arboles pelados' y los arboles estan llenos de hoja."
  }
 ]
