@@ -112,9 +112,23 @@ def coger(cuantas, etiqueta=None, azar=False):
     enteras = sorted((t for t in por_tanda.values() if len(t) >= cuantas),
                      key=lambda t: t[0].get("creada", ""))
     if azar and enteras:
-        elegida = list(random.choice(enteras))
+        # No repetir la tanda del vídeo anterior: dos vídeos seguidos no deben
+        # abrir con la misma sesión de fotos aunque sea distinta foto. Se
+        # recuerda en estado/ (que el CI sí guarda).
+        marca = BASE / "estado" / "ultima-tanda-video.txt"
+        try:
+            ultima = marca.read_text(encoding="utf-8").strip()
+        except Exception:  # noqa: BLE001
+            ultima = ""
+        opciones = [t for t in enteras if t[0].get("tanda") != ultima] or enteras
+        elegida = list(random.choice(opciones))
         random.shuffle(elegida)
         elegidas = elegida[:cuantas]
+        try:
+            marca.parent.mkdir(parents=True, exist_ok=True)
+            marca.write_text(elegidas[0].get("tanda", ""), encoding="utf-8")
+        except Exception:  # noqa: BLE001
+            pass
     else:
         elegida = enteras[0] if enteras else max(por_tanda.values(), key=len)
         elegidas = elegida[:cuantas]

@@ -285,49 +285,56 @@ def conseguir(terminos):
     DESTINO.mkdir(parents=True, exist_ok=True)
     CREDITOS.parent.mkdir(parents=True, exist_ok=True)
     rutas, creditos = [], []
+    usados = set()   # títulos ya usados: que no se repita la misma foto
     for i, entrada in enumerate(terminos):
-        # Cada sitio puede traer varios términos: el primero que dé una foto
-        # libre, gana. Hace falta porque el buscador de Commons es literal y
-        # porque en algunos sitios casi todo es CC BY-SA, que aquí no entra:
-        # a Debod y a Chamberí no les encontró nada con un solo término.
+        # Cada ficha puede traer varias alternativas. Se juntan las candidatas
+        # de TODAS (en orden, sin repetir), para que el anti-duplicados tenga
+        # de dónde elegir si la mejor ya salió en otra ficha. Hace falta porque
+        # el buscador es literal y porque casi todo es CC BY-SA, que no entra.
         alternativos = [entrada] if isinstance(entrada, str) else list(entrada)
-        t = alternativos[0]
-        cand = []
+        cand, vistos = [], set()
         for alt in alternativos:
             try:
-                cand = buscar(alt)
+                nuevas = buscar(alt)
             except Exception as e:  # noqa: BLE001
                 log(f"«{alt}»: Commons falló ({e})")
                 continue
-            if cand:
-                t = alt
+            for c in nuevas:
+                if c["titulo"] not in vistos:
+                    vistos.add(c["titulo"])
+                    c["_termino"] = alt
+                    cand.append(c)
+            if any(c["titulo"] not in usados for c in cand):
                 break
-            log(f"«{alt}»: nada libre, pruebo otro término")
+            log(f"«{alt}»: nada libre nuevo, pruebo otra")
+        cand = [c for c in cand if c["titulo"] not in usados]
         if not cand:
-            log(f"«{alternativos[0]}»: ninguna foto con licencia libre")
+            log(f"«{alternativos[0]}»: ninguna foto libre nueva")
             rutas.append(None)
             continue
         puesto = None
-        for c in cand[:4]:
+        for c in cand[:10]:
             ruta = DESTINO / f"{i:02d}.jpg"
             try:
                 peso = bajar(c["url"], ruta)
             except Exception as e:  # noqa: BLE001
-                log(f"«{t}»: no baja {c['titulo']} ({e})")
+                log(f"«{c['_termino']}»: no baja {c['titulo']} ({e})")
                 continue
             if not es_color(ruta):
-                log(f"«{t}»: {c['titulo'][5:50]} es blanco y negro, siguiente")
+                log(f"«{c['_termino']}»: {c['titulo'][5:50]} es B/N, siguiente")
                 continue
             puesto = c
-            log(f"«{t}» · {c['titulo'][5:60]} · {c['licencia']} · "
+            usados.add(c["titulo"])
+            log(f"«{c['_termino']}» · {c['titulo'][5:60]} · {c['licencia']} · "
                 f"{c['ancho']}×{c['alto']} · {peso/1000:.0f} kB")
             break
         if not puesto:
             rutas.append(None)
             continue
         rutas.append(DESTINO / f"{i:02d}.jpg")
-        creditos.append({"termino": t, **{k: puesto[k] for k in
-                                          ("titulo", "licencia", "autor", "pagina")}})
+        creditos.append({"termino": puesto.get("_termino", alternativos[0]),
+                         **{k: puesto[k] for k in
+                            ("titulo", "licencia", "autor", "pagina")}})
     CREDITOS.write_text(json.dumps(creditos, ensure_ascii=False, indent=1),
                         encoding="utf-8")
     return rutas, creditos
