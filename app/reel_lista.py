@@ -461,13 +461,17 @@ def referencia_femenina(cache={}):
     if not ref.exists():
         import asyncio
         import edge_tts
-        # Rico en castellano: ceceo, «vosotros», entonación de España.
-        guion = ("Hola, ¿qué tal? Soy española, de Madrid. Os voy a contar "
-                 "un par de cosas que seguro que no sabíais. Prestad atención, "
-                 "que esto os interesa.")
+        # VOZ DE REFERENCIA MÁS DULCE. Teresa: «busca una voz femenina más
+        # dulce». Elvira sonaba correcta pero seca. Ximena (la otra femenina
+        # es-ES de Edge) es más cálida y joven; Chatterbox clona ESE timbre.
+        # Se puede forzar otra con VOZ_REF_EDGE.
+        voz_ref = os.environ.get("VOZ_REF_EDGE") or "es-ES-XimenaNeural"
+        # Hablado con cariño para que el timbre que clona sea amable.
+        guion = ("Hola, ¿qué tal? Soy española, de Madrid. Te voy a contar "
+                 "unas cositas con mucho cariño. Quédate, que te va a encantar.")
         mp3 = ref.with_suffix(".mp3")
         async def _g():
-            await edge_tts.Communicate(guion, "es-ES-ElviraNeural").save(str(mp3))
+            await edge_tts.Communicate(guion, voz_ref).save(str(mp3))
         asyncio.run(_g())
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3),
                         "-ar", "24000", "-ac", "1", str(ref)], check=True)
@@ -502,8 +506,18 @@ def decir_chatterbox(texto, destino, model_cache={}):
 
     model = model_cache["model"]
     ref = referencia_femenina()
-    wav_tensor = model.generate(
-        texto, language_id=CHATTERBOX_LANG, audio_prompt_path=ref)
+    # MÁS DULCE = MENOS ÉNFASIS. exaggeration baja hace la voz más calmada y
+    # suave en vez de locutora enfática. Si la versión instalada no acepta
+    # estos parámetros, se genera sin ellos.
+    exag = float(os.environ.get("VOZ_EXAG") or 0.35)
+    cfg = float(os.environ.get("VOZ_CFG") or 0.5)
+    try:
+        wav_tensor = model.generate(
+            texto, language_id=CHATTERBOX_LANG, audio_prompt_path=ref,
+            exaggeration=exag, cfg_weight=cfg)
+    except TypeError:
+        wav_tensor = model.generate(
+            texto, language_id=CHATTERBOX_LANG, audio_prompt_path=ref)
 
     # wav_tensor es un tensor torch [1, N] o [N]. Convertir a numpy float32.
     audio = wav_tensor.squeeze().cpu().numpy().astype(np.float32)
