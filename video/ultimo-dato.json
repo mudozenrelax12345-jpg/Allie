@@ -1,51 +1,51 @@
 {
- "archivo": "dato_20261027_1759.mp4",
- "pieza": "madrid-tarta-queso",
- "duracion": 64.1,
+ "archivo": "dato_20261027_1837.mp4",
+ "pieza": "madrid-puente-santos",
+ "duracion": 62.333333,
  "duraciones": [
-  9.33,
-  9.546,
-  9.834,
-  9.09,
-  8.01,
-  10.602,
-  7.698
+  9.186,
+  9.882,
+  9.666,
+  8.754,
+  8.178,
+  9.786,
+  6.858
  ],
  "creditos": [
   {
-   "termino": "File:Mondays at Il Forno - Cheesecake with strawberry sauce.jpg",
-   "titulo": "File:Mondays at Il Forno - Cheesecake with strawberry sauce.jpg",
+   "termino": "File:Parque del Capricho.jpg",
+   "titulo": "File:Parque del Capricho.jpg",
    "licencia": "cc by 2.0",
-   "autor": "Alex Dugger",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Mondays_at_Il_Forno_-_Cheesecake_with_strawberry_sauce.jpg"
+   "autor": "Viviendo Madrid from Madrid, España",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Parque_del_Capricho.jpg"
   },
   {
-   "termino": "File:Soufflé-style cheesecake 001.jpg",
-   "titulo": "File:Soufflé-style cheesecake 001.jpg",
-   "licencia": "cc0",
-   "autor": "Ocdp",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Souffl%C3%A9-style_cheesecake_001.jpg"
-  },
-  {
-   "termino": "File:Strawberry Cheese Cake.jpg",
-   "titulo": "File:Strawberry Cheese Cake.jpg",
+   "termino": "File:Parque del Retiro (Madrid) (26238322812).jpg",
+   "titulo": "File:Parque del Retiro (Madrid) (26238322812).jpg",
    "licencia": "cc by 2.0",
-   "autor": "Ruocaled",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Strawberry_Cheese_Cake.jpg"
+   "autor": "Jose Luis Cernadas Iglesias from Coruña, España",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Parque_del_Retiro_(Madrid)_(26238322812).jpg"
   },
   {
-   "termino": "tarta de queso",
-   "titulo": "File:Plato de postre, tarta de queso (España).jpg",
-   "licencia": "cc by 4.0",
-   "autor": "Juan Emilio Prades Bel",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Plato_de_postre,_tarta_de_queso_(Espa%C3%B1a).jpg"
+   "termino": "File:El Rastro Flea Market Madrid.jpg",
+   "titulo": "File:El Rastro Flea Market Madrid.jpg",
+   "licencia": "cc by 2.0",
+   "autor": "Duncan Rawlinson",
+   "pagina": "https://commons.wikimedia.org/wiki/File:El_Rastro_Flea_Market_Madrid.jpg"
   },
   {
-   "termino": "cheesecake",
-   "titulo": "File:Mango Pineapple Cheesecake, side view.jpg",
-   "licencia": "cc by 4.0",
-   "autor": "Gaurav",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Mango_Pineapple_Cheesecake,_side_view.jpg"
+   "termino": "File:Chocolate con churros (27343655726).jpg",
+   "titulo": "File:Chocolate con churros (27343655726).jpg",
+   "licencia": "cc by 2.0",
+   "autor": "Joy",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Chocolate_con_churros_(27343655726).jpg"
+  },
+  {
+   "termino": "File:Huesos de Santo.jpg",
+   "titulo": "File:Huesos de Santo.jpg",
+   "licencia": "public domain",
+   "autor": "Tamorlan",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Huesos_de_Santo.jpg"
   }
  ]
 }

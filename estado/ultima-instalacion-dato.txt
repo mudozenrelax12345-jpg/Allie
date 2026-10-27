@@ -1,11 +1,8 @@
-Instalación · 2026-10-27 17:43 UTC
+Instalación · 2026-10-27 18:21 UTC
 ━━━━ ffmpeg estático
    OK ffmpeg estático · 1s
 ffmpeg version N-128100-gceb466cbcd-20261026 Copyright (c) 2000-2026 the FFmpeg developers
 ━━━━ requirements
-Using cached aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
-Using cached aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
-Using cached anyio-4.15.1-py3-none-any.whl (132 kB)
 Using cached attrs-26.1.0-py3-none-any.whl (67 kB)
 Using cached certifi-2026.10.23-py3-none-any.whl (135 kB)
 Using cached cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
@@ -23,11 +20,11 @@ Using cached pycparser-3.12-py3-none-any.whl (62 kB)
 Installing collected packages: urllib3, typing-extensions, truststore, tqdm, tabulate, pyyaml, pycparser, propcache, pillow, packaging, numpy, multidict, idna, hf-xet, h11, fsspec, frozenlist, filelock, click, charset_normalizer, certifi, attrs, aiohappyeyeballs, yarl, requests, opencv-python-headless, httpcore2, httpcore, cffi, anyio, aiosignal, httpx2, httpx, cryptography, aiohttp, huggingface-hub, edge-tts, gradio_client
 
 Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 anyio-4.15.1 attrs-26.1.0 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 edge-tts-7.3.1 filelock-4.2.4 frozenlist-1.8.0 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.3.0 idna-3.20 multidict-7.2.1 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 propcache-0.5.4 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tabulate-0.10.0 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0 yarl-1.25.1
-   OK requirements · 10s
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+   OK requirements · 11s
 ━━━━ torch cpu
-Collecting networkx>=2.5.1 (from torch)
-  Using cached networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
-Collecting jinja2 (from torch)
   Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
 Requirement already satisfied: fsspec>=0.8.5 in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (from torch) (2026.9.0)
 Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch)
@@ -45,11 +42,11 @@ Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x8
 Installing collected packages: torchaudio, mpmath, sympy, setuptools, networkx, MarkupSafe, jinja2, torch
 
 Successfully installed MarkupSafe-3.0.3 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 setuptools-78.1.0 sympy-1.14.0 torch-2.14.1+cpu torchaudio-2.11.0+cpu
-   OK torch cpu · 19s
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+   OK torch cpu · 24s
 ━━━━ chatterbox
-  Attempting uninstall: huggingface-hub
-    Found existing installation: huggingface_hub 2.3.0
-    Uninstalling huggingface_hub-2.3.0:
       Successfully uninstalled huggingface_hub-2.3.0
   Attempting uninstall: torch
     Found existing installation: torch 2.14.1+cpu
@@ -66,6 +63,9 @@ Successfully installed MarkupSafe-3.0.3 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1
 
 ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
 opencv-python-headless 5.0.0.93 requires numpy>=2; python_version >= "3.9", but you have numpy 1.26.4 which is incompatible.
-Successfully installed Pillow-12.3.0 aiofiles-24.1.0 annotated-doc-0.0.5 annotated-types-0.8.0 audioread-3.1.0 brotli-1.2.1 catalogue-2.0.10 cfgv-3.5.0 chatterbox-tts-0.1.7 cloudpickle-3.1.2 conformer-0.3.2 decorator-5.3.1 deprecated-3.0.0 diffusers-0.29.0 distlib-0.4.4 einops-0.8.2 fastapi-0.162.0 ffmpy-1.0.0 gradio-6.8.0 gradio-client-2.2.0 groovy-0.1.2 huggingface-hub-1.33.0 identify-2.6.20 importlib-metadata-10.1.0 jaconv-0.5.0 joblib-1.6.0 lazy_loader-0.6 librosa-0.11.0 llvmlite-0.50.0 markdown-it-py-4.2.0 mdurl-0.1.2 ml_dtypes-0.5.4 msgpack-1.2.4 narwhals-2.28.0 nodeenv-1.11.0 numba-0.68.0 numpy-1.26.4 nvidia-cublas-cu12-12.4.5.8 nvidia-cuda-cupti-cu12-12.4.127 nvidia-cuda-nvrtc-cu12-12.4.127 nvidia-cuda-runtime-cu12-12.4.127 nvidia-cudnn-cu12-9.1.0.70 nvidia-cufft-cu12-11.2.1.3 nvidia-curand-cu12-10.3.5.147 nvidia-cusolver-cu12-11.6.1.9 nvidia-cusparse-cu12-12.3.1.170 nvidia-cusparselt-cu12-0.6.2 nvidia-nccl-cu12-2.21.5 nvidia-nvjitlink-cu12-12.4.127 nvidia-nvtx-cu12-12.4.127 omegaconf-2.4.0 onnx-1.23.2 opentelemetry-api-1.45.1 orjson-3.13.0 pandas-3.0.6 platformdirs-4.13.6 pooch-1.9.0 pre-commit-4.7.0 protobuf-7.36.2 pydantic-2.14.1 pydantic-core-2.50.1 pydub-0.25.1 pygments-2.21.0 pykakasi-2.3.0 pyloudnorm-0.2.0 python-dateutil-3.0.0 python-discovery-1.6.5 python-multipart-0.0.32 pytz-2026.5 regex-2026.9.29 resemble-perth-1.1.0 rich-15.0.0 s3tokenizer-0.3.0 safehttpx-0.1.7 safetensors-0.5.3 scikit-learn-1.9.1 scipy-1.17.1 semantic-version-2.10.0 shellingham-1.5.4 six-1.17.0 soundfile-0.14.0 soxr-1.1.0 spacy-pkuseg-1.0.2 srsly-2.5.5 starlette-0.52.1 sympy-1.13.1 threadpoolctl-3.7.0 tokenizers-0.22.2 tomlkit-0.13.3 torch-2.6.0 torchaudio-2.6.0 transformers-5.2.0 triton-3.2.0 typer-0.27.3 typer-slim-0.24.0 typing-inspection-0.4.4 tzdata-2026.5 uvicorn-0.54.0 virtualenv-21.15.0 wrapt-2.5.1 zipp-4.1.2
-   OK chatterbox · 139s
+Successfully installed Pillow-12.3.0 aiofiles-24.1.0 annotated-doc-0.0.5 annotated-types-0.8.0 audioread-3.1.0 brotli-1.2.1 catalogue-2.0.10 cfgv-3.5.0 chatterbox-tts-0.1.7 cloudpickle-3.1.2 conformer-0.3.2 decorator-5.3.1 deprecated-3.0.0 diffusers-0.29.0 distlib-0.4.4 einops-0.8.2 fastapi-0.162.0 ffmpy-1.0.0 gradio-6.8.0 gradio-client-2.2.0 groovy-0.1.2 huggingface-hub-1.33.0 identify-2.6.20 importlib-metadata-10.1.0 jaconv-0.5.0 joblib-1.6.0 lazy_loader-0.6 librosa-0.11.0 llvmlite-0.50.0 markdown-it-py-4.2.0 mdurl-0.1.2 ml_dtypes-0.5.4 msgpack-1.2.4 narwhals-2.28.0 nodeenv-1.11.0 numba-0.68.1 numpy-1.26.4 nvidia-cublas-cu12-12.4.5.8 nvidia-cuda-cupti-cu12-12.4.127 nvidia-cuda-nvrtc-cu12-12.4.127 nvidia-cuda-runtime-cu12-12.4.127 nvidia-cudnn-cu12-9.1.0.70 nvidia-cufft-cu12-11.2.1.3 nvidia-curand-cu12-10.3.5.147 nvidia-cusolver-cu12-11.6.1.9 nvidia-cusparse-cu12-12.3.1.170 nvidia-cusparselt-cu12-0.6.2 nvidia-nccl-cu12-2.21.5 nvidia-nvjitlink-cu12-12.4.127 nvidia-nvtx-cu12-12.4.127 omegaconf-2.4.0 onnx-1.23.2 opentelemetry-api-1.45.1 orjson-3.13.0 pandas-3.0.6 platformdirs-4.13.6 pooch-1.9.0 pre-commit-4.7.0 protobuf-7.36.2 pydantic-2.14.1 pydantic-core-2.50.1 pydub-0.25.1 pygments-2.21.0 pykakasi-2.3.0 pyloudnorm-0.2.0 python-dateutil-3.0.0 python-discovery-1.6.5 python-multipart-0.0.32 pytz-2026.5 regex-2026.9.29 resemble-perth-1.1.0 rich-15.0.0 s3tokenizer-0.3.0 safehttpx-0.1.7 safetensors-0.5.3 scikit-learn-1.9.1 scipy-1.17.1 semantic-version-2.10.0 shellingham-1.5.4 six-1.17.0 soundfile-0.14.0 soxr-1.1.0 spacy-pkuseg-1.0.2 srsly-2.5.5 starlette-0.52.1 sympy-1.13.1 threadpoolctl-3.7.0 tokenizers-0.22.2 tomlkit-0.13.3 torch-2.6.0 torchaudio-2.6.0 transformers-5.2.0 triton-3.2.0 typer-0.27.3 typer-slim-0.24.0 typing-inspection-0.4.4 tzdata-2026.5 uvicorn-0.54.0 virtualenv-21.15.0 wrapt-2.5.1 zipp-4.1.2
+
+[notice] A new release of pip is available: 26.2.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+   OK chatterbox · 128s
    Motor: Chatterbox Multilingual V3
