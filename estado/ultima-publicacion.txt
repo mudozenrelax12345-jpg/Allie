@@ -1,7 +1,7 @@
-# Última publicación · 2026-10-24 08:42 UTC
+# Última publicación · 2026-10-27 09:48 UTC
 ## instalar
 
-Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 anyio-4.15.1 attrs-26.1.0 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 edge-tts-7.3.1 filelock-4.2.4 frozenlist-1.8.0 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.3.0 idna-3.20 multidict-7.1.0 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 propcache-0.5.4 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tabulate-0.10.0 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0 yarl-1.25.1
+Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 anyio-4.15.1 attrs-26.1.0 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 edge-tts-7.3.1 filelock-4.2.4 frozenlist-1.8.0 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.3.0 idna-3.20 multidict-7.2.1 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 propcache-0.5.4 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tabulate-0.10.0 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0 yarl-1.25.1
 
 [notice] A new release of pip is available: 26.2.1 -> 26.2.2
 [notice] To update, run: pip install --upgrade pip
@@ -20,26 +20,3 @@ ok   el vídeo se sirve desde el repositorio público
 
 las barreras del publicador aguantan
 ## ffmpeg
-ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
-## marcado
-ok   el vídeo se marca
-ok   lleva el DigitalSourceType del IPTC
-ok   y un aviso legible en el comentario
-ok   el vídeo no se ha recodificado
-ok   y dura lo mismo
-ok   un fichero que falta no revienta nada
-
-el vídeo sale marcado y entero
-## publicar
-· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261024_0602.mp4
-· Texto (239 caracteres):
-🤖 Contenido generado con IA · Allie es un personaje creado con IA
-
-Imposible elegir solo uno 🤤 Entre tanta bandeja y esta calle estrecha, me quedo con todo. ¿Con cuál pincho empezarías tú? ✨
-
-#Allie #AIInfluencer #Pintxos #CallesConEncanto
-· Contenedor 18106910681571997
-·   10s · IN_PROGRESS
-·   20s · IN_PROGRESS
-·   30s · FINISHED
-· PUBLICADO · 18164677447495943 · https://www.instagram.com/reel/De3utSID_x_/
