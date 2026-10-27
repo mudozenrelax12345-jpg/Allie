@@ -245,6 +245,57 @@
           "cheesecake"
         ]
       ]
+    },
+    {
+      "id": "madrid-puente-santos",
+      "formato": "dato",
+      "etiqueta": null,
+      "texto": "Planes en Madrid este finde largo que no son de Halloween\n1️⃣ El Capricho · solo abre findes y festivos\n2️⃣ El Retiro en otoño · las hojas doradas están de escándalo\n3️⃣ El Rastro, el domingo · el mercadillo más famoso\n4️⃣ Chocolate con churros · San Ginés, desde 1894\n5️⃣ Huesos de santo · el dulce de estas fechas",
+      "gancho_tiktok": "Planes en Madrid que NO son de Halloween",
+      "pie_tiktok": "Guárdalo para el finde largo 📌",
+      "intro_voz": "Hola, soy Allie. Si pasas de Halloween, cinco planazos para el finde largo en Madrid. Guárdatelos.",
+      "dichos": [
+        "El Capricho, el jardín más bonito y escondido de Madrid. Solo abre fines de semana y festivos, así que este finde es tu momento.",
+        "El Retiro en pleno otoño, con las hojas doradas por todas partes. Date un paseo y llévate la cámara, que está de escándalo.",
+        "El domingo, El Rastro. El mercadillo al aire libre más famoso de España, para pasear y rebuscar alguna ganga.",
+        "Con el fresco que ya hace, chocolate con churros en San Ginés, que abrió en 1894 y no cierra nunca.",
+        "Y date el capricho con unos huesos de santo o unos buñuelos, el dulce típico de estos días. En nada desaparecen hasta el año que viene."
+      ],
+      "cierre_tiktok": "¿Cuál te pide el cuerpo?",
+      "cierre_pie": "Dímelo en comentarios 👇",
+      "cierre_voz": "Dime en comentarios cuál te pide el cuerpo. Y guárdalo para no quedarte en el sofá.",
+      "fotos_busqueda": [
+        [
+          "File:Jardin El Capricho Estanque de los Cisnes.jpg",
+          "File:Parque del Capricho.jpg",
+          "File:Jardin El Capricho Palacio01.jpg",
+          "Parque El Capricho Madrid"
+        ],
+        [
+          "File:Parque del Retiro, en Madrid en otoño.jpg",
+          "File:Autumn Leaves - Retiro Park - Madrid 19.jpg",
+          "File:Parque del Retiro (Madrid) (26238322812).jpg",
+          "Parque del Retiro otoño"
+        ],
+        [
+          "File:El Rastro market, Madrid 2016 2.jpg",
+          "File:El Rastro Flea Market Madrid.jpg",
+          "File:Rastro de Madrid (España) 7.jpg",
+          "El Rastro Madrid mercadillo"
+        ],
+        [
+          "File:Chocolate con churros - San Ginés - Madrid.jpg",
+          "File:Chocolate con churros (27343655726).jpg",
+          "File:Desayuno chocolate con churros chocolateria San Gines.jpg",
+          "chocolate con churros"
+        ],
+        [
+          "File:Huesos de Santo.jpg",
+          "File:Buñuelos de viento - Madrid.JPG",
+          "File:Huesos del Santo (Yema).jpg",
+          "huesos de santo"
+        ]
+      ]
     }
   ],
   "arrobas_comprobados": {
