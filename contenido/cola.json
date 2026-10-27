@@ -1,220 +1,266 @@
 {
- "comentario": "Carruseles preparados a mano, de los que se guardan. El publicador coge el primero sin usar; cuando no queda ninguno, escribe el pie mirando las fotos como hasta ahora. REGLA: Allie NO dice que ha estado en ningún sitio ni que son sus favoritos. Da información cierta y comprobable. Es un personaje de IA y una recomendación personal suya sería inventada; una lista de datos, no. ETIQUETAS: solo se escribe un @ cuando el arroba está COMPROBADO en la web del sitio o en una ficha fiable. Un arroba inventado etiqueta a un desconocido y deja a Allie en ridículo; mejor el nombre a secas.",
- "piezas": [
-  {
-   "id": "halloween-pack",
-   "titulo": "Cinco fondos de móvil de Halloween · regalo",
-   "imagenes": [
-    "producto/halloween/f2-calabaza.jpg",
-    "producto/halloween/f1-luna.jpg",
-    "producto/halloween/f4-velas.jpg",
-    "producto/halloween/f3-telaranas.jpg",
-    "producto/halloween/f5-hojas.jpg"
-   ],
-   "texto": "Cinco fondos de pantalla de Halloween, y son tuyos 🕯️\n\nDesliza, guarda la imagen que te guste y póntela. Ya está. Sin enlaces, sin registrarte en nada, sin dejar tu correo en ningún sitio.\n\n🤖 Los he hecho con IA y los he elegido a mano: de quince que salieron, dos los tiré porque estaban mal. Te lo cuento porque es la parte interesante y porque no hay nada que esconder.\n\nTengo también diez láminas en A4 para imprimir y decorar la casa, de la misma familia. Si las quieres, pídemelas en comentarios y te las paso gratis.\n\n¿Cuál te has puesto? 👇",
-   "hashtags": "#Halloween #FondosDePantalla #Wallpaper #HalloweenEnCasa #Allie #AIInfluencer",
-   "usado": "2026-10-21T08:46:17.580322+00:00",
-   "nota": "Se regala en vez de venderse, y en formato fondo de móvil en vez de lámina, por lo que dicen los datos del 20 de octubre: el 67 % de los seguidores son hombres y el grueso tiene entre 45 y 64 años. Quien compra imprimibles de Halloween son mujeres de 25 a 45, y de esas hay 177 en toda la cuenta. Un fondo de pantalla lo usa cualquiera; una lámina para decorar el salón, no."
+  "comentario": "Carruseles preparados a mano, de los que se guardan. El publicador coge el primero sin usar; cuando no queda ninguno, escribe el pie mirando las fotos como hasta ahora. REGLA: Allie NO dice que ha estado en ningún sitio ni que son sus favoritos. Da información cierta y comprobable. Es un personaje de IA y una recomendación personal suya sería inventada; una lista de datos, no. ETIQUETAS: solo se escribe un @ cuando el arroba está COMPROBADO en la web del sitio o en una ficha fiable. Un arroba inventado etiqueta a un desconocido y deja a Allie en ridículo; mejor el nombre a secas.",
+  "piezas": [
+    {
+      "id": "halloween-pack",
+      "titulo": "Cinco fondos de móvil de Halloween · regalo",
+      "imagenes": [
+        "producto/halloween/f2-calabaza.jpg",
+        "producto/halloween/f1-luna.jpg",
+        "producto/halloween/f4-velas.jpg",
+        "producto/halloween/f3-telaranas.jpg",
+        "producto/halloween/f5-hojas.jpg"
+      ],
+      "texto": "Cinco fondos de pantalla de Halloween, y son tuyos 🕯️\n\nDesliza, guarda la imagen que te guste y póntela. Ya está. Sin enlaces, sin registrarte en nada, sin dejar tu correo en ningún sitio.\n\n🤖 Los he hecho con IA y los he elegido a mano: de quince que salieron, dos los tiré porque estaban mal. Te lo cuento porque es la parte interesante y porque no hay nada que esconder.\n\nTengo también diez láminas en A4 para imprimir y decorar la casa, de la misma familia. Si las quieres, pídemelas en comentarios y te las paso gratis.\n\n¿Cuál te has puesto? 👇",
+      "hashtags": "#Halloween #FondosDePantalla #Wallpaper #HalloweenEnCasa #Allie #AIInfluencer",
+      "usado": "2026-10-21T08:46:17.580322+00:00",
+      "nota": "Se regala en vez de venderse, y en formato fondo de móvil en vez de lámina, por lo que dicen los datos del 20 de octubre: el 67 % de los seguidores son hombres y el grueso tiene entre 45 y 64 años. Quien compra imprimibles de Halloween son mujeres de 25 a 45, y de esas hay 177 en toda la cuenta. Un fondo de pantalla lo usa cualquiera; una lámina para decorar el salón, no."
+    },
+    {
+      "id": "madrid-cafeterias-portatil",
+      "etiqueta": "cafe",
+      "titulo": "Cafeterías de Madrid para trabajar con portátil",
+      "texto": "Cinco cafeterías de Madrid donde de verdad puedes abrir el portátil 💻\n\nGuárdalo para el próximo día de teletrabajo que no sepas dónde meterte.\n\n1️⃣ El Patio Vertical · Almadén 26, al lado de Atocha. Mesas grandes y ventanales enormes. Abre de 8:00 a 20:30 todos los días.\n\n2️⃣ Gosto Café · León 30, Barrio de las Letras. Tiene mesas al fondo pensadas para portátil. De 9:00 a 19:00.\n\n3️⃣ La Bicicleta · Plaza de San Ildefonso, Malasaña. Dos mesas grandes compartidas para trabajar. Desde las 10:00.\n\n4️⃣ Misión Café · Los Reyes 5, Conde Duque. Abre a las 8:30 entre semana, que para madrugar está bien.\n\n5️⃣ Despacito · Jacometrezo 15, pegado a Callao. De 8:00 a 20:00 todos los días.\n\n⚠️ Y uno para NO ir a trabajar: el Café de la Luz es precioso, pero no tiene wifi. Para desconectar, perfecto; para una videollamada, un drama.\n\n¿Me falta alguna? Dímela abajo y la añado 📌",
+      "hashtags": "#Madrid #TeletrabajoMadrid #CafeteriasDeMadrid #MadridMola #Allie #AIInfluencer",
+      "usado": "2026-10-19T09:59:26.684483+00:00",
+      "texto_con_arrobas": "Cinco cafeterías de Madrid donde de verdad puedes abrir el portátil 💻\n\nGuárdalo para el próximo día de teletrabajo que no sepas dónde meterte.\n\n1️⃣ El Patio Vertical (@verticalcaffe) · Almadén 26, al lado de Atocha. Mesas grandes y ventanales enormes. Abre de 8:00 a 20:30 todos los días.\n\n2️⃣ Gosto Café (@gosto.cafe) · León 30, Barrio de las Letras. Tiene mesas al fondo pensadas para portátil. De 9:00 a 19:00.\n\n3️⃣ La Bicicleta (@labicicletacafe) · Plaza de San Ildefonso, Malasaña. Dos mesas grandes compartidas para trabajar. Desde las 10:00.\n\n4️⃣ Misión Café (@misioncafe) · Los Reyes 5, Conde Duque. Abre a las 8:30 entre semana, que para madrugar está bien.\n\n5️⃣ Despacito · Jacometrezo 15, pegado a Callao. De 8:00 a 20:00 todos los días.\n\n⚠️ Y uno para NO ir a trabajar: el Café de la Luz es precioso, pero no tiene wifi. Para desconectar, perfecto; para una videollamada, un drama.\n\n¿Me falta alguna? Dímela abajo y la añado 📌"
+    },
+    {
+      "id": "madrid-otono-parques",
+      "etiqueta": "calle",
+      "titulo": "Dónde ver el otoño en Madrid",
+      "texto": "Cinco sitios de Madrid para ver el otoño antes de que se caigan todas las hojas 🍂\n\nQuedan dos o tres semanas buenas. Guárdalo y ve a por ellas.\n\n1️⃣ El Retiro · el Paseo de Coches y la zona del Palacio de Cristal. El más conocido y el más lleno: ve temprano.\n\n2️⃣ La Rosaleda del Parque del Oeste · menos gente y la luz de la tarde entra de lado.\n\n3️⃣ Campo del Moro · detrás del Palacio Real. Casi nadie lo pisa y es de los más bonitos de la ciudad.\n\n4️⃣ Quinta de los Molinos · todo el mundo va en febrero por los almendros y se pierde el otoño, que también está.\n\n5️⃣ El Capricho · el parque más cuidado de Madrid. Ojo: no abre todos los días, mira el horario antes de ir.\n\nY un apunte: el domingo 25 se cambia la hora. A partir de ahí anochece a las seis y la luz buena se acaba sobre las cinco.\n\n¿Cuál es tu rincón de otoño en Madrid? 🍂",
+      "hashtags": "#Madrid #OtoñoEnMadrid #ElRetiro #PlanesEnMadrid #Allie #AIInfluencer",
+      "usado": "2026-10-22T08:44:20.819399+00:00",
+      "ubicacion": "Parque del Retiro"
+    },
+    {
+      "id": "madrid-librerias-cafe",
+      "etiqueta": "cafe",
+      "titulo": "Librerías de Madrid con café dentro",
+      "texto": "Librerías de Madrid donde además puedes sentarte a tomar algo 📚☕\n\nPlan de tarde de otoño que cuesta cuatro euros. Guárdalo.\n\n1️⃣ La Mistral (@librerialamistral) · Travesía del Arenal 2. La cafetería está en el sótano. Abre hasta las 21:00, y los domingos de 12:00 a 20:00.\n\n2️⃣ La Buena Vida (@labuenavidalib) · Vergara 5, junto a Ópera. Cierra a mediodía: abre de 11:00 a 14:30 y de 17:00 a 21:00.\n\n3️⃣ Mansilla Libros y Café · Embajadores 26, Lavapiés. Solo por las mañanas, de 10:00 a 14:30, y los miércoles cierra.\n\n4️⃣ Olavide, Bar de Libros (@olavidebardelibros) · Olid 14, Chamberí. Mañana y tarde, hasta las 22:00.\n\n5️⃣ La Central de Callao · Postigo de San Martín 9. La más grande de todas, con cafetería y varias plantas. Hasta las 20:45.\n\nApunta los horarios, que varias cierran a mediodía y es el clásico viaje en balde.\n\n¿Cuál es la tuya? 👇",
+      "hashtags": "#Madrid #LibreriasDeMadrid #PlanesEnMadrid #OtoñoEnMadrid #Allie #AIInfluencer",
+      "usado": "2026-10-23T08:44:23.359373+00:00",
+      "arrobas_pendientes": [
+        "Mansilla Libros y Café",
+        "La Central de Callao"
+      ],
+      "ubicacion": "Madrid, Spain",
+      "gancho_tiktok": "5 librerías de Madrid con café dentro",
+      "pie_tiktok": "Apunta los horarios: varias cierran a mediodía y es el clásico viaje en balde"
+    },
+    {
+      "id": "madrid-gildas",
+      "etiqueta": "calle",
+      "titulo": "Barras vascas de Madrid para una gilda",
+      "texto": "Cinco barras vascas de Madrid donde pedir una gilda 🫒\n\nAceituna, anchoa y guindilla en un palillo. Guárdalo, que varias cierran entre horas.\n\n1️⃣ Bocaíto · Libertad 6, Chueca. Abierto desde 1966, en pleno barrio.\n\n2️⃣ La Castela · Doctor Castelo 22, Retiro. De 12:30 a 17:00 y de 20:00 a 00:00. Los domingos cierra.\n\n3️⃣ Lamiak · Cava Baja 42, La Latina. De 12:30 a 02:00 todos los días, que es la más fácil de encajar.\n\n4️⃣ Sagaretxe · Eloy Gonzalo 26, Chamberí. De 13:30 a 17:00 y de 19:30 a 00:00.\n\n5️⃣ Txakolina · Cava Baja 26, La Latina. Ojo: de lunes a jueves solo abre por la noche, a partir de las 19:30.\n\n⚠️ Y un aviso: la gilda lleva guindilla. Si te gusta suave, pide que te la pongan con piparra de Ibarra en vez de picante.\n\n¿Dónde está la mejor que has probado? 👇",
+      "hashtags": "#Madrid #Gildas #PintxosMadrid #TapasMadrid #Allie #AIInfluencer",
+      "usado": "2026-10-25T09:33:55.284216+00:00",
+      "gancho_tiktok": "5 barras vascas de Madrid para una gilda",
+      "pie_tiktok": "Mira los horarios: dos de ellas cierran entre comidas",
+      "nota": "Direcciones y horarios verificados el 22 de octubre contra fichas de Google, no contra blogs. Dos fuentes situaban La Castela en Chueca y en Salamanca: está en Retiro. Y «Txikito», que salía en una lista de gildas de Madrid, es un bar de Vitoria — fuera. Allie NO dice cuál es la mejor ni que haya estado: da dirección y horario, que es comprobable. ETIQUETA: «calle», no «cafe». Con «cafe» el banco devolvía la misma tanda que el reel de librerías —mismo jersey, mismo callejón— y los dos vídeos salían idénticos. Las fotos de una barra de bar no existen en el banco: el generador decide el sitio por su cuenta para no repetirse y se salta la escena que se le pida."
+    },
+    {
+      "id": "madrid-datos",
+      "etiqueta": "calle",
+      "formato": "dato",
+      "titulo": "Cinco cosas de Madrid que casi nadie sabe",
+      "texto": "Cinco cosas de Madrid que casi nadie sabe 🏙️\n\n1️⃣ Hay un templo egipcio de verdad en el centro · Debod se levantó en el siglo II antes de Cristo. Egipto lo regaló en 1968 y llegó en 2.300 piezas.\n\n2️⃣ El restaurante más antiguo del mundo está aquí · Botín abrió en 1725 y lo certifica el Guinness. En 2025 cumplió trescientos años.\n\n3️⃣ Hay un parque cinco veces mayor que Central Park · La Casa de Campo tiene 1.722 hectáreas. Fue coto de caza real hasta 1931.\n\n4️⃣ Hay una estación de metro cerrada desde 1966 · Chamberí cerró porque no se podían alargar sus andenes. Reabrió como museo en 2008.\n\n5️⃣ La Gran Vía tardó más de cuarenta años · Empezó en 1910 y mide 1.306 metros. Desaparecieron quince calles enteras.\n\n¿Cuál no sabías? 👇",
+      "hashtags": "#Madrid #CuriosidadesDeMadrid #HistoriaDeMadrid #SabiasQue #Allie #AIInfluencer",
+      "usado": "2026-10-26T09:45:59.638963+00:00",
+      "gancho_tiktok": "En Madrid hay un templo egipcio de verdad",
+      "pie_tiktok": "Y cuatro cosas más que casi nadie sabe de esta ciudad",
+      "nota": "Formato «dato que no sabías», que TikTok puntúa como rendimiento muy alto y que encaja con la regla de Allie: un dato comprobable no exige que haya estado en ningún sitio. Y se ENVÍA, que es la señal que le falta —cero envíos en cinco semanas—: una lista se guarda, un dato que sorprende se le manda a alguien. Los cinco verificados el 23 de octubre: Botín (Guinness, 1725), Casa de Campo (1.722 ha, pública desde el 1 de mayo de 1931), Chamberí (cerrada el 22/5/1966, museo desde el 25/3/2008), Debod (siglo II a.C., regalado en 1968, inaugurado el 18/7/1972, 2.300 piezas) y Gran Vía (obras desde el 4/4/1910, 1.306 m, quince calles desaparecidas). PORTADA: no puede repetir el dato 1 —salía dos veces seguidas—, así que usa uno que llega en el puesto 4: promete algo que tarda en aparecer y sostiene la atención.",
+      "fotos_busqueda": [
+        [
+          "Templo de Debod atardecer",
+          "Templo de Debod sunset",
+          "Templo de Debod"
+        ],
+        [
+          "Sobrino de Botín Madrid restaurante",
+          "Casa Botín Madrid"
+        ],
+        [
+          "Lago Casa de Campo Palacio Real",
+          "Lago de la Casa de Campo",
+          "Casa de Campo Madrid lago"
+        ],
+        [
+          "Estación de Chamberí",
+          "Andén 0 Chamberí"
+        ],
+        [
+          "Gran Vía Madrid",
+          "Gran Via Madrid street"
+        ]
+      ]
+    },
+    {
+      "id": "comida-datos",
+      "formato": "dato",
+      "etiqueta": "calle",
+      "gancho_tiktok": "El gazpacho original no llevaba tomate",
+      "pie_tiktok": "Y cuatro cosas más de la comida española",
+      "texto": "Cinco cosas que no sabías de la comida española 🥘\n\n1️⃣ El gazpacho original no llevaba tomate · Era pan, ajo, aceite y vinagre. El tomate llegó de América en el siglo XVI.\n\n2️⃣ Paella es el nombre de la sartén, no del arroz · Viene del latín patella, un plato hondo. Lo de «para ella» es un cuento.\n\n3️⃣ La ensaladilla rusa es rusa de verdad · La creó el cocinero Lucien Olivier en Moscú hacia 1860. Allí la llaman ensalada Olivier.\n\n4️⃣ La tortilla de patatas aparece por escrito en 1817 · En una carta a las Cortes de Navarra. Decía que en Pamplona se hacía con dos huevos y cinco patatas.\n\n5️⃣ España guardó la receta del chocolate un siglo · Cortés mandó el primer cargamento de cacao en 1524. La corte lo trató como secreto de Estado.\n\n¿Cuál no sabías? 👇",
+      "fotos_busqueda": [
+        [
+          "Gazpacho andaluz",
+          "Gazpacho"
+        ],
+        [
+          "Paella valenciana",
+          "Paella"
+        ],
+        [
+          "Ensaladilla rusa",
+          "Olivier salad",
+          "Russian salad"
+        ],
+        [
+          "Tortilla de patatas",
+          "Spanish omelette tortilla"
+        ],
+        [
+          "Chocolate con churros",
+          "Chocolate a la taza",
+          "Churros"
+        ]
+      ]
+    },
+    {
+      "id": "madrid-guiris",
+      "formato": "dato",
+      "etiqueta": null,
+      "texto": "Lo que buscan los guiris cuando vienen a Madrid\n1️⃣ Cenar a las 19:00 · Aquí no se cena antes de las 22:00\n2️⃣ La terraza de postureo · 15 € por un refresco en Gran Vía\n3️⃣ La discoteca de moda · 2 horas de cola a las 3:00\n4️⃣ El Retiro un domingo · Tú y media España buscando sombra",
+      "gancho_tiktok": "Guiris en Madrid: expectativa vs. realidad",
+      "pie_tiktok": "Quédate hasta el final 👀",
+      "intro_voz": "Hola, soy Allie. Si eres joven y vienes a Madrid por primera vez, la ciudad te da una bofetada de realidad en menos de dos horas.",
+      "dichos": [
+        "Llegas a las siete muerto de hambre buscando cena y, madre mía, está todo cerrado. Aquí se cena a las diez.",
+        "Buscas la terraza de postureo para el Instagram y acabas pagando quince euros por un refresco. Pero oye, la foto monísima.",
+        "La discoteca de moda: dos horas de cola a las tres de la madrugada. Entras cuando ya ni te sientes las piernas. Planazo.",
+        "Y el Retiro un domingo soleado, que dicen que es tranquilo. Tú y media España peleando por la misma sombra."
+      ],
+      "cierre_tiktok": "¿Tu mayor novatada en Madrid?",
+      "cierre_voz": "¿Cuál fue tu mayor novatada la primera vez que viniste a Madrid? Dímelo en comentarios, que me quiero reír un rato.",
+      "fotos_busqueda": [
+        "restaurante Madrid terraza",
+        "Gran Vía Madrid noche",
+        "Madrid Gran Vía gente noche",
+        "Parque del Retiro Madrid gente"
+      ]
+    },
+    {
+      "id": "madrid-museos-gratis",
+      "formato": "dato",
+      "etiqueta": null,
+      "texto": "5 museos gratis de Madrid y a qué hora\n1️⃣ El Prado 18:00-20:00 · gratis de lunes a sábado\n2️⃣ Reina Sofía 19:00-21:00 · aquí está el Guernica\n3️⃣ Templo de Debod gratis siempre · templo egipcio real\n4️⃣ Museo Sorolla sábados 14:00 · la casa del pintor\n5️⃣ Thyssen los lunes gratis · el tercero del Prado",
+      "gancho_tiktok": "5 museos GRATIS de Madrid",
+      "pie_tiktok": "Guárdalo para tu finde 📌",
+      "intro_voz": "Hola, soy Allie. Cinco museos de Madrid a los que entras gratis, con la hora exacta para no pagar ni un euro. Guárdalo.",
+      "dichos": [
+        "El Prado, gratis de seis a ocho de la tarde de lunes a sábado. Goya y Velázquez sin pagar un euro.",
+        "La Reina Sofía, gratis de siete a nueve. Y aquí está el Guernica de Picasso. Cierra los martes, ¿eh?",
+        "El Templo de Debod es gratis siempre. Un templo egipcio de verdad, con las mejores vistas al atardecer.",
+        "El Sorolla, gratis los sábados desde las dos. La casa del pintor de la luz, con un jardín precioso.",
+        "Y el Thyssen, gratis los lunes enteros. El tercero del Triángulo del Arte. Ya no tienes excusa."
+      ],
+      "cierre_tiktok": "Guárdalo para tu finde",
+      "cierre_pie": "¿A cuál vas primero? 👇",
+      "cierre_voz": "Guárdalo para que no se te olvide y dime a cuál vas primero.",
+      "fotos_busqueda": [
+        [
+          "File:Prado Museum.jpg",
+          "File:Madrid-prado.jpg",
+          "File:Museo de El Prado - Madrid - España.jpg",
+          "File:Vista general Museo del Prado.JPG",
+          "Museo del Prado Villanueva edificio",
+          "Museo del Prado fachada"
+        ],
+        [
+          "File:Museum Reina Sofia (4251253429).jpg",
+          "Museo Reina Sofía Sabatini edificio"
+        ],
+        [
+          "File:Templo de Debod (3612937187).jpg",
+          "File:Templo de Debod in Madrid.jpg",
+          "File:Templo de Debod - 01.jpg",
+          "File:Sunset at Templo de Debod.jpg",
+          "Templo de Debod monumento egipcio"
+        ],
+        [
+          "File:Statue-Sorolla-Museum-Madrid.jpg",
+          "File:Museo Sorolla DSC00132.JPG",
+          "Museo Sorolla estatua fachada"
+        ],
+        [
+          "File:Museo Thyssen-Bornemisza (Madrid) 02.jpg",
+          "Museo Thyssen-Bornemisza fachada"
+        ]
+      ]
+    },
+    {
+      "id": "madrid-tarta-queso",
+      "formato": "dato",
+      "etiqueta": null,
+      "texto": "Las 5 mejores tartas de queso de Madrid\n1️⃣ La Dulcería 4,9 estrellas · Santa Bárbara, la de pistacho\n2️⃣ Álex Cordobés 15 € · Velázquez, la más famosa\n3️⃣ Bascake 4,9 estrellas · Chamberí, tarta vasca\n4️⃣ Caracola · Antón Martín, pistacho y Lotus\n5️⃣ 99 Cheesecake 0,99 € · junto a la Plaza Mayor",
+      "gancho_tiktok": "Las 5 mejores tartas de queso de Madrid",
+      "pie_tiktok": "Guárdalo para el antojo 🧀",
+      "intro_voz": "Hola, soy Allie. Las cinco mejores tartas de queso de Madrid, según miles de reseñas. Guárdate esto.",
+      "dichos": [
+        "La Dulcería Café, en Santa Bárbara. Casi cinco estrellas con miles de reseñas, y la de pistacho se lleva todos los elogios.",
+        "Álex Cordobés, en Velázquez. La más famosa: estilo San Sebastián, quince euros y tan grande que la compartes entre tres.",
+        "Bascake, en Chamberí. Tarta vasca artesana, cremosa por dentro. Para muchos, la mejor de Madrid.",
+        "Caracola, en Antón Martín. La reina del brunch: su tarta de pistacho y la de Lotus tienen hasta cola.",
+        "Y si andas corto, 99 Cheesecake, al lado de la Plaza Mayor. La base, noventa y nueve céntimos. Sí, en serio."
+      ],
+      "cierre_tiktok": "¿Cuál es tu favorita?",
+      "cierre_pie": "Dímelo en comentarios 👇",
+      "cierre_voz": "Dime en comentarios tu favorita, o la que te falte por probar. Y guárdalo para el próximo antojo.",
+      "fotos_busqueda": [
+        [
+          "File:Soufflé-style cheesecake 001.jpg",
+          "File:My first cheesecake.jpg",
+          "tarta de queso cheesecake"
+        ],
+        [
+          "File:San Sebastian Cheesecake.jpg",
+          "File:Basque-cheesecake.jpg",
+          "Basque cheesecake"
+        ],
+        [
+          "File:Basque-cheesecake.jpg",
+          "File:San Sebastian Cheesecake.jpg",
+          "Basque cheesecake tarta vasca"
+        ],
+        [
+          "File:Caféspéculoos cheesecake.jpg",
+          "File:Cheesecake.jpg",
+          "cheesecake"
+        ],
+        [
+          "File:Cheesecake.jpg",
+          "File:2019 01 Baileys cheesecake.jpg",
+          "cheesecake slice"
+        ]
+      ]
+    }
+  ],
+  "arrobas_comprobados": {
+    "El Patio Vertical": "@verticalcaffe",
+    "Gosto Café": "@gosto.cafe",
+    "La Bicicleta": "@labicicletacafe",
+    "Misión Café": "@misioncafe",
+    "La Mistral": "@librerialamistral",
+    "La Buena Vida": "@labuenavidalib",
+    "Olavide Bar de Libros": "@olavidebardelibros"
   },
-  {
-   "id": "madrid-cafeterias-portatil",
-   "etiqueta": "cafe",
-   "titulo": "Cafeterías de Madrid para trabajar con portátil",
-   "texto": "Cinco cafeterías de Madrid donde de verdad puedes abrir el portátil 💻\n\nGuárdalo para el próximo día de teletrabajo que no sepas dónde meterte.\n\n1️⃣ El Patio Vertical · Almadén 26, al lado de Atocha. Mesas grandes y ventanales enormes. Abre de 8:00 a 20:30 todos los días.\n\n2️⃣ Gosto Café · León 30, Barrio de las Letras. Tiene mesas al fondo pensadas para portátil. De 9:00 a 19:00.\n\n3️⃣ La Bicicleta · Plaza de San Ildefonso, Malasaña. Dos mesas grandes compartidas para trabajar. Desde las 10:00.\n\n4️⃣ Misión Café · Los Reyes 5, Conde Duque. Abre a las 8:30 entre semana, que para madrugar está bien.\n\n5️⃣ Despacito · Jacometrezo 15, pegado a Callao. De 8:00 a 20:00 todos los días.\n\n⚠️ Y uno para NO ir a trabajar: el Café de la Luz es precioso, pero no tiene wifi. Para desconectar, perfecto; para una videollamada, un drama.\n\n¿Me falta alguna? Dímela abajo y la añado 📌",
-   "hashtags": "#Madrid #TeletrabajoMadrid #CafeteriasDeMadrid #MadridMola #Allie #AIInfluencer",
-   "usado": "2026-10-19T09:59:26.684483+00:00",
-   "texto_con_arrobas": "Cinco cafeterías de Madrid donde de verdad puedes abrir el portátil 💻\n\nGuárdalo para el próximo día de teletrabajo que no sepas dónde meterte.\n\n1️⃣ El Patio Vertical (@verticalcaffe) · Almadén 26, al lado de Atocha. Mesas grandes y ventanales enormes. Abre de 8:00 a 20:30 todos los días.\n\n2️⃣ Gosto Café (@gosto.cafe) · León 30, Barrio de las Letras. Tiene mesas al fondo pensadas para portátil. De 9:00 a 19:00.\n\n3️⃣ La Bicicleta (@labicicletacafe) · Plaza de San Ildefonso, Malasaña. Dos mesas grandes compartidas para trabajar. Desde las 10:00.\n\n4️⃣ Misión Café (@misioncafe) · Los Reyes 5, Conde Duque. Abre a las 8:30 entre semana, que para madrugar está bien.\n\n5️⃣ Despacito · Jacometrezo 15, pegado a Callao. De 8:00 a 20:00 todos los días.\n\n⚠️ Y uno para NO ir a trabajar: el Café de la Luz es precioso, pero no tiene wifi. Para desconectar, perfecto; para una videollamada, un drama.\n\n¿Me falta alguna? Dímela abajo y la añado 📌"
-  },
-  {
-   "id": "madrid-otono-parques",
-   "etiqueta": "calle",
-   "titulo": "Dónde ver el otoño en Madrid",
-   "texto": "Cinco sitios de Madrid para ver el otoño antes de que se caigan todas las hojas 🍂\n\nQuedan dos o tres semanas buenas. Guárdalo y ve a por ellas.\n\n1️⃣ El Retiro · el Paseo de Coches y la zona del Palacio de Cristal. El más conocido y el más lleno: ve temprano.\n\n2️⃣ La Rosaleda del Parque del Oeste · menos gente y la luz de la tarde entra de lado.\n\n3️⃣ Campo del Moro · detrás del Palacio Real. Casi nadie lo pisa y es de los más bonitos de la ciudad.\n\n4️⃣ Quinta de los Molinos · todo el mundo va en febrero por los almendros y se pierde el otoño, que también está.\n\n5️⃣ El Capricho · el parque más cuidado de Madrid. Ojo: no abre todos los días, mira el horario antes de ir.\n\nY un apunte: el domingo 25 se cambia la hora. A partir de ahí anochece a las seis y la luz buena se acaba sobre las cinco.\n\n¿Cuál es tu rincón de otoño en Madrid? 🍂",
-   "hashtags": "#Madrid #OtoñoEnMadrid #ElRetiro #PlanesEnMadrid #Allie #AIInfluencer",
-   "usado": "2026-10-22T08:44:20.819399+00:00",
-   "ubicacion": "Parque del Retiro"
-  },
-  {
-   "id": "madrid-librerias-cafe",
-   "etiqueta": "cafe",
-   "titulo": "Librerías de Madrid con café dentro",
-   "texto": "Librerías de Madrid donde además puedes sentarte a tomar algo 📚☕\n\nPlan de tarde de otoño que cuesta cuatro euros. Guárdalo.\n\n1️⃣ La Mistral (@librerialamistral) · Travesía del Arenal 2. La cafetería está en el sótano. Abre hasta las 21:00, y los domingos de 12:00 a 20:00.\n\n2️⃣ La Buena Vida (@labuenavidalib) · Vergara 5, junto a Ópera. Cierra a mediodía: abre de 11:00 a 14:30 y de 17:00 a 21:00.\n\n3️⃣ Mansilla Libros y Café · Embajadores 26, Lavapiés. Solo por las mañanas, de 10:00 a 14:30, y los miércoles cierra.\n\n4️⃣ Olavide, Bar de Libros (@olavidebardelibros) · Olid 14, Chamberí. Mañana y tarde, hasta las 22:00.\n\n5️⃣ La Central de Callao · Postigo de San Martín 9. La más grande de todas, con cafetería y varias plantas. Hasta las 20:45.\n\nApunta los horarios, que varias cierran a mediodía y es el clásico viaje en balde.\n\n¿Cuál es la tuya? 👇",
-   "hashtags": "#Madrid #LibreriasDeMadrid #PlanesEnMadrid #OtoñoEnMadrid #Allie #AIInfluencer",
-   "usado": "2026-10-23T08:44:23.359373+00:00",
-   "arrobas_pendientes": [
+  "arrobas_sin_comprobar": [
+    "Despacito",
     "Mansilla Libros y Café",
     "La Central de Callao"
-   ],
-   "ubicacion": "Madrid, Spain",
-   "gancho_tiktok": "5 librerías de Madrid con café dentro",
-   "pie_tiktok": "Apunta los horarios: varias cierran a mediodía y es el clásico viaje en balde"
-  },
-  {
-   "id": "madrid-gildas",
-   "etiqueta": "calle",
-   "titulo": "Barras vascas de Madrid para una gilda",
-   "texto": "Cinco barras vascas de Madrid donde pedir una gilda 🫒\n\nAceituna, anchoa y guindilla en un palillo. Guárdalo, que varias cierran entre horas.\n\n1️⃣ Bocaíto · Libertad 6, Chueca. Abierto desde 1966, en pleno barrio.\n\n2️⃣ La Castela · Doctor Castelo 22, Retiro. De 12:30 a 17:00 y de 20:00 a 00:00. Los domingos cierra.\n\n3️⃣ Lamiak · Cava Baja 42, La Latina. De 12:30 a 02:00 todos los días, que es la más fácil de encajar.\n\n4️⃣ Sagaretxe · Eloy Gonzalo 26, Chamberí. De 13:30 a 17:00 y de 19:30 a 00:00.\n\n5️⃣ Txakolina · Cava Baja 26, La Latina. Ojo: de lunes a jueves solo abre por la noche, a partir de las 19:30.\n\n⚠️ Y un aviso: la gilda lleva guindilla. Si te gusta suave, pide que te la pongan con piparra de Ibarra en vez de picante.\n\n¿Dónde está la mejor que has probado? 👇",
-   "hashtags": "#Madrid #Gildas #PintxosMadrid #TapasMadrid #Allie #AIInfluencer",
-   "usado": "2026-10-25T09:33:55.284216+00:00",
-   "gancho_tiktok": "5 barras vascas de Madrid para una gilda",
-   "pie_tiktok": "Mira los horarios: dos de ellas cierran entre comidas",
-   "nota": "Direcciones y horarios verificados el 22 de octubre contra fichas de Google, no contra blogs. Dos fuentes situaban La Castela en Chueca y en Salamanca: está en Retiro. Y «Txikito», que salía en una lista de gildas de Madrid, es un bar de Vitoria — fuera. Allie NO dice cuál es la mejor ni que haya estado: da dirección y horario, que es comprobable. ETIQUETA: «calle», no «cafe». Con «cafe» el banco devolvía la misma tanda que el reel de librerías —mismo jersey, mismo callejón— y los dos vídeos salían idénticos. Las fotos de una barra de bar no existen en el banco: el generador decide el sitio por su cuenta para no repetirse y se salta la escena que se le pida."
-  },
-  {
-   "id": "madrid-datos",
-   "etiqueta": "calle",
-   "formato": "dato",
-   "titulo": "Cinco cosas de Madrid que casi nadie sabe",
-   "texto": "Cinco cosas de Madrid que casi nadie sabe 🏙️\n\n1️⃣ Hay un templo egipcio de verdad en el centro · Debod se levantó en el siglo II antes de Cristo. Egipto lo regaló en 1968 y llegó en 2.300 piezas.\n\n2️⃣ El restaurante más antiguo del mundo está aquí · Botín abrió en 1725 y lo certifica el Guinness. En 2025 cumplió trescientos años.\n\n3️⃣ Hay un parque cinco veces mayor que Central Park · La Casa de Campo tiene 1.722 hectáreas. Fue coto de caza real hasta 1931.\n\n4️⃣ Hay una estación de metro cerrada desde 1966 · Chamberí cerró porque no se podían alargar sus andenes. Reabrió como museo en 2008.\n\n5️⃣ La Gran Vía tardó más de cuarenta años · Empezó en 1910 y mide 1.306 metros. Desaparecieron quince calles enteras.\n\n¿Cuál no sabías? 👇",
-   "hashtags": "#Madrid #CuriosidadesDeMadrid #HistoriaDeMadrid #SabiasQue #Allie #AIInfluencer",
-   "usado": "2026-10-26T09:45:59.638963+00:00",
-   "gancho_tiktok": "En Madrid hay un templo egipcio de verdad",
-   "pie_tiktok": "Y cuatro cosas más que casi nadie sabe de esta ciudad",
-   "nota": "Formato «dato que no sabías», que TikTok puntúa como rendimiento muy alto y que encaja con la regla de Allie: un dato comprobable no exige que haya estado en ningún sitio. Y se ENVÍA, que es la señal que le falta —cero envíos en cinco semanas—: una lista se guarda, un dato que sorprende se le manda a alguien. Los cinco verificados el 23 de octubre: Botín (Guinness, 1725), Casa de Campo (1.722 ha, pública desde el 1 de mayo de 1931), Chamberí (cerrada el 22/5/1966, museo desde el 25/3/2008), Debod (siglo II a.C., regalado en 1968, inaugurado el 18/7/1972, 2.300 piezas) y Gran Vía (obras desde el 4/4/1910, 1.306 m, quince calles desaparecidas). PORTADA: no puede repetir el dato 1 —salía dos veces seguidas—, así que usa uno que llega en el puesto 4: promete algo que tarda en aparecer y sostiene la atención.",
-   "fotos_busqueda": [
-    [
-     "Templo de Debod atardecer",
-     "Templo de Debod sunset",
-     "Templo de Debod"
-    ],
-    [
-     "Sobrino de Botín Madrid restaurante",
-     "Casa Botín Madrid"
-    ],
-    [
-     "Lago Casa de Campo Palacio Real",
-     "Lago de la Casa de Campo",
-     "Casa de Campo Madrid lago"
-    ],
-    [
-     "Estación de Chamberí",
-     "Andén 0 Chamberí"
-    ],
-    [
-     "Gran Vía Madrid",
-     "Gran Via Madrid street"
-    ]
-   ]
-  },
-  {
-   "id": "comida-datos",
-   "formato": "dato",
-   "etiqueta": "calle",
-   "gancho_tiktok": "El gazpacho original no llevaba tomate",
-   "pie_tiktok": "Y cuatro cosas más de la comida española",
-   "texto": "Cinco cosas que no sabías de la comida española 🥘\n\n1️⃣ El gazpacho original no llevaba tomate · Era pan, ajo, aceite y vinagre. El tomate llegó de América en el siglo XVI.\n\n2️⃣ Paella es el nombre de la sartén, no del arroz · Viene del latín patella, un plato hondo. Lo de «para ella» es un cuento.\n\n3️⃣ La ensaladilla rusa es rusa de verdad · La creó el cocinero Lucien Olivier en Moscú hacia 1860. Allí la llaman ensalada Olivier.\n\n4️⃣ La tortilla de patatas aparece por escrito en 1817 · En una carta a las Cortes de Navarra. Decía que en Pamplona se hacía con dos huevos y cinco patatas.\n\n5️⃣ España guardó la receta del chocolate un siglo · Cortés mandó el primer cargamento de cacao en 1524. La corte lo trató como secreto de Estado.\n\n¿Cuál no sabías? 👇",
-   "fotos_busqueda": [
-    [
-     "Gazpacho andaluz",
-     "Gazpacho"
-    ],
-    [
-     "Paella valenciana",
-     "Paella"
-    ],
-    [
-     "Ensaladilla rusa",
-     "Olivier salad",
-     "Russian salad"
-    ],
-    [
-     "Tortilla de patatas",
-     "Spanish omelette tortilla"
-    ],
-    [
-     "Chocolate con churros",
-     "Chocolate a la taza",
-     "Churros"
-    ]
-   ]
-  },
-  {
-   "id": "madrid-guiris",
-   "formato": "dato",
-   "etiqueta": null,
-   "texto": "Lo que buscan los guiris cuando vienen a Madrid\n1️⃣ Cenar a las 19:00 · Aquí no se cena antes de las 22:00\n2️⃣ La terraza de postureo · 15 € por un refresco en Gran Vía\n3️⃣ La discoteca de moda · 2 horas de cola a las 3:00\n4️⃣ El Retiro un domingo · Tú y media España buscando sombra",
-   "gancho_tiktok": "Guiris en Madrid: expectativa vs. realidad",
-   "pie_tiktok": "Quédate hasta el final 👀",
-   "intro_voz": "Hola, soy Allie. Si eres joven y vienes a Madrid por primera vez, la ciudad te da una bofetada de realidad en menos de dos horas.",
-   "dichos": [
-    "Llegas a las siete muerto de hambre buscando cena y, madre mía, está todo cerrado. Aquí se cena a las diez.",
-    "Buscas la terraza de postureo para el Instagram y acabas pagando quince euros por un refresco. Pero oye, la foto monísima.",
-    "La discoteca de moda: dos horas de cola a las tres de la madrugada. Entras cuando ya ni te sientes las piernas. Planazo.",
-    "Y el Retiro un domingo soleado, que dicen que es tranquilo. Tú y media España peleando por la misma sombra."
-   ],
-   "cierre_tiktok": "¿Tu mayor novatada en Madrid?",
-   "cierre_voz": "¿Cuál fue tu mayor novatada la primera vez que viniste a Madrid? Dímelo en comentarios, que me quiero reír un rato.",
-   "fotos_busqueda": [
-    "restaurante Madrid terraza",
-    "Gran Vía Madrid noche",
-    "Madrid Gran Vía gente noche",
-    "Parque del Retiro Madrid gente"
-   ]
-  },
-  {
-   "id": "madrid-museos-gratis",
-   "formato": "dato",
-   "etiqueta": null,
-   "texto": "5 museos gratis de Madrid y a qué hora\n1️⃣ El Prado 18:00-20:00 · gratis de lunes a sábado\n2️⃣ Reina Sofía 19:00-21:00 · aquí está el Guernica\n3️⃣ Templo de Debod gratis siempre · templo egipcio real\n4️⃣ Museo Sorolla sábados 14:00 · la casa del pintor\n5️⃣ Thyssen los lunes gratis · el tercero del Prado",
-   "gancho_tiktok": "5 museos GRATIS de Madrid",
-   "pie_tiktok": "Guárdalo para tu finde 📌",
-   "intro_voz": "Hola, soy Allie. Cinco museos de Madrid a los que entras gratis, con la hora exacta para no pagar ni un euro. Guárdalo.",
-   "dichos": [
-    "El Prado, gratis de seis a ocho de la tarde de lunes a sábado. Goya y Velázquez sin pagar un euro.",
-    "La Reina Sofía, gratis de siete a nueve. Y aquí está el Guernica de Picasso. Cierra los martes, ¿eh?",
-    "El Templo de Debod es gratis siempre. Un templo egipcio de verdad, con las mejores vistas al atardecer.",
-    "El Sorolla, gratis los sábados desde las dos. La casa del pintor de la luz, con un jardín precioso.",
-    "Y el Thyssen, gratis los lunes enteros. El tercero del Triángulo del Arte. Ya no tienes excusa."
-   ],
-   "cierre_tiktok": "Guárdalo para tu finde",
-   "cierre_pie": "¿A cuál vas primero? 👇",
-   "cierre_voz": "Guárdalo para que no se te olvide y dime a cuál vas primero.",
-   "fotos_busqueda": [
-    [
-     "File:Prado Museum.jpg",
-     "File:Madrid-prado.jpg",
-     "File:Museo de El Prado - Madrid - España.jpg",
-     "File:Vista general Museo del Prado.JPG",
-     "Museo del Prado Villanueva edificio",
-     "Museo del Prado fachada"
-    ],
-    [
-     "File:Museum Reina Sofia (4251253429).jpg",
-     "Museo Reina Sofía Sabatini edificio"
-    ],
-    [
-     "File:Templo de Debod (3612937187).jpg",
-     "File:Templo de Debod in Madrid.jpg",
-     "File:Templo de Debod - 01.jpg",
-     "File:Sunset at Templo de Debod.jpg",
-     "Templo de Debod monumento egipcio"
-    ],
-    [
-     "File:Statue-Sorolla-Museum-Madrid.jpg",
-     "File:Museo Sorolla DSC00132.JPG",
-     "Museo Sorolla estatua fachada"
-    ],
-    [
-     "File:Museo Thyssen-Bornemisza (Madrid) 02.jpg",
-     "Museo Thyssen-Bornemisza fachada"
-    ]
-   ]
-  }
- ],
- "arrobas_comprobados": {
-  "El Patio Vertical": "@verticalcaffe",
-  "Gosto Café": "@gosto.cafe",
-  "La Bicicleta": "@labicicletacafe",
-  "Misión Café": "@misioncafe",
-  "La Mistral": "@librerialamistral",
-  "La Buena Vida": "@labuenavidalib",
-  "Olavide Bar de Libros": "@olavidebardelibros"
- },
- "arrobas_sin_comprobar": [
-  "Despacito",
-  "Mansilla Libros y Café",
-  "La Central de Callao"
- ],
- "nota_ubicacion": "CERRADO el 19 de octubre: la ubicación por API NO se puede. Dos muros, y el segundo es definitivo. (1) El token que usamos es el de la PÁGINA de Facebook —main.credenciales() lo deriva así a propósito, porque no caduca— y /pages/search necesita un token de USUARIO. (2) Aunque fuera de usuario, buscar páginas que no son tuyas exige la función «Page Public Content Access», que Meta solo concede pasando revisión de la aplicación y no la da para esto. El campo «ubicacion» se queda puesto y el código lo intenta sin romper nada, por si algún día cambia; mientras tanto, la ubicación se pone a mano editando la publicación en la app.",
- "comentario_tiktok": "gancho_tiktok y pie_tiktok son la portada del vídeo en TikTok. Van aparte porque TikTok no perdona la primera línea: en Instagram la gente ya está siguiendo y aguanta una frase descriptiva, y en TikTok el vídeo se lo enseñan a desconocidos que deslizan en un segundo. El gancho dice QUÉ hay y cuántos; el pie da el motivo para quedarse y para guardarlo."
+  ],
+  "nota_ubicacion": "CERRADO el 19 de octubre: la ubicación por API NO se puede. Dos muros, y el segundo es definitivo. (1) El token que usamos es el de la PÁGINA de Facebook —main.credenciales() lo deriva así a propósito, porque no caduca— y /pages/search necesita un token de USUARIO. (2) Aunque fuera de usuario, buscar páginas que no son tuyas exige la función «Page Public Content Access», que Meta solo concede pasando revisión de la aplicación y no la da para esto. El campo «ubicacion» se queda puesto y el código lo intenta sin romper nada, por si algún día cambia; mientras tanto, la ubicación se pone a mano editando la publicación en la app.",
+  "comentario_tiktok": "gancho_tiktok y pie_tiktok son la portada del vídeo en TikTok. Van aparte porque TikTok no perdona la primera línea: en Instagram la gente ya está siguiendo y aguanta una frase descriptiva, y en TikTok el vídeo se lo enseñan a desconocidos que deslizan en un segundo. El gancho dice QUÉ hay y cuántos; el pie da el motivo para quedarse y para guardarlo."
 }
