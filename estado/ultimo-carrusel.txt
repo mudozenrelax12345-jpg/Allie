@@ -1,31 +1,16 @@
-# Carrusel · 2026-10-26 09:45 UTC
-· De la cola: «Cinco cosas de Madrid que casi nadie sabe»
-· Del banco: 3 fotos de la tanda 20261025-113146 · quedan 25 libres
-· 3 fotos: 20261025-113146-1.jpg, 20261025-113146-2.jpg, 20261025-113146-3.jpg
-· Pie (885 caracteres):
-🤖 Contenido generado con IA · Allie es un personaje creado con IA
+# Carrusel · 2026-10-28 09:51 UTC
+Traceback (most recent call last):
+  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 234, in <module>
+    main()
+  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 89, in main
+    log(f"De la cola: «{pieza['titulo']}»")
+                        ~~~~~^^^^^^^^^^
+KeyError: 'titulo'
 
-Cinco cosas de Madrid que casi nadie sabe 🏙️
-
-1️⃣ Hay un templo egipcio de verdad en el centro · Debod se levantó en el siglo II antes de Cristo. Egipto lo regaló en 1968 y llegó en 2.300 piezas.
-
-2️⃣ El restaurante más antiguo del mundo está aquí · Botín abrió en 1725 y lo certifica el Guinness. En 2025 cumplió trescientos años.
-
-3️⃣ Hay un parque cinco veces mayor que Central Park · La Casa de Campo tiene 1.722 hectáreas. Fue coto de caza real hasta 1931.
-
-4️⃣ Hay una estación de metro cerrada desde 1966 · Chamberí cerró porque no se podían alargar sus andenes. Reabrió como museo en 2008.
-
-5️⃣ La Gran Vía tardó más de cuarenta años · Empezó en 1910 y mide 1.306 metros. Desaparecieron quince calles enteras.
-
-¿Cuál no sabías? 👇
-
-#Madrid #CuriosidadesDeMadrid #HistoriaDeMadrid #SabiasQue #Allie #AIInfluencer
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261025-113146-1.jpg
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261025-113146-2.jpg
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261025-113146-3.jpg
-·   contenedor 18107253545571997
-·   contenedor 18107253578571997
-·   contenedor 18107253596571997
-· Carrusel 18107253614571997
-·   6s · FINISHED
-· PUBLICADO · 18096827144458932 · https://www.instagram.com/p/De8_fn_DS74/
+Traceback (most recent call last):
+  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 234, in <module>
+    main()
+  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 89, in main
+    log(f"De la cola: «{pieza['titulo']}»")
+                        ~~~~~^^^^^^^^^^
+KeyError: 'titulo'
