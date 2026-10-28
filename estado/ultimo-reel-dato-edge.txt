@@ -1,27 +1,35 @@
-· Pieza: madrid-puente-santos
+· Pieza: madrid-sin-gluten
 · 5 fichas
-· Del banco: 2 fotos de la tanda 20261025-113304 · quedan 29 libres
-· «File:Jardin El Capricho Estanque de los Cisnes.jpg»: nada libre nuevo, pruebo otra
-·     candidata     54 · Parque del Capricho.jpg · cc by 2.0
-· «File:Parque del Capricho.jpg» · Parque del Capricho.jpg · cc by 2.0 · 2360×1620 · 786 kB
-· «File:Parque del Retiro, en Madrid en otoño.jpg»: nada libre nuevo, pruebo otra
-· «File:Autumn Leaves - Retiro Park - Madrid 19.jpg»: nada libre nuevo, pruebo otra
-·     candidata    113 · Parque del Retiro (Madrid) (26238322812).jpg · cc by 2.0
-· «File:Parque del Retiro (Madrid) (26238322812).jpg» · Parque del Retiro (Madrid) (26238322812).jpg · cc by 2.0 · 4376×2984 · 1208 kB
-· «File:El Rastro market, Madrid 2016 2.jpg»: nada libre nuevo, pruebo otra
-·     candidata    143 · El Rastro Flea Market Madrid.jpg · cc by 2.0
-· «File:El Rastro Flea Market Madrid.jpg» · El Rastro Flea Market Madrid.jpg · cc by 2.0 · 5126×3417 · 784 kB
-· «File:Chocolate con churros - San Ginés - Madrid.jpg»: nada libre nuevo, pruebo otra
-·     candidata     82 · Chocolate con churros (27343655726).jpg · cc by 2.0
-· «File:Chocolate con churros (27343655726).jpg» · Chocolate con churros (27343655726).jpg · cc by 2.0 · 3063×2446 · 551 kB
-·     candidata     60 · Huesos de Santo.jpg · public domain
-· «File:Huesos de Santo.jpg» · Huesos de Santo.jpg · public domain · 3888×2592 · 399 kB
+· Del banco: 2 fotos de la tanda 20261027-114014 · quedan 29 libres
+· «File:Pasta Puttanesca.jpg»: nada libre nuevo, pruebo otra
+·     candidata    112 · A dish of Rasta Pasta.jpg · cc0
+· «File:A dish of Rasta Pasta.jpg» · A dish of Rasta Pasta.jpg · cc0 · 4032×3024 · 642 kB
+·     candidata     92 · Nigiri Sushi (26478725732).jpg · cc by 2.0
+· «File:Nigiri Sushi (26478725732).jpg» · Nigiri Sushi (26478725732).jpg · cc by 2.0 · 5015×3343 · 277 kB
+· «File:Freshly baked croissants.jpg»: nada libre nuevo, pruebo otra
+· «File:Croissant, whole.jpg»: nada libre nuevo, pruebo otra
+·     candidata     45 · Apricot croissant - Caffè Nero 2024-12-12.jpg · cc0
+·     candidata     45 · Morning-breakfast-croissant (24244330501).jpg · cc0
+·     candidata     43 · Croissant with Seeds (20919201204).jpg · cc by 2.0
+·     candidata     37 · Croissant with jam and butter - Little Miss Piggies.j · cc0
+·     candidata     35 · Croissant and cake.jpg · cc by 2.0
+· «croissant» · Apricot croissant - Caffè Nero 2024-12-12.jpg · cc0 · 6144×8160 · 681 kB
+· «File:Cinnamon roll.jpg»: nada libre nuevo, pruebo otra
+· «File:Cinnamon rolls fully baked.jpg»: nada libre nuevo, pruebo otra
+·     candidata     70 · Cinnamon Roll - Burnt, Poyser Street, London 2026-06- · cc0
+·     candidata     70 · Cinnamon Roll - Olea 2025-07-03.jpg · cc0
+·     candidata     70 · Cinnamon roll - Clifton Road Coffee 2026-03-17.jpg · cc0
+·     candidata     62 · Iced Cinnamon Roll (54200439818).png · cc by 2.0
+·     candidata     62 · Cinnamon roll log, July 2009.jpg · cc by 2.0
+· «cinnamon roll» · Cinnamon Roll - Burnt, Poyser Street, London 2026-06-04 · cc0 · 8160×6144 · 348 kB
+·     candidata    100 · Punch Neapolitan Pizza Margherita.jpg · cc by 2.0
+· «File:Punch Neapolitan Pizza Margherita.jpg» · Punch Neapolitan Pizza Margherita.jpg · cc by 2.0 · 800×600 · 159 kB
 · 5 de 5 fichas con foto propia
 · Motor: Edge TTS · auto
 · Voces femeninas es-ES disponibles: es-ES-XimenaNeural, es-ES-ElviraNeural
 · Voz Edge elegida: es-ES-XimenaNeural
-·   9.2s · 9.9s · 9.7s · 8.8s · 8.2s · 9.8s · 6.9s
-· Base musical de 62.7s
-· LISTO · dato_20261027_1837.mp4 · 62.3s · 16.7 MB
+·   10.4s · 12.4s · 11.6s · 9.3s · 8.4s · 9.9s · 8.0s
+· Base musical de 70.2s
+· LISTO · dato_20261028_0525.mp4 · 69.9s · 15.2 MB
 · Devueltas al banco 2 fotos que no se publicaron
 · EN_SECO: fotos devueltas al banco.

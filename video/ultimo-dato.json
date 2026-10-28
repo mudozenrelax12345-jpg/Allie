@@ -1,51 +1,51 @@
 {
- "archivo": "dato_20261027_1837.mp4",
- "pieza": "madrid-puente-santos",
- "duracion": 62.333333,
+ "archivo": "dato_20261028_0525.mp4",
+ "pieza": "madrid-sin-gluten",
+ "duracion": 69.866667,
  "duraciones": [
-  9.186,
-  9.882,
-  9.666,
-  8.754,
-  8.178,
-  9.786,
-  6.858
+  10.386,
+  12.378,
+  11.562,
+  9.306,
+  8.394,
+  9.858,
+  7.962
  ],
  "creditos": [
   {
-   "termino": "File:Parque del Capricho.jpg",
-   "titulo": "File:Parque del Capricho.jpg",
-   "licencia": "cc by 2.0",
-   "autor": "Viviendo Madrid from Madrid, España",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Parque_del_Capricho.jpg"
+   "termino": "File:A dish of Rasta Pasta.jpg",
+   "titulo": "File:A dish of Rasta Pasta.jpg",
+   "licencia": "cc0",
+   "autor": "LingLass",
+   "pagina": "https://commons.wikimedia.org/wiki/File:A_dish_of_Rasta_Pasta.jpg"
   },
   {
-   "termino": "File:Parque del Retiro (Madrid) (26238322812).jpg",
-   "titulo": "File:Parque del Retiro (Madrid) (26238322812).jpg",
+   "termino": "File:Nigiri Sushi (26478725732).jpg",
+   "titulo": "File:Nigiri Sushi (26478725732).jpg",
    "licencia": "cc by 2.0",
-   "autor": "Jose Luis Cernadas Iglesias from Coruña, España",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Parque_del_Retiro_(Madrid)_(26238322812).jpg"
+   "autor": "Tim Reckmann from Hamm, Deutschland",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Nigiri_Sushi_(26478725732).jpg"
   },
   {
-   "termino": "File:El Rastro Flea Market Madrid.jpg",
-   "titulo": "File:El Rastro Flea Market Madrid.jpg",
-   "licencia": "cc by 2.0",
-   "autor": "Duncan Rawlinson",
-   "pagina": "https://commons.wikimedia.org/wiki/File:El_Rastro_Flea_Market_Madrid.jpg"
+   "termino": "croissant",
+   "titulo": "File:Apricot croissant - Caffè Nero 2024-12-12.jpg",
+   "licencia": "cc0",
+   "autor": "Andy Li",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Apricot_croissant_-_Caff%C3%A8_Nero_2024-12-12.jpg"
   },
   {
-   "termino": "File:Chocolate con churros (27343655726).jpg",
-   "titulo": "File:Chocolate con churros (27343655726).jpg",
-   "licencia": "cc by 2.0",
-   "autor": "Joy",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Chocolate_con_churros_(27343655726).jpg"
+   "termino": "cinnamon roll",
+   "titulo": "File:Cinnamon Roll - Burnt, Poyser Street, London 2026-06-04.jpg",
+   "licencia": "cc0",
+   "autor": "Andy Li",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Cinnamon_Roll_-_Burnt,_Poyser_Street,_London_2026-06-04.jpg"
   },
   {
-   "termino": "File:Huesos de Santo.jpg",
-   "titulo": "File:Huesos de Santo.jpg",
-   "licencia": "public domain",
-   "autor": "Tamorlan",
-   "pagina": "https://commons.wikimedia.org/wiki/File:Huesos_de_Santo.jpg"
+   "termino": "File:Punch Neapolitan Pizza Margherita.jpg",
+   "titulo": "File:Punch Neapolitan Pizza Margherita.jpg",
+   "licencia": "cc by 2.0",
+   "autor": "Punch Pizza",
+   "pagina": "https://commons.wikimedia.org/wiki/File:Punch_Neapolitan_Pizza_Margherita.jpg"
   }
  ]
 }
