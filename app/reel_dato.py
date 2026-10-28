@@ -354,17 +354,15 @@ def main():
         # Estructura: Allie + gancho → datos con fotos → Allie + CTA.
         fondo = TRABAJO / "f00.jpg"
         foto_plena(rutas_banco[0]).save(fondo, "JPEG", quality=92)
-        tr = trozos(rl.sin_emoji(titulo), 3)
-        tiempos = reparto(duraciones[0], len(tr))
-        capas = []
-        acum = 0
-        for i, t in enumerate(tr):
-            acum += len(t.split())
-            png = TRABAJO / f"p00_{i}.png"
-            pintar_cartel(titulo, pie, png, visible=acum)
-            capas.append((png, tiempos[i]))
+        # EL TÍTULO ENTERO DESDE EL PRIMER FOTOGRAMA. Teresa: «la primera
+        # imagen tiene que decir lo que es: 5...». La portada ES la miniatura
+        # del feed; si el texto se escribía poco a poco, el primer fotograma
+        # salía a medias y no se entendía de qué iba. Ahora el título completo
+        # está desde el segundo cero, así que la miniatura ya dice «5 ...».
+        png = TRABAJO / "p00.png"
+        pintar_cartel(titulo, pie, png)
         c = TRABAJO / "c00.mp4"
-        plano(fondo, capas, duraciones[0], c, acerca=True)
+        plano(fondo, [(png, 0.0)], duraciones[0], c, acerca=True)
         trozos_clips.append(c)
 
         # fichas
