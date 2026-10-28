@@ -86,7 +86,11 @@ def main():
     # octubre un simple ensayo en seco se comió tres.
     pieza, cola = siguiente_de_la_cola()
     if pieza:
-        log(f"De la cola: «{pieza['titulo']}»")
+        # Las piezas nuevas de formato «dato» se guardan sin «titulo»: el
+        # gancho ya va dentro del texto. El 28 de octubre el carrusel del
+        # día murió aquí con un KeyError y no salió nada. El título es solo
+        # para el registro, así que si no está se usa el id.
+        log(f"De la cola: «{pieza.get('titulo') or pieza.get('id') or '?'}»")
     # Con etiqueta, para que las fotos no contradigan al texto: una lista de
     # cafeterías con fotos en la calle chirría aunque nadie sepa decir por qué.
     # Una pieza puede traer SUS PROPIAS imágenes en vez de fotos de Allie:
