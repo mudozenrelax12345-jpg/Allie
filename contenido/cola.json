@@ -296,6 +296,52 @@
           "huesos de santo"
         ]
       ]
+    },
+    {
+      "id": "madrid-sin-gluten",
+      "formato": "dato",
+      "etiqueta": null,
+      "texto": "5 sitios sin gluten en Madrid para celiacos\n1️⃣ Bastardi 4,8 · Malasaña, italiano 100% sin gluten\n2️⃣ Waraku 4,8 · Moncloa, japonés sin gluten\n3️⃣ Sana Locura · Salamanca, el croissant sin gluten\n4️⃣ chök · Chueca, cinnabons sin gluten\n5️⃣ Grosso Napoletano · pizza napolitana sin gluten",
+      "gancho_tiktok": "5 sitios SIN GLUTEN en Madrid",
+      "pie_tiktok": "Guárdalo si eres celíaco 🌾",
+      "intro_voz": "Hola, soy Allie. Si eres celíaco, cinco sitios de Madrid cien por cien sin gluten donde comer sin miedo. Guárdatelos.",
+      "dichos": [
+        "Bastardi, en Malasaña. Italiano cien por cien sin gluten: pizza y pasta que no dirías que son para celíacos. Casi cinco estrellas con miles de reseñas.",
+        "Waraku, cerca de Moncloa. Japonés entero sin gluten: sushi, ramen y gyozas. Toda una rareza, porque la soja casi siempre lleva trigo.",
+        "Sana Locura, en Salamanca. Una panadería sin gluten con, según muchos, el mejor croissant sin gluten de la ciudad.",
+        "chök, en Chueca. Cafetería cien por cien sin gluten: sus cinnabons y su tarta de pistacho tienen fama.",
+        "Y Grosso Napoletano, en su versión sin gluten. Pizza napolitana sin miedo a la contaminación. Ya no hay excusa."
+      ],
+      "cierre_tiktok": "¿Te falta probar alguno?",
+      "cierre_pie": "Dímelo en comentarios 👇",
+      "cierre_voz": "Dime en comentarios tu sitio sin gluten favorito de Madrid, o el que te falte por probar. Y guárdalo.",
+      "fotos_busqueda": [
+        [
+          "File:Pasta Puttanesca.jpg",
+          "File:A dish of Rasta Pasta.jpg",
+          "pasta plato italiano"
+        ],
+        [
+          "File:Nigiri Sushi (26478725732).jpg",
+          "File:Nigiri Sushi (25966163204).jpg",
+          "sushi nigiri"
+        ],
+        [
+          "File:Freshly baked croissants.jpg",
+          "File:Croissant, whole.jpg",
+          "croissant"
+        ],
+        [
+          "File:Cinnamon roll.jpg",
+          "File:Cinnamon rolls fully baked.jpg",
+          "cinnamon roll"
+        ],
+        [
+          "File:Punch Neapolitan Pizza Margherita.jpg",
+          "File:Pizza-napoletana.jpg",
+          "pizza margherita"
+        ]
+      ]
     }
   ],
   "arrobas_comprobados": {
