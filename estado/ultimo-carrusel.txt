@@ -1,16 +1,29 @@
-# Carrusel · 2026-10-28 09:51 UTC
-Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 234, in <module>
-    main()
-  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 89, in main
-    log(f"De la cola: «{pieza['titulo']}»")
-                        ~~~~~^^^^^^^^^^
-KeyError: 'titulo'
+# Carrusel · 2026-10-28 10:59 UTC
+· De la cola: «comida-datos»
+· Del banco: 3 fotos de la tanda 20261027-114157 · quedan 25 libres
+· 3 fotos: 20261027-114157-1.jpg, 20261027-114157-2.jpg, 20261027-114157-3.jpg
+· Pie (826 caracteres):
+🤖 Contenido generado con IA · Allie es un personaje creado con IA
 
-Traceback (most recent call last):
-  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 234, in <module>
-    main()
-  File "/home/runner/work/Allie/Allie/app/publicar_carrusel.py", line 89, in main
-    log(f"De la cola: «{pieza['titulo']}»")
-                        ~~~~~^^^^^^^^^^
-KeyError: 'titulo'
+Cinco cosas que no sabías de la comida española 🥘
+
+1️⃣ El gazpacho original no llevaba tomate · Era pan, ajo, aceite y vinagre. El tomate llegó de América en el siglo XVI.
+
+2️⃣ Paella es el nombre de la sartén, no del arroz · Viene del latín patella, un plato hondo. Lo de «para ella» es un cuento.
+
+3️⃣ La ensaladilla rusa es rusa de verdad · La creó el cocinero Lucien Olivier en Moscú hacia 1860. Allí la llaman ensalada Olivier.
+
+4️⃣ La tortilla de patatas aparece por escrito en 1817 · En una carta a las Cortes de Navarra. Decía que en Pamplona se hacía con dos huevos y cinco patatas.
+
+5️⃣ España guardó la receta del chocolate un siglo · Cortés mandó el primer cargamento de cacao en 1524. La corte lo trató como secreto de Estado.
+
+¿Cuál no sabías? 👇
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261027-114157-1.jpg
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261027-114157-2.jpg
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261027-114157-3.jpg
+·   contenedor 18107579123571997
+·   contenedor 18107579141571997
+·   contenedor 18107579177571997
+· Carrusel 18107579204571997
+·   6s · FINISHED
+· PUBLICADO · 18429371302150757 · https://www.instagram.com/p/DfCRi4uF5cf/
