@@ -1,5 +1,5 @@
-ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verdes → verdes, pelo rubio con mechas → rubio con mechas)
-ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: Los ojos son marrones en la nueva foto en lugar de verdes. (ojos verdes → marrones, pelo rubio → castaño claro)
-ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no se pudo comprobar que sea ella (Ningún modelo de Gemini disponible. Último aviso: Gemini: gemini-3.5-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.)
+ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verde → verde, pelo rubio dorado con mechas claras → rubio dorado con mechas claras)
+ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: Los ojos en la foto de referencia son verdes y en la nueva foto son marrones. (ojos verde → marrón, pelo rubio claro → rubio dorado)
+ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: Color de ojos, color de pelo y rasgos faciales completamente diferentes (ojos verdes → marrones, pelo rubio → moreno)
 
 el revisor distingue a Allie

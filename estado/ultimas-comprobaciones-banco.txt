@@ -1,4 +1,4 @@
-Comprobaciones del banco · 2026-10-28 17:28 UTC
+Comprobaciones del banco · 2026-10-29 04:45 UTC
 ━━━━ prueba_vacias
 ok   ajustes arranca con los inputs vacíos
 ok   cloudflare arranca con los inputs vacíos
@@ -50,9 +50,9 @@ ok   lista vacía es lista vacía
 todo arranca con los inputs vacíos
    OK prueba_vacias
 ━━━━ prueba_identidad
-ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verdes → verdes, pelo rubio con mechas → rubio con mechas)
-ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: Los ojos son marrones en la nueva foto en lugar de verdes. (ojos verdes → marrones, pelo rubio → castaño claro)
-ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no se pudo comprobar que sea ella (Ningún modelo de Gemini disponible. Último aviso: Gemini: gemini-3.5-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.)
+ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verde → verde, pelo rubio dorado con mechas claras → rubio dorado con mechas claras)
+ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: Los ojos en la foto de referencia son verdes y en la nueva foto son marrones. (ojos verde → marrón, pelo rubio claro → rubio dorado)
+ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: Color de ojos, color de pelo y rasgos faciales completamente diferentes (ojos verdes → marrones, pelo rubio → moreno)
 
 el revisor distingue a Allie
    OK prueba_identidad
@@ -67,12 +67,12 @@ ok   The same woman, walking down a street in autumn, smiling a
 ninguna escena pide manos después de quitárselas
    OK prueba_manos
 ━━━━ prueba_pisadas
-· Tanda 20261028-173144 · un café por la mañana · etiqueta «cafe»
-· Foto 1 al banco (20261028-173144-1.jpg)
-· Foto 2 al banco (20261028-173144-2.jpg)
-· Tanda 20261028-173144b · un paseo por el barrio · etiqueta «calle»
-· Foto 1 al banco (20261028-173144b-1.jpg)
-· Foto 2 al banco (20261028-173144b-2.jpg)
+· Tanda 20261029-044711 · un café por la mañana · etiqueta «cafe»
+· Foto 1 al banco (20261029-044711-1.jpg)
+· Foto 2 al banco (20261029-044711-2.jpg)
+· Tanda 20261029-044711b · un paseo por el barrio · etiqueta «calle»
+· Foto 1 al banco (20261029-044711b-1.jpg)
+· Foto 2 al banco (20261029-044711b-2.jpg)
 ok   dice haber metido 4
 ok   y hay 4 ficheros de verdad en el banco
 ok   ninguna ficha del índice repite archivo
