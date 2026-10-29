@@ -485,3 +485,4 @@
 {"cuando": "2026-10-29T11:47:25+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 4.5, "neuronas": 136}
 {"cuando": "2026-10-29T11:47:35+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 6.6, "neuronas": 136}
 {"cuando": "2026-10-29T11:47:43+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 5.4, "neuronas": 136}
+{"cuando": "2026-10-29T12:49:21+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
