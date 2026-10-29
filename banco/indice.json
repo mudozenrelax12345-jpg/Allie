@@ -1349,7 +1349,106 @@
    "vestuario": "verde-cuello",
    "sitio": "cafe-ventana",
    "creada": "2026-10-27T11:43:40.467672+00:00"
+  },
+  {
+   "archivo": "20261029-114519-1.jpg",
+   "tanda": "20261029-114519",
+   "etiqueta": "casa",
+   "tema": "tarde de pintar en casa",
+   "escena": "The same woman, medium shot, sitting on a pavement terrace with woven chairs surrounded by golden autumn leaves on the ground, wearing a black slip dress under a soft grey cardigan, leaning forward slightly over a small table with a soft afternoon backlight, gentle closed-mouth smile, Madrid October atmosphere, hands out of frame, nothing held in her hands, arms relaxed, framed from the chest up",
+   "usada": null,
+   "vestuario": "negro-slip",
+   "sitio": "terraza-bar",
+   "creada": "2026-10-29T11:46:00.574892+00:00"
+  },
+  {
+   "archivo": "20261029-114519-2.jpg",
+   "tanda": "20261029-114519",
+   "etiqueta": "casa",
+   "tema": "tarde de pintar en casa",
+   "escena": "The same woman, close-up shot, sitting on a pavement terrace with woven chairs, wearing a black slip dress under a soft grey cardigan, resting her chin on her hand with a playful look, warm autumn golden hour side lighting, subtle smile, crisp fall evening approaching.",
+   "usada": null,
+   "vestuario": "negro-slip",
+   "sitio": "terraza-bar",
+   "creada": "2026-10-29T11:46:24.575578+00:00"
+  },
+  {
+   "archivo": "20261029-114519-3.jpg",
+   "tanda": "20261029-114519",
+   "etiqueta": "casa",
+   "tema": "tarde de pintar en casa",
+   "escena": "The same woman, medium shot, sitting on a pavement terrace with woven chairs, wearing a black slip dress under a soft grey cardigan, looking slightly away from the camera with a relaxed expression, soft autumn light filtering through, elegant and cozy vibe.",
+   "usada": null,
+   "vestuario": "negro-slip",
+   "sitio": "terraza-bar",
+   "creada": "2026-10-29T11:46:32.613348+00:00"
+  },
+  {
+   "archivo": "20261029-114632-1.jpg",
+   "tanda": "20261029-114632",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium shot, wearing a cream knitted vest over a pale-blue collared shirt, walking under the plane trees in el Retiro park, surrounded by golden autumn leaves on the ground and crisp morning light, gentle smile with closed lips, no hands holding objects",
+   "usada": null,
+   "vestuario": "chaleco-punto",
+   "sitio": "retiro",
+   "creada": "2026-10-29T11:46:46.956418+00:00"
+  },
+  {
+   "archivo": "20261029-114632-2.jpg",
+   "tanda": "20261029-114632",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, close-up shot, wearing a cream knitted vest over a pale-blue collared shirt, walking under the plane trees in el Retiro park, soft autumn morning backlighting filtering through the golden foliage, looking slightly away with a subtle smile, no hands holding objects",
+   "usada": null,
+   "vestuario": "chaleco-punto",
+   "sitio": "retiro",
+   "creada": "2026-10-29T11:46:58.776837+00:00"
+  },
+  {
+   "archivo": "20261029-114632-3.jpg",
+   "tanda": "20261029-114632",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium close-up, wearing a cream knitted vest over a pale-blue collared shirt, walking under the plane trees in el Retiro park, warm October morning light casting soft shadows, serene expression with lips gently closed, no hands holding objects",
+   "usada": null,
+   "vestuario": "chaleco-punto",
+   "sitio": "retiro",
+   "creada": "2026-10-29T11:47:07.943081+00:00"
+  },
+  {
+   "archivo": "20261029-114707-1.jpg",
+   "tanda": "20261029-114707",
+   "etiqueta": "varios",
+   "tema": "probando sitios nuevos para desayunar",
+   "escena": "The same woman, medium shot in the wooded paths of El Capricho park during a crisp autumn morning with golden sunlight filtering through falling leaves, wearing an olive-green utility jacket over a cream t-shirt, leaning gently against an ancient tree trunk, soft closed-mouth smile, cinematic lighting.",
+   "usada": null,
+   "vestuario": "verde-oliva",
+   "sitio": "capricho",
+   "creada": "2026-10-29T11:47:28.391189+00:00"
+  },
+  {
+   "archivo": "20261029-114707-2.jpg",
+   "tanda": "20261029-114707",
+   "etiqueta": "varios",
+   "tema": "probando sitios nuevos para desayunar",
+   "escena": "The same woman, close-up shot in the wooded paths of El Capricho park during a crisp autumn morning with golden sunlight filtering through falling leaves, wearing an olive-green utility jacket over a cream t-shirt, looking slightly off-camera with hands resting naturally by her sides, gentle closed-mouth smile, cinematic lighting.",
+   "usada": null,
+   "vestuario": "verde-oliva",
+   "sitio": "capricho",
+   "creada": "2026-10-29T11:47:38.346331+00:00"
+  },
+  {
+   "archivo": "20261029-114707-3.jpg",
+   "tanda": "20261029-114707",
+   "etiqueta": "varios",
+   "tema": "probando sitios nuevos para desayunar",
+   "escena": "The same woman, medium shot in the wooded paths of El Capricho park during a crisp autumn morning with golden sunlight filtering through falling leaves, wearing an olive-green utility jacket over a cream t-shirt, turning slightly toward the camera with arms relaxed, subtle playful smile with lips together, cinematic lighting.",
+   "usada": null,
+   "vestuario": "verde-oliva",
+   "sitio": "capricho",
+   "creada": "2026-10-29T11:47:48.152642+00:00"
   }
  ],
- "actualizado": "2026-10-29T09:54:36.217188+00:00"
+ "actualizado": "2026-10-29T11:47:48.152698+00:00"
 }
