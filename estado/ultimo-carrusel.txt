@@ -1,29 +1,16 @@
-# Carrusel · 2026-10-28 10:59 UTC
-· De la cola: «comida-datos»
-· Del banco: 3 fotos de la tanda 20261027-114157 · quedan 25 libres
-· 3 fotos: 20261027-114157-1.jpg, 20261027-114157-2.jpg, 20261027-114157-3.jpg
-· Pie (826 caracteres):
+# Carrusel · 2026-10-29 09:54 UTC
+· De la cola: «madrid-guiris»
+· Del banco: 1 fotos de la tanda 20261014-0536 · quedan 21 libres
+· 1 fotos: 20261014-0536-1.jpg
+· Pie (350 caracteres):
 🤖 Contenido generado con IA · Allie es un personaje creado con IA
 
-Cinco cosas que no sabías de la comida española 🥘
-
-1️⃣ El gazpacho original no llevaba tomate · Era pan, ajo, aceite y vinagre. El tomate llegó de América en el siglo XVI.
-
-2️⃣ Paella es el nombre de la sartén, no del arroz · Viene del latín patella, un plato hondo. Lo de «para ella» es un cuento.
-
-3️⃣ La ensaladilla rusa es rusa de verdad · La creó el cocinero Lucien Olivier en Moscú hacia 1860. Allí la llaman ensalada Olivier.
-
-4️⃣ La tortilla de patatas aparece por escrito en 1817 · En una carta a las Cortes de Navarra. Decía que en Pamplona se hacía con dos huevos y cinco patatas.
-
-5️⃣ España guardó la receta del chocolate un siglo · Cortés mandó el primer cargamento de cacao en 1524. La corte lo trató como secreto de Estado.
-
-¿Cuál no sabías? 👇
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261027-114157-1.jpg
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261027-114157-2.jpg
-·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261027-114157-3.jpg
-·   contenedor 18107579123571997
-·   contenedor 18107579141571997
-·   contenedor 18107579177571997
-· Carrusel 18107579204571997
+Lo que buscan los guiris cuando vienen a Madrid
+1️⃣ Cenar a las 19:00 · Aquí no se cena antes de las 22:00
+2️⃣ La terraza de postureo · 15 € por un refresco en Gran Vía
+3️⃣ La discoteca de moda · 2 horas de cola a las 3:00
+4️⃣ El Retiro un domingo · Tú y media España buscando sombra
+·   https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/banco/fotos/20261014-0536-1.jpg
+· Foto suelta · contenedor 18107731748571997
 ·   6s · FINISHED
-· PUBLICADO · 18429371302150757 · https://www.instagram.com/p/DfCRi4uF5cf/
+· PUBLICADO · 17874680607649532 · https://www.instagram.com/p/DfEu5C0FIHx/
