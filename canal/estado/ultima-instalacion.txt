@@ -1,7 +1,7 @@
-Instalación · 2026-10-27 17:45 UTC
+Instalación · 2026-10-30 17:35 UTC
 ya instalado lo demás; falta: ffmpeg espeak-ng
 ━━━━ apt update
-   OK apt update · 9s
+   OK apt update · 4s
 ━━━━ apt install
 Setting up libswscale7:amd64 (7:6.1.1-3ubuntu5) ...
 Setting up libpulse0:amd64 (1:16.1+dfsg1-2ubuntu10.1) ...
@@ -28,35 +28,38 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
-   OK apt install · 12s
+   OK apt install · 16s
 ━━━━ torch cpu
-Collecting sympy>=1.13.3 (from torch)
-  Using cached sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
 Collecting networkx>=2.5.1 (from torch)
-  Using cached networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+  Downloading networkx-3.7-py3-none-any.whl.metadata (6.7 kB)
 Collecting jinja2 (from torch)
   Using cached jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
 Collecting fsspec>=0.8.5 (from torch)
-  Using cached fsspec-2026.7.0-py3-none-any.whl.metadata (10 kB)
+  Using cached fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
 Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch)
   Using cached mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
 Collecting MarkupSafe>=2.0 (from jinja2->torch)
   Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
-Using cached torch-2.14.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (196.3 MB)
-Using cached fsspec-2026.7.0-py3-none-any.whl (206 kB)
-Using cached networkx-3.6.1-py3-none-any.whl (2.1 MB)
+Downloading torch-2.15.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (209.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 209.5/209.5 MB 182.7 MB/s  0:00:01
+Using cached fsspec-2026.9.0-py3-none-any.whl (221 kB)
+Downloading networkx-3.7-py3-none-any.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 14.4 MB/s  0:00:00
 Using cached setuptools-78.1.0-py3-none-any.whl (1.3 MB)
 Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
 Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
 Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
-Using cached filelock-3.32.3-py3-none-any.whl (98 kB)
+Downloading filelock-4.2.4-py3-none-any.whl (162 kB)
 Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
 Using cached markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
 Installing collected packages: mpmath, typing-extensions, sympy, setuptools, networkx, MarkupSafe, fsspec, filelock, jinja2, torch
 
-Successfully installed MarkupSafe-3.0.3 filelock-3.32.3 fsspec-2026.7.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 setuptools-78.1.0 sympy-1.14.0 torch-2.14.1+cpu typing-extensions-4.16.0
-   OK torch cpu · 19s
+Successfully installed MarkupSafe-3.0.3 filelock-4.2.4 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 setuptools-78.1.0 sympy-1.14.0 torch-2.15.0+cpu typing-extensions-4.16.0
+   OK torch cpu · 25s
 ━━━━ requirements
+Using cached annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Using cached annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Using cached cloudpathlib-0.26.0-py3-none-any.whl (66 kB)
 Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
 Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
 Using cached rich-15.0.0-py3-none-any.whl (310 kB)
@@ -64,23 +67,20 @@ Using cached pygments-2.21.0-py3-none-any.whl (1.3 MB)
 Using cached markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
 Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
 Using cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
-Using cached smart_open-8.0.4-py3-none-any.whl (73 kB)
+Downloading smart_open-9.0.1-py3-none-any.whl (76 kB)
 Using cached typing_inspection-0.4.4-py3-none-any.whl (14 kB)
 Using cached spacy_curated_transformers-0.3.1-py2.py3-none-any.whl (237 kB)
 Using cached curated_tokenizers-0.0.10-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.3 MB)
 Using cached curated_transformers-0.1.1-py2.py3-none-any.whl (25 kB)
 Using cached termcolor-3.3.0-py3-none-any.whl (7.7 kB)
-Downloading transformers-5.21.0-py3-none-any.whl (13.0 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.0/13.0 MB 124.3 MB/s  0:00:00
+Downloading transformers-5.22.1-py3-none-any.whl (13.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.1/13.1 MB 304.2 MB/s  0:00:00
 Using cached tokenizers-0.23.3-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)
 Using cached safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
-Using cached tzdata-2026.5-py2.py3-none-any.whl (347 kB)
-Using cached wrapt-2.5.1-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (250 kB)
+Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+Downloading wrapt-2.5.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (250 kB)
 Installing collected packages: rfc3986, num2words, addict, wrapt, wasabi, urllib3, uritemplate, tzdata, typing-inspection, truststore, tqdm, termcolor, spacy-loggers, spacy-legacy, six, shellingham, safetensors, rpds-py, regex, pyyaml, pyparsing, pygments, pydantic-core, pycparser, pillow, packaging, numpy, murmurhash, mdurl, loguru, language-tags, isodate, idna, hf-xet, h11, espeakng-loader, dlinfo, cymem, confection, cloudpickle, cloudpathlib, click, charset_normalizer, certifi, catalogue, babel, attrs, annotated-types, annotated-doc, srsly, smart-open, requests, referencing, rdflib, python-dateutil, pydantic, preshed, misaki, markdown-it-py, joblib, httpcore2, httpcore, curated-tokenizers, cffi, blis, anyio, thinc, soundfile, rich, jsonschema-specifications, httpx2, httpx, curated-transformers, typer, spacy-curated-transformers, jsonschema, huggingface-hub, weasel, tokenizers, csvw, transformers, spacy, segments, phonemizer-fork, kokoro
 
-Successfully installed addict-2.4.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 attrs-26.1.0 babel-2.18.0 blis-1.3.4 catalogue-2.0.10 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cloudpathlib-0.26.0 cloudpickle-3.1.2 confection-1.3.4 csvw-4.1.1 curated-tokenizers-0.0.10 curated-transformers-0.1.1 cymem-2.0.16 dlinfo-2.0.0 espeakng-loader-0.2.4 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.3.0 idna-3.20 isodate-0.7.2 joblib-1.6.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 kokoro-0.9.4 language-tags-1.3.2 loguru-0.7.3 markdown-it-py-4.2.0 mdurl-0.1.2 misaki-0.9.4 murmurhash-1.0.16 num2words-0.5.6 numpy-2.5.4 packaging-26.3 phonemizer-fork-3.3.2 pillow-13.0.0 preshed-3.0.15 pycparser-3.12 pydantic-2.14.1 pydantic-core-2.50.1 pygments-2.21.0 pyparsing-3.3.3 python-dateutil-3.0.0 pyyaml-6.0.3 rdflib-7.6.0 referencing-0.37.0 regex-2026.9.29 requests-2.34.2 rfc3986-1.5.0 rich-15.0.0 rpds-py-2026.9.1 safetensors-0.8.0 segments-2.4.0 shellingham-1.5.4 six-1.17.0 smart-open-8.0.4 soundfile-0.14.0 spacy-3.8.18 spacy-curated-transformers-0.3.1 spacy-legacy-3.0.12 spacy-loggers-1.0.5 srsly-2.5.5 termcolor-3.3.0 thinc-8.3.14 tokenizers-0.23.3 tqdm-4.70.1 transformers-5.21.0 truststore-0.10.5 typer-0.27.3 typing-inspection-0.4.4 tzdata-2026.5 uritemplate-4.2.0 urllib3-2.8.0 wasabi-1.1.3 weasel-1.0.1 wrapt-2.5.1
-
-[notice] A new release of pip is available: 26.2.1 -> 26.2.2
-[notice] To update, run: pip install --upgrade pip
-   OK requirements · 24s
-torch 2.14.1+cpu
+Successfully installed addict-2.4.0 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 attrs-26.1.0 babel-2.18.0 blis-1.3.4 catalogue-2.0.10 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cloudpathlib-0.26.0 cloudpickle-3.1.2 confection-1.3.4 csvw-4.1.1 curated-tokenizers-0.0.10 curated-transformers-0.1.1 cymem-2.0.16 dlinfo-2.0.0 espeakng-loader-0.2.4 h11-0.16.0 hf-xet-1.8.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.4.0 idna-3.20 isodate-0.7.2 joblib-1.6.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 kokoro-0.9.4 language-tags-1.3.2 loguru-0.7.3 markdown-it-py-4.2.0 mdurl-0.1.2 misaki-0.9.4 murmurhash-1.0.16 num2words-0.5.6 numpy-2.5.4 packaging-26.3 phonemizer-fork-3.3.2 pillow-13.0.0 preshed-3.0.15 pycparser-3.12 pydantic-2.14.2 pydantic-core-2.50.2 pygments-2.21.0 pyparsing-3.3.3 python-dateutil-3.0.0 pyyaml-6.0.3 rdflib-7.6.0 referencing-0.37.0 regex-2026.9.29 requests-2.34.2 rfc3986-1.5.0 rich-15.0.0 rpds-py-2026.9.1 safetensors-0.8.0 segments-2.4.0 shellingham-1.5.4 six-1.17.0 smart-open-9.0.1 soundfile-0.14.0 spacy-3.8.18 spacy-curated-transformers-0.3.1 spacy-legacy-3.0.12 spacy-loggers-1.0.5 srsly-2.5.5 termcolor-3.3.0 thinc-8.3.14 tokenizers-0.23.3 tqdm-4.70.1 transformers-5.22.1 truststore-0.10.5 typer-0.27.3 typing-inspection-0.4.4 tzdata-2026.6 uritemplate-4.2.0 urllib3-2.8.0 wasabi-1.1.3 weasel-1.0.1 wrapt-2.5.2
+   OK requirements · 27s
+torch 2.15.0+cpu
