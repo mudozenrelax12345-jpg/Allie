@@ -2,11 +2,11 @@
 
 Diez mil neuronas al día. Estimaciones nuestras por modelo, no cifras oficiales: valen para comparar, no para facturar.
 
-## 2026-10-31 · 33 neuronas (0 % del día)
+## 2026-10-31 · 36 neuronas (0 % del día)
 
 | trabajo | neuronas | llamadas bien | llamadas mal |
 |---|---|---|---|
-| probar_cuota | 33 | 11 | 0 |
+| probar_cuota | 36 | 12 | 0 |
 
 ## 2026-10-30 · 66 neuronas (1 % del día)
 
