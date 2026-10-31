@@ -1,10 +1,10 @@
-# Última publicación · 2026-10-27 10:56 UTC
+# Última publicación · 2026-10-31 09:48 UTC
 ## instalar
+Using cached truststore-0.10.5-py3-none-any.whl (19 kB)
+Using cached pycparser-3.12-py3-none-any.whl (62 kB)
+Installing collected packages: urllib3, typing-extensions, truststore, tqdm, tabulate, pyyaml, pycparser, propcache, pillow, packaging, numpy, multidict, idna, hf-xet, h11, fsspec, frozenlist, filelock, click, charset_normalizer, certifi, attrs, aiohappyeyeballs, yarl, requests, opencv-python-headless, httpcore2, httpcore, cffi, anyio, aiosignal, httpx2, httpx, cryptography, aiohttp, huggingface-hub, edge-tts, gradio_client
 
-Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 anyio-4.15.1 attrs-26.1.0 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 edge-tts-7.3.1 filelock-4.2.4 frozenlist-1.8.0 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.3.0 idna-3.20 multidict-7.2.1 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 propcache-0.5.4 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tabulate-0.10.0 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0 yarl-1.25.1
-
-[notice] A new release of pip is available: 26.2.1 -> 26.2.2
-[notice] To update, run: pip install --upgrade pip
+Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 anyio-4.15.1 attrs-26.1.0 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.0 cryptography-50.0.2 edge-tts-7.3.1 filelock-4.2.5 frozenlist-1.8.0 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.8.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.4.0 idna-3.20 multidict-7.2.1 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 propcache-0.5.4 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tabulate-0.10.0 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0 yarl-1.25.1
 ## barreras
 ok   un reel sin texto no se publica
 · r.mp4 ya se publicó. No lo repito.
@@ -31,18 +31,18 @@ ok   un fichero que falta no revienta nada
 
 el vídeo sale marcado y entero
 ## publicar
-· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261027_0610.mp4
-· Texto (297 caracteres):
+· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261031_0615.mp4
+· Texto (254 caracteres):
 🤖 Contenido generado con IA · Allie es un personaje creado con IA
 
-Buscando la luz perfecta entre las hojas secas 🍂
-Este abrigo beige y yo somos oficialmente inseparables este otoño.
-¿Te gusta el ambiente de los árboles pelados y el suelo lleno de color? ✨
+Atardeceres que enamoran desde las alturas.
+Con mi camisa de cuadros favorita y el skyline de fondo.
+¿Te vienes a disfrutar de esta vista conmigo?
 
-#Allie #AIInfluencer #Otoño #TrenchCoat
-· Contenedor 18107414180571997
+#Allie #AIInfluencer #Atardecer #Vistas
+· Contenedor 18108007760571997
 ·   10s · IN_PROGRESS
 ·   20s · IN_PROGRESS
 ·   30s · IN_PROGRESS
 ·   40s · FINISHED
-· PUBLICADO · 18031082933905468 · https://www.instagram.com/reel/De_sb8cAr-y/
+· PUBLICADO · 17868647154679668 · https://www.instagram.com/reel/DfJ31v0DsAe/
