@@ -1,4 +1,4 @@
-Comprobaciones del banco · 2026-11-02 23:41 UTC
+Comprobaciones del banco · 2026-11-03 11:50 UTC
 ━━━━ prueba_vacias
 ok   ajustes arranca con los inputs vacíos
 ok   cloudflare arranca con los inputs vacíos
@@ -67,12 +67,12 @@ ok   The same woman, walking down a street in autumn, smiling a
 ninguna escena pide manos después de quitárselas
    OK prueba_manos
 ━━━━ prueba_pisadas
-· Tanda 20261102-234215 · un café por la mañana · etiqueta «cafe»
-· Foto 1 al banco (20261102-234215-1.jpg)
-· Foto 2 al banco (20261102-234215-2.jpg)
-· Tanda 20261102-234215b · un paseo por el barrio · etiqueta «calle»
-· Foto 1 al banco (20261102-234215b-1.jpg)
-· Foto 2 al banco (20261102-234215b-2.jpg)
+· Tanda 20261103-115111 · un café por la mañana · etiqueta «cafe»
+· Foto 1 al banco (20261103-115111-1.jpg)
+· Foto 2 al banco (20261103-115111-2.jpg)
+· Tanda 20261103-115111b · un paseo por el barrio · etiqueta «calle»
+· Foto 1 al banco (20261103-115111b-1.jpg)
+· Foto 2 al banco (20261103-115111b-2.jpg)
 ok   dice haber metido 4
 ok   y hay 4 ficheros de verdad en el banco
 ok   ninguna ficha del índice repite archivo
