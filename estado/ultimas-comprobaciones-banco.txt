@@ -1,4 +1,4 @@
-Comprobaciones del banco · 2026-11-04 18:36 UTC
+Comprobaciones del banco · 2026-11-04 22:11 UTC
 ━━━━ prueba_vacias
 ok   ajustes arranca con los inputs vacíos
 ok   cloudflare arranca con los inputs vacíos
@@ -51,12 +51,11 @@ todo arranca con los inputs vacíos
    OK prueba_vacias
 ━━━━ prueba_identidad
 ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verdes → verdes, pelo rubio con mechas claras → rubio con mechas claras)
-MAL  20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → es ella · es ella (ojos verdes → verdes, pelo rubio con mechas frontales claras → rubio con mechas frontales claras)
-ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: El color de los ojos y el tono del pelo son completamente diferentes. (ojos verdes → marrones, pelo rubio → castaño oscuro)
+ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: Los ojos son marrones en lugar de verdes y el tono base del pelo es más oscuro. (ojos verdes → marrones, pelo rubio claro → castaño claro)
+ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: El color de los ojos y el tono base del pelo son completamente diferentes. (ojos verdes → marrones, pelo rubio claro → castaño oscuro)
 
-El revisor no distingue a Allie en: 20261009-1439-2.jpg.
-Publicar a otra mujer en su cuenta es el fallo más caro que tiene este proyecto; no sigo.
-   MAL prueba_identidad
+el revisor distingue a Allie
+   OK prueba_identidad
 ━━━━ prueba_manos
 ok   The same woman, standing in a bright minimalist kitchen wi
 ok   The same woman, medium shot, holding a coffee cup, looking
@@ -68,12 +67,12 @@ ok   The same woman, walking down a street in autumn, smiling a
 ninguna escena pide manos después de quitárselas
    OK prueba_manos
 ━━━━ prueba_pisadas
-· Tanda 20261104-183708 · un café por la mañana · etiqueta «cafe»
-· Foto 1 al banco (20261104-183708-1.jpg)
-· Foto 2 al banco (20261104-183708-2.jpg)
-· Tanda 20261104-183708b · un paseo por el barrio · etiqueta «calle»
-· Foto 1 al banco (20261104-183708b-1.jpg)
-· Foto 2 al banco (20261104-183708b-2.jpg)
+· Tanda 20261104-221150 · un café por la mañana · etiqueta «cafe»
+· Foto 1 al banco (20261104-221150-1.jpg)
+· Foto 2 al banco (20261104-221150-2.jpg)
+· Tanda 20261104-221150b · un paseo por el barrio · etiqueta «calle»
+· Foto 1 al banco (20261104-221150b-1.jpg)
+· Foto 2 al banco (20261104-221150b-2.jpg)
 ok   dice haber metido 4
 ok   y hay 4 ficheros de verdad en el banco
 ok   ninguna ficha del índice repite archivo
@@ -154,4 +153,4 @@ ok   y si la vía anónima tiene cuota, sale la foto
 el corte por falta de cuota funciona
    OK prueba_cuota
 
-FALLARON: prueba_identidad
+las ocho comprobaciones pasan
