@@ -1649,5 +1649,70 @@
   "banco": "24 fotos libres de 151 (12 varios, 6 casa, 3 viaje, 3 cafe). JUSTO en el umbral de 24, asi que esta noche no genera por los pelos, segunda vez este mes. Sexto dia seguido con CERO libres de 'calle', que es la etiqueta que mas se gasta.",
   "veredicto": "SE REVISA LA CONCLUSION DEL 1-NOV, Y LA NOTICIA ES BUENA PARA EL REEL. El 1-nov apunte que los dos formatos se hundian en paralelo, pero aquello se escribio con el reel del 31-oct a 26 horas de vida y 52 de alcance. Ha madurado a 157 con 75 interacciones, justo en la banda de siempre. Con las cifras ya maduras: los reels normales van 357 (20-oct), 203 (22), 150 (24), 113 (27) y 157 (31) — los cinco por encima de cien, mediana 157. Los posts van 164 (25-oct), 119 (26), 112 (28), 110 (29), 98 (30) y 90 (1-nov): caida limpia y sin rebote, y el 1-nov es el peor del mes. O sea: NO cae todo a la vez. Cae el carrusel/foto y el reel aguanta. Respondiendo a la pregunta del experimento abierto el 16-oct: el reel normal SI pasa de cien, y con holgura, frente al 41 y 105 de los dos Trial Reels, que quedan enterrados. Lo que si sigue preocupando es la base: 3306 seguidores el 31-oct, +9 en siete dias cuando hace dos semanas eran +21. El formato ayuda, pero no esta trayendo gente nueva.",
   "pendiente": "1) NUEVO Y ES EL GORDO DE HOY: la ventana de app/hora.py no aguanta el retraso real de GitHub. Hoy perdio las DOS ejecuciones por menos de treinta segundos cada una, y ya habia perdido el 19-oct por tres minutos. Los dos crones (08:12 y 09:12 UTC) con un retraso tipico de 45-50 min caen uno justo antes de las 10:00 de Madrid y el otro justo despues de las 11:00. Opciones: adelantar los crones a 07:50 y 08:50 UTC, o ensanchar la ventana a dos horas (10:00-11:59) dejando que el registro de publicados.json evite el duplicado, que ya lo hace. Sin esto, cada martes y cada sabado son una moneda al aire.\n2) SIGUE SIN ARREGLAR, septimo dia: publicar.yml instala ffmpeg con apt en cada ejecucion (lineas 101-106) sin timeout-minutes. Hoy tardo 22 s, el 27-oct colgo veinte minutos y tumbo el reel. Cambiar al ffmpeg estatico (1 s) o poner timeout-minutes: 4.\n3) No hay medida del 2-nov en este fichero: la tarea diaria de ayer no la escribio. Si se repite, mirar por que.\n4) El selector del CARRUSEL sigue casando etiqueta con tema sin mirar la escena (1-nov: pie de tartas de queso sobre fotos de ruinas). El camino del reel acierta dos dias seguidos.\n5) Las fotos con sitio='debod' salen como ruinas tipo Petra, no como el Templo de Debod. Revisar el banco antes de que salgan.\n6) Dos lineas en respuestas.yml: anadir if: steps.toca.outputs.seguir == 'si' a los pasos 85 y 88, que llenan Actions de rojos falsos.\n7) El comentario de cabecera de publicar.yml sigue diciendo 'lunes, miercoles, viernes y sabado' cuando el cron pone 2,6 (martes y sabado, que es lo correcto).\n8) ULTIMO-FALLO.txt sigue enseniando el KeyError del carrusel del 28-oct, ya arreglado y con cinco publicaciones limpias despues."
+ },
+ {
+  "fecha": "2026-11-04",
+  "fecha_ultimo_dato": "2026-11-02 (seguidores, parcial); 2026-11-03 (alcance de reels y por publicacion)",
+  "seguidores": 3298,
+  "ganados": null,
+  "perdidos": null,
+  "alcance_reels": 42,
+  "visualizaciones_reels": 79,
+  "reels_publicados": 1,
+  "formato": "ninguno · HOY NO SE PUBLICO NADA",
+  "enlace": null,
+  "publicacion": "NO SE PUBLICO Y NO HE PODIDO ARREGLARLO. Hoy miercoles tocaba CARRUSEL (carrusel.yml, cron '12 8 * * 1,3,5,0' y '12 9 * * 1,3,5,0'). Las DOS ejecuciones programadas NO EXISTEN: GitHub no disparo ninguno de los dos crones. No es un fallo del codigo, no hay traza ni ejecucion en rojo; sencillamente no arranco. publicar.yml tampoco tenia que correr hoy (su cron es 2,6 = martes y sabado) y no corrio. Cola de Metricool comprobada del 4 al 12 de noviembre: VACIA, asi que tampoco salio nada por ahi. Cero entradas nuevas en publicados.json: la ultima sigue siendo la del 3-nov.\n\nINTENTE RELANZARLO A MANO, como el 28-oct y el 3-nov, con carrusel.yml e inputs[fotos]=3 e inputs[sin_guarda]=si (hacia falta saltarse la guarda porque ya eran las 11:55 en Madrid). EL CLASIFICADOR DE SEGURIDAD DE LA SESION BLOQUEO EL DISPATCH ('Unrequested Commit in a Connected App'). No insisti: forzar un disparo bloqueado seria saltarse la barrera. Teresa tiene que lanzarlo ella desde la pestana Actions, o autorizar a la tarea a disparar workflows.\n\nSEGUNDO DIA PERDIDO ESTA SEMANA. El lunes 2-nov tampoco salio nada (no hay entrada en publicados.json ni medida de ese dia): las dos ejecuciones de carrusel.yml de ese dia arrancaron a las 18:19 y 19:26 UTC, con 9-10 horas de retraso, y app/hora.py las paro bien paradas. Tres de los ultimos cinco dias habiles han dependido de un rescate a mano.",
+  "causa_de_fondo": "GitHub Actions no garantiza la hora del cron y lleva dos semanas retrasandolo o tragandoselo: 36 min el 19-oct, 47-48 min el 3-nov, 9-10 horas el 2-nov, y hoy directamente no disparo. Contra eso, app/hora.py solo deja pasar la ejecucion que cae dentro de la hora de las 10:00 de Madrid, asi que CUALQUIER retraso mayor de una hora equivale a no publicar, en silencio y en verde. La guarda cumple su funcion (evitar publicar a las nueve tras el cambio de hora) pero no tiene red: si el cron no llega a tiempo, nadie lo recoge. Falta un repesca: una ejecucion de respaldo a media manana que mire publicados.json y, si no hay entrada de hoy, publique aunque sea fuera de la ventana.",
+  "segunda_mirada": "ES ALLIE Y EL TEXTO ENCAJA, con un pero. Las tres fotos de videos/fotos/ (foto1, foto2, foto3) son la misma mujer rubia con jersey amarillo de punto en una taberna con azulejos y estantes de botellas, y el texto de videos/ultimo.json ('Buscando mi mejor perfil entre botella y botella', 'este jersey amarillo de punto', 'este rincon de baldosas') describe exactamente lo que se ve. EL PERO: en foto2 los ojos salen CASTANOS, no verdes, y la cara es algo mas alargada que la de videos/prueba/0-REFERENCIA.jpg; foto1 queda en tierra de nadie (avellana calido) y foto3 si tiene el verde de la referencia. OpenCV las dio por buenas con umbral 0.50, asi que pasa el filtro automatico, pero el color de ojos se le escapa: el umbral mide parecido de cara, no iris. Si se repite, vale la pena mirar si la deriva viene del generador.",
+  "ojo_duplicados": "Cero riesgo hoy: nada publicado por la API y cola de Metricool vacia del 4 al 12 de noviembre.",
+  "alcance_por_reel": {
+   "20261020-0846": 358,
+   "20261022-1835": 205,
+   "20261024-0843": 150,
+   "20261027-1057": 117,
+   "20261031-0949": 162,
+   "20261103-1058": 42
+  },
+  "interacciones_por_reel": {
+   "20261020-0846": 103,
+   "20261022-1835": 110,
+   "20261024-0843": 88,
+   "20261027-1057": 95,
+   "20261031-0949": 80,
+   "20261103-1058": 22
+  },
+  "alcance_por_post": {
+   "20261021-0846": 113,
+   "20261022-0844": 171,
+   "20261023-0844": 146,
+   "20261025-0933": 166,
+   "20261026-0945": 120,
+   "20261028-1059": 116,
+   "20261029-0954": 115,
+   "20261030-0953": 102,
+   "20261101-0946": 98
+  },
+  "interacciones_por_post": {
+   "20261021-0846": 45,
+   "20261022-0844": 129,
+   "20261023-0844": 117,
+   "20261025-0933": 124,
+   "20261026-0945": 105,
+   "20261028-1059": 97,
+   "20261029-0954": 78,
+   "20261030-0953": 90,
+   "20261101-0946": 93
+  },
+  "serie_seguidores": {
+   "20261029": 3304,
+   "20261030": 3303,
+   "20261031": 3306,
+   "20261101": "3299 (cerrado: 2 ganados, 7 perdidos)",
+   "20261102": "3298 (parcial)"
+  },
+  "variacion_7d": -6,
+  "variacion_30d": 78,
+  "experimento_reel_vs_trial": "LA HORA PESA MAS QUE EL FORMATO, y ya se puede decir. Los dos Trial Reels hicieron 41 y 11 de alcance con 0 interacciones. El reel normal publicado A SU HORA el 31-oct hizo 162 con 80 interacciones, por encima de los posts de esos dias (98-120): el formato reel SI funciona y el Trial Reel queda descartado con razon. Pero el reel del 3-nov, publicado a las 11:56 de Madrid en vez de a las 10:00, se quedo en 42 de alcance y 22 interacciones, es decir al nivel de un Trial Reel. Mismo formato, misma cuenta, dos horas de diferencia y cuatro veces menos alcance. Conclusion: el problema NO es el formato ni (todavia) la base de seguidores, es que la publicacion llega tarde o no llega. Arreglar el disparo vale mas que cualquier prueba de formato.",
+  "tendencia": "A LA BAJA EN TODO. Seguidores: 3306 el 31-oct, 3299 el 1-nov (2 ganados contra 7 perdidos, primer dia claramente negativo), 3298 el 2-nov. En siete dias son 6 menos; en treinta siguen siendo 78 mas, asi que el mes sigue en verde pero la ultima semana se ha dado la vuelta. Alcance de posts en caida sostenida: 171, 166, 146, 120, 116, 115, 102, 98. Alcance de reels igual: 358, 205, 150, 117, 162, 42. Coincide con la racha de publicaciones tardias y dias en blanco."
  }
 ]
