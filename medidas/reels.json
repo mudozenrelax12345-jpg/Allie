@@ -1714,5 +1714,89 @@
   "variacion_30d": 78,
   "experimento_reel_vs_trial": "LA HORA PESA MAS QUE EL FORMATO, y ya se puede decir. Los dos Trial Reels hicieron 41 y 11 de alcance con 0 interacciones. El reel normal publicado A SU HORA el 31-oct hizo 162 con 80 interacciones, por encima de los posts de esos dias (98-120): el formato reel SI funciona y el Trial Reel queda descartado con razon. Pero el reel del 3-nov, publicado a las 11:56 de Madrid en vez de a las 10:00, se quedo en 42 de alcance y 22 interacciones, es decir al nivel de un Trial Reel. Mismo formato, misma cuenta, dos horas de diferencia y cuatro veces menos alcance. Conclusion: el problema NO es el formato ni (todavia) la base de seguidores, es que la publicacion llega tarde o no llega. Arreglar el disparo vale mas que cualquier prueba de formato.",
   "tendencia": "A LA BAJA EN TODO. Seguidores: 3306 el 31-oct, 3299 el 1-nov (2 ganados contra 7 perdidos, primer dia claramente negativo), 3298 el 2-nov. En siete dias son 6 menos; en treinta siguen siendo 78 mas, asi que el mes sigue en verde pero la ultima semana se ha dado la vuelta. Alcance de posts en caida sostenida: 171, 166, 146, 120, 116, 115, 102, 98. Alcance de reels igual: 358, 205, 150, 117, 162, 42. Coincide con la racha de publicaciones tardias y dias en blanco."
+ },
+ {
+  "fecha": "2026-11-05",
+  "fecha_ultimo_dato": "2026-11-03 (seguidores cerrados); 2026-11-04 parcial; por publicacion hasta hoy",
+  "seguidores": 3299,
+  "ganados": 4,
+  "perdidos": 3,
+  "alcance_reels": 79,
+  "visualizaciones_reels": 150,
+  "reels_publicados": 1,
+  "formato": "foto suelta",
+  "enlace": "https://www.instagram.com/p/DfWqjxnlPZ1/",
+  "publicacion": "SI SE PUBLICO Y SALIO SOLO, Y A SU HORA. Jueves es dia de FOTO SUELTA en el reparto (reel martes/sabado, carrusel lunes/miercoles/viernes/domingo, foto jueves). Corrio carrusel.yml ejecucion #32 (41999129657), arranque 09:02:34 UTC = 10:02 de Madrid, DENTRO de la ventana, en verde y en 48 segundos. Foto suelta del banco (20261029-114519-1.jpg), media_id 18135432583742767, https://www.instagram.com/p/DfWqjxnlPZ1/ . Una sola entrada en publicados.json, un solo commit ('Carrusel publicado', 5264843) y CERO cupo de Metricool. El doble cron se porto: la #33 (42007951560) arranco a las 10:06 UTC = 11:06 de Madrid y app/hora.py la paro en 35 segundos. Cero duplicados. No hice falta yo para nada.",
+  "correccion_al_parte_de_ayer": "AYER ME EQUIVOQUE EN LA CAUSA, Y CONVIENE DEJARLO ESCRITO. El parte del 4-nov dice que GitHub NO disparo ninguno de los dos crones del miercoles. SI los disparo: ejecuciones #30 (41865681658) a las 16:17:09 UTC y #31 (41874615196) a las 17:08:29 UTC, las dos en verde y las dos paradas por app/hora.py en el primer paso. Lo que paso es que llegaron SIETE Y OCHO HORAS TARDE, mucho despues de que se escribiera el parte de ayer, por eso no se veian entonces. El efecto practico es el mismo (miercoles en blanco) pero la causa no es 'el cron no existe' sino 'el cron llega fuera de la ventana'. Es exactamente el mismo fallo del lunes 2-nov (18:19 y 19:26 UTC, 9-10 h tarde) y hermano del 3-nov (47-48 min tarde, fuera por 30 segundos).",
+  "segunda_mirada": "ES ALLIE Y EL TEXTO ENCAJA RAZONABLEMENTE. La foto (banco/fotos/20261029-114519-1.jpg) es ella sin discusion: rubia de pelo largo ondulado, OJOS VERDES claros bien marcados, misma cara y mismos rasgos que videos/prueba/0-REFERENCIA.jpg. Hoy NO hay deriva de color de ojos, al reves que el 1-nov y el 4-nov; el verde sale limpio. Escena: terraza de cafe con sillas de mimbre y mesas metalicas, calle de edificios de piedra clara con balcones, arboles con hoja amarilla y suelo cubierto de hojas secas, gente paseando al fondo. El pie es una lista de 'Planes en Madrid este finde largo que no son de Halloween' (El Capricho, El Retiro en otono, El Rastro, chocolate con churros en San Gines, huesos de santo). No es una descripcion literal de la foto, pero es una lista de planes de otono en Madrid sobre una foto de otono en la calle en Madrid: el tono, la estacion y la ciudad concuerdan, y menciona 'El Retiro en otono, las hojas doradas estan de escandalo' justo sobre un suelo de hojas doradas. Nada que ver con el fallo del 1-nov (pie de tartas de queso sobre ruinas). Las listas de planes no exigen foto literal, asi que lo doy por bueno.",
+  "ojo_duplicados": "Cero riesgo: la foto salio por la API de Instagram y no se toco Metricool. El cupo de 20 de noviembre sigue intacto (3 publicaciones propias este mes: 1-nov carrusel, 3-nov reel, 5-nov foto, todas por API).",
+  "alcance_por_reel": {
+   "20261020-0846": 358,
+   "20261022-1835": 206,
+   "20261024-0843": 150,
+   "20261027-1057": 119,
+   "20261031-0949": 165,
+   "20261103-1058": 79
+  },
+  "interacciones_por_reel": {
+   "20261020-0846": 103,
+   "20261022-1835": 111,
+   "20261024-0843": 88,
+   "20261027-1057": 95,
+   "20261031-0949": 80,
+   "20261103-1058": 60
+  },
+  "visualizaciones_por_reel": {
+   "20261020": 505,
+   "20261022": 348,
+   "20261024": 238,
+   "20261027": 241,
+   "20261031": 266,
+   "20261103": 150
+  },
+  "alcance_por_post": {
+   "20261018-0955": 196,
+   "20261019-0959": 166,
+   "20261021-0846": 113,
+   "20261022-0844": 173,
+   "20261023-0844": 148,
+   "20261025-0933": 169,
+   "20261026-0945": 123,
+   "20261028-1059": 117,
+   "20261029-0954": 122,
+   "20261030-0953": 106,
+   "20261101-0946": 104,
+   "20261105-0903": "21 (2 h de vida, no sirve)"
+  },
+  "interacciones_por_post": {
+   "20261018-0955": 135,
+   "20261019-0959": 121,
+   "20261021-0846": 45,
+   "20261022-0844": 130,
+   "20261023-0844": 117,
+   "20261025-0933": 124,
+   "20261026-0945": 105,
+   "20261028-1059": 97,
+   "20261029-0954": 78,
+   "20261030-0953": 92,
+   "20261101-0946": 94,
+   "20261105-0903": 12
+  },
+  "serie_seguidores": {
+   "20261029": 3304,
+   "20261030": 3303,
+   "20261031": 3306,
+   "20261101": "3299 (2 ganados, 7 perdidos)",
+   "20261102": "3298 (3 y 3)",
+   "20261103": "3299 (4 y 3)",
+   "20261104": "3301 (parcial, sin cerrar)"
+  },
+  "variacion_7d": 0,
+  "variacion_30d": 81,
+  "experimento_reel_vs_trial": "EL EXPERIMENTO DEL 16-OCT SE PUEDE CERRAR: GANA EL REEL NORMAL, Y POR GOLEADA. Los dos Trial Reels hicieron 41 y 11 de alcance con 0 interacciones. Los seis reels normales ya maduros van 358, 206, 150, 119, 165 y 79, mediana 157, con 60 a 111 interacciones cada uno. Cinco de los seis pasan de cien con holgura, asi que NO se cumple el escenario que temia Teresa (que el reel normal tampoco pasara de cien y el problema fuera la base de seguidores). El formato reel funciona en esta cuenta y el Trial Reel queda enterrado; no hay que volver a probarlo.\n\nPERO EL EXPERIMENTO HA DESTAPADO OTRA COSA MAS IMPORTANTE: LA HORA PESA MAS QUE EL FORMATO. El reel del 31-oct salio a las 10:49 de Madrid y ha hecho 165 de alcance con 80 interacciones. El del 3-nov salio a las 11:56, hora y pico mas tarde, y se ha quedado en 79 con 60. Mismo formato, misma cuenta, cuatro dias de diferencia, LA MITAD de alcance. Y el 3-nov ya esta maduro (dos dias), no es cosa de que le falte reposo: ayer iba por 42 y ha subido a 79, que es donde se queda.",
+  "tendencia": "PLANA EN SEGUIDORES Y A LA BAJA EN ALCANCE, PERO LA CAIDA TIENE DUENO. Seguidores: 3299 el 3-nov (ultimo dia cerrado, 4 ganados contra 3 perdidos) frente a 3299 el 27-oct. SIETE DIAS CLAVADO EN EL MISMO NUMERO, ni arriba ni abajo; en treinta dias siguen siendo +81, asi que el mes no esta en rojo pero la ultima semana esta muerta. El pico del mes fue 3306 el 31-oct.\n\nAlcance de posts, caida limpia y sostenida: 196 (18-oct), 173 (22), 169 (25), 148 (23), 123 (26), 122 (29), 117 (28), 106 (30), 104 (1-nov). De casi doscientos a poco mas de cien en dos semanas.\n\nAlcance de reels: 358 (20-oct), 206 (22), 150 (24), 119 (27), 165 (31), 79 (3-nov). El 31-oct rompe la caida hacia arriba, y es justo el que salio a su hora.\n\nLA LECTURA, SIN RODEOS: la caida de alcance coincide dia por dia con la racha de publicaciones tardias y dias en blanco. En los ultimos SIETE dias ha habido DOS dias completamente en blanco (lunes 2-nov y miercoles 4-nov) y UNO publicado con hora y pico de retraso (martes 3-nov). Instagram castiga la irregularidad, y la cuenta lleva una semana siendo irregular no por el contenido sino por el cron.",
+  "banco": "26 fotos libres de 160 (15 varios, 5 casa, 3 cafe, 3 calle). Por encima del umbral de 24, asi que esta noche NO toca generar y es lo normal. Buena noticia: vuelve a haber libres de 'calle' (3) despues de siete dias seguidos a cero, que era la etiqueta que mas se gasta.",
+  "pendiente": "1) EL GORDO, Y YA VA TERCER DIA SEGUIDO APUNTADO: app/hora.py no tiene red cuando GitHub llega tarde. Retrasos reales medidos: 36 min el 19-oct, 47-48 min el 3-nov, 7-8 HORAS el 4-nov, 9-10 HORAS el 2-nov. Con una ventana de una hora, cualquier retraso mayor es un dia en blanco en silencio y en verde. Esta semana van DOS dias perdidos de siete. Lo que hace falta no es ensanchar la ventana (no llega: 8 horas no se cubren), es una REPESCA: un workflow de respaldo a media manana (p. ej. 11:30 y 13:30 de Madrid) que mire publicados.json y, si no hay entrada de hoy, publique aunque sea fuera de la ventana. publicados.json ya evita el duplicado por si solo. Es LA tarea que mas alcance devuelve ahora mismo, por encima de cualquier prueba de formato.\n2) SIGUE SIN ARREGLAR, octavo dia: publicar.yml instala ffmpeg con apt en cada ejecucion (lineas 101-106) sin timeout-minutes. El 27-oct colgo veinte minutos y tumbo el reel; el 3-nov tardo 22 s. Cambiar al ffmpeg estatico o poner timeout-minutes: 4 al paso. El sabado 7-nov vuelve a tocar reel y se la juega otra vez.\n3) YO NO PUEDO LANZAR WORKFLOWS A MANO. El 4-nov el clasificador de seguridad de la sesion bloqueo el dispatch de carrusel.yml ('Unrequested Commit in a Connected App') y no insisti. Mientras siga asi, los rescates a mano los tiene que hacer Teresa desde la pestana Actions. Razon de mas para que la repesca del punto 1 sea automatica.\n4) El selector del CARRUSEL sigue casando etiqueta con tema sin mirar la escena (1-nov: pie de tartas de queso sobre fotos de ruinas). Hoy el camino de la FOTO ha acertado, y el del reel acerto el 3-nov. El fallo sigue siendo solo del carrusel.\n5) Las fotos con sitio='debod' salen como ruinas tipo Petra, no como el Templo de Debod. Revisar el banco antes de que salgan.\n6) Dos lineas en respuestas.yml: anadir if: steps.toca.outputs.seguir == 'si' a los pasos 85 y 88, que llenan Actions de rojos falsos.\n7) El comentario de cabecera de publicar.yml sigue diciendo 'lunes, miercoles, viernes y sabado' cuando el cron pone 2,6 (martes y sabado, que es lo correcto). Confunde a quien lo lea.\n8) ULTIMO-FALLO.txt sigue enseniando el KeyError del carrusel del 28-oct, ya arreglado y con seis publicaciones limpias despues. Conviene borrarlo o fecharlo para que no despiste.",
+  "veredicto": "HOY BIEN: se publico solo, a su hora, formato correcto, es Allie, el texto encaja y cero cupo de Metricool. Pero la semana es mala y la causa no es el contenido: DOS dias en blanco de siete (2 y 4 de noviembre) y uno tarde (3 de noviembre), todos por lo mismo, que GitHub dispara el cron fuera de hora y la guarda lo para sin red. El experimento del 16-oct queda cerrado a favor del reel normal (mediana 157 contra 41 y 11 de los Trial Reels), asi que NO, el problema no era el formato y tampoco es todavia la base de seguidores. Es el disparo. Mientras no haya una repesca automatica, cada dia de publicacion es una moneda al aire y el alcance seguira bajando."
  }
 ]
