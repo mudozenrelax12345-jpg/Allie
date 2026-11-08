@@ -1979,5 +1979,87 @@
   "tendencia": "SEGUIDORES PLANOS TIRANDO A LA BAJA; ALCANCE A LA BAJA; LA CAUSA NO HA CAMBIADO. Seguidores: 3302 el 5-nov (ultimo dia con dato) frente a 3304 el 29-oct: -2 en siete dias. En treinta siguen siendo +82, asi que el mes esta en verde pero la ultima semana y media no suma nada. Pico del mes: 3306 el 31-oct. Lo unico medio bueno es que el 4 y el 5 de noviembre volvieron a ser positivos (+2 y +1) despues del bache del 1-nov (2 altas contra 7 bajas).\n\nAlcance de posts, caida limpia y sostenida: 173 (22-oct), 170 (25), 150 (23), 125 (26 y 29), 123 (28), 113 (21), 110 (1-nov), 109 (30-oct), 93 (5-nov). De 170-173 a 93 en dos semanas.\n\nAlcance de reels: 359 (20-oct), 207 (22), 153 (24), 122 (27), 169 (31-oct, a su hora), 90 (3-nov, tarde).\n\nLA SEMANA, DIA A DIA: lunes 2-nov EN BLANCO (cron 9-10 h tarde), martes 3-nov TARDE (rescate 11:56), miercoles 4-nov EN BLANCO (cron 7-8 h tarde), jueves 5-nov BIEN y solo, viernes 6-nov TARDE (rescate 11:56), sabado 7-nov TARDE (rescate 11:55). UNO de seis dias ha salido como debia. Instagram reparte menos a una cuenta irregular, y esta cuenta lleva dos semanas siendo irregular por el cron, no por el contenido.",
   "pendiente": "1) EL GORDO, QUINTO DIA SEGUIDO APUNTADO Y HOY HA VUELTO A COSTAR UN RESCATE: app/hora.py no tiene red cuando GitHub llega tarde o no llega. Retrasos medidos: 36 min el 19-oct, 47-48 min el 3-nov, 7-8 h el 4-nov, 9-10 h el 2-nov, y el 6 y el 7 de noviembre a las 11:53 de Madrid todavia no habia disparado nada. Con una ventana de una hora, cualquier retraso mayor es un dia en blanco en silencio y en verde. HACE FALTA UNA REPESCA: un workflow de respaldo a las 11:30 y a las 13:30 de Madrid que mire publicados.json y, si no hay entrada de hoy, publique aunque sea fuera de la ventana. publicados.json ya evita el duplicado por si solo. Es LA tarea que mas alcance devuelve, por encima de cualquier prueba de formato. Mientras no exista, esta tarea diaria es la repesca, y llega siempre a las 11:55, que es la hora mala.\n2) URGENTE Y YA ES MANANA: LA COLA DE CONTENIDO ESTA A CERO. Las doce piezas de contenido/cola.json estan gastadas (la ultima fue «madrid-sin-gluten» el 6-nov). MANANA DOMINGO 8 TOCA CARRUSEL y no hay lista que poner: caera al texto automatico que describe la foto, que es justo el que peor se guarda. Las listas son lo que mejor ha rendido (150, 170, 173 de alcance). Hace falta que Teresa, o un trabajo nuevo, reponga piezas de formato 'dato': sitios reales de Madrid, datos comprobables, sin que Allie diga que ha estado alli.\n3) SIGUE SIN ARREGLAR, DECIMO DIA: ffmpeg por apt en publicar.yml sin timeout-minutes. Hoy no ha mordido (96 s la ejecucion entera), pero el 27-oct colgo veinte minutos y tumbo el reel. ffmpeg estatico o timeout-minutes: 4.\n4) CERRADO EL PENDIENTE 5 DE AYER: la foto del 5-nov no se hundio, era retraso de Metricool; ha subido de 21 a 93. Regla nueva: no juzgar ninguna publicacion con menos de 48 horas.\n5) Volver a mirar manana el carrusel del 6-nov: 36 con 24 horas de vida.\n6) El selector del CARRUSEL sigue casando etiqueta con tema sin mirar la escena (1-nov: tartas de queso sobre ruinas). El camino del reel ha acertado hoy y el 3-nov.\n7) Las fotos con sitio='debod' salen como ruinas tipo Petra, no como el Templo de Debod.\n8) Dos lineas en respuestas.yml: anadir if: steps.toca.outputs.seguir == 'si' a los pasos 85 y 88, que llenan Actions de rojos falsos.\n9) El comentario de cabecera de publicar.yml sigue diciendo 'lunes, miercoles, viernes y sabado' y 'martes NO' justo encima de un cron 2,6 que dispara martes y sabado. El cron es el correcto; el comentario confunde.\n10) ULTIMO-FALLO.txt sigue enseniando el KeyError del carrusel del 28-oct, ya arreglado y con ocho publicaciones limpias despues. Conviene borrarlo o fecharlo.\n11) canal-corto-diario.yml lleva dos ejecuciones seguidas en rojo (6-nov a las 21:57 y a las 23:00). No es de Instagram y no lo he tocado, pero conviene mirarlo.",
   "veredicto": "HOY HA SALIDO, PERO OTRA VEZ PORQUE LO HE SACADO YO Y A LA HORA MALA. Reel publicado a las 11:55 de Madrid, es Allie sin ninguna duda, el texto describe literalmente lo que se ve y cero cupo de Metricool. Dos cosas buenas: la foto del 5-nov no se habia hundido (de 21 a 93, era retraso del dato) y el ffmpeg no colgo. Y una mala que ya lleva cinco dias sin moverse: de los seis ultimos dias, UNO solo salio a su hora. GitHub no esta disparando los crones y la guarda los para sin red. El experimento del formato esta cerrado a favor del reel normal; lo que falta por arreglar no es que publicar, sino QUE SALGA A LAS DIEZ. Y a partir de manana se suma lo de la cola vacia."
+ },
+ {
+  "fecha": "2026-11-08",
+  "fecha_ultimo_dato": "2026-11-06 (ultimo dia de seguidores cerrado, 3296); 2026-11-07 parcial (3296, sin desglose). Por publicacion, hasta hoy.",
+  "seguidores": 3296,
+  "ganados": 3,
+  "perdidos": 4,
+  "alcance_reels": 83,
+  "visualizaciones_reels": 145,
+  "reels_publicados": 1,
+  "formato": "carrusel (3 fotos) · rescatado a mano · PRIMER PIE AUTOMATICO, la cola esta vacia",
+  "enlace": "https://www.instagram.com/p/DfemHo3F_eN/",
+  "publicacion": "NO SALIO SOLO. TERCER RESCATE A MANO SEGUIDO. Hoy domingo tocaba CARRUSEL (carrusel.yml, crones '12 8 * * 1,3,5,0' y '12 9 * * 1,3,5,0'). A las 10:55 UTC = 11:55 de Madrid, casi tres horas despues del primer cron y dos despues del segundo, carrusel.yml NO TENIA NINGUNA EJECUCION HOY: la ultima era la #36 del 6-nov. GitHub no habia disparado, y la ventana de app/hora.py (10:00-10:59 Madrid) ya estaba cerrada. LO LANCE A MANO: carrusel.yml ejecucion #37 (42473608505), workflow_dispatch con inputs[fotos]=3 e inputs[sin_guarda]=si, arranque 10:57:35 UTC = 11:57 de Madrid, VERDE en 55 segundos. Carrusel de 3 fotos de la tanda 20261031-114022, media_id 17911237785567825, https://www.instagram.com/p/DfemHo3F_eN/ . Una sola entrada en publicados.json y CERO cupo de Metricool.",
+  "cola_vacia_ya_muerde": "HOY SE HA NOTADO POR PRIMERA VEZ, TAL COMO AVISE AYER. contenido/cola.json esta a cero desde el 6-nov (las doce piezas usadas), asi que el publicador ha caido al TEXTO AUTOMATICO que describe la foto. El pie de hoy es: «Nada como un buen rayo de sol para empezar el dia con energia. Este jersey rojo se ha convertido en mi favorito absoluto. Cual es tu color indispensable para el armario?». Es correcto y encaja con lo que se ve, pero es exactamente el tipo de pie que el propio fichero avisa que nadie guarda, y las listas de sitios de Madrid son lo que mejor ha rendido (170, 173, 150, 125). ESTO ES LO QUE MAS CUESTA ALCANCE A PARTIR DE AHORA Y NO SE ARREGLA SOLO: hace falta que Teresa (o un trabajo nuevo) rellene la cola con piezas de formato 'dato'.",
+  "erratilla_del_pie": "El pie lleva el hashtag #RedSweeper, que no existe: es #RedSweater. Lo genera el modelo. No es grave (un hashtag mal escrito no reparte) pero conviene saber que el texto automatico tampoco revisa la ortografia de los hashtags.",
+  "segunda_mirada": "ES ALLIE Y EL TEXTO ENCAJA. Mire las tres fotos (banco/fotos/20261031-114022-1/2/3) junto a videos/prueba/0-REFERENCIA.jpg ANTES de lanzar nada. Es ella en las tres: misma cara, mismos rasgos, melena larga ondulada rubia con mechas claras. Misma tanda las tres: jersey rojo de cuello redondo, de pie junto a un ventanal con visillos de lino, tejados de Madrid al fondo y luz dorada de manana. Coherentes entre si, parecen un momento y no un collage. UN PERO MENOR: en la 1 y la 2 el ojo tira a gris-verdoso mas que al verde limpio de la referencia; en la 3 se ve mejor el verde. Es la misma deriva leve del 1-nov y el 4-nov, dentro de lo que OpenCV deja pasar (umbral 0.50). No es otra persona y no justificaba no publicar, pero van tres veces.",
+  "ojo_duplicados": "Cero riesgo. Salio solo por la API de Instagram, una sola vez, y publicados.json tiene una unica entrada de hoy. Cola de Metricool comprobada del 8 al 16 de noviembre: VACIA. El cupo de 20 de noviembre sigue intacto: 6 publicaciones propias este mes (1-nov carrusel, 3-nov reel, 5-nov foto, 6-nov carrusel, 7-nov reel, 8-nov carrusel), TODAS por API.",
+  "alcance_por_reel": {
+   "20261020-0846": 359,
+   "20261022-1835": 207,
+   "20261024-0843": 153,
+   "20261027-1057": 125,
+   "20261031-0949": 173,
+   "20261103-1058": 96,
+   "20261107-1056": 83
+  },
+  "interacciones_por_reel": {
+   "20261027-1057": 100,
+   "20261031-0949": 87,
+   "20261103-1058": 71,
+   "20261107-1056": 65
+  },
+  "visualizaciones_por_reel": {
+   "20261020": 507,
+   "20261022": 352,
+   "20261024": 245,
+   "20261027": 252,
+   "20261031": 284,
+   "20261103": 182,
+   "20261107": 145
+  },
+  "alcance_por_post": {
+   "20261025-0933": 170,
+   "20261026-0945": 125,
+   "20261028-1059": 124,
+   "20261029-0954": 129,
+   "20261030-0953": 113,
+   "20261101-0946": 117,
+   "20261105-0903": 116,
+   "20261106-1057": 82,
+   "20261108-1057": "publicado hoy, sin medir"
+  },
+  "interacciones_por_post": {
+   "20261025-0933": 127,
+   "20261026-0945": 110,
+   "20261028-1059": 102,
+   "20261029-0954": 82,
+   "20261030-0953": 97,
+   "20261101-0946": 104,
+   "20261105-0903": 95,
+   "20261106-1057": 74
+  },
+  "confirmado_el_aviso_del_6nov": "EL CARRUSEL DEL 6-NOV NO SE HABIA HUNDIDO, ERA RETRASO DEL DATO OTRA VEZ. Ayer iba en 36 de alcance y 34 interacciones con 24 horas de vida; hoy, con 48, marca 82 y 74. Sigue siendo flojo (los posts a su hora maduran en 113-129) pero no es el desastre que parecia. Tercera vez que se confirma lo mismo: UN DATO DE METRICOOL CON MENOS DE 48 HORAS NO VALE PARA NADA. Y el 6-nov tambien salio tarde, a las 11:56, igual que el de hoy.",
+  "serie_seguidores": {
+   "20261031": 3306,
+   "20261101": "3299 (2 ganados, 7 perdidos)",
+   "20261102": "3298 (3 y 3)",
+   "20261103": "3299 (4 y 3)",
+   "20261104": "3301 (3 y 2)",
+   "20261105": "3302 (1 y 5)",
+   "20261106": "3296 (3 y 4)",
+   "20261107": "3296 (parcial, sin desglose)",
+   "20261108": "sin fila en Metricool"
+  },
+  "variacion_7d": -10,
+  "variacion_30d": 75,
+  "nota_datos": "Metricool ha avanzado dos dias desde el parte de ayer: ya trae el 6-nov (3296, cerrado) y el 7-nov (3296, parcial). El retraso tipico sigue siendo de dos dias, asi que el carrusel de hoy no se podra juzgar hasta el 10.",
+  "banco": "29 fotos libres despues de gastar 3 hoy. Por encima del umbral de 24, asi que esta noche NO toca generar y es lo normal.",
+  "experimento_reel_vs_trial": "CERRADO A FAVOR DEL REEL NORMAL Y NO HAY QUE VOLVER AL TRIAL. Trial Reels: 41 y 11 de alcance, 0 interacciones. Reels normales: 359, 207, 153, 125, 173, 96 y 83; mediana 153, con 65-104 interacciones. PERO HOY HAY QUE DECIR ALGO NUEVO Y DESAGRADABLE: los DOS ultimos reels (3-nov 96 y 7-nov 83) NO HAN PASADO DE CIEN. Es la primera vez desde los Trial Reels que caen dos seguidos por debajo. Teresa pregunto el 16-oct que hacer si en una semana el reel normal no pasaba de cien: que entonces el problema seria la base de seguidores y no el formato. LA RESPUESTA HONESTA ES QUE TODAVIA NO SE PUEDE CONCLUIR ESO, Y EL MOTIVO ES CONCRETO: esos dos reels son justo los dos que sali a rescatar tarde, a las 11:56 y a las 11:55 de Madrid. El unico reel reciente que salio DENTRO de su ventana, el del 31-oct a las 10:49, hizo 173. Y los posts que salen a su hora siguen en 113-129, mientras que los dos rescatados tarde (6-nov y hoy) son los flojos. La variable que separa lo bueno de lo malo no es el formato ni el numero de seguidores: es la hora. Para despejarlo hace falta UN reel que salga a las diez en punto; el proximo toca el martes 10.",
+  "tendencia": "SEGUIDORES A LA BAJA POR PRIMERA VEZ CON CLARIDAD, Y ALCANCE A LA BAJA. Seguidores: 3296 el 6-nov (ultimo dia cerrado) frente a 3306 del pico del 31-oct: -10 en una semana, y es la primera semana netamente negativa. En 30 dias siguen siendo +75, asi que el mes no esta en rojo, pero el 1-nov (2 altas contra 7 bajas) y el 6-nov (3 contra 4) ya restan. Alcance de reels: 359 (20-oct), 207 (22), 153 (24), 125 (27), 173 (31-oct, a su hora), 96 (3-nov, tarde), 83 (7-nov, tarde). Alcance de posts: 170 (25-oct), 129 (29), 125 (26), 124 (28), 117 (1-nov), 116 (5-nov), 113 (30-oct), 82 (6-nov, tarde y sin madurar del todo). LOS DOS FORMATOS CAEN A LA VEZ Y LOS PEORES NUMEROS DE LOS DOS SON LOS DIAS QUE SALIERON TARDE.",
+  "pendiente": "1) EL GORDO, SEXTO DIA SEGUIDO APUNTADO Y HOY HA VUELTO A COSTAR UN RESCATE: GitHub no dispara los crones a su hora y app/hora.py los para sin red. Retrasos medidos: 36 min el 19-oct, 47-48 min el 3-nov, 7-8 h el 4-nov, 9-10 h el 2-nov, y el 6, el 7 y el 8 de noviembre a las 11:55 de Madrid todavia no habia disparado nada. De los siete ultimos dias, UNO solo salio a su hora. HACE FALTA UNA REPESCA: un workflow de respaldo a las 11:30 y a las 13:30 de Madrid que mire publicados.json y, si no hay entrada de hoy, publique aunque sea fuera de la ventana. publicados.json ya evita el duplicado por si solo. Es LA tarea que mas alcance devuelve. OJO: una repesca a las 11:30 seguiria publicando tarde; lo que de verdad arregla el alcance es disparar DENTRO de la ventana, asi que la repesca deberia ir a las 10:20 y 10:45 de Madrid, no solo al mediodia. 2) LA COLA VACIA, QUE HOY YA HA MORDIDO: sin piezas, todo pie sera automatico. 3) publicar.yml sigue instalando ffmpeg con apt sin timeout-minutes (colgo 20 min el 27-oct).",
+  "veredicto": "HOY HA SALIDO, PERO OTRA VEZ PORQUE LO HE SACADO YO, A LAS 11:57 Y CON PIE AUTOMATICO. Es Allie, el texto encaja y cero cupo de Metricool. Dos cosas nuevas y las dos malas: los seguidores han hecho su primera semana claramente negativa (-10 desde el pico del 31-oct) y la cola de contenido se ha agotado, asi que desde hoy los carruseles salen con el pie que peor rinde. Y la de siempre, que ya lleva seis dias: de los siete ultimos dias uno solo salio a su hora. Los dos reels de la semana se han quedado en 96 y 83, por debajo de cien, pero los dos salieron tarde: el martes 10, si el reel sale a las diez en punto, sabremos de una vez si el problema es la hora o la base de seguidores."
  }
 ]
