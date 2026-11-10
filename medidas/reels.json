@@ -2078,5 +2078,67 @@
   "lo_que_propongo": "Mover esta tarea diaria de las 11:53 a las 10:05 de Madrid (09:05 UTC). Es el unico cambio que devuelve las publicaciones al pico de las 10:00 sin depender de los crones de GitHub, que llevan una semana sin cumplir. Los crones pueden quedarse como estan: si algun dia disparan a su hora, publican ellos y esta tarea solo lo comprueba.",
   "medida": "TODA LA CUENTA BAJA, NO SOLO LOS REELS. Por publicacion, ultimas dos semanas: reels 27-oct 125, 31-oct 173, 3-nov 96, 7-nov 83. Carruseles y fotos 25-oct 170, 26-oct 125, 28-oct 124, 29-oct 129, 30-oct 113, 1-nov 117, 5-nov 116, 6-nov 82. Los dos formatos han convergido abajo: el carrusel del 6-nov hizo 82 y el reel del 7-nov 83. Seguidores: pico de 3306 el 31-oct, 3296 el 7-nov; una semana perdiendo.",
   "experimento_del_16_de_octubre": "CERRADO Y CON RESPUESTA DOBLE. (1) El reel normal gana al Trial Reel sin discusion: 83-173 de alcance frente a los 41 y 11 de los dos Trial Reels, y con interacciones. Eso ya no hay que volver a probarlo. (2) PERO el reel normal tampoco levanta la cuenta: lleva dos seguidos por debajo de 100 (96 y 83) y los carruseles han caido al mismo sitio. Como los dos formatos bajan a la vez, el problema NO es el formato: es la base de seguidores y el alcance general de la cuenta."
+ },
+ {
+  "fecha": "2026-11-10",
+  "fecha_ultimo_dato": "2026-11-07 (ultimo dia de seguidores con desglose cerrado, 3296, 2 ganados y 2 perdidos); 2026-11-08 solo con el total (3296); Metricool SIGUE SIN FILAS del 9 ni del 10. Retraso de dos dias, como siempre.",
+  "seguidores": 3296,
+  "ganados": 2,
+  "perdidos": 2,
+  "alcance_reels": 102,
+  "visualizaciones_reels": 164,
+  "reels_publicados": 1,
+  "formato": "REEL (9,8 s, 3 fotos) · rescatado a mano · SEPTIMO DIA SEGUIDO",
+  "enlace": "https://www.instagram.com/reel/Dfjv-4ckVYx/",
+  "publicacion": "NO SALIO SOLO Y HOY HA SALIDO MAS TARDE QUE NUNCA: 11:01:15 UTC = 12:01 DE MADRID. Hoy martes tocaba REEL (publicar.yml, crones '12 8 * * 2,6' y '12 9 * * 2,6'). A las 10:58 UTC, cuando mire, publicar.yml NO TENIA NINGUNA EJECUCION HOY: la ultima era la #21 del sabado 7-nov a las 15:39 UTC. GitHub no habia disparado ni el cron de las 08:12 ni el de las 09:12, y la ventana de app/hora.py (10:00-10:59 de Madrid) ya estaba cerrada. LO LANCE A MANO: publicar.yml ejecucion #22 (42803733073), workflow_dispatch con inputs[sin_guarda]=si, arranque 10:59:31 UTC, verde. Publicado reel_20261109_1418.mp4 (el reel que genero reel-diario.yml el 9-nov a las 14:18 y que no se habia publicado porque el lunes tocaba carrusel). media_id 17878410339635245, https://www.instagram.com/reel/Dfjv-4ckVYx/ . Una sola entrada en publicados.json y CERO cupo de Metricool.",
+  "segunda_mirada": "ES ALLIE Y EL TEXTO ENCAJA. Mire las tres fotos (videos/fotos/foto1-2-3.jpg, tanda 20261103-182620) junto a videos/prueba/0-REFERENCIA.jpg ANTES de lanzar nada. Es ella en las tres: misma cara, melena larga ondulada rubia con mechas claras, ojos verdes (hoy SI se ve el verde limpio, mejor que el gris-verdoso del 1, 4 y 8 de noviembre). Misma tanda las tres: cazadora de cuero negra sobre camiseta blanca, callejon de ladrillo rojo con adoquines y hojas de otono, luz dorada. Coherentes entre si. El pie habla de luz de otono, ladrillos y chaqueta de cuero: encaja exactamente con lo que se ve.",
+  "erratilla_del_pie": "El pie dice «campera de cuero». «Campera» es argentino; en Espana se dice «cazadora» o «chaqueta de cuero». Allie es una cuenta de Madrid y a una audiencia espanola le va a sonar raro. No es grave y no afecta al alcance, pero es la segunda semana seguida con un desliz en el texto automatico (la anterior fue el hashtag #RedSweeper por #RedSweater). El texto automatico no revisa el registro ni la ortografia.",
+  "ojo_duplicados": "Cero riesgo. Salio solo por la API de Instagram, una sola vez, y publicados.json tiene una unica entrada de hoy. Cola de Metricool comprobada del 10 al 18 de noviembre: VACIA. El cupo de 20 de noviembre sigue INTACTO: 8 publicaciones propias este mes (1-nov carrusel, 3-nov reel, 5-nov foto, 6-nov carrusel, 7-nov reel, 8-nov carrusel, 9-nov carrusel, 10-nov reel), TODAS por API.",
+  "alcance_por_reel": {
+   "20261020-0846": 360,
+   "20261022-1835": 208,
+   "20261024-0843": 154,
+   "20261027-1057": 128,
+   "20261031-0949": 178,
+   "20261103-1058": 102,
+   "20261107-1056": 102,
+   "20261110-1201": "publicado hoy, sin medir"
+  },
+  "interacciones_por_reel": {
+   "20261024-0843": 91,
+   "20261027-1057": 101,
+   "20261031-0949": 91,
+   "20261103-1058": 74,
+   "20261107-1056": 86
+  },
+  "alcance_por_post": {
+   "20261025-0933": 170,
+   "20261026-0945": 127,
+   "20261028-1059": 125,
+   "20261029-0954": 131,
+   "20261030-0953": 117,
+   "20261101-0946": 119,
+   "20261105-0903": 128,
+   "20261106-1057": 90,
+   "20261108-1058": 96,
+   "20261109-1056": "33, pero tiene 24 h: NO VALE"
+  },
+  "interacciones_por_post": {
+   "20261025-0933": 127,
+   "20261026-0945": 111,
+   "20261028-1059": 103,
+   "20261029-0954": 83,
+   "20261030-0953": 97,
+   "20261101-0946": 104,
+   "20261105-0903": 106,
+   "20261106-1057": 76,
+   "20261108-1058": 94
+  },
+  "se_cae_la_alarma_de_ayer": "AYER DIJE QUE LOS DOS ULTIMOS REELS NO PASABAN DE CIEN (96 y 83). HOY, CON LOS DATOS MADUROS, LOS DOS ESTAN EN 102. El del 3-nov ha pasado de 96 a 102 y el del 7-nov de 83 a 102. CUARTA VEZ que se confirma lo mismo: UN DATO DE METRICOOL CON MENOS DE 48 HORAS NO VALE PARA NADA, y yo volvi a tratarlo como si valiera. Asi que la respuesta a la pregunta de Teresa del 16-oct es NO: el reel normal SI pasa de cien, aunque sea por poco.",
+  "experimento_reel_vs_trial": "CERRADO A FAVOR DEL REEL NORMAL. Trial Reels: 41 y 11 de alcance, 0 interacciones. Reels normales: 360, 208, 154, 128, 178, 102 y 102, con 74-101 interacciones. No hay que volver al Trial. PERO EL EXPERIMENTO QUE IMPORTA AHORA ES OTRO Y HOY SE HA VUELTO A QUEDAR SIN HACER: saber si el bajon de alcance (de 150-360 en octubre a ~100 ahora) es por la HORA o por la BASE DE SEGUIDORES. Ayer escribi que hoy martes, con un reel a las diez en punto, lo sabriamos. NO HA PODIDO SER: GitHub tampoco disparo hoy y el reel salio a las 12:01, una hora mas tarde todavia que los rescates anteriores. Llevamos siete dias sin UNA sola publicacion dentro de la ventana, asi que la pregunta sigue abierta por octavo dia.",
+  "tendencia": "TODA LA CUENTA PLANA EN ~100 DE ALCANCE, SEGUIDORES PARADOS. Reels: 360 (20-oct), 208 (22), 154 (24), 128 (27), 178 (31-oct, el unico reciente que salio a su hora), 102 (3-nov, tarde), 102 (7-nov, tarde). Posts: 170 (25-oct), 131 (29), 127 (26), 125 (28), 119 (1-nov), 117 (30-oct), 128 (5-nov), 90 (6-nov, tarde), 96 (8-nov, tarde). LOS DOS FORMATOS HAN CONVERGIDO EN 90-102 Y LOS PEORES SON SIEMPRE LOS DIAS QUE SALIERON TARDE; el unico que salio a su hora (31-oct) sigue siendo el mejor de las tres ultimas semanas con 178. Seguidores: 3243 el 11-oct, pico de 3306 el 31-oct, 3296 el 7 y el 8-nov. 30 dias: +53. Siete dias: -3. Ni suben ni se desploman: estan parados desde el 31 de octubre.",
+  "pendiente": "1) EL GORDO, OCTAVO DIA SEGUIDO APUNTADO Y SIN ARREGLAR: GitHub no dispara los crones a su hora y app/hora.py los para con razon. Hoy, a las 10:58 UTC, publicar.yml no habia disparado nada; su ultima ejecucion era del sabado. De los ocho ultimos dias, UNO solo salio a su hora (31-oct). LA PROPUESTA DE AYER SIGUE EN PIE Y ES LA UNICA QUE DEVUELVE ALCANCE: mover ESTA tarea diaria de las 11:52 de Madrid a las 10:05 (09:05 UTC). Es un cambio de un minuto en la programacion de la tarea, no toca el repositorio, y pone las publicaciones en el pico de las 10:00 sin depender de unos crones que llevan ocho dias sin cumplir. NO LO HAGO YO PORQUE CAMBIA LA PROGRAMACION DE TERESA: lo decide ella. 2) LA COLA DE CONTENIDO SIGUE A CERO (12 de 12 piezas usadas desde el 6-nov): todos los pies de carrusel saldran automaticos, y las listas de sitios de Madrid son lo que mejor ha rendido (170, 131, 127, 125). 3) publicar.yml sigue instalando ffmpeg con apt sin timeout-minutes (colgo 20 min el 27-oct).",
+  "banco": "32 fotos libres. Por encima del umbral de 24, asi que esta noche NO toca generar y es lo normal.",
+  "veredicto": "HOY HA SALIDO EL REEL, PERO OTRA VEZ LO HE SACADO YO Y A LAS 12:01, DOS HORAS DESPUES DEL PICO. Es Allie, el texto encaja y cero cupo de Metricool. La buena: la alarma de ayer era falsa, los dos reels han madurado a 102 y el reel normal SI pasa de cien. La mala: el martes era el dia en que ibamos a saber si el problema es la hora o los seguidores, y GitHub ha vuelto a no disparar, asi que seguimos sin saberlo por octavo dia. Mientras la publicacion siga saliendo a mediodia no hay forma de averiguarlo."
  }
 ]
