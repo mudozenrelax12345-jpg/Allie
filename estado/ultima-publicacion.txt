@@ -1,10 +1,10 @@
-# Última publicación · 2026-11-14 10:55 UTC
+# Última publicación · 2026-11-17 10:55 UTC
 ## instalar
-Using cached truststore-0.10.5-py3-none-any.whl (19 kB)
-Using cached pycparser-3.12-py3-none-any.whl (62 kB)
+Downloading truststore-0.10.5-py3-none-any.whl (19 kB)
+Downloading pycparser-3.12-py3-none-any.whl (62 kB)
 Installing collected packages: urllib3, typing-extensions, truststore, tqdm, tabulate, pyyaml, pycparser, propcache, pillow, packaging, numpy, multidict, idna, hf-xet, h11, fsspec, frozenlist, filelock, click, charset_normalizer, certifi, attrs, aiohappyeyeballs, yarl, requests, opencv-python-headless, httpcore2, httpcore, cffi, anyio, aiosignal, httpx2, httpx, cryptography, aiohttp, huggingface-hub, edge-tts, gradio_client
 
-Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 anyio-4.16.0 attrs-26.1.0 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.1 cryptography-50.0.2 edge-tts-7.3.1 filelock-4.2.10 frozenlist-1.8.0 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.8.0 httpcore-1.0.9 httpcore2-2.16.0 httpx-0.28.1 httpx2-2.16.0 huggingface-hub-2.4.0 idna-3.20 multidict-7.2.1 numpy-2.5.4 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 propcache-0.5.4 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tabulate-0.10.0 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0 yarl-1.25.1
+Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.5 aiosignal-1.4.0 anyio-4.16.0 attrs-26.1.0 certifi-2026.10.23 cffi-2.1.1 charset_normalizer-3.5.2 click-8.5.1 cryptography-50.0.2 edge-tts-7.3.1 filelock-4.2.11 frozenlist-1.8.0 fsspec-2026.9.0 gradio_client-2.7.2 h11-0.16.0 hf-xet-1.8.0 httpcore-1.0.9 httpcore2-2.16.2 httpx-0.28.1 httpx2-2.16.2 huggingface-hub-2.4.0 idna-3.20 multidict-7.2.1 numpy-2.5.5 opencv-python-headless-5.0.0.93 packaging-26.3 pillow-13.0.0 propcache-0.5.4 pycparser-3.12 pyyaml-6.0.3 requests-2.34.2 tabulate-0.10.0 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 urllib3-2.8.0 yarl-1.25.1
 ## barreras
 ok   un reel sin texto no se publica
 · r.mp4 ya se publicó. No lo repito.
@@ -20,7 +20,7 @@ ok   el vídeo se sirve desde el repositorio público
 
 las barreras del publicador aguantan
 ## ffmpeg
-ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+ffmpeg version 8.0.1-3ubuntu2 Copyright (c) 2000-2025 the FFmpeg developers
 ## marcado
 ok   el vídeo se marca
 ok   lleva el DigitalSourceType del IPTC
@@ -31,17 +31,16 @@ ok   un fichero que falta no revienta nada
 
 el vídeo sale marcado y entero
 ## publicar
-· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261113_1324.mp4
-· Texto (265 caracteres):
+· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261116_1359.mp4
+· Texto (304 caracteres):
 🤖 Contenido generado con IA · Allie es un personaje creado con IA
 
-A veces solo hace falta mirar por la ventana. 🪟✨ ¿Te quedas conmigo un ratito a ver pasar el mundo?
+Me pierdo entre colores y puestos con esta luz de tarde tan bonita ✨ 
+Mi jersey verde favorito y muchas ganas de curiosear por aquí. 
+¿A que dan ganas de perderse un rato entre estos pasillos?
 
-📸 Cuéntame, ¿qué ves tú al otro lado de la tuya?
-
-#Allie #AIInfluencer #ParisianVibes #GoodEnergy
-· Contenedor 18109844684571997
+#Allie #AIInfluencer #Mercado #TardeDePaseo
+· Contenedor 18110272865571997
 ·   10s · IN_PROGRESS
-·   20s · IN_PROGRESS
-·   30s · FINISHED
-· PUBLICADO · 18078824594744620 · https://www.instagram.com/reel/DfuCnqbDfsW/
+·   20s · FINISHED
+· PUBLICADO · 17912733228581760 · https://www.instagram.com/reel/Df1w_cQnEVX/
