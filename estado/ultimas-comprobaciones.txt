@@ -1,4 +1,4 @@
-Comprobaciones · 2026-11-17 14:51 UTC
+Comprobaciones · 2026-11-17 20:00 UTC
 falta el reel de hoy: si
 
 ━━━━ prueba_texto_mira
@@ -8,7 +8,7 @@ ok   el encargo prohíbe inventar lo que no se ve
 ok   devuelve el texto nuevo
 · No pude escribir el texto mirando las fotos: Gemini caído
 ok   si el revisor de texto falla, no inventa nada
-· No pude leer /tmp/reel-texto-br_2oyfr/no-existe.jpg para escribir el texto: [Errno 2] No such file or directory: '/tmp/reel-texto-br_2oyfr/no-existe.jpg'
+· No pude leer /tmp/reel-texto-nvn0ig9a/no-existe.jpg para escribir el texto: [Errno 2] No such file or directory: '/tmp/reel-texto-nvn0ig9a/no-existe.jpg'
 ok   sin fotos que mirar, no escribe
 ok   un texto en blanco no cuenta como texto
 ok   guion_del_banco encuentra las fotos del apunte real
@@ -115,13 +115,12 @@ ok   lista vacía es lista vacía
 todo arranca con los inputs vacíos
    OK prueba_vacias
 ━━━━ prueba_identidad
-MAL  20261009-1439-1.jpg (rubia de ojos verdes, es ella) → no es ella · no se pudo comprobar que sea ella (Ningún modelo de Gemini disponible. Último aviso: Gemini: gemini-3.5-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.)
-ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: El color de los ojos es marrón en la foto nueva frente a verdes en la referencia. (ojos verdes → marrones, pelo rubio claro → castaño claro)
-ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no se pudo comprobar que sea ella (Ningún modelo de Gemini disponible. Último aviso: Gemini: gemini-3.5-flash is currently experiencing high demand, spikes in demand are usually temporary. Please try again later.)
+ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verdes → verdes, pelo rubio con mechas → rubio con mechas)
+ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: El color de los ojos en la foto nueva es claramente marrón, mientras que en la referencia son verdes. (ojos verdes → marrones, pelo rubio claro con mechas → castaño claro con mechas)
+ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: El color del pelo, de los ojos y los rasgos faciales son completamente diferentes. (ojos verdes → marrones, pelo rubio claro → castaño oscuro / moreno)
 
-El revisor no distingue a Allie en: 20261009-1439-1.jpg.
-Publicar a otra mujer en su cuenta es el fallo más caro que tiene este proyecto; no sigo.
-   MAL prueba_identidad
+el revisor distingue a Allie
+   OK prueba_identidad
 ━━━━ prueba_marca
 ok   el vídeo se marca
 ok   lleva el DigitalSourceType del IPTC
@@ -133,12 +132,12 @@ ok   un fichero que falta no revienta nada
 el vídeo sale marcado y entero
    OK prueba_marca
 ━━━━ prueba_pisadas
-· Tanda 20261117-145650 · un café por la mañana · etiqueta «cafe»
-· Foto 1 al banco (20261117-145650-1.jpg)
-· Foto 2 al banco (20261117-145650-2.jpg)
-· Tanda 20261117-145650b · un paseo por el barrio · etiqueta «calle»
-· Foto 1 al banco (20261117-145650b-1.jpg)
-· Foto 2 al banco (20261117-145650b-2.jpg)
+· Tanda 20261117-200055 · un café por la mañana · etiqueta «cafe»
+· Foto 1 al banco (20261117-200055-1.jpg)
+· Foto 2 al banco (20261117-200055-2.jpg)
+· Tanda 20261117-200055b · un paseo por el barrio · etiqueta «calle»
+· Foto 1 al banco (20261117-200055b-1.jpg)
+· Foto 2 al banco (20261117-200055b-2.jpg)
 ok   dice haber metido 4
 ok   y hay 4 ficheros de verdad en el banco
 ok   ninguna ficha del índice repite archivo
@@ -183,4 +182,4 @@ ok   y si la vía anónima tiene cuota, sale la foto
 el corte por falta de cuota funciona
    OK prueba_cuota
 
-FALLARON: prueba_identidad
+las 10 comprobaciones pasan
