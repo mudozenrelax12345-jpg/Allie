@@ -1,52 +1,57 @@
 {
- "cuando": "2026-11-16T12:41:33.144129+00:00",
+ "cuando": "2026-11-18T19:25:04.613915+00:00",
  "temas": [
+  "el look del día",
   "escapada de fin de semana",
-  "rutina de mañana con café",
-  "paseo con Booby por el parque"
+  "probando sitios nuevos para desayunar"
  ],
  "metidas": 9,
  "motivos": [
-  "foto 1 intento 1: La mano izquierda tiene los dedos deformados y extraños.",
-  "foto 3 intento 1: manos deformes con dedos extraños"
+  "foto 2 intento 1: mirada descuadrada y ojos con distinta dirección"
  ],
  "libres": 31,
- "total": 214,
+ "total": 223,
  "gasto": [
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 4.8,
+   "segundos": 4.6,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 4.8,
+   "segundos": 7.2,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 4.3,
+   "segundos": 7.5,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 6.5,
+   "segundos": 7.4,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 8.4,
+   "segundos": 5.3,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 4.8,
+   "segundos": 6.8,
+   "pasos": 4
+  },
+  {
+   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
+   "api": "ai/run",
+   "segundos": 7.8,
    "pasos": 4
   },
   {
@@ -58,27 +63,15 @@
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 5.7,
+   "segundos": 7.3,
    "pasos": 4
   },
   {
    "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
    "api": "ai/run",
-   "segundos": 6.1,
-   "pasos": 4
-  },
-  {
-   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
-   "api": "ai/run",
-   "segundos": 6.5,
-   "pasos": 4
-  },
-  {
-   "espacio": "cloudflare @cf/black-forest-labs/flux-2-klein-4b",
-   "api": "ai/run",
-   "segundos": 5.1,
+   "segundos": 5.5,
    "pasos": 4
   }
  ],
- "segundos_total": 62.8
+ "segundos_total": 65.2
 }
