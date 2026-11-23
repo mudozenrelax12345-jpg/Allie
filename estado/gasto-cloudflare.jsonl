@@ -737,3 +737,14 @@
 {"cuando": "2026-11-22T18:24:52+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-11-23T00:09:43+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
 {"cuando": "2026-11-23T08:52:10+00:00", "quien": "probar_cuota", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
+{"cuando": "2026-11-23T14:26:03+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 4.3, "neuronas": 136}
+{"cuando": "2026-11-23T14:26:13+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 7.1, "neuronas": 136}
+{"cuando": "2026-11-23T14:26:24+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 6.9, "neuronas": 136}
+{"cuando": "2026-11-23T14:26:33+00:00", "quien": "banco", "modelo": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "clase": "texto", "ok": true, "segundos": 0, "neuronas": 3}
+{"cuando": "2026-11-23T14:26:40+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 5.5, "neuronas": 136}
+{"cuando": "2026-11-23T14:26:49+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 6.9, "neuronas": 136}
+{"cuando": "2026-11-23T14:26:59+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 6.8, "neuronas": 136}
+{"cuando": "2026-11-23T14:27:18+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 7.2, "neuronas": 136}
+{"cuando": "2026-11-23T14:27:30+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 5.7, "neuronas": 136}
+{"cuando": "2026-11-23T14:27:55+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 7.7, "neuronas": 136}
+{"cuando": "2026-11-23T14:28:02+00:00", "quien": "banco", "modelo": "@cf/black-forest-labs/flux-2-klein-4b", "clase": "imagen", "ok": true, "segundos": 4.9, "neuronas": 136}

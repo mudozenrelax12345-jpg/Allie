@@ -2438,7 +2438,106 @@
    "vestuario": "cuadros",
    "sitio": "libreria",
    "creada": "2026-11-20T19:06:48.566501+00:00"
+  },
+  {
+   "archivo": "20261123-142556-1.jpg",
+   "tanda": "20261123-142556",
+   "etiqueta": "viaje",
+   "tema": "escapada de fin de semana",
+   "escena": "The same woman, medium shot, standing on a narrow street in Malasaña with old balconies behind her, wearing a bright red crew-neck jumper, leaning casually against a textured wall with golden autumn light filtering through, dry leaves on the ground, soft closed-mouth smile, natural afternoon lighting.",
+   "usada": null,
+   "vestuario": "rojo-jersey",
+   "sitio": "malasana",
+   "creada": "2026-11-23T14:26:06.399262+00:00"
+  },
+  {
+   "archivo": "20261123-142556-2.jpg",
+   "tanda": "20261123-142556",
+   "etiqueta": "viaje",
+   "tema": "escapada de fin de semana",
+   "escena": "The same woman, close-up, standing on a narrow street in Malasaña with old balconies behind her, wearing a bright red crew-neck jumper, looking slightly away from the camera with a gentle smile, warm autumn afternoon sunlight hitting her face, shallow depth of field.",
+   "usada": null,
+   "vestuario": "rojo-jersey",
+   "sitio": "malasana",
+   "creada": "2026-11-23T14:26:17.663608+00:00"
+  },
+  {
+   "archivo": "20261123-142556-3.jpg",
+   "tanda": "20261123-142556",
+   "etiqueta": "viaje",
+   "tema": "escapada de fin de semana",
+   "escena": "The same woman, medium shot, standing on a narrow street in Malasaña with old balconies behind her, wearing a bright red crew-neck jumper, turning her head toward the camera with a playful and elegant expression, crisp autumn air, golden hour side lighting.",
+   "usada": null,
+   "vestuario": "rojo-jersey",
+   "sitio": "malasana",
+   "creada": "2026-11-23T14:26:26.677551+00:00"
+  },
+  {
+   "archivo": "20261123-142626-1.jpg",
+   "tanda": "20261123-142626",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot, wearing a mustard-yellow chunky knit jumper, standing at the Templo de Debod at sunset with the Madrid city skyline behind, gentle golden autumn light, autumn leaves on the ground nearby, soft closed-mouth smile, looking directly at the camera",
+   "usada": null,
+   "vestuario": "mostaza-punto",
+   "sitio": "debod",
+   "creada": "2026-11-23T14:26:42.953859+00:00"
+  },
+  {
+   "archivo": "20261123-142626-2.jpg",
+   "tanda": "20261123-142626",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, close-up shot, wearing a mustard-yellow chunky knit jumper, standing at the Templo de Debod at sunset with the Madrid city skyline behind, warm golden hour lighting, soft smile with lips together, looking slightly away from the camera",
+   "usada": null,
+   "vestuario": "mostaza-punto",
+   "sitio": "debod",
+   "creada": "2026-11-23T14:26:52.989830+00:00"
+  },
+  {
+   "archivo": "20261123-142626-3.jpg",
+   "tanda": "20261123-142626",
+   "etiqueta": "calle",
+   "tema": "un día en Madrid",
+   "escena": "The same woman, medium shot, wearing a mustard-yellow chunky knit jumper, standing at the Templo de Debod at sunset with the Madrid city skyline behind, late autumn golden afternoon glow, playful pose with a subtle look over the shoulder, soft closed-mouth expression",
+   "usada": null,
+   "vestuario": "mostaza-punto",
+   "sitio": "debod",
+   "creada": "2026-11-23T14:27:09.416185+00:00"
+  },
+  {
+   "archivo": "20261123-142709-1.jpg",
+   "tanda": "20261123-142709",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium shot, sitting on a pavement terrace with woven chairs on a crisp autumn morning in Madrid with soft golden light and fallen leaves around, wearing a washed denim shirt buttoned to the collar, leaning slightly forward over the table with hands resting flat on the surface, gentle closed-lip smile, looking away from the camera.",
+   "usada": null,
+   "vestuario": "tejano-camisa",
+   "sitio": "terraza-bar",
+   "creada": "2026-11-23T14:27:47.358977+00:00"
+  },
+  {
+   "archivo": "20261123-142709-2.jpg",
+   "tanda": "20261123-142709",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, close-up shot, sitting on a pavement terrace with woven chairs on a crisp autumn morning in Madrid with soft golden light, wearing a washed denim shirt buttoned to the collar, chin resting softly on folded hands, calm expression with lips together, looking directly into the camera.",
+   "usada": null,
+   "vestuario": "tejano-camisa",
+   "sitio": "terraza-bar",
+   "creada": "2026-11-23T14:27:57.290530+00:00"
+  },
+  {
+   "archivo": "20261123-142709-3.jpg",
+   "tanda": "20261123-142709",
+   "etiqueta": "cafe",
+   "tema": "rutina de mañana con café",
+   "escena": "The same woman, medium shot, sitting on a pavement terrace with woven chairs on a crisp autumn morning in Madrid with warm golden backlighting, wearing a washed denim shirt buttoned to the collar, sitting sideways with arms crossed loosely on the table, soft smile, looking to the side.",
+   "usada": null,
+   "vestuario": "tejano-camisa",
+   "sitio": "terraza-bar",
+   "creada": "2026-11-23T14:28:04.450583+00:00"
   }
  ],
- "actualizado": "2026-11-23T10:57:19.771956+00:00"
+ "actualizado": "2026-11-23T14:28:04.450638+00:00"
 }
