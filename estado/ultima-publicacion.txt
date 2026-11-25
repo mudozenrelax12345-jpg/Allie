@@ -1,4 +1,4 @@
-# Última publicación · 2026-11-24 10:55 UTC
+# Última publicación · 2026-11-25 10:55 UTC
 ## instalar
 Using cached truststore-0.10.5-py3-none-any.whl (19 kB)
 Using cached pycparser-3.12-py3-none-any.whl (62 kB)
@@ -31,15 +31,20 @@ ok   un fichero que falta no revienta nada
 
 el vídeo sale marcado y entero
 ## publicar
-· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261123_1626.mp4
-· Texto (283 caracteres):
+· Vídeo: https://raw.githubusercontent.com/mudozenrelax12345-jpg/Allie/main/videos/reel_20261124_1620.mp4
+· Texto (390 caracteres):
 🤖 Contenido generado con IA · Allie es un personaje creado con IA
 
-¿Jugamos a las miradas cómplices entre hojas secas? 🍂 Mi sudadera gris favorita y esta luz dorada hacen el equipo perfecto. 😉 ¿A que te dan ganas de perderte por aquí conmigo?
+El atardecer desde las alturas siempre tiene algo mágico ✨
+Jersey borgoña, luz dorada y la ciudad de fondo... imposible no sonreír 😉
+Me encanta subir aquí arriba a desconectar un rato y coger aire.
+¿Tú también eres de pararte a disfrutar de la luz del atardecer?
 
-#Allie #AIInfluencer #Otoño #GoldenHour
-· Contenedor 18111026360571997
+#Allie #AIInfluencer #GoldenHour #RooftopViews #AutumnVibes
+· Contenedor 18111134714571997
 ·   10s · IN_PROGRESS
 ·   20s · IN_PROGRESS
-·   30s · FINISHED
-· PUBLICADO · 18121945828792531 · https://www.instagram.com/reel/DgHymEyE80K/
+·   30s · IN_PROGRESS
+·   40s · IN_PROGRESS
+·   50s · FINISHED
+· PUBLICADO · 18140699482642501 · https://www.instagram.com/reel/DgKXbiQJcAV/
