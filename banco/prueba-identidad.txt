@@ -1,5 +1,5 @@
 ok   20261009-1439-1.jpg (rubia de ojos verdes, es ella) → es ella · es ella (ojos verde → verde, pelo rubio → rubio)
-ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: Los ojos de la foto nueva son marrones en lugar de verdes como en la referencia. (ojos verdes → marrones, pelo rubio claro → rubio dorado)
-ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: Diferente color de ojos, tono de pelo y rasgos faciales (ojos verde → marrón, pelo rubio → moreno)
+ok   20261009-1439-2.jpg (castaña de ojos oscuros, no es ella) → no es ella · no es ella: El color de ojos en la foto nueva es marrón, mientras que en la referencia es verde. (ojos verde → marrón, pelo rubio claro → rubio claro)
+ok   sana-con-foto-de-referencia.jpg (otra mujer, pero la foto está bien hecha) → no es ella · no es ella: Diferente color de ojos, tono de pelo y rasgos faciales completamente distintos. (ojos verde → marrón, pelo rubio → moreno)
 
 el revisor distingue a Allie
